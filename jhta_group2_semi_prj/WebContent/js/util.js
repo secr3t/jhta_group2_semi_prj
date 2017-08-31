@@ -13,3 +13,7 @@ function getFirstEBC(cls){
 function getElByID(id){
 	return document.getElementById(id);
 }
+
+function $$$(el){
+	return document.querySelector(el);
+}
