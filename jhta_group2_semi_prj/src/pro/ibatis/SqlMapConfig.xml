@@ -10,14 +10,13 @@
 	<transactionManager type="JDBC" commitRequired="false">
 		<dataSource type="SIMPLE">
 			<property name="JDBC.Driver" value="oracle.jdbc.OracleDriver" />
-			<property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:xe" />
+			<property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@192.168.10.88:1521:xe" />
 			<property name="JDBC.Username" value="hr" />
 			<property name="JDBC.Password" value="zxcv1234" />
 		</dataSource>
 	</transactionManager>
 
 	
-	<sqlMap resource="com/paran/ibatis/mappers/board.xml" />
-	<sqlMap resource="com/paran/ibatis/mappers/user.xml" />
+	<sqlMap resource="/pro/ibatis/mappers/board.xml" />
 	
 </sqlMapConfig>
