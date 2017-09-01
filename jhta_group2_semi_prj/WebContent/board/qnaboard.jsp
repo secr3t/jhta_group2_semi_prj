@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="pro.dao.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -45,20 +47,6 @@
 					</tr>
 				</thead>
 				<tbody>
-				    <tr>
-				       <th>1</th>
-						<th>1</th>
-						<th>1</th>
-						<th>1</th>
-						<th>1</th> 
-				    </tr>
-				    <tr>
-				       <th>1</th>
-						<th>1</th>
-						<th>1</th>
-						<th>1</th>
-						<th>1</th> 
-				    </tr>
 				    <tr>
 				       <th>1</th>
 						<th>1</th>
