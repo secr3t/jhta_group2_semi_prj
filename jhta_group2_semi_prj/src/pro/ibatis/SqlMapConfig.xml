@@ -18,5 +18,6 @@
 
 	
 	<sqlMap resource="/pro/ibatis/mappers/board.xml" />
+	<sqlMap resource="/pro/ibatis/mappers/User.xml" />
 	
 </sqlMapConfig>
