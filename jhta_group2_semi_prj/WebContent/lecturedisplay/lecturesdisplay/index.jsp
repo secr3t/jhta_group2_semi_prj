@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-<%@include file="../common/header.jsp" %>
+<%@include file="../../common/header.jsp" %>
 <body>
-<%@include file="../common/nav.jsp" %>
+<%@include file="../../common/nav.jsp" %>
  <!-- sidebar -->
         <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
             <ul class="nav">
@@ -109,7 +109,7 @@
     
     
 </div>
-<%@include file="../common/footer.jsp" %>
+<%@include file="../../common/footer.jsp" %>
 </body>
 <script type="text/javascript">
     document.getElementById("myDropdown-1").addEventListener("click", function(event){
