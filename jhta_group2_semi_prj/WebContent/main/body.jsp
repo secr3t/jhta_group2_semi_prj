@@ -138,8 +138,6 @@
             </div>
         </div>
 
-
-
         <div class="row">
             <div class="col-sm-6">올해의 강사</div>
             <div class="col-sm-6">Hot!한 강의</div>

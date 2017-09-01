@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
     <div class="container">
         <footer>
-            footer 영역<br>
-            회사소개<br>
-            연혁<br>
-            무통장 입금 계좌<br>
-            고객센터 전화번호
+            <p>footer 영역</p>
+           <p> 회사소개</p>
+            <p>연혁</p>
+            <p>무통장 입금 계좌</p>
+            <p>고객센터 전화번호</p>
         </footer>
     </div>
