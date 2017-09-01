@@ -21,17 +21,17 @@
 	</style>
 </head>
 <body>
-<%@ include file="../common/nav.jsp" %>
+<%@ include file="../../common/nav.jsp" %>
 <div class="container-fluid">
         <h1>My Page</h1>
         <hr/>
         <div class="row">
             <div class="col-sm-2">
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation">카테고리</li>
+                    <li role="presentation"><a href="index.jsp">My Page 홈</a></li>
                     <li role="presentation"><a href="#">내 정보</a></li>
-                    <li role="presentation"><a href="#">내 수강 과목</a></li>
-                    <li role="presentation"><a href="#">내 QnA</a></li>
+                    <li role="presentation"><a href="mycourse.jsp">내 수강 과목</a></li>
+                    <li role="presentation"><a href="myqna.jsp">내 QnA</a></li>
                 </ul>
             </div>
             <div class="col-sm-9">
@@ -58,7 +58,7 @@
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <label>내 수강 목록</label>
-                                <a href="#" class="pull-right">목록으로</a>
+                                <a href="mycourse.jsp" class="pull-right">목록으로</a>
                             </div>
                             <table class="table table-condensed table-hover">
                                 <colgroup>
@@ -124,7 +124,7 @@
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <label>내 QnA</label>
-                                <a href="#" class="pull-right">목록으로</a>
+                                <a href="myqna.jsp" class="pull-right">목록으로</a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-condensed table-hover">
@@ -168,5 +168,6 @@
             </div>
         </div>
     </div>
+   	<%@ include file="../../common/footer.jsp" %>
 </body>
 </html>

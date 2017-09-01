@@ -2,7 +2,7 @@ package pro.vo;
 
 import java.util.Date;
 
-public class QnaBoard {
+public class Board {
 	
 	private int no;
 	private String title;
@@ -10,7 +10,7 @@ public class QnaBoard {
 	private Date createDate;
 	private User writer;
 	
-	public QnaBoard () {}
+	public Board () {}
 	
 	public int getNo() {
 		return no;
