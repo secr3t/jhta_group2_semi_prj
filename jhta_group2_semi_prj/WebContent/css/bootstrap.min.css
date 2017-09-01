@@ -39,7 +39,11 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
-table.book-table{
+div.book-table{
 	height:600px;
 	overflow-y: scroll;
+}
+
+div.book-table td, div.book-table th{
+	line-height: 40px !important;
 }
