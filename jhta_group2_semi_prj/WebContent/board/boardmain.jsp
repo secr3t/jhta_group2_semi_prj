@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-xs-6 col-lg-4">
                         <h2 class="well" style="background-color: white; border: 2px solid;">
-                        <strong><a href="freeboard.jsp">강의 후기 게시판</a></strong></h2>
+                        <strong><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp">강의 후기 게시판</a></strong></h2>
                         <table class="table">
                           
                             <tbody>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-xs-6 col-lg-4">
                         <h2 class="well" style="background-color: white; border: 2px solid;">
-                        	<strong><a href="qnaboard.jsp">강의 질문 답변 게시판</a></strong></h2>
+                        	<strong><a href="/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp">강의 질문 답변 게시판</a></strong></h2>
                         <table class="table">
                             <tbody>
                                 <tr>
@@ -74,13 +74,13 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td><h4><strong>공지 사항</strong></h4></td>
+                                    <td><h4><strong><a href="alertboard.jsp">공지 사항</a></strong></h4></td>
                                 </tr>
                                 <tr>
-                                    <td><h4><strong>자주하는 질문</strong></h4></td>
+                                    <td><h4><strong><a href="faqboard.jsp">자주하는 질문</a></strong></h4></td>
                                 </tr>
                                    <tr>
-                                    <td><h4><strong>1:1 문의</strong></h4></td>
+                                    <td><h4><strong><a href="personalqna.jsp">1:1 문의</a></strong></h4></td>
                                 </tr>
                             </tbody>
                         </table>

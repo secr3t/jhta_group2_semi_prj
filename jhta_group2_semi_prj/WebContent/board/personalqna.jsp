@@ -40,7 +40,7 @@
 </div>
  <div class="container">
      <div class="row">
-         <form class="well" method="post" action="addQuest.jsp">
+         <form class="well" method="post" style="background-color:white; border: 1px solid;" action="addQuest.jsp">
              <div class="form-group">
                  <label>제목</label>
                  <input type="text" class="form-control" name="title" />
