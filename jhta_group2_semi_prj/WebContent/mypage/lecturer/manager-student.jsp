@@ -20,14 +20,14 @@
 				<%@ include file="left-menu.jsp" %>
 			</div>  
             <div class="col-sm-9">
-                <h2 class="sub-header">학생관리</h2>
+                <h2 class="sub-header">학생관리 <small>- Java</small></h2>
                 <div class="row">
-                	<div class="col-sm-7">
+                	<div class="col-sm-3">
                 		<label>정렬 :</label>
                 		<button><span class="glyphicon glyphicon-sort-by-alphabet"></span></button>
                 		<button><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span></button>
                 	</div>
-                	<div class="col-sm-5 pull-right">
+                	<div class="col-sm-7 pull-right">
 		                <form method="post" action="#" class="form-inline text-right">
 		                    <div class="form-group">
 		                        <label class="sr-only">검색</label>
@@ -42,41 +42,53 @@
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <colgroup>
+                            <col width="20%">
+                            <col width="10%">
                             <col width="50%">
-                            <col width="30%">
-                            <col width="10%">
-                            <col width="10%">
+                            <col width="20%">
                         </colgroup>                                   
                         <thead>
                             <tr>
-                                <th>제목</th><th>강의명</th><th>게시자</th><th>게시일</th>
+                                <th>ID</th><th>학생명</th><th>진행률</th><th>등록일</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                                <td><a href="#">Java</a></td>
+                                <td>blewwind70</td>
                                 <td>김환희</td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: 40%;">
+                                            <span>40%</span>
+                                        </div>
+                                    </div>
+                                </td>                                
                                 <td>17/08/21</td>
                             </tr>                               
                             <tr>
-                                <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                                <td><a href="#">Java</a></td>
+                                <td>blewwind70</td>
                                 <td>김환희</td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: 40%;">
+                                            <span>40%</span>
+                                        </div>
+                                    </div>
+                                </td>                                
                                 <td>17/08/21</td>
-                            </tr>
+                            </tr>                               
                             <tr>
-                                <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                                <td><a href="#">Java</a></td>
+                                <td>blewwind70</td>
                                 <td>김환희</td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: 40%;">
+                                            <span>40%</span>
+                                        </div>
+                                    </div>
+                                </td>                                
                                 <td>17/08/21</td>
-                            </tr>                
-                            <tr>
-                                <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                                <td><a href="#">Java</a></td>
-                                <td>김환희</td>
-                                <td>17/08/21</td>
-                            </tr>
+                            </tr>                               
                         </tbody>
                     </table>
                     <div class="text-center">

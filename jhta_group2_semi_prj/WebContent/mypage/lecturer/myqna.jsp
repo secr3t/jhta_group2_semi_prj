@@ -30,24 +30,31 @@
 				<%@ include file="left-menu.jsp" %>
 			</div>  
             <div class="col-sm-9">
-                <h2 class="sub-header">등록된 Q&amp;A</h2>
-                <form method="post" action="#" class="form-inline text-right">
-                    <div class="form-group">
-                        <label class="sr-only">검색분류</label>
-                        <select name="searchcategory" class="form-control">
-                            <option value="title">제목</option>
-                            <option value="lecture">강의명</option>
-                            <option value="student">학생</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only">검색</label>
-                        <input type="text" name="searchtext" class="form-control" placeholder="검색어를 입력해주세요."/>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </div>
-                </form>
+            	<div class="row">
+	                <h2 class="sub-header">등록된 Q&amp;A</h2>
+	                <div class="col-sm-2">
+	                	<a href="#" class="btn btn-danger">미답변 질문만 보기 </a>
+	                </div>
+	                <div class="col-sm-10 pull-right">
+		                <form method="post" action="#" class="form-inline text-right">
+		                    <div class="form-group">
+		                        <label class="sr-only">검색분류</label>
+		                        <select name="searchcategory" class="form-control">
+		                            <option value="title">제목</option>
+		                            <option value="lecture">강의명</option>
+		                            <option value="student">학생</option>
+		                        </select>
+		                    </div>
+		                    <div class="form-group">
+		                        <label class="sr-only">검색</label>
+		                        <input type="text" name="searchtext" class="form-control" placeholder="검색어를 입력해주세요."/>
+		                    </div>
+		                    <div class="form-group">
+		                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+		                    </div>
+		                </form>
+		            </div>
+		        </div>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <colgroup>
