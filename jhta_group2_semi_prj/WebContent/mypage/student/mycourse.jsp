@@ -17,14 +17,9 @@
         <h1>My Course</h1>
         <hr/>
         <div class="row">
-            <div class="col-sm-2">
-                <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation"><a href="index.jsp">My Page 홈</a></li>
-                    <li role="presentation"><a href="#">내 정보</a></li>
-                    <li role="presentation"><a href="mycourse.jsp">내 수강 과목</a></li>
-                    <li role="presentation"><a href="myqna.jsp">내 QnA</a></li>
-                </ul>
-            </div>
+        	<div class="col-sm-2">
+				<%@ include file="left-menu.jsp" %>
+			</div>  
             <div class="col-sm-10">
                 <div class="row">
                     <div class="col-sm-offset-1 col-sm-10">
@@ -39,7 +34,7 @@
                                 <div class="col-sm-7">
                                     <h5>강의 소개</h5>
                                     <p>
-                                       해당 강의에 대한 간략한 설명입니다. 
+                                       	해당 강의에 대한 간략한 설명입니다. 
                                     </p>
                                 </div>
                             </div>

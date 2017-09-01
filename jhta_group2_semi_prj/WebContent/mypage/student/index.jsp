@@ -10,6 +10,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<style>
+	    .glyphicon {
+            font-size: 20px;
+        }
         .table-hover {
             table-layout: fixed;
         }
@@ -26,14 +29,9 @@
         <h1>My Page</h1>
         <hr/>
         <div class="row">
-            <div class="col-sm-2">
-                <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation"><a href="index.jsp">My Page 홈</a></li>
-                    <li role="presentation"><a href="#">내 정보</a></li>
-                    <li role="presentation"><a href="mycourse.jsp">내 수강 과목</a></li>
-                    <li role="presentation"><a href="myqna.jsp">내 QnA</a></li>
-                </ul>
-            </div>
+        	<div class="col-sm-2">
+				<%@ include file="left-menu.jsp" %>
+			</div>  
             <div class="col-sm-9">
                 <div class="row">
                     <div class="col-sm-offset-1 col-sm-10">
@@ -45,7 +43,7 @@
                             <table class="table table-condensed">
                                 <tr>
                                     <th></th><td></td>
-                                    <th>잔여 포인트</th><td>500P</td>
+                                    <th>잔여 포인트</th><td>500 <span class="glyphicon glyphicon-copyright-mark text-warning"></span></td>
                                     <th><a href="#" class="btn btn-primary btn-sm pull-right">포인트 충전</a></th><td></td>
                                 </tr>
                             </table>
