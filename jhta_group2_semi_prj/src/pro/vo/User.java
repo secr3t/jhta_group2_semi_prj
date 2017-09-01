@@ -5,6 +5,7 @@ public class User {
 	private String id;
 	private String name;
 	private String pwd;
+	private String email;
 	
 	public User() {}
 	
@@ -25,6 +26,14 @@ public class User {
 	}
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

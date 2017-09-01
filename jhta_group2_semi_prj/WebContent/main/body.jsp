@@ -25,7 +25,6 @@
                 max-width: 100px;
             }
         }
-        
         @media screen and (max-width: 1440px) {
             .left-banner {
                 display: none;
@@ -66,7 +65,6 @@
         }
     </style>
     
-    <div class='container'>
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -148,4 +146,3 @@
         </div>
         <div class="left-banner"><img src="http://img.megastudy.net/main/scroll/sky_170828_left_ysh.jpg" border="0" alt="전체메인 고3·N수 LEFT (상단)/SS배너/윤성훈T 패키지 30% 할인(20170828부터)"></div>
         <div class="right-banner"><img src="http://img.megastudy.net/Main/scroll/sky_170801_mtab01.jpg" border="0" alt="메가스터디메인/SS배너/고3·N수/MTAB_단독판매(20170411)"></div>
-    </div>
