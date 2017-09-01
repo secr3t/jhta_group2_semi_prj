@@ -11,7 +11,7 @@
    
    <div class="row well">
         <div class="col-sm-3">
-            <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 70%;">
+            <img src="../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 70%;">
             <p><strong>맛보기 동영상</strong></p>
         </div>
         <div class="col-sm-6">
@@ -35,39 +35,112 @@
         </div>
    </div>
    <div class="row">
-    <div class="col-sm-9">
-   <div class="row well">
-   
-        <div class="row">
-            <div class="col-sm-8">
-                <h4>About this course</h4>
-            </div>
-            <div class="col-sm-4">
-                <h5>평점</h5>
+        <div class="col-sm-9">
+            <div class="row well">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h4>About this course</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5>평점</h5>
+                    </div>
+                </div>
+                <div class="col-sm-12 row">
+                    <div style="padding-top:20px">
+                        <p>Begin your journey in a new career in marketing analytics. Learn about powerful strategies and methodology, starting with identifying market trends and metrics used to measure marketing success.</p>
+                    </div>
+                    <div class="col-sm-12 row collapse" id="collapseExample">
+                        <div class="car card-block" style="white-space: pre-line;">
+                            <p>In this marketing course, you will learn how to execute market sizing, identify market trends, and predict future conditions.
+
+                            This course is taught by Stephan Sorger who has held leadership roles in marketing and product development at companies such as Oracle, 3Com and NASA. He has also taught for over a decade at UC Berkeley Extension and is the author of two widely adopted marketing textbooks. This course will equip you with the knowledge and skills necessary to immediately see practical benefits in the workplace.
+
+                            Analytics-based marketing is increasingly important in determining a company’s spending and ROI. Many entry-level positions in marketing now require some basic level of knowledge in this rapidly growing field.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                         <button class="btn btn-default" type="button" data-toggle="collapse" 
+                                 data-target="#collapseExample" aria-expanded="false" 
+                                 aria-controls="collapseExample">+ See More</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8"  style="padding-top:30px;">
+                        <h4>What you'll learn</h4>
+                    </div>
+                </div>    
+                <div class="row">
+                    <ul>
+                        <li>How to identify market trends</li>
+                        <li>How to predict future conditions</li>
+                        <li>An understanding of metrics used to measure marketing success</li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8"  style="padding-top:30px;">
+                        <h4>Teacher Inroduction</h4>
+                    </div>
+                </div>    
+                <div class="row">
+                    <div class="col-sm-3" style="padding-top:30px;">
+                        <img src="../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 80%;">
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="text-right">
+                            <br>
+                            <h4>이성환 강사</h4>
+                            <p><small>태평양중학교졸업</small></p>
+                            <p><small>하와이거주</small></p>
+                            <p><small>sleepyHead@gmail.com</small></p>
+                            <p><small>050-0900-9999</small></p>
+                        </div> 
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-sm-8"  style="padding-top:30px;">
+                        <h4>Lecture Reviews</h4>
+                    </div>
+                </div>    
+                <div class="row col-sm-12">
+                    <div>
+                        <p><strong>Kaïs Marzouk</strong></p>
+                    </div>
+                    <div class="row col-sm-12">
+                        <p>I missed this one (SC2x), I'm enrolled to SC1x and SC3x. I am a fan of the supply Chain Management MITx XSeries. Will there be mor...</p>
+                    </div>
+                </div>
+                <div class="row col-sm-12">
+                    <div>
+                        <p><strong>paul Marzouk</strong></p>
+                    </div>
+                    <div class="row col-sm-12">
+                        <p>I missed this one (SC2x), I'm enrolled to SC1x and SC3x. I am a fan of the supply Chain Management MITx XSeries. Will there be mor...</p>
+                    </div>
+                </div> 
+                <div class="row col-sm-12">
+                    <div>
+                        <p><strong>Kaïs vink</strong></p>
+                    </div>
+                    <div class="row col-sm-12">
+                        <p>I missed this one (SC2x), I'm enrolled to SC1x and SC3x. I am a fan of the supply Chain Management MITx XSeries. Will there be mor...</p>
+                    </div>
+                </div>      
             </div>
         </div>
-            <div class="col-sm-12 row" style="white-space: pre-line;">
-                <p>Begin your journey in a new career in marketing analytics. Learn about powerful strategies and methodology, starting with identifying market trends and metrics used to measure marketing success.
-
-                In this marketing course, you will learn how to execute market sizing, identify market trends, and predict future conditions.
-
-                This course is taught by Stephan Sorger who has held leadership roles in marketing and product development at companies such as Oracle, 3Com and NASA. He has also taught for over a decade at UC Berkeley Extension and is the author of two widely adopted marketing textbooks. This course will equip you with the knowledge and skills necessary to immediately see practical benefits in the workplace.
-
-                Analytics-based marketing is increasingly important in determining a company’s spending and ROI. Many entry-level positions in marketing now require some basic level of knowledge in this rapidly growing field.</p>
-            </div>
-            <div class="row"></div>
-            <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-9"></div>
-        </div>       
-    </div>
-    </div>
         <div class="col-sm-3">
-           <div class="row well">
+            <div class="row well">
+               <div class="row">
+                   <h5><strong>연관 강의</strong></h5>
+               </div>
+               <div class="row">
+                   <h5><strong>인기 강의</strong></h5>
+               </div>
             </div>
         </div>
     </div>
-</div>
-</body>
 <%@include file="../common/footer.jsp" %>
+</body>
+<script type="text/javascript">
+	
+</script>
 </html>
