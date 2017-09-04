@@ -54,25 +54,25 @@
 	                                </thead>
 	                                <tbody>
 	                                    <tr>
-	                                        <td>Hong</td>
+	                                        <td><a href="course-detail.jsp?no=2">Hong</a></td>
 	                                        <td>홍길동</td>
 	                                        <td>17/08/31</td>
 	                                        <td>언어</td>
 	                                    </tr>
 	                                    <tr>
-	                                        <td>Hong</td>
+	                                        <td><a href="course-detail.jsp?no=2">Hong</a></td>
 	                                        <td>홍길동</td>
 	                                        <td>17/08/31</td>
 	                                        <td>언어</td>
 	                                    </tr>
 	                                    <tr>
-	                                        <td>Hong</td>
+	                                        <td><a href="course-detail.jsp?no=2">Hong</a></td>
 	                                        <td>홍길동</td>
 	                                        <td>17/08/31</td>
 	                                        <td>언어</td>
 	                                    </tr>
 	                                    <tr>
-	                                        <td>Hong</td>
+	                                        <td><a href="course-detail.jsp?no=2">Hong</a></td>
 	                                        <td>홍길동</td>
 	                                        <td>17/08/31</td>
 	                                        <td>언어</td>
@@ -102,15 +102,15 @@
 	                                    </thead>
 	                                    <tbody>
 	                                        <tr>
-	                                            <td><a href="#">수학의 정석</a></td>
-	                                            <td><a href="#">수학</a></td>
-	                                            <td><a href="#">정약용</a></td>
+	                                            <td><a href="course-detail.jsp?no=2">수학의 정석</a></td>
+	                                            <td>수학</td>
+	                                            <td><a href="lecturer-detail.jsp?no=2">정약용</a></td>
 	                                            <td>17/08/21</td>
 	                                        </tr>                               
 	                                        <tr>
-	                                            <td><a href="#">수학의 정석</a></td>
-	                                            <td><a href="#">수학</a></td>
-	                                            <td><a href="#">정약용</a></td>
+	                                            <td><a href="course-detail.jsp?no=2">수학의 정석</a></td>
+	                                            <td>수학</td>
+	                                            <td><a href="lecturer-detail.jsp?no=2">정약용</a></td>
 	                                            <td>17/08/21</td>
 	                                        </tr>                              
 	                                    </tbody>

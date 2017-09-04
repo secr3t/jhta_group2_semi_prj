@@ -71,7 +71,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>이응수</td>
                                         <td>
                                             <div class="progress">
@@ -82,7 +82,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>이응수</td>
                                         <td>
                                             <div class="progress">
@@ -93,7 +93,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>이응수</td>
                                         <td>
                                             <div class="progress">
@@ -104,7 +104,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>이응수</td>
                                         <td>
                                             <div class="progress">
