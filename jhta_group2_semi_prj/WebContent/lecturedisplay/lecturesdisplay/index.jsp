@@ -4,13 +4,14 @@
 <html lang="ko">
 <%@include file="../../common/header.jsp" %>
 <body>
-<%@include file="../../common/nav.jsp" %>
-	<div class="col-sm-offset-1">
-		<h1><a href="">강의 목록</a></h1>
+<div class="container">
+		<%@include file="../../common/nav.jsp" %>
+	<div class="col-sm-2">
+		<h2><a href="">강의 목록</a></h2>
+		<hr>
+	<%@include file="left-menu.jsp" %> 
 	</div>
-<hr>
-<%@include file="left-menu.jsp" %>    
-<div class="container col-sm-8">
+<div class="col-sm-10">
 <%@include file="nav.jsp" %>
        <div class="col-sm-offset-1 col-sm-3 well" >
              <div>
@@ -134,6 +135,7 @@
         </div>
 <%@include file="pagination.jsp" %>
 </div>
+</div>
 <%@include file="../../common/footer.jsp" %>
 </body>
 <script type="text/javascript">
@@ -142,10 +144,10 @@
         console.log(clicked);
         if(clicked.id === "teacher"){
             var htmlContent = "";
-            htmlContent += "<li id='uisil'>맹의실</li>";
-            htmlContent += "<li id='seungyong'>이승용</li>";
-            htmlContent += "<li id='daenyeong'>허대녕</li>";
-            htmlContent += "<li id='seonghwan'>이성환</li>";
+            htmlContent += "<li id='uisil' style='cursor:pointer'>맹의실</li>";
+            htmlContent += "<li id='seungyong' style='cursor:pointer'>이승용</li>";
+            htmlContent += "<li id='daenyeong' style='cursor:pointer'>허대녕</li>";
+            htmlContent += "<li id='seonghwan' style='cursor:pointer'>이성환</li>";
             document.getElementById("menu2").setAttribute("data-toggle", "dropdown");
             document.getElementById("menu2").innerHTML = "필터"+"<span class='caret'></span>"; 
             document.getElementById("myDropdown-2").innerHTML = htmlContent;
