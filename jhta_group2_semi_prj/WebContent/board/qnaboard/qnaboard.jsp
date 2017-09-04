@@ -5,12 +5,8 @@
 <html lang="ko">
 <%@include file="/common/header.jsp" %>
 <body>
-<<<<<<< HEAD
-<%@include file="../../common/nav.jsp"%>
-<%@ include file="../boardbanner/left-menu.jsp" %>
-=======
 <%@include file="/common/nav.jsp" %>
->>>>>>> branch 'master' of https://github.com/secr3t/jhta_group2_semi_prj.git
+<%@ include file="../boardbanner/left-menu.jsp" %>
 
 <div class="content-primary">
 <div class="container">
