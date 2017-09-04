@@ -33,10 +33,10 @@
 						<div class="form-group">
 							<label class="col-sm-1 control-label">제목</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control" name="title" />
+								<input type="text" class="form-control" name="title" id="alerttypetext"/>
 							</div>
 							<div class="col-sm-1 control-label"><strong>공지 타입</strong></div>
-								<select class="form-control col-sm-3" style="width:100px;" name="type">
+								<select class="form-control col-sm-3" style="width:100px;" name="type" id="alerttype">
 								  <option>필독</option>
 								  <option>일반</option>
 								  <option>이벤트</option>
@@ -52,7 +52,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-1 col-sm-11 text-right">
 								<a href="" class="btn btn-warning btn-md">취소</a>
-								<button type="submit" class="btn btn-primary btn-md">완료</button>
+								<button type="submit" class="btn btn-primary btn-md" id="complete">완료</button>
 							</div>
 						</div>
 					</form>
