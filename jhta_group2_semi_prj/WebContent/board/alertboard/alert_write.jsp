@@ -14,51 +14,56 @@
 <body>
 <%@include file="../../common/nav.jsp"%>
 
-<%@ include file="../boardbanner/left-menu.jsp" %>
+
 <div class="content-primary">
 <div class="container">
-  <div class="row">
-    <div class="content-header">
-        <div class="crumb">
-  	        <h1 >공지 사항 게시</h1>
-  			<h4>
-  			<span style="color:red;"><strong>|</strong>
-  			</span>	공지 사항 쓰기
-  			</h4>
-        </div>
-    </div>
-  	    <hr>
-			<div class="container">
-				<div class="row">
-					<form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/alertboard/add_alert.jsp">
+	<div class="col-sm-2">
+	<%@ include file="../boardbanner/left-menu.jsp" %>
+	</div>
+	<div class="col-sm-9">
+	  <div class="row">
+	    <div class="content-header">
+	        <div class="crumb">
+	  	        <h1 >공지 사항 게시</h1>
+	  			<h4>
+	  			<span style="color:red;"><strong>|</strong>
+	  			</span>	공지 사항 쓰기
+	  			</h4>
+	        </div>
+	    </div>
+	  	    <hr>
+				<div class="container">
+					<div class="row">
+						<form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/alertboard/add_alert.jsp">
+								<div class="form-group">
+								<label class="col-sm-1 control-label">제목</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" name="title" />
+								</div>
+								<div class="col-sm-1 control-label"><strong>공지 타입</strong></div>
+									<select class="form-control col-sm-3" style="width:100px;" name="type">
+									  <option>필독</option>
+									  <option>일반</option>
+									  <option>이벤트</option>
+									</select>
+								</div>
+							
 							<div class="form-group">
-							<label class="col-sm-1 control-label">제목</label>
-							<div class="col-sm-7">
-								<input type="text" class="form-control" name="title" />
+								<label class="col-sm-1 control-label">내용</label>
+								<div class="col-sm-11">
+									<textarea rows="6" class="form-control " name="contents"></textarea>
+								</div>
 							</div>
-							<div class="col-sm-1 control-label"><strong>공지 타입</strong></div>
-								<select class="form-control col-sm-3" style="width:100px;" name="type">
-								  <option>필독</option>
-								  <option>일반</option>
-								  <option>이벤트</option>
-								</select>
+							<div class="form-group">
+								<div class="col-sm-offset-1 col-sm-11 text-right">
+									<a href="" class="btn btn-warning btn-md">취소</a>
+									<button type="submit" class="btn btn-primary btn-md">완료</button>
+								</div>
 							</div>
-						
-						<div class="form-group">
-							<label class="col-sm-1 control-label">내용</label>
-							<div class="col-sm-11">
-								<textarea rows="6" class="form-control " name="contents"></textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-1 col-sm-11 text-right">
-								<a href="" class="btn btn-warning btn-md">취소</a>
-								<button type="submit" class="btn btn-primary btn-md">완료</button>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
-			</div>
+		</div>
 	</div>
 </div>
   
