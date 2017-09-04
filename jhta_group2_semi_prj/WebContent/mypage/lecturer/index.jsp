@@ -72,31 +72,31 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>10</td>
                                         <td>20</td>
                                         <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
                                     </tr>                                      
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>10</td>
                                         <td>20</td>
                                         <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
                                     </tr>                                      
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>10</td>
                                         <td>20</td>
                                         <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
                                     </tr>                                      
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>10</td>
                                         <td>20</td>
                                         <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
                                     </tr>                                      
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>10</td>
                                         <td>20</td>
                                         <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>

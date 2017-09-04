@@ -10,24 +10,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<%@include file="../../common/header.jsp"%>
+
+
 <body>
 <%@include file="../../common/nav.jsp"%>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
-    </ul>
-  </div>
-</nav>
+<%@ include file="../boardbanner/left-menu.jsp" %>
 <div class="content-primary">
+
 <div class="container">
+
   <div class="row">
     <div class="content-header">
         <div class="crumb">
@@ -80,7 +71,7 @@
 					<li><a href="#">4</a></li>
 					<li><a href="#">5</a></li>
 				</ul>
-				<a href="write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
+				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
 			</div>
 		</div>
 	</div>

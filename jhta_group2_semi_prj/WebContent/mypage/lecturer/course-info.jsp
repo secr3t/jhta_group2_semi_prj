@@ -26,6 +26,10 @@
             </div>
             <div class="col-sm-9">
                 <h2 class="sub-header">Java</h2>
+                
+               	<div class="row text-right">
+	        		<a href="#" class="btn btn-md btn-primary">강의 페이지로</a>
+		        </div>
                 <hr/>
                 
                 <div class="row well">

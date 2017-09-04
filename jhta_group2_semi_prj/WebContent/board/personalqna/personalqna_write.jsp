@@ -11,19 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
-    </ul>
-  </div>
-</nav>
+<%@include file="../../common/nav.jsp"%>
 
 <div class="container">
   <div class="row">
@@ -40,20 +28,32 @@
 </div>
  <div class="container">
      <div class="row">
-         <form class="well" method="post" style="background-color:white; border: 1px solid;" action="addQuest.jsp">
-             <div class="form-group">
-                 <label>제목</label>
-                 <input type="text" class="form-control" name="title" />
-             </div>
-             <div class="form-group">
-                 <label>내용</label>
-                 <textarea rows="6" class="form-control" name="contents"></textarea>
-             </div>
-             <div class="form-group text-right">
-                 <a href="질문등록이완료" class="btn btn-warning btn-md">취소</a>
-                 <button type="submit" class="btn btn-primary btn-md">완료</button>
-             </div>
-         </form>
+         <form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/alertboard/add_alert.jsp">
+			<div class="form-group">
+				<label class="col-sm-1 control-label">제목</label>
+				<div class="col-sm-7">
+					<input type="text" class="form-control" name="title" />
+				</div>
+				<div class="col-sm-1 control-label"><strong>질문 타입</strong></div>
+					<select class="form-control col-sm-3" style="width:100px;" name="type">
+					  <option>결제</option>
+					  <option>이용</option>
+					</select>
+				</div>
+			
+			<div class="form-group">
+				<label class="col-sm-1 control-label">내용</label>
+				<div class="col-sm-11">
+					<textarea rows="6" class="form-control " name="contents"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-1 col-sm-11 text-right">
+					<a href="" class="btn btn-warning btn-md">취소</a>
+					<button type="submit" class="btn btn-primary btn-md">완료</button>
+				</div>
+			</div>
+		</form>
      </div>
  </div>
   
