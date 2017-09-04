@@ -10,10 +10,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<%@include file="../../common/header.jsp"%>
 <body>
-
-
 <%@include file="../../common/nav.jsp"%>
+
 <%@ include file="../boardbanner/left-menu.jsp" %>
 <div class="content-primary">
 <div class="container">
