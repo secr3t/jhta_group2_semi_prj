@@ -30,7 +30,9 @@
   		<div class="panel panel-default">
   			<table class="table">
   				<tbody>
-  				<h3>질문</h3>
+  				<tr>
+  					<th><h3>질문</h3></th>
+  				</tr>
   				<tr>
   					<th>제목</th>
   					<td colspan="5">자바신이 되려면 무엇을 해야되나요?</td>
@@ -56,6 +58,7 @@
   			</div>
   		</form>
   </div>
+</div>
 </div>
 <%@include file="../../common/footer.jsp" %>
 </body>

@@ -22,7 +22,10 @@
   		<div class="panel panel-default">
   			<table class="table">
   				<tbody>
-  				<h3>질문</h3>
+	  			
+  				<tr>
+  					<th><h3>질문</h3></th>
+  				</tr>
   				<tr>
   					<th>제목</th>
   					<td colspan="5">자바신이 되려면 무엇을 해야되나요?</td>
@@ -38,20 +41,14 @@
   				</tr> 
   				</tbody>
   			</table>
-  			<div class="text-right">
-<<<<<<< HEAD
-  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_replywrite.jsp" class="btn btn-warning btn-md">답변</a>
-=======
->>>>>>> branch 'master' of https://github.com/secr3t/jhta_group2_semi_prj.git
-  				<a href="/jhta_group2_semi_prj/board/personalqna/delete_personalqna.jsp" class="btn btn-danger btn-md">삭제</a>
-  				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-primary btn-md">돌아가기</a>
-  			</div>
   		</div>
   		<%//if(display=="Y"){ %>
   		<div class="panel panel-default">
   			<table class="table">
   				<tbody>
-  				<h3>답변</h3>
+  				<tr>
+  					<th><h3>답변</h3></th>
+  				</tr>
   				<tr>
   					<th>작성자</th>
   					<td>자바신</td>
@@ -61,8 +58,13 @@
   				<tr>
   					<td colspan="6">When you want more—more selection, protection, and power for embedded applications—Java is the choice. Oracle Java Embedded products are designed and optimized to meet the unique requirements of embedded devices, such as microcontrollers, sensors, and gateways. They enable intelligent systems for M2M communications and the Internet of Things so you can do more with your devices.</td>
   				</tr> 
-  				</tbody>
   			</table>
+  				<div class="text-right">
+	  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_replywrite.jsp" class="btn btn-warning btn-sm">답변</a>
+	  				<a href="/jhta_group2_semi_prj/board/personalqna/delete_personalqna.jsp" class="btn btn-danger btn-sm">삭제</a>
+	  				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-primary btn-sm">돌아가기</a>
+	  			</div>
+  				</tbody>
   		</div>  			
   		<%//} %>
   </div>
