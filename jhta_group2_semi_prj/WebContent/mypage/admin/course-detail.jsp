@@ -61,6 +61,40 @@
                 </div>
                 
                 <div class="row">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <label>전체 수업 목록 <span class="badge">10</span></label>
+                        </div>
+                        <table class="table table-condensed">
+                            <colgroup>
+                                <col width="30%">
+                                <col width="40%">
+                                <col width="30%">
+                            </colgroup>
+                            <thead>
+	                            <tr>
+	                            	<th>NO</th><th>수업명</th><th>수업공개여부</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <tr>
+	                            	<td>1</td>
+		                           <td><a href="lecture-detail.jsp?no=1">Java란 무엇인가?</a></td>
+		                           <td>
+			                           	Y
+			                           
+			                           	<div class="pull-right">
+			                           		<a href="#"><span class="text-primary glyphicon glyphicon-ok-sign"></span></a>
+			                           		<a href="#"><span class="text-danger glyphicon glyphicon-remove-sign"></span></a>
+			                           	</div>		                           
+		                           </td>
+		                       </tr>
+		                	</tbody>                        
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <label>강의정보</label>

@@ -37,8 +37,7 @@
 	                    <div class="col-sm-12">
 	                        <div class="panel panel-warning">
 	                            <div class="panel-heading">
-	                                <label>새 강사 신청 <span class="badge">4</span></label>
-	                                <a href="#" class="pull-right">목록으로</a>
+	                                <label><a href="manager-lecturer.jsp">새 강사 신청</a><span class="badge">4</span></label>
 	                            </div>
 	                            <table class="table table-condensed table-hover">
 	                                <colgroup>
@@ -84,8 +83,9 @@
 	                    <div class="col-sm-12">
 	                        <div class="panel panel-info">
 	                            <div class="panel-heading">
-	                                <label>새 강의 신청 <span class="badge">2</span></label>
-	                                <a href="#" class="pull-right">목록으로</a>
+	                                <label>새 강의 신청<span class="badge">2</span></label>
+	                                <a href="manager-course.jsp" class="pull-right">전체 강의 목록</a>
+	                                
 	                            </div>
 	                            <div class="table-responsive">
 	                                <table class="table table-condensed table-hover">

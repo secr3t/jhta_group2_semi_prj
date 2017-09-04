@@ -29,9 +29,15 @@
         </div>
     </div>
   		<div class="panel panel-default">
-  			<h4>공지사항ㅁㄴ아미낭ㅎㅁ너ㅏㅇ로;민아럼나ㅣㄹㄴ마임너</h4>
+  			<h4 style="margin:3px;">공지사항ㅁㄴ아미낭ㅎㅁ너ㅏㅇ로;민아럼나ㅣㄹㄴ
+  				asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd마임너</h4>
   		</div>
+  		
   </div>
+  		<div class="panel text-right">
+  			<a href="" class="btn btn-danger btn-md">삭제</a>
+  			<a href="" class="btn btn-primary btn-md">돌아가기</a>
+  		</div>
 </div>
 
 </body>
