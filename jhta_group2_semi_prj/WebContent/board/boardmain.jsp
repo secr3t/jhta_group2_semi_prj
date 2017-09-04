@@ -80,7 +80,7 @@
                                     <td><h4><strong><a href="faqboard.jsp">자주하는 질문</a></strong></h4></td>
                                 </tr>
                                    <tr>
-                                    <td><h4><strong><a href="/jhta_group2_semi_prj/board/personalqna/personalqna_write.jsp">1:1 문의</a></strong></h4></td>
+                                    <td><h4><strong><a href="/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp">1:1 문의</a></strong></h4></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -39,7 +39,10 @@
   				</tbody>
   			</table>
   			<div class="text-right">
+<<<<<<< HEAD
   				<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_replywrite.jsp" class="btn btn-warning btn-md">답변</a>
+=======
+>>>>>>> branch 'master' of https://github.com/secr3t/jhta_group2_semi_prj.git
   				<a href="/jhta_group2_semi_prj/board/personalqna/delete_personalqna.jsp" class="btn btn-danger btn-md">삭제</a>
   				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-primary btn-md">돌아가기</a>
   			</div>

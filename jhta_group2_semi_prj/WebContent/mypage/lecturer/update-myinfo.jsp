@@ -40,9 +40,9 @@
                 	<div class="row">
 	                	<div class="col-sm-6">
 		                    <div class="form-group">
-		                        <label class="control-label col-sm-4">ID</label>
+		                        <label class="control-label col-sm-4">이메일</label>
 		                        <div class="col-sm-7">
-		                            <label>blewwind70</label>
+		                            <label>blewwind70@naver.com</label>
 		                        </div>
 		                    </div>
 		                    <div class="form-group">
@@ -62,7 +62,7 @@
 		                	<div class="col-sm-4">
 	                            <label class="col-sm-4">사진</label>
 	                            <div class="col-sm-6">
-	                                <img src="../images/cassano.jpg" width="100px" height="140px" alt="강사사진"/>
+	                                <img src="../../images/강사사진.jpg" width="120px" height="140px" alt="강사사진"/>
 	                                <input type="file" name="userimage"/>
 	                            </div>
 	                        </div>
@@ -78,7 +78,7 @@
 	                    <div class="form-group">
 	                        <label class="control-label col-sm-2">연락처</label>
 	                        <div class="col-sm-7">
-		                        <div class="col-sm-2">
+		                        <div class="col-sm-3">
 		                        	<select name="userphone-1" class="form-control">
 		                                <option value="010" selected="selected"> 010</option>
 		                                <option value="011"> 011</option>
@@ -88,66 +88,28 @@
 		                            </select>
 		                    	</div>
 		                       	<label class="col-sm-1">-</label>
-		                        <div class="col-sm-2">
+		                        <div class="col-sm-3">
 		                        	<input type="tel" name="userphone-2" class="form-control" value="1111"/>
 		                        </div>
 		                       	<label class="col-sm-1">-</label>
-		                        <div class="col-sm-2">
+		                        <div class="col-sm-3">
 		                        	<input type="tel" name="userphone-3" class="form-control" value="2222"/>
 		                        </div>
 		                	</div>
 	                    </div>
 	                    <div class="form-group">
-	                        <label class="control-label col-sm-2">이메일</label>
-	                        <div class="col-sm-3">
-	                        	<input type="email" name="useremail" class="form-control" value="zxcv1234"/>
-	                        </div>
-	                        <div class="col-sm-3">
-	                        	<select name="emailcompany" class="form-control">
-	                                <option value="" selected="selected"> 직접입력</option>
-	                                <option value="@naver.com"> naver.com</option>
-	                                <option value="@hanmail.net"> hanmail.net</option>
-	                                <option value="@gmail.com"> gmail.com</option>
-	                                <option value="@nate.com"> nate.com</option>
-	                            </select>
-	                    	</div>
-	                    </div>
-	                    <div class="form-group">
-	                        <label class="control-label col-sm-2">주소</label>
-	                        <div class="col-sm-2">
-	                        	<select name="city" class="form-control">
-			                        <option value="seoul" selected="selected">서울특별시</option>
-			                        <option value="gyonggi">경기도</option>
-			                        <option value="incheon">인천광역시</option>
-			                        <option value="gangwon">강원도</option>
-			                        <option value="choongbuk">충청북도</option>
-			                        <option value="choongnam">충청남도</option>
-			                        <option value="jeonbuk">전라북도</option>
-			                        <option value="jeonnam">전라남도</option>
-			                        <option value="gyongbuk">경상북도</option>
-			                        <option value="gyungnam">경상남도</option>
-			                        <option value="jeju">제주도</option>
-	                            </select>
-	                    	</div>
-	                    	<div class="col-sm-1">
-	                       		<label>상세주소</label>
-	                       	</div>
-	                        <div class="col-sm-4">
-	                        	<input type="text" name="useraddress" class="form-control" value="종로구 율곡로10길 105 디아망 401호"/>
-	                        </div>
-	                    </div>
-	                    <div class="form-group">
 	                        <label class="control-label col-sm-2">주 강의 분야</label>
 	                        <div class="col-sm-7">
-	  							<label><input type="checkbox" name="interest" value="kor"/> 언어</label>
-	  							<label><input type="checkbox" name="interest" value="eng"/> 영어</label>
-	  							<label><input type="checkbox" name="interest" value="math"/> 수학</label>
+	  							<label><input type="radio" name="subject" value="kor"/> 언어</label>
+	  							<label><input type="radio" name="subject" value="eng"/> 영어</label>
+	  							<label><input type="radio" name="subject" value="math"/> 수학</label>
+	  							<label><input type="radio" name="subject" value="sci"/> 과학</label>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
-	                    	<label class="control-label col-sm-2">간단한 강사소개</label>
+	                    	<label class="control-label col-sm-2">대표 이력</label>
 	                    	<div class="col-sm-7">
-	                    		<textarea rows="10" name="lectureinfo" class="form-control" placeholder="xx자 내외로 써주세요."></textarea>
+	                    		<textarea rows="1" name="lectureinfo" class="form-control" placeholder="xx자 내외로 써주세요."></textarea>
 	                    	</div>
 	                    </div>
 	                </div>

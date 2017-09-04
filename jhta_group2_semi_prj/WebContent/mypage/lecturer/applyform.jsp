@@ -51,18 +51,25 @@
                                 <option value="kor"> 언어</option>
                                 <option value="eng"> 영어</option>
                                 <option value="math"> 수학</option>
+                                <option value="sci"> 과학</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">강의당 포인트</label>
+                        <label class="control-label col-sm-2">강의 구매 포인트</label>
                         <div class="col-sm-2">
                             <input type="number" name="coursepoint" class="form-control"/>
                         </div>
                         <label><span class="glyphicon glyphicon-copyright-mark text-warning"></span></label>
                     </div>
                     <div class="form-group">
-                    	<label class="control-label col-sm-2">강의에 대한 간단한 소개</label>
+                    	<label class="control-label col-sm-2">강의 요약</label>
+                    	<div class="col-sm-7">
+                    		<textarea rows="2" name="coursesummary" class="form-control" placeholder="xx자 내외로 써주세요."></textarea>
+                    	</div>
+                    </div>
+                    <div class="form-group">
+                    	<label class="control-label col-sm-2">강의 소개</label>
                     	<div class="col-sm-7">
                     		<textarea rows="15" name="courseinfo" class="form-control" placeholder="xx자 내외로 써주세요."></textarea>
                     	</div>
