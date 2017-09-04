@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <title>Apply Course</title>
+  <title>Apply Lecture</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -26,45 +26,39 @@
 <body>
 	<%@ include file="../../common/nav.jsp" %>
     <div class="container-fluid">
-        <h1>Apply Course</h1>
+        <h1>Apply Lecture</h1>
         <hr/>
         <div class="row">
         	<div class="col-sm-2">
 				<%@ include file="left-menu.jsp" %>
 			</div>         
             <div class="col-sm-10">
-                <h2 class="sub-header">강의 신청하기</h2>
+                <h2 class="sub-header">새 영상 등록</h2>
                 <hr/>
                 
                 <form method="post" action="#" class="form-horizontal">
                     <div class="form-group">
-                        <label class="control-label col-sm-2">강의명</label>
+                        <label class="control-label col-sm-2">강의 제목</label>
                         <div class="col-sm-7">
-                            <input type="text" name="coursename" class="form-control" placeholder="강의명 제한 글자?"/>
+                            <input type="text" name="lecturename" class="form-control" placeholder="강의명 제한 글자?"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2">강의분류</label>
-                        <div class="col-sm-3">
-                            <select name="coursecategory" class="form-control">
-                                <option value="" selected="selected"> 선택</option>
-                                <option value="kor"> 언어</option>
-                                <option value="eng"> 영어</option>
-                                <option value="math"> 수학</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">강의당 포인트</label>
-                        <div class="col-sm-2">
-                            <input type="number" name="coursepoint" class="form-control"/>
-                        </div>
-                        <label><span class="glyphicon glyphicon-copyright-mark text-warning"></span></label>
-                    </div>
-                    <div class="form-group">
-                    	<label class="control-label col-sm-2">강의에 대한 간단한 소개</label>
+                    	<label class="control-label col-sm-2">강의 링크 주소</label>
                     	<div class="col-sm-7">
-                    		<textarea rows="15" name="courseinfo" class="form-control" placeholder="xx자 내외로 써주세요."></textarea>
+                    		<input type="url" name="lectureurl" class="form-control"/>
+                    	</div> 
+                    </div>
+                    <div class="form-group">
+                    	<label class="control-label col-sm-2">첨부파일</label>
+                    	<div class="col-sm-7">
+                    		<input type="file" name="lecturefile" class="form-control"/>
+                    	</div>
+                    </div>
+                    <div class="form-group">
+                    	<label class="control-label col-sm-2">영상에 대한 간단한 소개</label>
+                    	<div class="col-sm-7">
+                    		<textarea rows="10" name="lectureinfo" class="form-control" placeholder="xx자 내외로 써주세요."></textarea>
                     	</div>
                     </div>
                     <div class="col-sm-10 form-group text-right">
@@ -77,4 +71,5 @@
     </div>
     <%@ include file="../../common/footer.jsp" %>
 </body>
+</html>
 </html>
