@@ -36,10 +36,10 @@
 				<div class="form-group">
 					<label class="col-sm-1 control-label">제목</label>
 					<div class="col-sm-7">
-						<input type="text" class="form-control" name="title" />
+						<input type="text" class="form-control" name="title" id="titletext"/>
 					</div>
 					<div class="col-sm-2 control-label"><strong>질문 타입</strong></div>
-						<select class="form-control col-sm-3" style="width:100px;" name="type">
+						<select class="form-control col-sm-3" style="width:100px;" name="questiontype" id="qtype">
 						  <option>결제</option>
 						  <option>이용</option>
 						</select>
@@ -54,7 +54,7 @@
 				<div class="form-group">
 					<div class="col-sm-offset-1 col-sm-11 text-right">
 						<a href="" class="btn btn-warning btn-md">취소</a>
-						<button type="submit" class="btn btn-primary btn-md">완료</button>
+						<button type="submit" id="complete" class="btn btn-primary btn-md">완료</button>
 					</div>
 				</div>
 			</form>
@@ -65,4 +65,16 @@
 <%@include file="../../common/footer.jsp"%>
 
 </body>
+<script type="text/javascript">
+	document.getElementById('complete').addEventListener ('click', function(event) {
+		event.preventDefault();
+		var qtype = document.getElementById('qtype').value;
+		var titletext = document.getElementById('titletext');
+		titletext.value = '['+qtype+']' + titletext.value;
+		
+		document.getElementById('submit').submit();
+		
+		
+	});
+</script>
 </html>
