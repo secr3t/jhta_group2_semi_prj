@@ -8,7 +8,6 @@
 <!--  왼쪽 메뉴 부분은 상의하여 각 페이지마다 메뉴를 불러올 것인지 각 페이지의
  left-menu.jsp를 만들어서 사용할 것인지 논의가 필요함.(사실 상 mypage 부분을 제외하고는 거의 겹친다고 보면됨.)
  -->
-<%@include file="../template/left-menu.jsp" %>
 	<div class="container">
 		<div class="book-table">
 			<div class="panel-default">
@@ -20,16 +19,17 @@
 				</ul>
 			</div>
 			<div id="Dept-list">
+				 
 				<table class="table table-hover table-condensed">
 					<thead>
-						<tr>
-							<th>No</th>
+						<tr style="background-color:grey">
+							<th >No</th>
 							<th>과목명</th>
 							<th>소개</th>
 							<th>교수이름</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="getTable">
 						<tr>
 							<td>1</td>
 							<td>영어</td>
@@ -102,23 +102,32 @@
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
-
 					</tbody>
 				</table>
 			</div>
 		</div>
+		<br><br />
 		<p>
 		<button id= "btn-down">down</button>
 		<button id= "btn-up">up</button>
 		</p>
+		<br><br />
+		<div class="book-table">
 		<div id="selected-list">
-			<div class="book-table">
 				<table class="table table-hover table-condensed">
 					<thead>
-
+						<tr>
+							<th>No</th>
+							<th>과목명</th>
+							<th>소개</th>
+							<th>교수이름</th>
+						</tr>
 					</thead>
+					<tbody id="getTable-2">
+						
+					</tbody>
 				</table>
-			</div>
+		</div>
 		</div>
 	<div class= "text-right">
 		<ul class="well">
@@ -133,40 +142,32 @@
 </body>
 <script type="text/javascript">
 (function(){	
-	var tdNodeList = document.getElementsByTagName("td");
-	for(var i=0; i<tdNodeList.length; i++){
-		var td = tdNodeList.item(i);
-	
-		td.addEventListener('click', function(event){
-		var self = event.target;
-		if(self.getAttribute('class')=='active'){
-			self.removeAttribute("class");
-		} else {
-			self.setAttribute("class", "active");
-		}
+	var trNodeList = document.querySelectorAll("#getTable>tr");
+	var getTable2 = document.getElementById("getTable-2");
+	var getTable = document.getElementById("getTable");
+
+	for(var i=0; i<trNodeList.length; i++){
+		var tr = trNodeList.item(i);
+		 tr.addEventListener('click', function(event){
+			var self = event.target;
+				if(self.parentNode.parentNode == getTable && getTable2.getElementsByTagName('tr').length<10){
+				getTable2.append(self.parentNode);
+				} else if(self.parentNode.parentNode == getTable2){
+					getTable.append(self.parentNode);
+				}
+				
 		})
 	};
-	document.getElementById('btn-down').addEventListener('click', function() {
-		var selectedList = document.getElementById("selected-list");
-		
-		for (var i=0; i<tdNodeList.length; i++) {
-			var td = tdNodeList.item(i);
-			
-			selectedList.appendChild(td);
-			td.removeAttribute('class');
-		}
-		
-	});
-	document.getElementById('btn-up').addEventListener('click', function() {
-		var deptList = document.getElementById("Dept-list");
-		
-		for (var i=0; i<tdNodeList.length; i++) {
-			var td = tdNodeList.item(i);
-			
-			deptList.appendChild(td);
-			td.removeAttribute('class');
-		}
-	});
+	
+	
+		/*  tr.addEventListener('click', function(event){
+			var self = event.target;
+				if(getTable2.getElementsByTagName('tr').length<10){
+				getTable2.append(self.parentNode);
+				}
+		}) */
+	
+
 	
 }())
 </script>
