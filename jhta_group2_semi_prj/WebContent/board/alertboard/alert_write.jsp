@@ -49,36 +49,29 @@
 								</div>
 							
 							<div class="form-group">
-<<<<<<< HEAD
 								<label class="col-sm-1 control-label">내용</label>
 								<div class="col-sm-11">
 									<textarea rows="6" class="form-control " name="contents"></textarea>
 								</div>
-=======
+							</div>
 							<label class="col-sm-1 control-label">제목</label>
 							<div class="col-sm-7">
 								<input type="text" class="form-control" name="title" id="alerttypetext"/>
->>>>>>> branch 'master' of https://github.com/secr3t/jhta_group2_semi_prj.git
 							</div>
-<<<<<<< HEAD
 							<div class="form-group">
 								<div class="col-sm-offset-1 col-sm-11 text-right">
 									<a href="" class="btn btn-warning btn-md">취소</a>
 									<button type="submit" class="btn btn-primary btn-md">완료</button>
 								</div>
-=======
 							<div class="col-sm-1 control-label"><strong>공지 타입</strong></div>
 								<select class="form-control col-sm-3" style="width:100px;" name="type" id="alerttype">
 								  <option>필독</option>
 								  <option>일반</option>
 								  <option>이벤트</option>
 								</select>
->>>>>>> branch 'master' of https://github.com/secr3t/jhta_group2_semi_prj.git
 							</div>
-<<<<<<< HEAD
 						</form>
 					</div>
-=======
 						
 						<div class="form-group">
 							<label class="col-sm-1 control-label">내용</label>
@@ -92,8 +85,8 @@
 								<button type="submit" class="btn btn-primary btn-md" id="complete">완료</button>
 							</div>
 						</div>
+						
 					</form>
->>>>>>> branch 'master' of https://github.com/secr3t/jhta_group2_semi_prj.git
 				</div>
 		</div>
 	</div>
