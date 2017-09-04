@@ -13,7 +13,7 @@
 
 <body>
 <%@include file="../../common/nav.jsp"%>
-<%@ include file="../boardbanner/left-menu.jsp" %>>
+<%@ include file="../boardbanner/left-menu.jsp" %>
   
 <div class="container">
   <div class="row">
@@ -28,13 +28,14 @@
   	        <hr>
         </div>
     </div>
-  		<div class="panel panel-default">
-  			<h4 style="margin:3px;">공지사항ㅁㄴ아미낭ㅎㅁ너ㅏㅇ로;민아럼나ㅣㄹㄴ
+  		<div class="container well">
+  			<h4>공지사항ㅁㄴ아미낭ㅎㅁ너ㅏㅇ로;민아럼나ㅣㄹㄴ
   				asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd마임너</h4>
   		</div>
   		
   </div>
   		<div class="panel text-right">
+  			<hr>
   			<a href="" class="btn btn-danger btn-md">삭제</a>
   			<a href="" class="btn btn-primary btn-md">돌아가기</a>
   		</div>
