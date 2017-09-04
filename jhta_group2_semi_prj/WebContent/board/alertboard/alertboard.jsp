@@ -43,8 +43,11 @@
 		                <a href="#" class="collapsed" style="color: royalblue;">[필독] 학습 보증금 제도 및 홈페이지 개편 공지_2016.09.22 수정</a>
 		            </h4>
 		        </div>
-		        
 		    </div>
+		    	<div class="text-right">
+		    		<a href="" class="btn btn-primary btn-md">글쓰기</a>
+		    	</div>
+		    
 		</div>
 	</div>
 </div>

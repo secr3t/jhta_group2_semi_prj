@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<body>
+
 <%@include file="../../common/nav.jsp"%>
 <div class="content-primary">
 <div class="container">
@@ -30,7 +30,7 @@
 			<div class="container">
 				<div class="row">
 					<form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/alertboard/add_alert.jsp">
-						<div class="form-group">
+							<div class="form-group">
 							<label class="col-sm-1 control-label">제목</label>
 							<div class="col-sm-7">
 								<input type="text" class="form-control" name="title" />
@@ -64,4 +64,15 @@
 </div>
 
 </body>
+<script type="text/javascript">
+document.getElementById('complete').addEventListener('click', function(event){
+    event.preventDefault();
+    var alerttypevalue = document.getElementById('alerttype').value;
+    var alerttypetext = document.getElementById('alerttypetext');
+    alerttypetext.value = '[' + alerttypevalue + ']' + alerttypetext.value;
+    console.log(alerttypetext.value);
+    document.getElementById("submit").submit();
+ 
+});
+</script>
 </html>
