@@ -44,7 +44,8 @@
 	  			<a href="" class="btn btn-primary btn-md">돌아가기</a>
 	  		</div>
 	  </div>
+<div class="col-sm-1"></div>
 </div>
-
+<%@include file="../../common/footer.jsp"%>
 </body>
 </html>

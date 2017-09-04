@@ -54,7 +54,8 @@
 	  		</div>
 	  </div>
 	</div>
+<div class="col-sm-1"></div>
 </div>
-
+<%@include file="../../common/footer.jsp"%>
 </body>
 </html>

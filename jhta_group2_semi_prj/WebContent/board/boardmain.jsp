@@ -88,9 +88,10 @@
                 </div>
             </div>
         </div>
-    </div>
-     <hr>
-         <%@include file="../common/footer.jsp"%>
+<div class="col-sm-1"></div>
+</div>
+
+<%@include file="../../common/footer.jsp"%>
 
 </body>
 </html>
