@@ -37,8 +37,7 @@
 	                    <div class="col-sm-12">
 	                        <div class="panel panel-warning">
 	                            <div class="panel-heading">
-	                                <label>새 강사 신청 <span class="badge">4</span></label>
-	                                <a href="#" class="pull-right">목록으로</a>
+	                                <label><a href="manager-lecturer.jsp">새 강사 신청</a><span class="badge">4</span></label>
 	                            </div>
 	                            <table class="table table-condensed table-hover">
 	                                <colgroup>
@@ -54,25 +53,25 @@
 	                                </thead>
 	                                <tbody>
 	                                    <tr>
-	                                        <td>Hong</td>
+	                                        <td><a href="course-detail.jsp?no=2">Hong</a></td>
 	                                        <td>홍길동</td>
 	                                        <td>17/08/31</td>
 	                                        <td>언어</td>
 	                                    </tr>
 	                                    <tr>
-	                                        <td>Hong</td>
+	                                        <td><a href="course-detail.jsp?no=2">Hong</a></td>
 	                                        <td>홍길동</td>
 	                                        <td>17/08/31</td>
 	                                        <td>언어</td>
 	                                    </tr>
 	                                    <tr>
-	                                        <td>Hong</td>
+	                                        <td><a href="course-detail.jsp?no=2">Hong</a></td>
 	                                        <td>홍길동</td>
 	                                        <td>17/08/31</td>
 	                                        <td>언어</td>
 	                                    </tr>
 	                                    <tr>
-	                                        <td>Hong</td>
+	                                        <td><a href="course-detail.jsp?no=2">Hong</a></td>
 	                                        <td>홍길동</td>
 	                                        <td>17/08/31</td>
 	                                        <td>언어</td>
@@ -84,8 +83,9 @@
 	                    <div class="col-sm-12">
 	                        <div class="panel panel-info">
 	                            <div class="panel-heading">
-	                                <label>새 강의 신청 <span class="badge">2</span></label>
-	                                <a href="#" class="pull-right">목록으로</a>
+	                                <label>새 강의 신청<span class="badge">2</span></label>
+	                                <a href="manager-course.jsp" class="pull-right">전체 강의 목록</a>
+	                                
 	                            </div>
 	                            <div class="table-responsive">
 	                                <table class="table table-condensed table-hover">
@@ -102,15 +102,15 @@
 	                                    </thead>
 	                                    <tbody>
 	                                        <tr>
-	                                            <td><a href="#">수학의 정석</a></td>
-	                                            <td><a href="#">수학</a></td>
-	                                            <td><a href="#">정약용</a></td>
+	                                            <td><a href="course-detail.jsp?no=2">수학의 정석</a></td>
+	                                            <td>수학</td>
+	                                            <td><a href="lecturer-detail.jsp?no=2">정약용</a></td>
 	                                            <td>17/08/21</td>
 	                                        </tr>                               
 	                                        <tr>
-	                                            <td><a href="#">수학의 정석</a></td>
-	                                            <td><a href="#">수학</a></td>
-	                                            <td><a href="#">정약용</a></td>
+	                                            <td><a href="course-detail.jsp?no=2">수학의 정석</a></td>
+	                                            <td>수학</td>
+	                                            <td><a href="lecturer-detail.jsp?no=2">정약용</a></td>
 	                                            <td>17/08/21</td>
 	                                        </tr>                              
 	                                    </tbody>

@@ -55,8 +55,7 @@
                     <div class="col-sm-12">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <label>내 강의 목록</label>
-                                <a href="mycourse.jsp" class="pull-right">목록으로</a>
+                                <label><a href="mycourse.jsp">내 강의 목록</a></label>
                             </div>
                             <table class="table table-condensed table-hover">
                                 <colgroup>
@@ -72,31 +71,31 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>10</td>
                                         <td>20</td>
                                         <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
                                     </tr>                                      
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>10</td>
                                         <td>20</td>
                                         <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
                                     </tr>                                      
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>10</td>
                                         <td>20</td>
                                         <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
                                     </tr>                                      
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>10</td>
                                         <td>20</td>
                                         <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
                                     </tr>                                      
                                     <tr>
-                                        <td><a href="#">Java</a></td>
+                                        <td><a href="course-info.jsp?no=1">Java</a></td>
                                         <td>10</td>
                                         <td>20</td>
                                         <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
@@ -108,8 +107,7 @@
                     <div class="col-sm-12">
                         <div class="panel panel-warning">
                             <div class="panel-heading">
-                                <label>미답변 질문</label>
-                                <a href="myqna.jsp" class="pull-right">목록으로</a>
+                                <label><a href="myqna.jsp" class="pull-right">미답변 질문</a></label>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-condensed table-hover">

@@ -11,19 +11,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
-    </ul>
-  </div>
-</nav>
+<%@include file="../../common/nav.jsp"%>
+<%@ include file="../boardbanner/left-menu.jsp" %>s
 
 <div class="container">
   <div class="page-header">
@@ -54,8 +43,11 @@
 		                <a href="#" class="collapsed" style="color: royalblue;">[필독] 학습 보증금 제도 및 홈페이지 개편 공지_2016.09.22 수정</a>
 		            </h4>
 		        </div>
-		        
 		    </div>
+		    	<div class="text-right">
+		    		<a href="" class="btn btn-primary btn-md">글쓰기</a>
+		    	</div>
+		    
 		</div>
 	</div>
 </div>

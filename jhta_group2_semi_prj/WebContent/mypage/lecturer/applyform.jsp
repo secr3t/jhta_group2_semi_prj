@@ -40,13 +40,13 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">강의명</label>
                         <div class="col-sm-7">
-                            <input type="text" name="lecturename" class="form-control" placeholder="강의명 제한 글자?"/>
+                            <input type="text" name="coursename" class="form-control" placeholder="강의명 제한 글자?"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">강의분류</label>
                         <div class="col-sm-3">
-                            <select name="lecturecategory" class="form-control">
+                            <select name="coursecategory" class="form-control">
                                 <option value="" selected="selected"> 선택</option>
                                 <option value="kor"> 언어</option>
                                 <option value="eng"> 영어</option>
@@ -57,14 +57,14 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">강의당 포인트</label>
                         <div class="col-sm-2">
-                            <input type="number" name="lecturepoint" class="form-control"/>
+                            <input type="number" name="coursepoint" class="form-control"/>
                         </div>
                         <label><span class="glyphicon glyphicon-copyright-mark text-warning"></span></label>
                     </div>
                     <div class="form-group">
                     	<label class="control-label col-sm-2">강의에 대한 간단한 소개</label>
                     	<div class="col-sm-7">
-                    		<textarea rows="15" name="lectureinfo" class="form-control" placeholder="xx자 내외로 써주세요."></textarea>
+                    		<textarea rows="15" name="courseinfo" class="form-control" placeholder="xx자 내외로 써주세요."></textarea>
                     	</div>
                     </div>
                     <div class="col-sm-10 form-group text-right">

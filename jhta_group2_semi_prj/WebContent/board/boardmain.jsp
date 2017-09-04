@@ -17,7 +17,7 @@
             <div class="col-xs-12 col-sm-12">
                 <div class="jumbotron" style="background-color:white; color: black;">
                     <h1> xx 학원</h1>
-                    <p style="">최근 핫글 혹은 학원 설명 혹은 공지사항 봐주세요</p>
+                    <p style="">최근 게시글 혹은 학원 설명 혹은 공지사항 봐주세요</p>
                 </div>
                 <div class="row">
                     <div class="col-xs-6 col-lg-4">
@@ -74,13 +74,13 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td><h4><strong><a href="alertboard.jsp">공지 사항</a></strong></h4></td>
+                                    <td><h4><strong><a href="/jhta_group2_semi_prj/board/alertboard/alertboard.jsp">공지 사항</a></strong></h4></td>
                                 </tr>
                                 <tr>
                                     <td><h4><strong><a href="faqboard.jsp">자주하는 질문</a></strong></h4></td>
                                 </tr>
                                    <tr>
-                                    <td><h4><strong><a href="personalqna.jsp">1:1 문의</a></strong></h4></td>
+                                    <td><h4><strong><a href="/jhta_group2_semi_prj/board/personalqna/personalqna_write.jsp">1:1 문의</a></strong></h4></td>
                                 </tr>
                             </tbody>
                         </table>

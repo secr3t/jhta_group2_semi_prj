@@ -12,7 +12,21 @@
 </head>
 <body>
 
-<%@include file="../../common/nav.jsp"%>
+<%@include file="../../common/header.jsp"%>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
 <div class="content-primary">
 <div class="container">
   <div class="row">
@@ -28,45 +42,30 @@
   	    <hr>
 			<div class="container">
 				<div class="row">
-					<form class="form-horizontal" method="post" action="add_afterlecture.jsp">
+					<form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/alertboard/add_alert.jsp">
 						<div class="form-group">
 							<label class="col-sm-1 control-label">제목</label>
-							<div class="col-sm-6">
+							<div class="col-sm-7">
 								<input type="text" class="form-control" name="title" />
 							</div>
-							<label class="col-sm-2 control-label"><strong>평점</strong></label>
-							<div class="col-sm-3">
-								<label class="radio-inline">
- 								 <input type="radio" name="inlineRadioOptions" value="1"> 1
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" value="2"> 2
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" value="3"> 3
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" value="4"> 4
-								</label>
-								<label class="radio-inline">
-								  <input type="radio" name="inlineRadioOptions" value="5"> 5
-								</label>
+							<div class="col-sm-4">
+								<input type="hidden" class="form-control"/>
 							</div>
-							
-						</div>
+							</div>
 						
 						<div class="form-group">
 							<label class="col-sm-1 control-label">내용</label>
-							<div class="col-sm-11">
+							<div class="col-sm-11 control-label">
 								<textarea rows="6" class="form-control " name="contents"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="col-sm-offset-1 col-sm-11 text-right">
-								<a href="/jhta_group2_semi_prj/board/afterlecture/delete_afterlecture.jsp" class="btn btn-warning btn-md">취소</a>
-								<button type="submit" class="btn btn-primary btn-md">완료</button>
+								<div class="col-sm-offset-1 col-sm-11 text-right">
+									<a href="" class="btn btn-warning btn-md">취소</a>
+									<button type="submit" class="btn btn-primary btn-md">완료</button>
+								</div>
 							</div>
-						</div>
+						
 					</form>
 				</div>
 			</div>
