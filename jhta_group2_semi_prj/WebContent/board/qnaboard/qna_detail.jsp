@@ -46,14 +46,35 @@
 	  				</tr> 
 	  				</tbody>
 	  			</table>
-	  			<div class=""></div>
-	  			<div class="text-right">
-	  				<a href=/jhta_group2_semi_prj/board/personalqna/delete_personalqna.jsp class="btn btn-danger btn-md">삭제</a>
-	  				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-primary btn-md">돌아가기</a>
 	  			</div>
+	  			<%//if(display=="Y"){ %>
+  		<div class="panel panel-default">
+  			<table class="table">
+  				<tbody>
+  				<tr>
+  					<th><h3>답변</h3></th>
+  				</tr>
+  				<tr>
+  					<th>작성자</th>
+  					<td>자바신</td>
+  					<th>답변날짜</th>
+  					<td>2017.09.02</td>
+  				</tr>
+  				<tr>
+  					<td colspan="6">When you want more—more selection, protection, and power for embedded applications—Java is the choice. Oracle Java Embedded products are designed and optimized to meet the unique requirements of embedded devices, such as microcontrollers, sensors, and gateways. They enable intelligent systems for M2M communications and the Internet of Things so you can do more with your devices.</td>
+  				</tr> 
+  			</table>
+  				<div class="text-right">
+	  				<a href="/jhta_group2_semi_prj/board/qnaboard/qna_replay.jsp" class="btn btn-warning btn-sm">답변</a>
+	  				<a href="/jhta_group2_semi_prj/board/qnaboard/delete_qna.jsp" class="btn btn-danger btn-sm">삭제</a>
+	  				<a href="/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp" class="btn btn-primary btn-sm">돌아가기</a>
+	  			</div>
+  				</tbody>
+  				
+  		</div>  			
+  		<%//} %>
 	  		</div>
 	  </div>
-	</div>
 <div class="col-sm-1"></div>
 </div>
 <%@include file="../../common/footer.jsp"%>

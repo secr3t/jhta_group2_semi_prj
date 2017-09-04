@@ -44,7 +44,7 @@
   					<td>2017.09.02</td>
   				</tr>
   				<tr>
-  					<td colspan="6">자바의 신이 되고 싶어요. 하지만 무엇을 해야될지 모르겠어요. 도와주세요 자바신!!</td>
+  					<td colspan="6">우옭옭옭옥!</td>
   				</tr> 
   				</tbody>
   			</table>
@@ -54,7 +54,7 @@
   			<textarea rows="6" class="form-control"></textarea>
   			<div class="text-right">
   				<a href="" class="btn btn-warning btn-md">답변</a>
-  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_detail.jsp" class="btn btn-primary btn-md">돌아가기</a>
+  				<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp" class="btn btn-primary btn-md">돌아가기</a>
   			</div>
   		</form>
   </div>
