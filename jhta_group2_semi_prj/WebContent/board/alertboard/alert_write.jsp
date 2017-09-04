@@ -14,6 +14,7 @@
 
 
 <%@include file="../../common/nav.jsp"%>
+<%@ include file="../boardbanner/left-menu.jsp" %>
 <div class="content-primary">
 <div class="container">
   <div class="row">

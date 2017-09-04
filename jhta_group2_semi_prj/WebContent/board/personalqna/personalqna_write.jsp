@@ -12,6 +12,7 @@
 </head>
 <body>
 <%@include file="../../common/nav.jsp"%>
+<%@ include file="../boardbanner/left-menu.jsp" %>
 
 <div class="container">
   <div class="row">

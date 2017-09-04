@@ -42,7 +42,7 @@
   				</tbody>
   			</table>
   			<div class="text-right">
-  				<a href=/jhta_group2_semi_prj/board/personalqna/delete_personalqna.jsp class="btn btn-danger btn-md">삭제</a>
+  				<a href="/jhta_group2_semi_prj/board/personalqna/delete_personalqna.jsp" class="btn btn-danger btn-md">삭제</a>
   				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-primary btn-md">돌아가기</a>
   			</div>
   		</div>
