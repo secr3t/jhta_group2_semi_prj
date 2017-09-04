@@ -55,8 +55,7 @@
                     <div class="col-sm-12">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <label>내 수강 목록</label>
-                                <a href="mycourse.jsp" class="pull-right">목록으로</a>
+                                <label><a href="mycourse.jsp" class="pull-right">내 수강 목록</a></label>
                             </div>
                             <table class="table table-condensed table-hover">
                                 <colgroup>
@@ -121,8 +120,7 @@
                     <div class="col-sm-12">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <label>내 QnA</label>
-                                <a href="myqna.jsp" class="pull-right">목록으로</a>
+                                <label><a href="myqna.jsp" class="pull-right">내 QnA</a></label>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-condensed table-hover">
