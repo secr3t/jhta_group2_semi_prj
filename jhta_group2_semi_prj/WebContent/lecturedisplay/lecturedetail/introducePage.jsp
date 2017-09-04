@@ -7,11 +7,12 @@
 <%@include file="../../common/nav.jsp" %>
 <div class="container">
   
-   <div class="row"></div>
-   
+   <div class="row">
+        <p><small>Home>All subjects>Economic>Marketing Analytics</small></p>
+   </div>
    <div class="row well">
         <div class="col-sm-3">
-            <img src="../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 70%;">
+            <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 70%;">
             <p><strong>맛보기 동영상</strong></p>
         </div>
         <div class="col-sm-6">
@@ -83,7 +84,7 @@
                 </div>    
                 <div class="row">
                     <div class="col-sm-3" style="padding-top:30px;">
-                        <img src="../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 80%;">
+                        <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 80%;">
                     </div>
                     <div class="col-sm-9">
                         <div class="text-right">
@@ -96,44 +97,22 @@
                         </div> 
                     </div>
                 </div>  
-                <div class="row">
-                    <div class="col-sm-8"  style="padding-top:30px;">
-                        <h4>Lecture Reviews</h4>
-                    </div>
-                </div>    
-                <div class="row col-sm-12">
-                    <div>
-                        <p><strong>Kaïs Marzouk</strong></p>
-                    </div>
-                    <div class="row col-sm-12">
-                        <p>I missed this one (SC2x), I'm enrolled to SC1x and SC3x. I am a fan of the supply Chain Management MITx XSeries. Will there be mor...</p>
-                    </div>
-                </div>
-                <div class="row col-sm-12">
-                    <div>
-                        <p><strong>paul Marzouk</strong></p>
-                    </div>
-                    <div class="row col-sm-12">
-                        <p>I missed this one (SC2x), I'm enrolled to SC1x and SC3x. I am a fan of the supply Chain Management MITx XSeries. Will there be mor...</p>
-                    </div>
-                </div> 
-                <div class="row col-sm-12">
-                    <div>
-                        <p><strong>Kaïs vink</strong></p>
-                    </div>
-                    <div class="row col-sm-12">
-                        <p>I missed this one (SC2x), I'm enrolled to SC1x and SC3x. I am a fan of the supply Chain Management MITx XSeries. Will there be mor...</p>
-                    </div>
-                </div>      
-            </div>
-        </div>
+<%@include file="lecturereviews.jsp"%>
         <div class="col-sm-3">
             <div class="row well">
                <div class="row">
-                   <h5><strong>연관 강의</strong></h5>
+    	         <h5><strong>연관 강의</strong></h5>
+        	     <ul>
+	        	      <li><a href=""><small>Introduction to Brokerage Operations</small></a></li>
+	                  <li><a href=""><small>Macroeconomics</small></a></li>
+             	 </ul>
                </div>
                <div class="row">
                    <h5><strong>인기 강의</strong></h5>
+                   <ul>
+	        	      <li><a href=""><small>Introduction to Brokerage Operations</small></a></li>
+	                  <li><a href=""><small>Macroeconomics</small></a></li>
+             	 </ul>
                </div>
             </div>
         </div>
