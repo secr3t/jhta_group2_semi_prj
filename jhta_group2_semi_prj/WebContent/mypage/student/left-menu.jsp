@@ -6,6 +6,6 @@
 		 <a class="btn btn-primary" href="index.jsp">My Page 홈</a>
 		 <a class="btn btn-primary" href="update-myinfo.jsp">내 정보</a>
 		 <a class="btn btn-primary" href="mycourse.jsp">내 수강 과목</a>
-		 <a class="btn btn-primary" href="myqna.jsp">내 QnA</a>
+		 <a class="btn btn-primary" href="myqna.jsp">내 Q&amp;A</a>
 	</div>
 </div>

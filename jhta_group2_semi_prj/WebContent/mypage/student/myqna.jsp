@@ -22,89 +22,89 @@
 </head>
 <body>
 	<%@ include file="../../common/nav.jsp" %>
-    <div class="container-fluid">
-        <h1>My Q&amp;A</h1>
-        <hr/>
-        <div class="row">
-        	<div class="col-sm-2">
-				<%@ include file="left-menu.jsp" %>
-			</div>  
-            <div class="col-sm-9">
-                <h2 class="sub-header">등록된 Q&amp;A</h2>
-                <form method="post" action="#" class="form-inline text-right">
-                    <div class="form-group">
-                        <label class="sr-only">검색분류</label>
-                        <select name="searchcategory" class="form-control">
-                            <option value="title">제목</option>
-                            <option value="lecture">강의명</option>
-                            <option value="lecturer">강사</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only">검색</label>
-                        <input type="text" name="searchtext" class="form-control" placeholder="검색어를 입력해주세요."/>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </div>
-                </form>
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <colgroup>
-                            <col width="50%">
-                            <col width="30%">
-                            <col width="10%">
-                            <col width="10%">
-                        </colgroup>                                   
-                        <thead>
-                            <tr>
-                                <th>제목</th><th>강의명</th><th>강사</th><th>게시일</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                                <td><a href="course-info.jsp?no=1">Java</a></td>
-                                <td>이응수</td>
-                                <td>17/08/21</td>
-                            </tr>                               
-                            <tr>
-                                <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                                <td><a href="course-info.jsp?no=1">Java</a></td>
-                                <td>이응수</td>
-                                <td>17/08/21</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                                <td><a href="course-info.jsp?no=1">Java</a></td>
-                                <td>이응수</td>
-                                <td>17/08/21</td>
-                            </tr>                
-                            <tr>
-                                <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                                <td><a href="course-info.jsp?no=1">Java</a></td>
-                                <td>이응수</td>
-                                <td>17/08/21</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center">
-                        <ul class="pagination pagination-sm">
-                            <li><a href="#"><span class="glyphicon glyphicon-backward"></span></a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-forward"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="container">
+		<div class="col-sm-offset-2 page-header">
+			<h1>등록된 Q&amp;A</h1>
+		</div>        
+
+    	<div class="col-sm-2">
+			<%@ include file="left-menu.jsp" %>
+		</div>  
+        <div class="col-sm-9">
+        
+             <form method="post" action="#" class="form-inline text-right">
+                 <div class="form-group">
+                     <label class="sr-only">검색분류</label>
+                     <select name="searchcategory" class="form-control">
+                         <option value="title">제목</option>
+                         <option value="lecture">강의명</option>
+                         <option value="lecturer">강사</option>
+                     </select>
+                 </div>
+                 <div class="form-group">
+                     <label class="sr-only">검색</label>
+                     <input type="text" name="searchtext" class="form-control" placeholder="검색어를 입력해주세요."/>
+                 </div>
+                 <div class="form-group">
+                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                 </div>
+             </form>
+             <div class="table-responsive">
+                 <table class="table table-hover">
+                     <colgroup>
+                         <col width="50%">
+                         <col width="30%">
+                         <col width="10%">
+                         <col width="10%">
+                     </colgroup>                                   
+                     <thead>
+                         <tr>
+                             <th>제목</th><th>강의명</th><th>강사</th><th>게시일</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                             <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
+                             <td><a href="course-info.jsp?no=1">Java</a></td>
+                             <td>이응수</td>
+                             <td>17/08/21</td>
+                         </tr>                               
+                         <tr>
+                             <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
+                             <td><a href="course-info.jsp?no=1">Java</a></td>
+                             <td>이응수</td>
+                             <td>17/08/21</td>
+                         </tr>
+                         <tr>
+                             <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
+                             <td><a href="course-info.jsp?no=1">Java</a></td>
+                             <td>이응수</td>
+                             <td>17/08/21</td>
+                         </tr>                
+                         <tr>
+                             <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
+                             <td><a href="course-info.jsp?no=1">Java</a></td>
+                             <td>이응수</td>
+                             <td>17/08/21</td>
+                         </tr>
+                     </tbody>
+                 </table>
+                 <div class="text-center">
+                     <ul class="pagination pagination-sm">
+                         <li><a href="#"><span class="glyphicon glyphicon-backward"></span></a></li>
+                         <li><a href="#"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
+                         <li><a href="#">1</a></li>
+                         <li><a href="#">2</a></li>
+                         <li><a href="#">3</a></li>
+                         <li><a href="#">4</a></li>
+                         <li><a href="#">5</a></li>
+                         <li><a href="#"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
+                         <li><a href="#"><span class="glyphicon glyphicon-forward"></span></a></li>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+     </div>
    	<%@ include file="../../common/footer.jsp" %>  
 </body>
 </html>

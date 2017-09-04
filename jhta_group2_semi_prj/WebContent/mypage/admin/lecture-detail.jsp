@@ -25,50 +25,48 @@
 </head>
 <body>
 	<%@ include file="../../common/nav.jsp" %>
-    <div class="container-fluid">
-        <h1>Detail <small>- Lecture</small></h1>
-        <hr/>
-        <div class="row">
-        	<div class="col-sm-2">
-				<%@ include file="left-menu.jsp" %>
-			</div>         
-            <div class="col-sm-10">
-                <h2 class="sub-header">영상 상세 정보</h2>
-                <hr/>
-                
-               <div class="col-sm-9">
-               		<table class="table">
-               			<colgroup>
-               				<col width="20%">
-               				<col width="80%">
-               			</colgroup>
-               			<tr>
-               				<th>강의 제목</th><td>Java란 무엇인가?</td>
-               			</tr>
-               			<tr>
-               				<th>강의 링크 주소</th><td><a href="#">www.naver.com</a></td>
-               			</tr>
-               			<tr>
-               				<th>첨부파일</th><td><a href="#">java.jpg</a></td>
-               			</tr>
-               			<tr>
-               				<th colspan="12">수업에 대한 소개</th>
-               			</tr>
-               			<tr>
-               				<th></th>
-               				<td>
-               					수업에 대한 간단한 소개입니다.ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-	               				ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-	               			</td>
-               			</tr>
-               		</table>
-               </div>		
-               <div class="row text-right">
-               		<div class="col-sm-10">
-                   		<a href="#" class="btn btn-primary">허용</a>
-                   		<a href="#" class="btn btn-danger">거절</a>
-                   	</div>
-               </div>
+    <div class="container">
+ 		<div class="col-sm-offset-2 page-header">
+			<h1>영상 상세 정보</h1>
+		</div>
+       	<div class="col-sm-2">
+			<%@ include file="left-menu.jsp" %>
+		</div>
+		         
+        <div class="col-sm-9">
+               
+            <div class="col-sm-9">
+            	<table class="table">
+              		<colgroup>
+              			<col width="20%">
+              			<col width="80%">
+              		</colgroup>
+           			<tr>
+           				<th>강의 제목</th><td>Java란 무엇인가?</td>
+           			</tr>
+           			<tr>
+           				<th>강의 링크 주소</th><td><a href="#">www.naver.com</a></td>
+           			</tr>
+           			<tr>
+           				<th>첨부파일</th><td><a href="#">java.jpg</a></td>
+           			</tr>
+           			<tr>
+           				<th colspan="12">수업에 대한 소개</th>
+           			</tr>
+           			<tr>
+           				<th></th>
+           				<td>
+           					수업에 대한 간단한 소개입니다.ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+            				ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+            			</td>
+           			</tr>
+              	</table>
+            </div>		
+            <div class="row text-right">
+	       		<div class="col-sm-10">
+	           		<a href="#" class="btn btn-primary">허용</a>
+	           		<a href="#" class="btn btn-danger">거절</a>
+	           	</div>
             </div>
         </div>
     </div>
