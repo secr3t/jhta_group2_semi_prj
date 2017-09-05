@@ -1,3 +1,5 @@
+<%@page import="pro.tech.vo.Tech"%>
+<%@page import="pro.board.dao.TecBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,25 +21,29 @@
   	</h4>
   	<hr>
     </div>
+    	<% 
+    		int no = Integer.parseInt(request.getParameter("no"));
+    		TecBoardDao tdao = new TecBoardDao();
+    		
+    		Tech tech = tdao.getTecBoardByNo(no);
+    		
+    	%>
   		<div class="panel panel-default">
   			<table class="table">
+  				
   				<tbody>
-	  			
+  					<tr>
+  					<th><h4><strong>질문</strong></h4></th>
+  					<td><%=tech.getTitle() %></td>
+  					</tr>
   				<tr>
-  					<th><h3>질문</h3></th>
-  				</tr>
-  				<tr>
-  					<th>제목</th>
-  					<td colspan="5">자바신이 되려면 무엇을 해야되나요?</td>
-  				</tr>
-  				<tr>
-  					<th>작성자</th>
-  					<td>개똥이</td>
+  					<th class="col-sm-2">작성자</th>
+  					<td><%=tech.getStudent().getName() %></td>
   					<th>날짜</th>
-  					<td>2017.09.02</td>
+  					<td><%=tech.getQuesRegdate() %></td>
   				</tr>
   				<tr>
-  					<td colspan="6">자바의 신이 되고 싶어요. 하지만 무엇을 해야될지 모르겠어요. 도와주세요 자바신!!</td>
+  					<td colspan="6"><%=tech.getQuesContent() %></td>
   				</tr> 
   				</tbody>
   			</table>
@@ -50,18 +56,16 @@
   					<th><h3>답변</h3></th>
   				</tr>
   				<tr>
-  					<th>작성자</th>
-  					<td>자바신</td>
   					<th>답변날짜</th>
-  					<td>2017.09.02</td>
+  					<td><%=tech.getAnsRegdate() %></td>
   				</tr>
   				<tr>
-  					<td colspan="6">When you want more—more selection, protection, and power for embedded applications—Java is the choice. Oracle Java Embedded products are designed and optimized to meet the unique requirements of embedded devices, such as microcontrollers, sensors, and gateways. They enable intelligent systems for M2M communications and the Internet of Things so you can do more with your devices.</td>
+  					<td colspan="6"><%=tech.getAnsContent() %></td>
   				</tr> 
   			</table>
   				<div class="text-right">
-	  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_replywrite.jsp" class="btn btn-warning btn-sm">답변</a>
-	  				<a href="/jhta_group2_semi_prj/board/personalqna/delete_personalqna.jsp" class="btn btn-danger btn-sm">삭제</a>
+	  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_replywrite.jsp?no=<%=tech.getNo() %>" class="btn btn-warning btn-sm">답변</a>
+	  				<a href="/jhta_group2_semi_prj/board/personalqna/delete_personalqna.jsp?no=<%=tech.getNo() %>" class="btn btn-danger btn-sm">삭제</a>
 	  				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-primary btn-sm">돌아가기</a>
 	  			</div>
   				</tbody>
