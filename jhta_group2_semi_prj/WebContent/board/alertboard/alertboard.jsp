@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="pro.notice.vo.Notice"%>
+<%@page import="pro.board.dao.AlertBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,29 +31,22 @@
 	  	</h4>
 	  	<hr>
 			<div class="panel-group col-md-9">
+				<%
+					AlertBoardDao adao = new AlertBoardDao();
+					
+					List<Notice> notices = adao.getAllAlertBoard();
+					for(Notice notice : notices) {
+				%>
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border: 2px solid silver;" >
 			            <h4 class="panel-title">
-			                <a href="#" class="collapsed" style="color: red;">[채용공고] 공부의 신 마케팅 신입사원 모집</a>
+			                <a href="alertboard_detail.jsp?no=<%=notice.getNo() %>" class="collapsed"><%=notice.getTitle() %></a>
 			            </h4>
 			        </div>
 	            </div>
-			    <div class="panel">
-			        <div class="panel-heading input-lg" style="border: 2px solid silver;">
-			            <h4 class="panel-title">
-			                <a href="#" class="collapsed" style="color: red;">★공신닷컴이 카카오톡 채널탭에 입점하였습니다★</a>
-			            </h4>
-			        </div>
-			    </div>
-			    <div class="panel">
-			        <div class="panel-heading input-lg" style="border: 2px solid silver;">
-			            <h4 class="panel-title">
-			                <a href="#" class="collapsed" style="color: royalblue;">[필독] 학습 보증금 제도 및 홈페이지 개편 공지_2016.09.22 수정</a>
-			            </h4>
-			        </div>
-			    </div>
+			    <%} %>
 			    	<div class="text-right">
-			    		<a href="" class="btn btn-primary btn-md">글쓰기</a>
+			    		<a href="/jhta_group2_semi_prj/board/alertboard/alert_write.jsp" class="btn btn-primary btn-md">글쓰기</a>
 			    	</div>
 			    
 			</div>
