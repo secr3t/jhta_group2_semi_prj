@@ -18,9 +18,9 @@
 	</transactionManager>
 
 	
-	<sqlMap resource="/pro/board/mappers/AfterBoard.xml" />
-	<sqlMap resource="/pro/board/mappers/AlertBoard.xml" />
-	<sqlMap resource="/pro/board/mappers/LecBoard.xml" />
-	<sqlMap resource="/pro/board/mappers/TecBoard.xml" />
+	<sqlMap resource="pro/board/mappers/AfterBoard.xml" />
+	<sqlMap resource="pro/board/mappers/AlertBoard.xml" />
+	<sqlMap resource="pro/board/mappers/TecBoard.xml" />
+	<sqlMap resource="pro/video/mapper/Video.xml" />
 	
 </sqlMapConfig>

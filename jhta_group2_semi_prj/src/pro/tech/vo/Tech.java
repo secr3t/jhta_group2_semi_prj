@@ -14,6 +14,7 @@ public class Tech {
 	private Date ansRegdate;
 	private String active;
 	private Student student;
+	
 	public int getNo() {
 		return no;
 	}
