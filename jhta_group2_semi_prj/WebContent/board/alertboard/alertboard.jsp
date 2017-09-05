@@ -27,11 +27,11 @@
 	  	</span> 공지사항
 	  	</h4>
 	  	<hr>
-			<div class="panel-group col-md-8">
+			<div class="panel-group col-md-9">
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border: 2px solid silver;" >
 			            <h4 class="panel-title">
-			                <a href="#" class="" style="color: red;">[채용공고] 공부의 신 마케팅 신입사원 모집</a>
+			                <a href="#" class="collapsed" style="color: red;">[채용공고] 공부의 신 마케팅 신입사원 모집</a>
 			            </h4>
 			        </div>
 	            </div>

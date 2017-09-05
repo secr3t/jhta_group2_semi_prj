@@ -1,4 +1,4 @@
-package pro.vo;
+package pro.board.vo;
 
 public class User {
 	

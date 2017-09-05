@@ -4,7 +4,7 @@
 <html lang="ko">
 <%@include file="../../common/header.jsp"%>
 <body>
-	<%@include file="../../common/nav.jsp"%>
+<%@include file="../../common/nav.jsp"%>
 
 
 	<div class="container">
@@ -18,7 +18,7 @@
 			<%@ include file="boardbanner/left-menu.jsp"%>
 		</div>
 		<div class="col-sm-offset-1 col-sm-9">
-			<div class="panel-group col-md-8">
+			<div class="panel-group col-md-9">
 				<div class="panel panel-primary">
 					<div class="panel-heading input-lg">
 						<h4 class="panel-title">

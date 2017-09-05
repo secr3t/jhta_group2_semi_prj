@@ -5,7 +5,7 @@
 
 <%@include file="../../common/header.jsp"%>
 <body>
-	<%@include file="../../common/nav.jsp"%>
+<%@include file="../../common/nav.jsp"%>
 
 
 	<div class="content-primary">

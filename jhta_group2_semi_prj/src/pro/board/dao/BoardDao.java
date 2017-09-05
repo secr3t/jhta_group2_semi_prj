@@ -1,4 +1,4 @@
-package pro.dao;
+package pro.board.dao;
 
 import java.sql.SQLException;
 import java.util.List;
