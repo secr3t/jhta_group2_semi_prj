@@ -13,7 +13,13 @@ public class VideoDao {
 		return instance;
 	}
 	
-	public void addVideo(Video video) throws SQLException {
+	public void addVideo(Video video) throws Exception {
+		List<Video> lists = getVideosByCourseNo(video.getCourse().getNo());
+		for(Video v : lists) {
+			if(video.getOrder() == v.getOrder()) {
+				throw new Exception("순서 정보가 중복되었습니다. 순서를 확인해주세요");
+			}
+		}
 		IbatisUtils.getSqlMap().insert("video.addVideo", video);
 	}
 	
