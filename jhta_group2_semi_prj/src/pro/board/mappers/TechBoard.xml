@@ -58,4 +58,14 @@ select
 		tech_no = #value#
 </select>
 
+<update id="updateTechBoard" parameterClass="techboard">
+	update tech
+	set
+		
+		tech_ans_content = #ans#,
+		tech_ans_regdate = #sysdate#
+	where
+		tech_no = #value#
+</update>
+
 </sqlMap>
