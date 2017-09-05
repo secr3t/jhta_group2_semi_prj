@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="board">
+
+<typeAlias alias="qboard" type="pro.qna.vo.Qna"/>
+	
+<insert id="addQueBoard" parameterClass="qboard">
+	insert into qna
+	(qna_no, qna_title, qna_ques_content, qna_ans_content,
+	  qna_active, course_no, sutudent_no)
+	values
+	(qna_no_seq.nextval, #title#, #quesContent#, #ansContent#,
+		#active#, #course.no#, #student.no#)
+</insert>
+
+<select id="getAllQueBoard" resultClass="qboard">
+	select
+		A.qna_no						as no, 
+		A.qna_title					as title, 
+		A.qna_ques_content			as quesContent,
+		A.qna_ques_date				as quesDate,
+		A.qna_ans_content				as	ansContent,
+		A.qna_ans_regdate				as	ansRegdate,
+	  	A.qna_active					as	active, 
+	  	A.course_no					as	"course.no", 
+	  	A.student_no					as  "student.no"
+	from
+		qna A, student B
+	where 
+		A.student_no = B.student_no
+	order by 
+		qna_no desc
+</select>
+
+<delete id="deletequeBoardByNo" parameterClass="int">
+	delete form qna
+	where qna_no = #value#
+</delete>
+
+<select id="getQnaBoardByNo" parameterClass="int" resultClass="qboard">
+select
+		qna_no						as no, 
+		qna_title					as title, 
+		qna_ques_content			as quesContent,
+		qna_ques_date				as quesDate,
+		qna_ans_content				as	ansContent,
+		qna_ans_regdate				as	ansRegdate,
+	  	qna_active					as	active, 
+	  	course_no					as	"course.no", 
+	  	sutudent_no					as  "student.no"
+	from
+		qna 
+	where
+		qna_no = #value#
+</select>
+
+</sqlMap>
