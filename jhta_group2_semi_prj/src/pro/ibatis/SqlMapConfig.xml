@@ -21,5 +21,8 @@
 	<sqlMap resource="/pro/board/mappers/AlertBoard.xml" />
 	<sqlMap resource="/pro/board/mappers/LecBoard.xml" />
 	<sqlMap resource="/pro/board/mappers/TecBoard.xml" />
+	<sqlMap resource="/pro/board/mappers/MyPageStudent.xml" />
+	<sqlMap resource="/pro/board/mappers/MyPageCourse.xml" />
+	<sqlMap resource="/pro/board/mappers/MyPageLecturer.xml" />
 	
 </sqlMapConfig>
