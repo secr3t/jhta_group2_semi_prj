@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="board">
+
+<typeAlias alias="board" type="pro.postscription.vo"/>
+	
+<insert id="addAfterBoard" parameterClass="board">
+	insert into postscription
+	(postscription_no, postscription_title, postscription_content, postscription_regdate,
+		 postscription_grade, postscription_active, student_no, course_no)
+	values
+	(postscription_no_seq.nextval, #title#, #content#, #regdate#, #grade#,
+		#active#, #student.no#, #course.no#)
+</insert>
+
+<select id="getAllAlertBoard" resultClass="board">
+	select
+		postscription_no 			as no,
+		postscription_title			as title,
+		postscription_content		as content,
+		postscription_regdate		as	regDate,
+		postscription_grade 		as grade,
+		postscription_active		as active,
+		student_no					as	"student.no",
+		course_no					as	"course.no"
+	from
+		postscription
+</select>
+
+<delete id="deleteAlertBoardByNo" parameterClass="int">
+	delete from postscription
+	where postscription_no = #value#
+</delete>
+
+<select id="getAlertBoardByNo" parameterClass="int" resultClass="board">
+	select
+		postscription_no 			as no,
+		postscription_title			as title,
+		postscription_content		as content,
+		postscription_regdate		as	regDate,
+		postscription_grade 		as grade,
+		postscription_active		as active,
+		student_no					as	"student.no",
+		course_no					as	"course.no"
+	from
+		postscription
+</select>
+
+</sqlMap>

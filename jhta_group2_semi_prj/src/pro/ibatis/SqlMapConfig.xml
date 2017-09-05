@@ -17,6 +17,9 @@
 	</transactionManager>
 
 	
-	<sqlMap resource="/pro/board/ibatis/mappers/Board.xml" />
+	<sqlMap resource="/pro/board/mappers/AfterBoard.xml" />
+	<sqlMap resource="/pro/board/mappers/AlertBoard.xml" />
+	<sqlMap resource="/pro/board/mappers/LecBoard.xml" />
+	<sqlMap resource="/pro/board/mappers/TecBoard.xml" />
 	
 </sqlMapConfig>
