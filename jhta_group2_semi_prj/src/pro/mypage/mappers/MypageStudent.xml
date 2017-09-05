@@ -77,4 +77,12 @@
 		where A.student_no = #value#
 		and A.qna_active = 'Y'
 	</select>
+	
+	<update id="updateMyInfo" parameterClass="Student">
+		update student
+		set
+			student_pwd = #pwd#
+			,student_phone = #phone#
+		where student_no = #no#
+	</update>
 </sqlMap>
