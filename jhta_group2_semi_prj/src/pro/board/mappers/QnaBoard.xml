@@ -6,9 +6,9 @@
 
 <sqlMap namespace="QueBoard">
 
-<typeAlias alias="qboard" type="pro.qna.vo.Qna"/>
+<typeAlias alias="questionboard" type="pro.qna.vo.Qna"/>
 	
-<insert id="addQueBoard" parameterClass="qboard">
+<insert id="addQueBoard" parameterClass="questionboard">
 	insert into qna
 	(qna_no, qna_title, qna_ques_content, qna_ans_content,
 	  qna_active, course_no, sutudent_no)
@@ -17,7 +17,7 @@
 		#active#, #course.no#, #student.no#)
 </insert>
 
-<select id="getAllQueBoard" resultClass="qboard">
+<select id="getAllQueBoard" resultClass="questionboard">
 	select
 		A.qna_no						as no, 
 		A.qna_title					as title, 
@@ -41,21 +41,27 @@
 	where qna_no = #value#
 </delete>
 
-<select id="getQnaBoardByNo" parameterClass="int" resultClass="qboard">
+<select id="getQnaBoardByNo" parameterClass="int" resultClass="questionboard">
 select
-		qna_no						as no, 
-		qna_title					as title, 
-		qna_ques_content			as quesContent,
-		qna_ques_date				as quesDate,
-		qna_ans_content				as	ansContent,
-		qna_ans_regdate				as	ansRegdate,
-	  	qna_active					as	active, 
-	  	course_no					as	"course.no", 
-	  	sutudent_no					as  "student.no"
+		A.qna_no						as no, 
+		A.qna_title					as title, 
+		A.qna_ques_content			as quesContent,
+		A.qna_ques_date				as quesDate,
+		A.qna_ans_content				as	ansContent,
+		A.qna_ans_regdate				as	ansRegdate,
+	  	A.qna_active					as	active, 
+	  	A.course_no					as	"course.no", 
+	  	A.student_no					as  "student.no",
+	  	B.course_name				as	"course.name",
+		C.lecturer_name				as	"course.lecturer.name"
 	from
-		qna 
+		qna A, course B, lecturer C 
 	where
-		qna_no = #value#
+		A.course_no = B.course_no 
+	and	
+		B.lecturer_no = C.lecturer_no
+	and
+		A.qna_no = #value#
 </select>
 
 </sqlMap>

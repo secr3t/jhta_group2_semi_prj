@@ -20,7 +20,10 @@ public class TecBoardDao {
 	public List<Tech> getAllTecBoard() throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("TechBoard.getAllTechBoard");
 	}
+	
 	public void deleteTecBoard(int no) throws SQLException {
 		IbatisUtils.getSqlMap().delete("TechBoard.deleteTechBoardByNo", no);
 	}
+	
+	
 }

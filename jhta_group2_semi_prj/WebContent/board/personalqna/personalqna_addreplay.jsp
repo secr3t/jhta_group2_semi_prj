@@ -3,8 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String ans = request.getParameter("anscontent");
-
+ 	String ans = request.getParameter("anscontent");
+	int no = Integer.parseInt(request.getParameter("no"));
+	
 	TecBoardDao tdao = new TecBoardDao();
 	
 	Tech tech = tdao.getTecBoardByNo(no);
@@ -15,4 +16,4 @@
 	tdao.AddTecBoard(tech);
 	
 	response.sendRedirect("/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp");
-%>
+	%>

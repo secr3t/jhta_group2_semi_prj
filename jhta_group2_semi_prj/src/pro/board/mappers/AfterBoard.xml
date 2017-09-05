@@ -6,9 +6,9 @@
 
 <sqlMap namespace="AfterBoard">
 
-<typeAlias alias="board" type="pro.postscription.vo.Postscription"/>
+<typeAlias alias="afterboard" type="pro.postscription.vo.Postscription"/>
 	
-<insert id="addAfterBoard" parameterClass="board">
+<insert id="addAfterBoard" parameterClass="afterboard">
 	insert into postscription
 	(postscription_no, postscription_title, postscription_content, postscription_regdate,
 		 postscription_grade, postscription_active, student_no, course_no)
@@ -17,7 +17,7 @@
 		#active#, #student.no#, #course.no#)
 </insert>
 
-<select id="getAllAfterBoard" resultClass="board">
+<select id="getAllAfterBoard" resultClass="afterboard">
 	select
 		A.postscription_no 			as no,
 		A.postscription_title			as title,
@@ -40,7 +40,7 @@
 	where postscription_no = #value#
 </delete>
 
-<select id="getAfterBoardByNo" parameterClass="int" resultClass="board">
+<select id="getAfterBoardByNo" parameterClass="int" resultClass="afterboard">
 	select
 		postscription_no 			as no,
 		postscription_title			as title,

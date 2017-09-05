@@ -6,9 +6,9 @@
 
 <sqlMap namespace="AlertBoard">
 
-<typeAlias alias="aboard" type="pro.notice.vo.Notice"/>
+<typeAlias alias="alertboard" type="pro.notice.vo.Notice"/>
 	
-<insert id="addAlertBoard" parameterClass="aboard">
+<insert id="addAlertBoard" parameterClass="alertboard">
 	insert into notice
 	(notice_no, notice_title, notice_content,
 	 notice_expiredate, notice_active)
@@ -17,7 +17,7 @@
 		#active#)
 </insert>
 
-<select id="getAllAlertBoard" resultClass="aboard">
+<select id="getAllAlertBoard" resultClass="alertboard">
 	select
 		notice_no 			as no,
 		notice_title		as title,
@@ -36,7 +36,7 @@
 	where notice_no = #value#
 </delete>
 
-<select id="getAlertBoardByNo" parameterClass="int" resultClass="aboard">
+<select id="getAlertBoardByNo" parameterClass="int" resultClass="alertboard">
 select
 		notice_no 			as no,
 		notice_title		as title,

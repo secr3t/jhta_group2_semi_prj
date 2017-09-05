@@ -39,11 +39,12 @@
 					List<Tech> techs = tdao.getAllTecBoard();
 					
 					for(Tech tech : techs) {
+						String style = tech.getQtypeNo() == 1 ? "color:blue;" : "color:blue;";
 				%>
 			    <div class="panel">
-			        <div class="panel-heading input-lg" style="border: 2px solid silver;" >
+			        <div class="panel-heading input-lg" style="border:2px solid silver;">
 			            <h4 class="panel-title">
-			                <a href="personalqna_detail.jsp?no=<%=tech.getNo() %>" class="collapsed"><%=tech.getTitle() %></a>
+			                <a href="personalqna_detail.jsp?no=<%=tech.getNo() %>" class="collapsed" style="<%=style %>"><%=tech.getTitle() %></a>
 			            </h4>
 			        </div>
 	            </div>

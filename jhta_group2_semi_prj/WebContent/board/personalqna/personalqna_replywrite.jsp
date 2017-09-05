@@ -56,7 +56,7 @@
   				</tbody>
   			</table>
   		</div>
-  		<form class="form-horizontal" method="post" action="personalqna_addreplay.jsp">
+  		<form class="form-horizontal" method="post" action="personalqna_addreplay.jsp?no=<%=tech.getNo() %>">
   			<label class="control-label">답변내용</label>
   			<textarea rows="6" class="form-control" name="anscontent"></textarea>
   			<div class="text-right">

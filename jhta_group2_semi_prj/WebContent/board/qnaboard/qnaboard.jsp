@@ -31,6 +31,7 @@
 							<th>제목</th>
 							<th>작성자</th>
 							<th>날짜</th>
+							<th>과정명</th>
 							<th>답변여부</th>
 						</tr>
 					</thead>
@@ -46,6 +47,7 @@
 							<th><a href="qna_detail.jsp?no=<%=qna.getNo() %>"><%=qna.getTitle() %></a></th>
 							<th><%=qna.getStudent().getName() %></th>
 							<th><%=qna.getQuesDate() %></th>
+							<th><%=qna.getCourse().getName() %></th>
 							<th><%=qna.getActive() %></th> 
 					    </tr>
 					    <%} %>

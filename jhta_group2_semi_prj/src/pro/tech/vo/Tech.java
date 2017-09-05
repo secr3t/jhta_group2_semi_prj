@@ -14,7 +14,14 @@ public class Tech {
 	private Date ansRegdate;
 	private String active;
 	private Student student;
+	private int qtypeNo;
 	
+	public int getQtypeNo() {
+		return qtypeNo;
+	}
+	public void setQtypeNo(int qtypeNo) {
+		this.qtypeNo = qtypeNo;
+	}
 	public int getNo() {
 		return no;
 	}
