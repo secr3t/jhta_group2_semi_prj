@@ -6,8 +6,9 @@
 
 <sqlMapConfig>
 
-	
-	<transactionManager type="JDBC" commitRequired="false">
+  <settings useStatementNamespaces="true"/>
+
+	<transactionManager type="JDBC" commitRequired="false" >
 		<dataSource type="SIMPLE">
 			<property name="JDBC.Driver" value="oracle.jdbc.OracleDriver" />
 			<property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@192.168.10.88:1521:xe" />
