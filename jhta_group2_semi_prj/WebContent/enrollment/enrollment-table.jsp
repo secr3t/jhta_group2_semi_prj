@@ -17,6 +17,7 @@
 					<li><a href="enrollment-eng.jsp">영어</a></li>
 					<li><a href="enrollment-math.jsp">수학</a></li>
 					<li><a href="enrollment-sci.jsp">과학</a></li>
+					
 				</ul>
 			</div>
 				 
