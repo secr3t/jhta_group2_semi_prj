@@ -8,11 +8,11 @@ import pro.vo.Board;
 
 public class BoardDao {
 
-	public void addBoard(Board board) throws SQLException {
+	public void addBoard(LecBoard board) throws SQLException {
 		IbatisUtils.getSqlMap().insert("addBoard", board);
 	}
 	
-	public List<Board> getAllBoard() throws SQLException {
+	public List<LecBoard> getAllBoard() throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("getAllBoard");
 	}
 }

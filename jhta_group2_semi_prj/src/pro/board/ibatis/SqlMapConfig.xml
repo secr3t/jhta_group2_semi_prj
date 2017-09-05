@@ -17,7 +17,6 @@
 	</transactionManager>
 
 	
-	<sqlMap resource="/pro/ibatis/mappers/board.xml" />
-	<sqlMap resource="/pro/ibatis/mappers/User.xml" />
+	<sqlMap resource="/pro/board/ibatis/mappers/Board.xml" />
 	
 </sqlMapConfig>
