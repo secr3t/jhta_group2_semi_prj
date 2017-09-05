@@ -21,6 +21,9 @@
 	<sqlMap resource="pro/board/mappers/AfterBoard.xml" />
 	<sqlMap resource="pro/board/mappers/AlertBoard.xml" />
 	<sqlMap resource="pro/board/mappers/TecBoard.xml" />
+	<sqlMap resource="pro/mypage/mappers/MypageCourse.xml" />
+	<sqlMap resource="pro/mypage/mappers/MypageLecturer.xml" />
+	<sqlMap resource="pro/mypage/mappers/MypageStudent.xml" />
 	<sqlMap resource="pro/video/mapper/Video.xml" />
 	
 </sqlMapConfig>
