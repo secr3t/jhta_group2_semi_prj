@@ -13,7 +13,7 @@
 	(qna_no, qna_title, qna_ques_content, qna_ans_content,
 	  qna_active,  sutudent_no)
 	values
-	(qna_no_seq.nextval, #title#, #quesContent#, #ansContent#,
+	(tech_no_seq.nextval, #title#, #quesContent#, #ansContent#,
 		#active#, #student.no#)
 </insert>
 

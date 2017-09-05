@@ -51,7 +51,7 @@
 		student_no					as	"student.no",
 		course_no					as	"course.no"
 	from
-		postscription 
+		postscription
 	where
 		postscription_no = #value#
 </select>
