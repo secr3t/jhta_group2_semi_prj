@@ -6,7 +6,7 @@
 
 <sqlMap namespace="board">
 
-<typeAlias alias="board" type="pro.postscription.vo"/>
+<typeAlias alias="board" type="pro.postscription.vo.Postscription"/>
 	
 <insert id="addAfterBoard" parameterClass="board">
 	insert into postscription
@@ -17,7 +17,7 @@
 		#active#, #student.no#, #course.no#)
 </insert>
 
-<select id="getAllAlertBoard" resultClass="board">
+<select id="getAllAfterBoard" resultClass="board">
 	select
 		postscription_no 			as no,
 		postscription_title			as title,
@@ -28,15 +28,19 @@
 		student_no					as	"student.no",
 		course_no					as	"course.no"
 	from
-		postscription
+		postscription A, student B
+	where 
+		A.student_no = B.student_no 
+	order by 
+		A.student_no desc
 </select>
 
-<delete id="deleteAlertBoardByNo" parameterClass="int">
+<delete id="deleteAfterBoardByNo" parameterClass="int">
 	delete from postscription
 	where postscription_no = #value#
 </delete>
 
-<select id="getAlertBoardByNo" parameterClass="int" resultClass="board">
+<select id="getAfterBoardByNo" parameterClass="int" resultClass="board">
 	select
 		postscription_no 			as no,
 		postscription_title			as title,
@@ -47,7 +51,9 @@
 		student_no					as	"student.no",
 		course_no					as	"course.no"
 	from
-		postscription
+		postscription 
+	where
+		postscription_no = #value#
 </select>
 
 </sqlMap>

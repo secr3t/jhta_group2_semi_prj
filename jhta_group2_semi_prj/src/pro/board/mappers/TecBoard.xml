@@ -6,29 +6,54 @@
 
 <sqlMap namespace="board">
 
-<typeAlias alias="board" type="pro.vo.Board"/>
+<typeAlias alias="tboard" type="pro.tech.vo.Tech"/>
 	
-<insert id="addBoard" parameterClass="board">
-	insert into se_board
-	(board_no, board_title, board_contents, board_createdate, user_id)
+<insert id="addTechBoard" parameterClass="tboard">
+	insert into tech
+	(qna_no, qna_title, qna_ques_content, qna_ans_content,
+	  qna_active, course_no, sutudent_no)
 	values
-	(se_seq.nextval, #title#, #contents#, #createDate#, #writer.id#)
+	(qna_no_seq.nextval, #title#, #quesContent#, #ansContent#,
+		#active#, #course.no#, #student.no#)
 </insert>
 
-<select id="getAllBoard" resultClass="board">
+<select id="getAllTechBoard" resultClass="tboard">
 	select
-		A.board_no 			as no,
-		A.board_title			as title,
-		A.board_contents		as contents,
-		A.board_createdate	as	createDate,
-		A.user_id 			as "writer.id"
-		B.user_name			as "writer.name"
+		A.tech_no						as no, 
+		A.tech_title					as title, 
+		A.tech_ques_content				as quesContent,
+		A.tech_ques_regdate				as quesRegdate,
+		A.tech_ans_content				as	ansContent,
+		A.tech_ans_regdate				as	ansRegdate,
+	  	A.tech_active					as	active, 
+	  	A.student_no					as  "student.no"
 	from
-		se_board A, se_user B
-	where
-		A.user_id = B.user_id 
+		tech A, student B
+	where 
+		A.student_no = B.student_no
 	order by 
-		A.board_no desc
+		tech_no desc
+</select>
+
+<delete id="deleteTechBoardByNo" parameterClass="int">
+	delete form tech
+	where tech_no = #value#
+</delete>
+
+<select id="getTechBoardByNo" parameterClass="int" resultClass="tboard">
+select
+		tech_no						as no, 
+		tech_title					as title, 
+		tech_ques_content			as quesContent,
+		tech_ques_regdate			as quesRegdate,
+		tech_ans_content			as	ansContent,
+		tech_ans_regdate			as	ansRegdate,
+	  	tech_active					as	active, 
+	  	student_no					as  "student.no"
+	from
+		tech
+	where
+		tech_no = #value#
 </select>
 
 </sqlMap>

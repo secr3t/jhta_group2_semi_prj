@@ -6,29 +6,48 @@
 
 <sqlMap namespace="board">
 
-<typeAlias alias="board" type="pro.vo.Board"/>
+<typeAlias alias="aboard" type="pro.notice.vo.Notice"/>
 	
-<insert id="addBoard" parameterClass="board">
-	insert into se_board
-	(board_no, board_title, board_contents, board_createdate, user_id)
+<insert id="addAlertBoard" parameterClass="aboard">
+	insert into notice
+	(notice_no, notice_title, notice_content,
+	 notice_expiredate, notice_active)
 	values
-	(se_seq.nextval, #title#, #contents#, #createDate#, #writer.id#)
+	(notice_no_seq.nextval, #title#, #content#, #expiredate#,
+		#active#)
 </insert>
 
-<select id="getAllBoard" resultClass="board">
+<select id="getAllAlertBoard" resultClass="aboard">
 	select
-		A.board_no 			as no,
-		A.board_title			as title,
-		A.board_contents		as contents,
-		A.board_createdate	as	createDate,
-		A.user_id 			as "writer.id"
-		B.user_name			as "writer.name"
+		notice_no 			as no,
+		notice_title		as title,
+		notice_content		as content,
+		notice_regdate		as	regdate,
+		notice_expiredate 	as expiredate,
+		notice_active		as active
 	from
-		se_board A, se_user B
-	where
-		A.user_id = B.user_id 
+		notice
 	order by 
-		A.board_no desc
+		notice_no desc
+</select>
+
+<delete id="deleteAlertBoardByNo" parameterClass="int">
+	delete form notice
+	where notice_no = #value#
+</delete>
+
+<select id="getAlertBoardByNo" parameterClass="int" resultClass="aboard">
+select
+		notice_no 			as no,
+		notice_title		as title,
+		notice_content		as content,
+		notice_regdate		as	regdate,
+		notice_expiredate 	as expiredate,
+		notice_active		as active
+	from
+		notice
+	where
+		notice_no = #value#
 </select>
 
 </sqlMap>
