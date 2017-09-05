@@ -6,19 +6,36 @@
 
 <sqlMap namespace="MyPageLecturer">
 
-	<typeAlias alias="Student" type="pro.student.vo.Student"/>
+	<typeAlias alias="Lecturer" type="pro.lecturer.vo.Lecturer"/>
 
-	<select id="getStudentByNo" parameterClass="int" resultClass="Student">
+	<select id="getLecturerByNo" parameterClass="int" resultClass="Lecturer">
 		select
-			student_no			no
-			,student_name		name
-			,student_email		email
-			,student_pwd		pwd
-			,student_phone		phone
-			,student_point		point
-			,user_type			type
-		from student
-		where student_no = #value#
+			lecturer_no			no
+			,lecturer_name		name
+			,lecturer_email		email
+			,lecturer_pwd		pwd
+			,lecturer_phone		phone
+			,lecturer_career	career
+			,lecturer_picture	picture
+			,lecturer_permit	permit
+			,user_type			type	
+		from lecturer
+		where lecturer_no = #value#
+	</select>
+	
+	<select id="getLecturerByEmail" parameterClass="string" resultClass="Lecturer">
+		select
+			lecturer_no			no
+			,lecturer_name		name
+			,lecturer_email		email
+			,lecturer_pwd		pwd
+			,lecturer_phone		phone
+			,lecturer_career	career
+			,lecturer_picture	picture
+			,lecturer_permit	permit
+			,user_type			type	
+		from lecturer
+		where lecturer_email = #value#
 	</select>
 
 </sqlMap>

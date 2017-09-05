@@ -1,3 +1,4 @@
+<%@page import="pro.student.vo.Student"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,6 +25,13 @@
   </style>
 </head>
 <body>
+	<% 
+		Student student = (Student) session.getAttribute("loginedUser");
+		if(student == null) {
+			response.sendRedirect("../temp-login.jsp");
+			return;
+		}
+	%>
 	<%@ include file="../../common/nav.jsp" %>
     <div class="container">
 		<div class="col-sm-offset-2 page-header">
@@ -39,44 +47,85 @@
                  <div class="form-group">
                      <label class="control-label col-sm-2">이메일</label>
                      <div class="col-sm-7">
-                         <label>blewwind70@naver.com</label>
+                         <label><%=student.getEmail() %></label>
                      </div>
                  </div>
                  <div class="form-group">
                      <label class="control-label col-sm-2">비밀번호</label>
                      <div class="col-sm-2">
-                         <input type="password" name="userpassword-1" class="form-control" value="zxcv1234"/>
+                         <input type="password" name="userpassword-1" class="form-control" value="<%=student.getPwd().trim() %>"/>
                      </div>
                      <label class="control-label col-sm-2">비밀번호 확인</label>
                      <div class="col-sm-2">
-                         <input type="password" name="userpassword-2" class="form-control" value="zxcv1234"/>
+                         <input type="password" name="userpassword-2" class="form-control" value="<%=student.getPwd().trim() %>"/>
                      </div>
                  </div>
                  <div class="form-group">
                      <label class="control-label col-sm-2">이름</label>
                      <div class="col-sm-7">
-                     	<label>김환희</label>
+                     	<label><%=student.getName() %></label>
                      </div>
                  </div>
                  <div class="form-group">
                      <label class="control-label col-sm-2">연락처</label>
                      <div class="col-sm-7">
                       	<div class="col-sm-3">
-                      		<select name="userphone-1" class="form-control">
+                      		<select name="userphone-1" class="form-control" id="first-phone-number">
+                      	<%
+                      		String phone = student.getPhone();
+                      		String[] splitNumber = phone.split("-");
+                      		if("018".equals(splitNumber[0])) {
+                      			
+                      	%>
+                              	<option value="010"> 010</option>
+                              	<option value="011"> 011</option>
+                              	<option value="016"> 016</option>
+                              	<option value="017"> 017</option>
+                              	<option value="018" selected="selected"> 018</option>
+                      	<%		
+                      		} else if("017".equals(splitNumber[0])) {
+                      	%>
+                              	<option value="010"> 010</option>
+                              	<option value="011"> 011</option>
+                              	<option value="016"> 016</option>
+                              	<option value="017" selected="selected"> 017</option>
+                              	<option value="018"> 018</option>
+                      	<%		
+                      		} else if("016".equals(splitNumber[0])) {
+                      	%>
+                              	<option value="010"> 010</option>
+                              	<option value="011"> 011</option>
+                              	<option value="016" selected="selected"> 016</option>
+                              	<option value="017"> 017</option>
+                              	<option value="018"> 018</option>
+                      	<%		
+                      		} else if("011".equals(splitNumber[0])) {
+                      	%>
+                              	<option value="010"> 010</option>
+                              	<option value="011" selected="selected"> 011</option>
+                              	<option value="016"> 016</option>
+                              	<option value="017"> 017</option>
+                              	<option value="018"> 018</option>
+                      	<%		
+                      		} else {
+                      	%>
                               	<option value="010" selected="selected"> 010</option>
                               	<option value="011"> 011</option>
                               	<option value="016"> 016</option>
                               	<option value="017"> 017</option>
-                              	<option value="018"> 019</option>
+                              	<option value="018"> 018</option>
+                      	<%		
+                      		}
+                      	%>
                           	</select>
                   	  	</div>
                       	<label class="col-sm-1">-</label>
                       	<div class="col-sm-3">
-                      		<input type="tel" name="userphone-2" class="form-control" value="1111"/>
+                      		<input type="tel" name="userphone-2" class="form-control" value="<%=splitNumber[1] %>"/>
                       	</div>
                       	<label class="col-sm-1">-</label>
                       	<div class="col-sm-3">
-                      		<input type="tel" name="userphone-3" class="form-control" value="2222"/>
+                      		<input type="tel" name="userphone-3" class="form-control" value="<%=splitNumber[2] %>"/>
                       	</div>
               		</div>
                  </div>
