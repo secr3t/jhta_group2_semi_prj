@@ -32,7 +32,7 @@
 	    </div>
 	
 	     <div class="row">
-	         <form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/personalqna/add_personalqna.jsp">
+	         <form class="form-horizontal" method="post" id="submit" action="/jhta_group2_semi_prj/board/personalqna/add_personalqna.jsp">
 				<div class="form-group">
 					<label class="col-sm-1 control-label">제목</label>
 					<div class="col-sm-7">

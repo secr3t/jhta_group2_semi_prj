@@ -50,7 +50,7 @@
 	            </div>
 	            <%} %>
 			    	<div class="text-right">
-			    		<a href="/jhta_group2_semi_prj/board/alertboard/alert_write.jsp" class="btn btn-primary btn-md">글쓰기</a>
+			    		<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_write.jsp" class="btn btn-primary btn-md">글쓰기</a>
 			    	</div>
 			    
 			</div>

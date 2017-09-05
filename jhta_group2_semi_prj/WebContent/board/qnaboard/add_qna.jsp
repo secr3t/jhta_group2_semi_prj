@@ -10,6 +10,10 @@
 	
 	QnaBoardDao qdao = new QnaBoardDao();
 	Qna qna = new Qna();
+	qna.setTitle(title);
+	qna.setQuesContent(contents);
+	
+	qdao.AddQnaBoard(qna);
 	
 	response.sendRedirect("/jsp-practice/board/form.jsp");
 	
