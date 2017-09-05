@@ -1,4 +1,4 @@
-package pro.board.utils;
+package pro.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

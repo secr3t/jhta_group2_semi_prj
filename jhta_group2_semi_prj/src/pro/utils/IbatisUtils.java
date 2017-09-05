@@ -1,4 +1,4 @@
-package pro.board.utils;
+package pro.utils;
 
 import java.io.Reader;
 
