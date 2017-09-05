@@ -16,6 +16,7 @@ public class AfterBoardDao {
 		return (Postscription) IbatisUtils.getSqlMap().queryForObject("AfterBoard.getAfterBoardByNo", no);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Postscription> getAllAfterBoard() throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("AfterBoard.getAllAfterBoard");
 	}

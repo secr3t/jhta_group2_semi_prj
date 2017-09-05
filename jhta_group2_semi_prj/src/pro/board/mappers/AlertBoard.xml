@@ -32,7 +32,7 @@
 </select>
 
 <delete id="deleteAlertBoardByNo" parameterClass="int">
-	delete form notice
+	delete from notice
 	where notice_no = #value#
 </delete>
 

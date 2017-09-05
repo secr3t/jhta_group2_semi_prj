@@ -10,7 +10,7 @@ import pro.utils.IbatisUtils;
 public class AlertBoardDao {
 
 	public void AddAlertBoard (Notice notice) throws SQLException{
-		IbatisUtils.getSqlMap().insert("AlertBoard.addAlertBoard");
+		IbatisUtils.getSqlMap().insert("AlertBoard.addAlertBoard", notice);
 	}
 	
 	public Notice getAlertBoardByNo(int no) throws SQLException {
@@ -21,6 +21,6 @@ public class AlertBoardDao {
 		return IbatisUtils.getSqlMap().queryForList("AlertBoard.getAllAlertBoard");
 	}
 	public void deleteAlertBoardByNo (int no) throws SQLException {
-		IbatisUtils.getSqlMap().delete("AlertBoard.deleteAlertBoardByNo");
+		IbatisUtils.getSqlMap().delete("AlertBoard.deleteAlertBoardByNo", no);
 	}
 }
