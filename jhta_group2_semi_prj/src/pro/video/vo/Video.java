@@ -11,8 +11,8 @@ public class Video {
 	private String attached;
 	private String permit;
 	private int order;
-	
 	private Course course;
+	
 	public int getNo() {
 		return no;
 	}
