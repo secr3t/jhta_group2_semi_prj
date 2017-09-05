@@ -16,7 +16,7 @@
 
     <div class="container">
         <div class="row">
-            <form method="post" action="">
+            <form method="post" action="login.jsp">
                 <div class="col-sm-offset-4 col-sm-4">
                     <div class="panel panel-info">
                         <div class="panel-heading"><strong>로그인</strong></div>
