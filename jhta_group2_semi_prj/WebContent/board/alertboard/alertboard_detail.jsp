@@ -1,3 +1,5 @@
+<%@page import="pro.notice.vo.Notice"%>
+<%@page import="pro.board.dao.AlertBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,25 +25,31 @@
 	  <div class="row">
 	  	<div class="content-header">
 	        <div class="col-lg-12">
-	  	        <h1>
-	  	        	제목</h1>
+	        	<%
+	  	        	AlertBoardDao adao = new AlertBoardDao();
+	  	        	int no = Integer.parseInt(request.getParameter("no"));
+	  	        
+	  	        	Notice noe = adao.getAlertBoardByNo(no);	
+	  	        %>
+	  	        <h1><%=noe.getTitle() %></h1>
 	  	        <p class="read"></p>
 	  	        <hr>
-	  	        <p><span class="glyphicon glyphicon-time"></span>"sysdate"</p>
+	  	        
+	  	        <p><span class="glyphicon glyphicon-time"></span><%=noe.getRegdate() %></p>
 	  	        <hr>
+	  	        <p><span class="glyphicon glyphicon-time"></span><%=noe.getExpiredate() %></p>
 	  	        <hr>
 	        </div>
 	    </div>
-	  		<div class="container well">
-	  			<h4>공지사항ㅁㄴ아미낭ㅎㅁ너ㅏㅇ로;민아럼나ㅣㄹㄴ
-	  				asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd마임너</h4>
+	  		<div class="container well col-lg-12">
+	  			<p style="font-size: 16px;"><%=noe.getContent() %></p>
 	  		</div>
 	  		
 	  </div>
 	  		<div class="panel text-right">
 	  			<hr>
-	  			<a href="" class="btn btn-danger btn-md">삭제</a>
-	  			<a href="" class="btn btn-primary btn-md">돌아가기</a>
+	  			<a href="/jhta_group2_semi_prj/board/alertboard/delete_alert.jsp?no=<%=noe.getNo() %>" class="btn btn-danger btn-md">삭제</a>
+	  			<a href="/jhta_group2_semi_prj/board/alertboard/alertboard.jsp" class="btn btn-primary btn-md">돌아가기</a>
 	  		</div>
 	  </div>
 <div class="col-sm-1"></div>

@@ -10,7 +10,7 @@
 
 	<div class="content-primary">
 		<div class="container">
-			<div class="col-sm-offset-2 col-sm-2">
+			<div class="col-sm-2">
 				<%@ include file="../boardbanner/left-menu.jsp"%>
 			</div>
 			<div class="col-sm-8">
@@ -29,15 +29,13 @@
 							<form class="form-horizontal" id="submit" method="post" action="add_alert.jsp">
 								<div class="form-group">
 								<label class="col-sm-1 control-label">제목</label>
-								<div class="col-sm-7">
+								<div class="col-sm-5">
 									<input type="text" class="form-control" name="title" id="alerttypetext" />
 								</div>
-								</div>
-								<div class="form-group">
 									<div class="col-sm-1 control-label">
 										<strong>공지 타입</strong>
 									</div>
-									<select class="form-control col-sm-3" style="width: 100px;" name="type" id="alerttype">
+									<select class="form-control col-sm-3 control-label" style="width: 100px;" name="type" id="alerttype">
 										<option>필독</option>
 										<option>일반</option>
 										<option>이벤트</option>
@@ -45,13 +43,13 @@
 								</div>
 							<div class="form-group">
 								<label class="col-sm-1 control-label">내용</label>
-								<div class="col-sm-10">
+								<div class="col-sm-8">
 									<textarea rows="6" class="form-control " name="contents"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-sm-offset-1 col-sm-9 text-right">
-									<a href="" class="btn btn-warning btn-md">취소</a>
+								<div class="col-sm-offset-1 col-sm-8 text-right">
+									<a href="/jhta_group2_semi_prj/board/alertboard/alertboard.jsp" class="btn btn-warning btn-md">취소</a>
 									<button type="submit" class="btn btn-primary btn-md" id="complete">완료</button>
 								</div>
 							</div>

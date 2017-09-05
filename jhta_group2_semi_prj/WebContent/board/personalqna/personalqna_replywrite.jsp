@@ -1,3 +1,5 @@
+<%@page import="pro.tech.vo.Tech"%>
+<%@page import="pro.board.dao.TecBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,34 +29,39 @@
   	</h4>
   	<hr>
     </div>
+  		<% 
+    		int no = Integer.parseInt(request.getParameter("no"));
+    		TecBoardDao tdao = new TecBoardDao();
+    		
+    		Tech tech = tdao.getTecBoardByNo(no);
+    		
+    	%>
   		<div class="panel panel-default">
   			<table class="table">
+  				
   				<tbody>
+  					<tr>
+  					<th><h4><strong>질문</strong></h4></th>
+  					<td><%=tech.getTitle() %></td>
+  					</tr>
   				<tr>
-  					<th><h3>질문</h3></th>
-  				</tr>
-  				<tr>
-  					<th>제목</th>
-  					<td colspan="5">자바신이 되려면 무엇을 해야되나요?</td>
-  				</tr>
-  				<tr>
-  					<th>작성자</th>
-  					<td>개똥이</td>
+  					<th class="col-sm-2">작성자</th>
+  					<td><%=tech.getStudent().getName() %></td>
   					<th>날짜</th>
-  					<td>2017.09.02</td>
+  					<td><%=tech.getQuesRegdate() %></td>
   				</tr>
   				<tr>
-  					<td colspan="6">자바의 신이 되고 싶어요. 하지만 무엇을 해야될지 모르겠어요. 도와주세요 자바신!!</td>
+  					<td colspan="6"><%=tech.getQuesContent() %></td>
   				</tr> 
   				</tbody>
   			</table>
   		</div>
-  		<form class="form-horizontal" method="post" action="">
+  		<form class="form-horizontal" method="post" action="personalqna_addreplay.jsp">
   			<label class="control-label">답변내용</label>
-  			<textarea rows="6" class="form-control"></textarea>
+  			<textarea rows="6" class="form-control" name="anscontent"></textarea>
   			<div class="text-right">
-  				<a href="" class="btn btn-warning btn-md">답변</a>
-  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_detail.jsp" class="btn btn-primary btn-md">돌아가기</a>
+  				<button type="submit" class="btn btn-warning btn-md">답변</button>
+  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_detail.jsp?no=<%=tech.getNo() %>" class="btn btn-primary btn-md">돌아가기</a>
   			</div>
   		</form>
   </div>

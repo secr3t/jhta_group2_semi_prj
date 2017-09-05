@@ -7,6 +7,8 @@
 <sqlMap namespace="MyPageStudent">
 
 	<typeAlias alias="Student" type="pro.student.vo.Student"/>
+	<typeAlias alias="Enrollment" type="pro.enrollment.vo.Enrollment"/>
+	<typeAlias alias="Qna" type="pro.qna.vo.Qna"/>
 
 	<select id="getStudentByNo" parameterClass="int" resultClass="Student">
 		select
@@ -20,5 +22,59 @@
 		from student
 		where student_no = #value#
 	</select>
+	
+	<select id="getStudentByEmail" parameterClass="string" resultClass="Student">
+		select
+			student_no			no
+			,student_name		name
+			,student_email		email
+			,student_pwd		pwd
+			,student_phone		phone
+			,student_point		point
+			,user_type			type
+		from student
+		where student_email = #value#
+	</select>
+	
+	<select id="getEnrollmentByStudentNo" parameterClass="int" resultClass="Enrollment">
+		select
+			A.enrollment_no					no
+			,A.enrollment_start_date		startDate
+			,A.course_no					"course.no"
+			,B.course_name					"course.name"
+			,B.lecturer_no					"course.lecturer.no"
+			,C.lecturer_name				"course.lecturer.name"
+		from enrollment A, course B, lecturer C
+		where A.course_no = B.course_no
+		and B.lecturer_no = C.lecturer_no
+		and A.student_no = #value#
+	</select>
+	
+	<select id="getTotalFinishedCourseByMap" parameterClass="java.util.Map" resultClass="int">
+		select count(*)
+		from course_video A, progress B
+		where A.course_video_no = B.course_video_no
+		and B.student_no = #param1#
+		and A.course_no = #param2#
+		and B.progress_complete = 'Y'
+	</select>
 
+	<select id="getTotalCourseVideoByCourseNo" parameterClass="int" resultClass="int">
+		select course_no, count(*)
+		from course_video
+		group by course_no
+		having course_no = #value#
+	</select>
+	
+	<select id="getQnaByStudentNo" parameterClass="int" resultClass="Qna">
+		select 
+			A.qna_no 			no
+			,A.qna_title		title
+			,A.course_no		"course.no"
+			,B.course_name		"course.name"
+			,A.qna_ques_date	quesDate
+		from qna A, course B
+		where A.student_no = #value#
+		and A.qna_active = 'Y'
+	</select>
 </sqlMap>
