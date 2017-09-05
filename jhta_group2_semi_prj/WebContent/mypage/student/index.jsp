@@ -24,6 +24,7 @@
 	</style>
 </head>
 <body>
+	<% %>
 	<%@ include file="../../common/nav.jsp" %>
 	<div class="container">
 	
@@ -33,7 +34,7 @@
 
     	<div class="col-sm-2">
 			<%@ include file="left-menu.jsp" %>
-		</div>  
+		</div>
 
          <div class="col-sm-9">
              <div class="row">

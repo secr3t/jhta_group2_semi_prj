@@ -11,10 +11,10 @@
 <insert id="addTechBoard" parameterClass="tboard">
 	insert into tech
 	(qna_no, qna_title, qna_ques_content, qna_ans_content,
-	  qna_active, course_no, sutudent_no)
+	  qna_active,  sutudent_no)
 	values
-	(qna_no_seq.nextval, #title#, #quesContent#, #ansContent#,
-		#active#, #course.no#, #student.no#)
+	(tech_no_seq.nextval, #title#, #quesContent#, #ansContent#,
+		#active#, #student.no#)
 </insert>
 
 <select id="getAllTechBoard" resultClass="tboard">
