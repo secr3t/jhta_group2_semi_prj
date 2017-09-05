@@ -19,93 +19,91 @@
 					<li><a href="enrollment-sci.jsp">과학</a></li>
 				</ul>
 			</div>
-			<div id="Dept-list">
 				 
 				<table class="table table-hover table-condensed">
 					<thead>
 						<tr>
-							<th >No</th>
+							<th>과정명</th>
 							<th>과목명</th>
 							<th>소개</th>
 							<th>교수이름</th>
 						</tr>
 					</thead>
-					<tbody id="getTable">
+					<tbody id="dept-list">
 						<tr>
-							<td>1</td>
+							<td>영어선생님코스</td>
 							<td>영어</td>
 							<td><a href="">링크</a></td>
 							<td>이광수</td>
 						</tr>
 						<tr>
-							<td>2</td>
+							<td>수학선생님코스</td>
 							<td>수학</td>
 							<td><a href="">링크</a></td>
 							<td>김수학</td>
 						</tr>
 						<tr>
-							<td>3</td>
+							<td>국어선생님코스</td>
 							<td>국어</td>
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
 						<tr>
-							<td>3</td>
+							<td>국어선생님코스</td>
 							<td>국어</td>
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
 						<tr>
-							<td>3</td>
+							<td>국어선생님코스</td>
 							<td>국어</td>
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
 						<tr>
-							<td>3</td>
+							<td>국어선생님코스</td>
 							<td>국어</td>
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
 						<tr>
-							<td>3</td>
+							<td>국어선생님코스</td>
 							<td>국어</td>
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
 						<tr>
-							<td>3</td>
+							<td>국어선생님코스</td>
 							<td>국어</td>
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
 						<tr>
-							<td>3</td>
+							<td>국어선생님코스</td>
 							<td>국어</td>
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
 						<tr>
-							<td>3</td>
+							<td>국어선생님코스</td>
 							<td>국어</td>
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
 						<tr>
-							<td>3</td>
+							<td>국어선생님코스</td>
 							<td>국어</td>
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
 						<tr>
-							<td>3</td>
+							<td>국어선생님코스</td>
 							<td>국어</td>
 							<td><a href="">링크</a></td>
 							<td>한지리</td>
 						</tr>
 					</tbody>
 				</table>
-			</div>
 		</div>
 		<br><br />
 		<!-- <p>
@@ -120,7 +118,6 @@
 		
 		<br><br />
 		<div class="book-table">
-		<div id="selected-list">
 				<table class="table table-hover table-condensed">
 					<thead>
 						<tr>
@@ -130,11 +127,10 @@
 							<th>교수이름</th>
 						</tr>
 					</thead>
-					<tbody id="getTable-2">
+					<tbody id="selected-list">
 						
 					</tbody>
 				</table>
-		</div>
 		</div>
 	<div class= "text-right">
 		<ul class="well">
@@ -149,32 +145,23 @@
 </body>
 <script type="text/javascript">
 (function(){	
-	var trNodeList = document.querySelectorAll("#getTable>tr");
-	var getTable2 = document.getElementById("getTable-2");
-	var getTable = document.getElementById("getTable");
+	var trNodeList = document.querySelectorAll("#dept-list>tr");
+	var selectedList = document.getElementById("selected-list");
+	var deptList = document.getElementById("dept-list");
 
 	for(var i=0; i<trNodeList.length; i++){
 		var tr = trNodeList.item(i);
 		 tr.addEventListener('click', function(event){
 			var self = event.target;
-				if(self.parentNode.parentNode == getTable && getTable2.getElementsByTagName('tr').length<10){
-				getTable2.append(self.parentNode);
-				} else if(self.parentNode.parentNode == getTable2){
-					getTable.append(self.parentNode);
+				if(self.parentNode.parentNode == deptList && selectedList.getElementsByTagName('tr').length<10){
+					selectedList.append(self.parentNode);
+				} else if(self.parentNode.parentNode == selectedList){
+					deptList.append(self.parentNode);
 				}
 				
 		})
 	};
 	
-	
-		/*  tr.addEventListener('click', function(event){
-			var self = event.target;
-				if(getTable2.getElementsByTagName('tr').length<10){
-				getTable2.append(self.parentNode);
-				}
-		}) */
-	
-
 	
 }())
 </script>

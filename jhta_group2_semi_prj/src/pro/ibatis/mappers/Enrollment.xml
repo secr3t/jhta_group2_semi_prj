@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="enrollment">
+	<typeAlias alias="Enrollment" type="pro.enrollment.vo.Enrollment"/>
+	
+	<insert id="addEnrollment" parameterClass="Enrollment">
+		insert into enrollment(enrollment_no, enrollment_start_date, student_no, course_no)
+		values(enrollment_seq.nextval, sysdate, #student.no#, #course.no#)
+	</insert>
+	
+	<select id="getEnrollmentById" resultClass="Enrollment">
+		select
+			A.enrollment_no			as	no,
+			A.enrollment_start_date	as	startDate,
+			C.student_no			as	"student.no",
+			B.course_no				as	"course.no"
+		
+		from
+			enrollment A, course B, student C
+		where A.STUDENT_NO = C.STUDENT_NO
+		and A.COURSE_NO = B.COURSE_NO
+		order by A.ENROLLMENT_NO asc
+	</select>
+	
+
+</sqlMap>

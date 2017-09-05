@@ -7,10 +7,10 @@ import pro.student.vo.Student;
 
 public class Enrollment {
 
-	private int no;
-	private Date startDate;
-	private Student student;
-	private Course course;
+	private int no;				//	수강번호
+	private Date startDate; 	//	수강신청일
+	private Student student;	//	학생번호
+	private Course course;		// 	과정번호
 	
 	public int getNo() {
 		return no;
