@@ -24,7 +24,7 @@ public class App {
 		
 		VideoDao dao = new VideoDao();
 		
-		video = dao.getVideoByNo(1);
+		video = dao.getVideoByVideoNo(1);
 		System.out.println(video);
 		
 		List<Video> lists = dao.getVideosByCourseNo(1);

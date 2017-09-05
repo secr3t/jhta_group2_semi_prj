@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="progress">
+
+<typeAlias alias="progress" type="pro.progress.vo.Progress"/>
+	
+<insert id="addProgress" parameterClass="progress">
+insert into progress (progress_complete, student_no, course_video_no)
+values (#complete#, #student.no#, #video.no#)
+</insert>
+
+<update id="updateProgress" parameterClass="progress">
+update progress
+set progress_complete = #complete#
+where student_no = #student.no#
+and course_video_no = #video.no#
+</update>
+
+<select id="getProgressesByStudentNo" resultClass="progress" parameterClass="int">
+select 
+progress_complete		as "complete", 
+student_no 							as "student.no", 
+course_video_no	 "video.no"
+
+from progress
+
+where student_no = #value#
+</select>
+
+</sqlMap>

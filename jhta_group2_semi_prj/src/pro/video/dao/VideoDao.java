@@ -23,12 +23,12 @@ public class VideoDao {
 		IbatisUtils.getSqlMap().insert("video.addVideo", video);
 	}
 	
-	public Video getVideoByNo(int no) throws SQLException{
-		return (Video) IbatisUtils.getSqlMap().queryForObject("video.getVideoByNo", no);
+	public Video getVideoByVideoNo(int videoNo) throws SQLException{
+		return (Video) IbatisUtils.getSqlMap().queryForObject("video.getVideoByVideoNo",videoNo);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Video> getVideosByCourseNo(int no) throws SQLException{
-		return IbatisUtils.getSqlMap().queryForList("video.getVideosByCourseNo", no);
+	public List<Video> getVideosByCourseNo(int courseNo) throws SQLException{
+		return IbatisUtils.getSqlMap().queryForList("video.getVideosByCourseNo", courseNo);
 	}
 }

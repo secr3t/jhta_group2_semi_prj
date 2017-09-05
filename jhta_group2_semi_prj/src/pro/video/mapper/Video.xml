@@ -16,7 +16,7 @@
 		#order#, #course.no#)
 </insert>
 
-<select id="getVideoByNo" resultClass="video" parameterClass="int">
+<select id="getVideoByVideoNo" resultClass="video" parameterClass="int">
 	select
 		course_video_no							as no,
 		course_video_link						as "link",
