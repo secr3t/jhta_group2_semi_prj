@@ -10,10 +10,12 @@
 	
 <insert id="addVideo" parameterClass="video">
 	insert into course_video
-	(course_video_no, course_video_link, course_video_title, course_video_description, course_video_attached, course_video_permit, course_video_order, course_no)
+	(course_video_no, course_video_link, course_video_title, course_video_description, course_video_attached, course_video_order, course_no)
 	values
-	(course_video_no_seq.nextval, #link#, #title#, #description#, #attached#, #permit#,
+	(course_video_no_seq.nextval, #link#, #title#, #description#, #attached#, 
 		#order#, #course.no#)
 </insert>
+
+
 
 </sqlMap>

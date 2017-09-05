@@ -12,7 +12,7 @@ public class IbatisUtils {
 	
 	static {
 		try {
-			Reader reader = Resources.getResourceAsReader("com/paran/ibatis/SqlMapConfig.xml");
+			Reader reader = Resources.getResourceAsReader("pro/ibatis/SqlMapConfig.xml");
 			SqlMapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
 		} catch (Exception e) {
 			e.printStackTrace();
