@@ -12,17 +12,18 @@
 		<div class="book-table">
 			<div class="panel-default">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Menu 1</a></li>
-					<li><a href="#">Menu 2</a></li>
-					<li><a href="#">Menu 3</a></li>
+					<li><a href="enrollment-table.jsp">전체</a></li>
+					<li><a href="enrollment-kor.jsp">국어</a></li>
+					<li><a href="enrollment-eng.jsp">영어</a></li>
+					<li><a href="enrollment-math.jsp">수학</a></li>
+					<li class="active"><a href="enrollment-sci.jsp">과학</a></li>
 				</ul>
 			</div>
 			<div id="Dept-list">
 				 
 				<table class="table table-hover table-condensed">
 					<thead>
-						<tr style="background-color:grey">
+						<tr>
 							<th >No</th>
 							<th>과목명</th>
 							<th>소개</th>
@@ -107,10 +108,16 @@
 			</div>
 		</div>
 		<br><br />
-		<p>
+		<!-- <p>
 		<button id= "btn-down">down</button>
 		<button id= "btn-up">up</button>
-		</p>
+		</p> -->
+		<div align="center">
+		<button type="button" class="btn btn-default" aria-label="">
+  		<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+		</button>
+		</div>
+		
 		<br><br />
 		<div class="book-table">
 		<div id="selected-list">
