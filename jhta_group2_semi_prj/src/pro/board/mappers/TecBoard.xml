@@ -36,7 +36,7 @@
 </select>
 
 <delete id="deleteTechBoardByNo" parameterClass="int">
-	delete form tech
+	delete from tech
 	where tech_no = #value#
 </delete>
 
