@@ -19,14 +19,14 @@
 
 <select id="getAllAfterBoard" resultClass="board">
 	select
-		postscription_no 			as no,
-		postscription_title			as title,
-		postscription_content		as content,
-		postscription_regdate		as	regDate,
-		postscription_grade 		as grade,
-		postscription_active		as active,
-		student_no					as	"student.no",
-		course_no					as	"course.no"
+		A.postscription_no 			as no,
+		A.postscription_title			as title,
+		A.postscription_content		as content,
+		A.postscription_regdate		as	regDate,
+		A.postscription_grade 		as grade,
+		A.postscription_active		as active,
+		A.student_no					as	"student.no",
+		A.course_no					as	"course.no"
 	from
 		postscription A, student B
 	where 

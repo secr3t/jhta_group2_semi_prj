@@ -1,4 +1,7 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@page import="pro.postscription.vo.Postscription"%>
+<%@page import="java.util.List"%>
+<%@page import="pro.board.dao.AfterBoardDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -33,36 +36,31 @@
 			<div class="panel panel-default">
 				<table class="table table-hover">
 					<thead>
+						
 						<tr>
 							<th>번호</th>
 							<th>제목</th>
-							<th>작성자</th>
-							<th>날짜</th>
-							<th>추천수</th>
+							<th>질문내용</th>
+							<th>작성일</th>
+							<th>평점</th>
+							<!--  
+							<th>게시여부</th>
+							<th>학생번호</th>-->
 						</tr>
 					</thead>
 					<tbody>
+					<%
+						AfterBoardDao adao = new AfterBoardDao();
+						List<Postscription> boards = adao.getAllAfterBoard();
+						for(Postscription board : boards) { %>
 					    <tr>
-					       <th>1</th>
-							<th>1</th>
-							<th>1</th>
-							<th>1</th>
-							<th>1</th> 
+					       <th><%=board.getNo() %></th>
+					       <th><a href="afterlecture_detail.jsp?bno=<%=board.getNo() %>"><%=board.getTitle() %></a></th>
+							<th><%=board.getContent() %></th>
+							<th><%=board.getRegdate() %></th>
+							<th><%=board.getGrade() %></th>
 					    </tr>
-					    <tr>
-					       <th>1</th>
-							<th>1</th>
-							<th>1</th>
-							<th>1</th>
-							<th>1</th> 
-					    </tr>
-					    <tr>
-					       <th>1</th>
-							<th>1</th>
-							<th>1</th>
-							<th>1</th>
-							<th>1</th> 
-					    </tr>
+					 <%} %>
 					</tbody>
 					
 				</table>
