@@ -21,6 +21,6 @@ public class AfterBoardDao {
 		return IbatisUtils.getSqlMap().queryForList("AfterBoard.getAllAfterBoard");
 	}
 	public void deleteAfterBoard(int no) throws SQLException {
-		IbatisUtils.getSqlMap().delete("AfterBoard.deleteAfterBoardByNo");
+		IbatisUtils.getSqlMap().delete("AfterBoard.deleteAfterBoardByNo", no);
 	}
 }

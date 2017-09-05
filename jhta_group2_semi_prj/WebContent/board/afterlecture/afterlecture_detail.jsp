@@ -1,3 +1,5 @@
+<%@page import="pro.postscription.vo.Postscription"%>
+<%@page import="pro.board.dao.AfterBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,27 +24,32 @@
 	  		<div class="panel panel-default">
 	  			<table class="table">
 	  				<tbody>
+	  				<% 
+	  					int no = Integer.parseInt(request.getParameter("bno"));
+	  				
+	  					AfterBoardDao adao = new AfterBoardDao();
+	  					
+	  					Postscription pos = adao.getAfterBoardByNo(no);
+	  				 %>
 	  				<tr>
 	  					<th>제목</th>
-	  					<td colspan="5">1</td>
+	  					<td><%=pos.getTitle() %></td>
 	  					<th>평점</th>
-	  					<td colspan="2">1</td>
+	  					<td><%=pos.getGrade() %></td>
 	  				</tr>
 	  				<tr>
 	  					<th>작성자</th>
-	  					<td>1</td>
-	  					<th>날짜</th>
-	  					<td>1</td>
-	  					<th>추천수</th>
-	  					<td>0</td>
+	  					<td><%=pos.getStudent().getName() %></td>
+	  					<th>작성일</th>
+	  					<td><%=pos.getRegdate() %></td>
 	  				</tr>
 	  				<tr>
-	  					<td colspan="6">1</td>
+	  					<td colspan="6"><%=pos.getContent() %></td>
 	  				</tr> 
 	  				</tbody>
 	  			</table>
 	  			<div class="text-right">
-	  				<a href="/jhta_group2_semi_prj/board/afterlecture/delete_afterlecture.jsp" class="btn btn-danger btn-md">삭제</a>
+	  				<a href="/jhta_group2_semi_prj/board/afterlecture/delete_afterlecture.jsp?bno=<%=pos.getNo() %>" class="btn btn-danger btn-md">삭제</a>
 	  				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-primary btn-md">돌아가기</a>
 	  			</div>
 	  		</div>
