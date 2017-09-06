@@ -1,3 +1,4 @@
+<%@page import="pro.criteria.vo.Criteria"%>
 <%@page import="pro.mypage.dao.MypageCourseDao"%>
 <%@page import="pro.utils.DateUtils"%>
 <%@page import="pro.qna.vo.Qna"%>
@@ -100,8 +101,8 @@
                                          	intMap.put("param2", forEnroll.getCourse().getNo());
                                          	int finishVideo = courDao.getTotalFinishedCourseByMap(intMap);
                                          %>
-                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: <%=(finishVideo / totalVideo) * 100 %>%;">
-                                                <span><%=(finishVideo / totalVideo) * 100 %>%</span>
+                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: <%=totalVideo == 0? "0" :(finishVideo / totalVideo) * 100 %>%;">
+                                                <span><%=totalVideo == 0? "0" :(finishVideo / totalVideo) * 100 %>%</span>
                                             </div>
                                         </div>
                                     </td>
@@ -116,7 +117,7 @@
                 <div class="col-sm-12">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <label><a href="myqna.jsp" class="pull-right">내 QnA</a></label>
+                            <label><a href="myqna.jsp" class="pull-right">최근 QnA</a></label>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-condensed table-hover">
@@ -132,11 +133,28 @@
                                 </thead>
                                 <tbody>
                                 	<%
-                                		List<Qna> qnaList = stuDao.getQnaByStudentNo(student.getNo());
+                                		Criteria criteria = new Criteria();
+                                		criteria.setStudentNo(student.getNo());
+                                		criteria.setBeginIndex(1);
+                                		criteria.setEndIndex(5);
+                                		List<Qna> qnaList = stuDao.getQnaByStudentNo(criteria);
                                 		for(Qna forQna : qnaList) {
                                 	%>
                                     <tr>
-                                        <td><a href="#"><%=forQna.getTitle() %></a></td>
+                                        <td>
+                                        	<a href="#"><%=forQna.getTitle() %></a>
+                                        	<%
+				                          		if(forQna.getAnsContent() != null) {
+				                          	%>
+				                          		<span class="label label-success">답변완료</span>
+				                          	<%
+				                          		} else {
+				                          	%>
+				                          		<span class="label label-danger">미답변 질문</span>
+				                          	<%
+				                          		}
+				                          	%>
+                                        </td>
                                         <td><a href="mycourse/course-info.jsp?cno=<%=forQna.getCourse().getNo() %>"><%=forQna.getCourse().getName() %></a></td>
                                         <td><%=DateUtils.yyyymmddhhmmss(forQna.getQuesDate()) %></td>
                                     </tr>       	

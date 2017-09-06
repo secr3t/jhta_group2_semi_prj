@@ -1,3 +1,5 @@
+<%@page import="pro.utils.StringUtils"%>
+<%@page import="pro.criteria.vo.Criteria"%>
 <%@page import="pro.course.vo.Course"%>
 <%@page import="pro.mypage.dao.MypageCourseDao"%>
 <%@page import="pro.utils.DateUtils"%>
@@ -42,16 +44,18 @@
              <form method="get" action="#" class="form-inline text-right">
                  <div class="form-group">
                      <label class="sr-only">검색분류</label>
-                     <select name="searchcategory" class="form-control">
+                     <select name="searchopt" class="form-control">
                          <option value="title">제목</option>
-                         <option value="lecture">강의명</option>
+                         <option value="course">강의명</option>
                          <option value="lecturer">강사</option>
                      </select>
                  </div>
+                 
                  <div class="form-group">
-                     <label class="sr-only">검색</label>
-                     <input type="text" name="searchtext" class="form-control" placeholder="검색어를 입력해주세요."/>
+                 	<label class="sr-only">검색</label>
+        			<input type="text" name="searchtext" class="form-control" placeholder="검색어를 입력해주세요."/>
                  </div>
+                 
                  <div class="form-group">
                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                  </div>
@@ -70,9 +74,37 @@
                          </tr>
                      </thead>
                      <tbody>
-	                  	<%
+                     	 <%
 	                  		MypageStudentDao stuDao = MypageStudentDao.getInstance();
-	                  		List<Qna> qnaList = stuDao.getQnaByStudentNo(student.getNo());
+                     	 
+                     	 	int rowsPerPage = 5;
+                     	 	int nowPage = StringUtils.changeIntToString(request.getParameter("p"), 1);                     	 	
+                     	 	
+                     	 	int totalRows = stuDao.getTotalQnaRows(student.getNo());
+                     	 	int totalPages = (int) Math.ceil((double) totalRows / rowsPerPage);
+                     	 	int beginIndex = (nowPage - 1) * rowsPerPage + 1;
+                     	 	int endIndex = nowPage * rowsPerPage;
+                     	 	                     	 			
+                     	 	int pagesPerBlock = 5;
+                     	 	int nowBlock = (int) Math.ceil((double) nowPage / pagesPerBlock);
+                     	 	
+                     	 	int totalBlock = (int) Math.ceil((double) totalPages / pagesPerBlock);
+                     	 	int beginPage = (nowBlock - 1) * pagesPerBlock + 1;
+                     	 	int endPage = nowBlock * pagesPerBlock;
+                     	 	if(nowBlock == totalBlock) {
+                     	 		endPage = totalPages;
+                     	 	}
+                     	 	
+	                  		String opt = request.getParameter("searchopt");
+	                  		String keyword = request.getParameter("searchtext");
+	                  	
+	                  		Criteria criteria = new Criteria();
+	                  		criteria.setStudentNo(student.getNo());
+	                  		criteria.setOpt(opt);
+	                  		criteria.setKeyword(keyword);
+	                  		criteria.setBeginIndex(beginIndex);
+	                  		criteria.setEndIndex(endIndex);
+	                  		List<Qna> qnaList = stuDao.getQnaByStudentNo(criteria);
 	                  		for(Qna forQna : qnaList) {
 	                  	%>
 		                      <tr>
@@ -107,15 +139,42 @@
                  </table>
                  <div class="text-center">
                      <ul class="pagination pagination-sm">
-                         <li><a href="#"><span class="glyphicon glyphicon-backward"></span></a></li>
-                         <li><a href="#"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
-                         <li><a href="#">1</a></li>
-                         <li><a href="#">2</a></li>
-                         <li><a href="#">3</a></li>
-                         <li><a href="#">4</a></li>
-                         <li><a href="#">5</a></li>
-                         <li><a href="#"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
-                         <li><a href="#"><span class="glyphicon glyphicon-forward"></span></a></li>
+                     	 <%
+                     	 	if(nowBlock != 1) {
+                     	 %>
+		                         <li><a href="?p=<%=beginPage - 1 %>"><span class="glyphicon glyphicon-backward"></span></a></li>
+                     	 <%
+                     	 	}
+                     	 %>
+                         <%
+                         	if(nowPage != 1) {
+                         %>
+		                         <li><a href="?p=<%=nowPage - 1 %>"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
+                         <%
+                         	}
+                         %>
+                     	 <%
+                     	 	for(int index=beginPage; index<=endPage; index++) {
+                     	 %>
+                         		<li><a href="?p=<%=index %>"><%=index %></a></li>                     	 
+                     	 <%		
+                     	 	}
+                     	 %>
+                     	 <%
+                     	 	if(nowPage != totalPages) {
+                     	 %>
+	                         	<li><a href="?p=<%=nowPage + 1 %>"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
+                     	 <%
+                     	 	}
+                     	 %>
+                     	 <%
+                     	 	if(nowBlock != totalBlock) {
+                     	 		
+                     	 %>
+		                         <li><a href="?p=<%=beginPage + pagesPerBlock %>"><span class="glyphicon glyphicon-forward"></span></a></li>
+                     	 <%
+                     	 	}
+                     	 %>
                      </ul>
                  </div>
              </div>

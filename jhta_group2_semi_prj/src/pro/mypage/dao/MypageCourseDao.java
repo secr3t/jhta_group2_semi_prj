@@ -18,8 +18,8 @@ public class MypageCourseDao {
 		return (int) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalFinishedCourseByMap", intMap);
 	}
 
-	public int getTotalCourseVideoByCourseNo(int courseNo) throws SQLException {
-		return (int) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalCourseVideoByCourseNo", courseNo);
+	public Integer getTotalCourseVideoByCourseNo(int courseNo) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalCourseVideoByCourseNo", courseNo);
 	}
 	
 	public Course getCourseByCourseNo (int courseNo) throws SQLException {

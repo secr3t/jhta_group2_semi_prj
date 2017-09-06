@@ -18,10 +18,13 @@
 	</select>
 
 	<select id="getTotalCourseVideoByCourseNo" parameterClass="int" resultClass="int">
-		select count(*)
-		from course_video
-		group by course_no
-		having course_no = #value#
+		select nvl(B.cn, 0)
+		from course A, (select course_no, count(*) cn
+						from course_video
+						group by course_no
+						having course_no = 1) B
+		where A.course_no = B.course_no(+)
+		and A.course_no = #value#
 	</select>
 	
 	<select id="getCourseByCourseNo" parameterClass="int" resultClass="Course">

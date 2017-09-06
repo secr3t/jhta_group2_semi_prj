@@ -47,13 +47,14 @@
 						<div class="progress">
 						<%
 							int totalVideo = courDao.getTotalCourseVideoByCourseNo(courseNo);
+
 							Map<String, Integer> intMap = new HashMap<>();
 							intMap.put("param1", student.getNo());
 							intMap.put("param2", courseNo);
 							int finishVideo = courDao.getTotalFinishedCourseByMap(intMap);
 						%>
-			    			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: <%=(finishVideo / totalVideo) * 100 %>%;">
-			    				<span><%=(finishVideo / totalVideo) * 100 %>%</span>
+			    			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: <%=totalVideo == 0? "0" :(finishVideo / totalVideo) * 100 %>%;">
+			    				<span><%=totalVideo == 0? "0" :(finishVideo / totalVideo) * 100 %>%</span>
 			    			</div>
 						</div>
                     </div>
@@ -95,7 +96,7 @@
 								%>
 								<label class="badge"><%= avgGrade %></label>
 							</td>
-                            <th>등록된 강의 수</th><td><%= courDao.getTotalCourseVideoByCourseNo(courseNo) %>개</td>
+                            <th>등록된 강의 수</th><td><%=totalVideo %>개</td>
                         </tr>
                         <tr>
                             <th colspan="12">강의 소개</th>
