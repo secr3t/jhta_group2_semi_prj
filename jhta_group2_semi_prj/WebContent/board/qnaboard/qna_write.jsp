@@ -33,7 +33,7 @@
 	  	    <hr>
 				<div class="container">
 					<div class="row">
-						<form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/alertboard/add_alert.jsp">
+						<form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/qnaboard/add_qna.jsp">
 							<div class="form-group">
 								<label class="col-sm-1 control-label">제목</label>
 								<div class="col-sm-7">

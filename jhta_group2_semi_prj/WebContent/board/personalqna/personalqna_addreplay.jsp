@@ -13,7 +13,7 @@
 	// no로 가져올 방법
 	//기존 객체에 들어가는지 아니면 전객체 있고 새로 객체가 만들어 지는지 
 	//detail에서 no로 한거 그 루트를 타는지 
-	tdao.AddTecBoard(tech);
+	tdao.updateTechAnsBoard(tech);
 	
-	response.sendRedirect("/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp");
+	response.sendRedirect("/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp?no="+tech.getNo());
 	%>
