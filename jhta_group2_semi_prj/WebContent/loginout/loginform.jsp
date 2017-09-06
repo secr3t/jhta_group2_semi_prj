@@ -11,13 +11,43 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<% pageContext.setAttribute("cp", "login"); %>
 <%@include file="../common/nav.jsp"%>
 
+	<%
+		if (request.getParameter("fail") != null) {
+	%>
+			<div class="alert alert-danger">
+				<strong>오류</strong> 이메일 혹은 비밀번호가 올바르지 않습니다.
+			</div>
+	<%		
+		}
+	%>
+	
+	<%
+		if (request.getParameter("deny") != null) {
+	%>
+		<div class="alert alert-danger">
+			<strong>오류</strong> 로그인이 필요한 서비스입니다.
+		</div>
+	<%		
+		}
+	%>
+	
+	<%
+		String returnUrl = request.getParameter("returnUrl");
+	%>
     <div class="container">
         <div class="row">
             <form method="post" action="login.jsp">
-                <div class="col-sm-offset-4 col-sm-4">
+            <%
+            	if (returnUrl != null) {
+            %>		
+            		<input type="hidden" name="returnUrl" value="<%=returnUrl%>">
+            <%	
+            	} 
+            %>
+                <div class="col-xs-offset-4 col-xs-4">
                     <div class="panel panel-info">
                         <div class="panel-heading"><strong>로그인</strong></div>
                         <div class="panel-body">    

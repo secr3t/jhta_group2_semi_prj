@@ -6,6 +6,7 @@
 	// request로부터 email, pwd를 받아옴
 	String email = request.getParameter("user-email");
 	String pwd = request.getParameter("user-pwd");
+	String returnUrl = request.getParameter("returnUrl");
 	
 	// dao객체를 만들어 email로 학생찾는 메소드 실행
 	StudentDao studentDao = new StudentDao();
@@ -24,9 +25,15 @@
 		return;
 	}
 	
+	// 로그인 처리
 	// 세션생성 및 세션에 checkedStudent라는 이름으로 uncheckedStudent객체 넣어 생성
 	session.setAttribute("loginUser", uncheckedStudent);
 	
-	response.sendRedirect("../index.html");
+	if (returnUrl == null) {
+		response.sendRedirect("/jhta_group2_semi_prj/index.html");
+	} else {
+		response.sendRedirect(returnUrl);
+	}
+	
 	
 %>
