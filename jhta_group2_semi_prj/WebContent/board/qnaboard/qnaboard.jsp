@@ -1,3 +1,4 @@
+<%@page import="pro.utils.DateUtils"%>
 <%@page import="pro.qna.vo.Qna"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.board.dao.QnaBoardDao"%>
@@ -39,14 +40,13 @@
 					    <%
 					    	QnaBoardDao qdao = new QnaBoardDao();
 					    	List<Qna> qnas = qdao.getAllQnaBoard();
-					    
 					    	for(Qna qna : qnas) {
 					    %>
 					    <tr>
 					       <th><%=qna.getNo() %></th>
 							<th><a href="qna_detail.jsp?no=<%=qna.getNo() %>"><%=qna.getTitle() %></a></th>
 							<th><%=qna.getStudent().getName() %></th>
-							<th><%=qna.getQuesDate() %></th>
+							<th><%=DateUtils.yyyymmdd(qna.getQuesDate()) %></th>
 							<th><%=qna.getCourse().getName() %></th>
 							<th><%=qna.getActive() %></th> 
 					    </tr>

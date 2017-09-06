@@ -1,3 +1,4 @@
+<%@page import="pro.utils.DateUtils"%>
 <%@page import="pro.tech.vo.Tech"%>
 <%@page import="pro.board.dao.TecBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -40,7 +41,7 @@
   					<th class="col-sm-2">작성자</th>
   					<td><%=tech.getStudent().getName() %></td>
   					<th>날짜</th>
-  					<td><%=tech.getQuesRegdate() %></td>
+  					<td><%=DateUtils.yyyymmdd(tech.getQuesRegdate()) %></td>
   				</tr>
   				<tr>
   					<td colspan="6"><%=tech.getQuesContent() %></td>
@@ -57,7 +58,7 @@
   				</tr>
   				<tr>
   					<th>답변날짜</th>
-  					<td><%=tech.getAnsRegdate() %></td>
+  					<td><%=DateUtils.yyyymmdd(tech.getAnsRegdate()) %></td>
   				</tr>
   				<tr>
   					<td colspan="6"><%=tech.getAnsContent() %></td>

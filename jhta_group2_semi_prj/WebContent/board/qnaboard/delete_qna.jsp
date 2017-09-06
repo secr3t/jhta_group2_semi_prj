@@ -1,9 +1,13 @@
+<%@page import="pro.qna.vo.Qna"%>
+<%@page import="pro.board.dao.QnaBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%
- 	int no = Integer.parseInt(request.getParameter("bno"));
- 
+ 	int no = Integer.parseInt(request.getParameter("no"));
  	
+ 	QnaBoardDao qdao = new QnaBoardDao();
  	
- 	response.sendRedirect("index.jsp");
+ 	qdao.deleteQnaBoard(no);
+ 	
+ 	response.sendRedirect("/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp");
  %>
