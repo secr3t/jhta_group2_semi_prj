@@ -1,3 +1,5 @@
+<%@page import="pro.introducecourse.dao.LectureCourseDao"%>
+<%@page import="pro.course.vo.Course"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,7 +8,11 @@
 <body>
 <%@include file="../../common/nav.jsp" %>
 <div class="container">
-  
+<%
+	LectureCourseDao courseDao = LectureCourseDao.getInstance();
+	//Course course = courseDao.getCourseByNo(no);
+
+%>
    <div class="row">
         <p><small>Home>All subjects>Economic>Marketing Analytics</small></p>
    </div>

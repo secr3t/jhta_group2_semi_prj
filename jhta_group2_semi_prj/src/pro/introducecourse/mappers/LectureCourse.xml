@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="course">
+
+	<typeAlias alias="course" type="pro.course.vo.Course"/>
+
+	<select id="getAllCourses" resultClass="course">
+		select
+			course_no			as "no",
+			course_name			as "name",
+			course_summary		as "summary",
+			course_detail		as "detail",
+			course_point		as "point",
+			lecturer_no			as "lecturer.no",
+			dept_no				as "dept.no"
+		from
+			course
+	</select>
+	
+	<select id="getCourseByNo" parameterClass="int" resultClass="course">
+		select
+			course_no			as "no",
+			course_name			as "name",
+			course_summary		as "summary",
+			course_detail		as "detail",
+			course_point		as "point",
+			lecturer_no			as "lecturer.no",
+			dept_no				as "dept.no"
+		from
+			course
+		where
+			course_no = #value#	
+	</select>
+	
+	<select id="getCourseByLecturerNo" parameterClass="int" resultClass="course">
+		select
+			course_no			as "no",
+			course_name			as "name",
+			course_summary		as "summary",
+			course_detail		as "detail",
+			course_point		as "point",
+			lecturer_no			as "lecturer.no",
+			dept_no				as "dept.no"
+		from
+			course
+		where
+			lecturer_no = #value#	
+	</select>
+	
+	<select id="getCourseByDeptNo" parameterClass="int" resultClass="course">
+		select
+			course_no			as "no",
+			course_name			as "name",
+			course_summary		as "summary",
+			course_detail		as "detail",
+			course_point		as "point",
+			lecturer_no			as "lecturer.no",
+			dept_no				as "dept.no"
+		from
+			course
+		where
+			dept_no = #value#	
+	</select>
+	
+	
+	
+
+</sqlMap>
