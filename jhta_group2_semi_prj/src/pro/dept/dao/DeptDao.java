@@ -16,7 +16,7 @@ public class DeptDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Dept> getAllDepts() throws SQLException {
-		return IbatisUtils.getSqlMap().queryForList("getAllDepts");
+		return IbatisUtils.getSqlMap().queryForList("dept.getAllDepts");
 	}
 
 }

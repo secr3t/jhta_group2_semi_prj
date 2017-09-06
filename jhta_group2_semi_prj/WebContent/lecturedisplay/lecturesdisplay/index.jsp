@@ -1,3 +1,5 @@
+<%@page import="pro.dept.dao.DeptDao"%>
+<%@page import="pro.dept.vo.Dept"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
 <%@page import="pro.course.vo.Course"%>
 <%@page import="java.util.List"%>
@@ -72,9 +74,11 @@
             document.getElementById("menu1").innerHTML = clicked.innerText+"<span class='caret'></span>";
         }else if(clicked.id === "subject"){
             var htmlContent = "";
-            htmlContent +="<li id='korean'>국어</li>";
-            htmlContent +="<li id='science'>과학</li>";
-            htmlContent +="<li id='math'>수학</li>";
+        	<%	List<Dept> depts = DeptDao.getInstance().getAllDepts();
+            for(Dept dept : depts){
+            %>
+            htmlContent +="<li id='korean'><%= dept.getName()%></li>";
+            <%}%>
              document.getElementById("menu2").setAttribute("data-toggle", "dropdown");
             document.getElementById("menu2").innerHTML = "필터"+"<span class='caret'></span>"; 
             document.getElementById("myDropdown-2").innerHTML = htmlContent;
