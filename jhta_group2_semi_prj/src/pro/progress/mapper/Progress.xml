@@ -24,7 +24,7 @@ and course_video_no = #video.no#
 select 
 progress_complete		as "complete", 
 student_no 							as "student.no", 
-course_video_no	 "video.no"
+course_video_no	 			as "video.no"
 
 from progress
 
