@@ -16,16 +16,16 @@
 		#order#, #course.no#)
 </insert>
 
-<select id="getVideoByNo" resultClass="video" parameterClass="int">
+<select id="getVideoByVideoNo" resultClass="video" parameterClass="int">
 	select
 		course_video_no							as no,
-		course_video_link						as link,
+		course_video_link						as "link",
 		course_video_title						as title,
-		course_video_description	as description,
+		course_video_description	as "description",
 		course_video_attached			as attached, 
-		course_video_permit				as permit,
-		course_video_order					as order,
-		course_video_course_no		as "course.no"
+		course_video_permit				as "permit",
+		course_video_order					as "order",
+		course_no		as "course.no"
 	from
 		course_video
 	where course_video_no = #value#
@@ -34,13 +34,13 @@
 <select id="getVideosByCourseNo" resultClass="video" parameterClass="int">
 	select
 		course_video_no							as no,
-		course_video_link						as link,
+		course_video_link						as "link",
 		course_video_title						as title,
-		course_video_description	as description,
+		course_video_description	as "description",
 		course_video_attached			as attached, 
-		course_video_permit				as permit,
-		course_video_order					as order,
-		course_video_course_no		as "course.no"
+		course_video_permit				as "permit",
+		course_video_order					as "order",
+		course_no		as "course.no"
 	from
 		course_video
 	where course_no = #value#

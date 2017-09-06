@@ -1,6 +1,7 @@
 package pro.video.test;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import pro.course.vo.Course;
 import pro.video.dao.VideoDao;
@@ -22,7 +23,13 @@ public class App {
 		video.setTitle("배틀그라운드 Vector 실탄사격");
 		
 		VideoDao dao = new VideoDao();
-		dao.addVideo(video);
+		
+		video = dao.getVideoByVideoNo(1);
+		System.out.println(video);
+		
+		List<Video> lists = dao.getVideosByCourseNo(1);
+		System.out.println(lists.get(0));
+		System.out.println(lists.get(1));
 	}
 
 }

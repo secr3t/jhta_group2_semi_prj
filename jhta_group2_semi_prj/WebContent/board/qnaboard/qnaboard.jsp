@@ -1,4 +1,6 @@
-<%@page import="pro.dao.BoardDao"%>
+<%@page import="pro.qna.vo.Qna"%>
+<%@page import="java.util.List"%>
+<%@page import="pro.board.dao.QnaBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,17 +31,26 @@
 							<th>제목</th>
 							<th>작성자</th>
 							<th>날짜</th>
-							<th>추천수</th>
+							<th>과정명</th>
+							<th>답변여부</th>
 						</tr>
 					</thead>
 					<tbody>
+					    <%
+					    	QnaBoardDao qdao = new QnaBoardDao();
+					    	List<Qna> qnas = qdao.getAllQnaBoard();
+					    
+					    	for(Qna qna : qnas) {
+					    %>
 					    <tr>
-					       <th>1</th>
-							<th>1</th>
-							<th>1</th>
-							<th>1</th>
-							<th>1</th> 
+					       <th><%=qna.getNo() %></th>
+							<th><a href="qna_detail.jsp?no=<%=qna.getNo() %>"><%=qna.getTitle() %></a></th>
+							<th><%=qna.getStudent().getName() %></th>
+							<th><%=qna.getQuesDate() %></th>
+							<th><%=qna.getCourse().getName() %></th>
+							<th><%=qna.getActive() %></th> 
 					    </tr>
+					    <%} %>
 					</tbody>
 					
 				</table>

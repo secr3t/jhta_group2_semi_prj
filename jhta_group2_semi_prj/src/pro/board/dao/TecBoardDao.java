@@ -17,10 +17,17 @@ public class TecBoardDao {
 		return (Tech) IbatisUtils.getSqlMap().queryForObject("TechBoard.getTechBoardByNo", no);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Tech> getAllTecBoard() throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("TechBoard.getAllTechBoard");
 	}
+	
 	public void deleteTecBoard(int no) throws SQLException {
 		IbatisUtils.getSqlMap().delete("TechBoard.deleteTechBoardByNo", no);
 	}
+	public void updateTechAnsBoard(Tech tech) throws SQLException {
+		IbatisUtils.getSqlMap().update("updateTechBoard", tech);
+	}
+	
+	
 }

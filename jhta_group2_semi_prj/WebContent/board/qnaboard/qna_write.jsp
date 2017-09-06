@@ -33,7 +33,7 @@
 	  	    <hr>
 				<div class="container">
 					<div class="row">
-						<form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/alertboard/add_alert.jsp">
+						<form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/qnaboard/add_qna.jsp">
 							<div class="form-group">
 								<label class="col-sm-1 control-label">제목</label>
 								<div class="col-sm-7">
@@ -46,13 +46,13 @@
 							
 							<div class="form-group">
 								<label class="col-sm-1 control-label">내용</label>
-								<div class="col-sm-11 control-label">
+								<div class="col-sm-7 control-label">
 									<textarea rows="6" class="form-control " name="contents"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
-									<div class="col-sm-offset-1 col-sm-11 text-right">
-										<a href="" class="btn btn-warning btn-md">취소</a>
+									<div class="col-sm-offset-1 col-sm-7 text-right">
+										<a href="/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp" class="btn btn-warning btn-md">취소</a>
 										<button type="submit" class="btn btn-primary btn-md">완료</button>
 									</div>
 								</div>

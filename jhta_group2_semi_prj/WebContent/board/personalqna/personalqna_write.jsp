@@ -32,7 +32,7 @@
 	    </div>
 	
 	     <div class="row">
-	         <form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/alertboard/add_alert.jsp">
+	         <form class="form-horizontal" method="post" id="submit" action="/jhta_group2_semi_prj/board/personalqna/add_personalqna.jsp">
 				<div class="form-group">
 					<label class="col-sm-1 control-label">제목</label>
 					<div class="col-sm-7">
@@ -40,8 +40,8 @@
 					</div>
 					<div class="col-sm-2 control-label"><strong>질문 타입</strong></div>
 						<select class="form-control col-sm-3" style="width:100px;" name="questiontype" id="qtype">
-						  <option>결제</option>
-						  <option>이용</option>
+						  <option value="1">결제</option>
+						  <option value="2">이용</option>
 						</select>
 					</div>
 				

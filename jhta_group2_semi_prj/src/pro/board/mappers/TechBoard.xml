@@ -6,18 +6,18 @@
 
 <sqlMap namespace="TechBoard">
 
-<typeAlias alias="tboard" type="pro.tech.vo.Tech"/>
+<typeAlias alias="techboard" type="pro.tech.vo.Tech"/>
 	
-<insert id="addTechBoard" parameterClass="tboard">
+<insert id="addTechBoard" parameterClass="techboard">
 	insert into tech
 	(tech_no, tech_title, tech_ques_content, tech_ans_content,
-	  tech_active,  student_no)
+	  tech_active,  student_no, qtype_no)
 	values
 	(tech_no_seq.nextval, #title#, #quesContent#, #ansContent#,
-		#active#, #student.no#)
+		#active#, #student.no#, #qtypeNo#)
 </insert>
 
-<select id="getAllTechBoard" resultClass="tboard">
+<select id="getAllTechBoard" resultClass="techboard">
 	select
 		A.tech_no						as no, 
 		A.tech_title					as title, 
@@ -26,7 +26,8 @@
 		A.tech_ans_content				as	ansContent,
 		A.tech_ans_regdate				as	ansRegdate,
 	  	A.tech_active					as	active, 
-	  	A.student_no					as  "student.no"
+	  	A.student_no					as  "student.no", 
+	  	A.qtype_no						as qtypeNo
 	from
 		tech A, student B
 	where 
@@ -40,7 +41,7 @@
 	where tech_no = #value#
 </delete>
 
-<select id="getTechBoardByNo" parameterClass="int" resultClass="tboard">
+<select id="getTechBoardByNo" parameterClass="int" resultClass="techboard">
 select
 		tech_no						as no, 
 		tech_title					as title, 
@@ -49,11 +50,21 @@ select
 		tech_ans_content			as	ansContent,
 		tech_ans_regdate			as	ansRegdate,
 	  	tech_active					as	active, 
-	  	student_no					as  "student.no"
+	  	student_no					as  "student.no", 
+	  	qtype_no					as qtypeNo
 	from
 		tech
 	where
 		tech_no = #value#
 </select>
+
+<update id="updateTechBoard" parameterClass="techboard">
+	update tech
+	set
+		tech_ans_content = #ansContent#,
+		tech_ans_regdate = sysdate
+	where
+		tech_no = #no#
+</update>
 
 </sqlMap>

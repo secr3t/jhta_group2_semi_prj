@@ -1,3 +1,8 @@
+<%@page import="pro.lecturer.vo.Lecturer"%>
+<%@page import="pro.course.vo.Course"%>
+<%@page import="java.util.List"%>
+<%@page import="pro.introducecourse.dao.LectureCourseDao"%>
+<%@page import="pro.introducecourse.dao.LecturerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,128 +18,40 @@
 	</div>
 <div class="col-sm-10">
 <%@include file="nav.jsp" %>
+<%
+	LecturerDao lecturerDao = LecturerDao.getInstance();
+	LectureCourseDao courseDao = LectureCourseDao.getInstance();
+	List<Course> courses =  courseDao.getAllCourses();
+%>
+
+	<%for(Course course : courses){
+		//강사 객체
+		Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
+	%>
+	<!--과정 소개  -->
        <div class="col-sm-offset-1 col-sm-3 well" >
              <div>
-                 <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" alt="강사사진" style="width: 40%; float:left">
+                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 40%; float:left">
              </div>
-             <div>
-                 <h3>고등수학</h3>
+             <div class="text-center">
+                 <h4><strong><%=course.getName()%></strong></h4>
              </div>
              <div class="text-right">
-                  <p>강의 설명 이건 정말 꼭 수강해야되</p>
-                  <p>강사 <strong>이성환</strong></p>
+                  <p><%=course.getSummary()%></p>
+                  <p>강사 <strong><%=lecturer.getName()%></strong></p>
              </div>
              <div class=" text-right"> 
-                 <p>포인트 <strong>300P</strong></p>
+                 <p>포인트 <strong><%=course.getPoint()%>p</strong></p>
              </div>
             		
             <div class="btn-group btn-group-justified" role="group">
-                    <a href="" class="btn btn-primary">소개</a>
+                    <a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getNo()%>" class="btn btn-primary">소개</a>
                     <a href="" class="btn btn-success">수강신청</a>
             </div>
         </div>
-        <div class="col-sm-offset-1 col-sm-3 well" >
-             <div>
-                 <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" alt="강사사진" style="width: 40%; float:left">
-             </div>
-             <div>
-                 <h3>고등수학</h3>
-             </div>
-             <div class="text-right">
-                  <p>강의 설명 이건 정말 꼭 수강해야되</p>
-                  <p>강사 <strong>이성환</strong></p>
-             </div>
-             <div class=" text-right"> 
-                 <p>포인트 <strong>300P</strong></p>
-             </div>
-            		
-            <div class="btn-group btn-group-justified" role="group">
-                    <a href="" class="btn btn-primary">소개</a>
-                    <a href="" class="btn btn-success">수강신청</a>
-            </div>
-        </div>
-        <div class="col-sm-offset-1 col-sm-3 well" >
-             <div>
-                 <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" alt="강사사진" style="width: 40%; float:left">
-             </div>
-             <div>
-                 <h3>고등수학</h3>
-             </div>
-             <div class="text-right">
-                  <p>강의 설명 이건 정말 꼭 수강해야되</p>
-                  <p>강사 <strong>이성환</strong></p>
-             </div>
-             <div class=" text-right"> 
-                 <p>포인트 <strong>300P</strong></p>
-             </div>
-            		
-            <div class="btn-group btn-group-justified" role="group">
-                    <a href="" class="btn btn-primary">소개</a>
-                    <a href="" class="btn btn-success">수강신청</a>
-            </div>
-        </div>
-         <div class="col-sm-offset-1 col-sm-3 well" >
-             <div>
-                 <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" alt="강사사진" style="width: 40%; float:left">
-             </div>
-             <div>
-                 <h3>고등수학</h3>
-             </div>
-             <div class="text-right">
-                  <p>강의 설명 이건 정말 꼭 수강해야되</p>
-                  <p>강사 <strong>이성환</strong></p>
-             </div>
-             <div class=" text-right"> 
-                 <p>포인트 <strong>300P</strong></p>
-             </div>
-            		
-            <div class="btn-group btn-group-justified" role="group">
-                    <a href="" class="btn btn-primary">소개</a>
-                    <a href="" class="btn btn-success">수강신청</a>
-            </div>
-        </div>
-        <div class="col-sm-offset-1 col-sm-3 well" >
-             <div>
-                 <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" alt="강사사진" style="width: 40%; float:left">
-             </div>
-             <div>
-                 <h3>고등수학</h3>
-             </div>
-             <div class="text-right">
-                  <p>강의 설명 이건 정말 꼭 수강해야되</p>
-                  <p>강사 <strong>이성환</strong></p>
-             </div>
-             <div class=" text-right"> 
-                 <p>포인트 <strong>300P</strong></p>
-             </div>
-            		
-            <div class="btn-group btn-group-justified" role="group">
-                    <a href="" class="btn btn-primary">소개</a>
-                    <a href="" class="btn btn-success">수강신청</a>
-            </div>
-        </div>
-        <div class="col-sm-offset-1 col-sm-3 well" >
-             <div>
-                 <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" alt="강사사진" style="width: 40%; float:left">
-             </div>
-             <div>
-                 <h3>고등수학</h3>
-             </div>
-             <div class="text-right">
-                  <p>강의 설명 이건 정말 꼭 수강해야되</p>
-                  <p>강사 <strong>이성환</strong></p>
-             </div>
-             <div class=" text-right"> 
-                 <p>포인트 <strong>300P</strong></p>
-             </div>
-            		
-            <div class="btn-group btn-group-justified" role="group">
-                    <a href="" class="btn btn-primary">소개</a>
-                    <a href="" class="btn btn-success">수강신청</a>
-            </div>
-        </div>
-<%@include file="pagination.jsp" %>
+        <%} %>
 </div>
+<%@include file="pagination.jsp" %>
 </div>
 <%@include file="../../common/footer.jsp" %>
 </body>

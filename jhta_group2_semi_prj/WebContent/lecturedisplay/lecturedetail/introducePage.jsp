@@ -1,3 +1,9 @@
+<%@page import="pro.introducecourse.dao.LecturerDao"%>
+<%@page import="pro.lecturer.vo.Lecturer"%>
+<%@page import="pro.postscription.vo.Postscription"%>
+<%@page import="pro.introducecourse.dao.LecturePostScriptDao"%>
+<%@page import="pro.introducecourse.dao.LectureCourseDao"%>
+<%@page import="pro.course.vo.Course"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,7 +12,16 @@
 <body>
 <%@include file="../../common/nav.jsp" %>
 <div class="container">
-  
+<%
+	int courseNo = Integer.parseInt(request.getParameter("courseNo"));
+	System.out.println(courseNo);
+	LectureCourseDao courseDao = LectureCourseDao.getInstance();
+	LecturePostScriptDao lecturePostScriptDao = LecturePostScriptDao.getInstance();
+	LecturerDao lecturerDao = LecturerDao.getInstance();
+
+	Course course = courseDao.getCourseByNo(courseNo);
+	Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
+%>
    <div class="row">
         <p><small>Home>All subjects>Economic>Marketing Analytics</small></p>
    </div>
@@ -16,8 +31,8 @@
             <p><strong>맛보기 동영상</strong></p>
         </div>
         <div class="col-sm-6">
-            <h3>Marketing Analytics: Marketing Measurement Strategy</h3>
-            <h4>Learn best approaches and practices for marketing measurement, including how to use metrics to measure success.</h4>
+            <h3><%=course.getName() %></h3>
+            <h4><%=course.getSummary() %></h4>
         </div>
         
         <div class="col-sm-3">
@@ -25,7 +40,7 @@
                <br>
            </div>
             <div class="text-left">
-                <p><small>강사 : 이성환</small></p>
+                <p><small>강사 : <%=lecturer.getName() %></small></p>
                 <p><small>등록일 : 2017-09-01</small></p>
                 <p><small>강의수 : 60강</small></p>
                 <p><small>가격 : 900P</small></p>
@@ -43,14 +58,15 @@
                         <h4>About this course</h4>
                     </div>
                     <div class="col-sm-4">
-                        <h5>평점</h5>
+                        <span><strong>평점 : </strong></span>
+						<span><%=lecturePostScriptDao.getPostscriptionAvgGradeByCourseNo(courseNo)%></span>
                     </div>
                 </div>
                 <div class="col-sm-12 row">
                     <div style="padding-top:20px">
-                        <p>Begin your journey in a new career in marketing analytics. Learn about powerful strategies and methodology, starting with identifying market trends and metrics used to measure marketing success.</p>
+                        <p><%=course.getDetail() %></p>
                     </div>
-                    <div class="col-sm-12 row collapse" id="collapseExample">
+                 <!--    <div class="col-sm-12 row collapse" id="collapseExample">
                         <div class="car card-block" style="white-space: pre-line;">
                             <p>In this marketing course, you will learn how to execute market sizing, identify market trends, and predict future conditions.
 
@@ -63,7 +79,7 @@
                          <button class="btn btn-default" type="button" data-toggle="collapse" 
                                  data-target="#collapseExample" aria-expanded="false" 
                                  aria-controls="collapseExample">+ See More</button>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-sm-8"  style="padding-top:30px;">
@@ -89,34 +105,37 @@
                     <div class="col-sm-9">
                         <div class="text-right">
                             <br>
-                            <h4>이성환 강사</h4>
-                            <p><small>태평양중학교졸업</small></p>
-                            <p><small>하와이거주</small></p>
-                            <p><small>sleepyHead@gmail.com</small></p>
-                            <p><small>050-0900-9999</small></p>
+                            <h4><%=lecturer.getName() %>강사</h4>
+                            <p><small><%=lecturer.getCareer() %></small></p>
+                            <p><small><%=lecturer.getEmail() %></small></p>
+                            <p><small><%=lecturer.getPhone() %></small></p>
                         </div> 
                     </div>
-                </div>  
+                </div>
+              
 <%@include file="lecturereviews.jsp"%>
-        <div class="col-sm-3">
-            <div class="row well">
-               <div class="row">
+        	<div class="col-sm-3">
+          	  <div class="row well">
+               	<div class="row">
     	         <h5><strong>연관 강의</strong></h5>
         	     <ul>
 	        	      <li><a href=""><small>Introduction to Brokerage Operations</small></a></li>
 	                  <li><a href=""><small>Macroeconomics</small></a></li>
              	 </ul>
-               </div>
-               <div class="row">
+               	</div>
+               	<div class="row">
                    <h5><strong>인기 강의</strong></h5>
                    <ul>
 	        	      <li><a href=""><small>Introduction to Brokerage Operations</small></a></li>
 	                  <li><a href=""><small>Macroeconomics</small></a></li>
              	 </ul>
-               </div>
-            </div>
-        </div>
-    </div>
+          		</div>
+       		  </div>
+       		 </div>  
+      	</div>  
+     </div>
+   </div>
+ </div>
 <%@include file="../../common/footer.jsp" %>
 </body>
 <script type="text/javascript">
