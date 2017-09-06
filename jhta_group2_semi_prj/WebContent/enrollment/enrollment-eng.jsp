@@ -44,7 +44,7 @@
 						DeptDao deptDao = DeptDao.getInstance();
 						LecturerDao lecturerDao = LecturerDao.getInstance();
 						for(Course course : courses ){
-							if(deptDao.getDeptByNo())
+							if(deptDao.getDeptByNo(course.getDept().getNo()).getName().equals("영어")){
 						%>
 						<tr>
 							<td class="deptName"><%=deptDao.getDeptByNo(course.getDept().getNo()).getName() %></td>
@@ -54,7 +54,9 @@
 							<td class="point"><%=course.getPoint()%></td>
 							<td class="course-no hide">1</td>
 						</tr>
-						<%} %>
+						<%} 
+						}
+						%>
 					</tbody>
 				</table>
 		</div>
