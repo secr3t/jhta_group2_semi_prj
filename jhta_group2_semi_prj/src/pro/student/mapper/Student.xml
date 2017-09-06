@@ -21,6 +21,17 @@
 		where student_email = #value#
 	</select>
 
-
+	<select id="getStudentByNo" parameterClass="int" resultClass="student">
+		select
+			student_no			as no,
+			student_name		as name,
+			student_email		as email,
+			student_pwd			as pwd,
+			student_phone		as phone,
+			student_point		as point,
+			user_type			as type
+		from student
+		where student_no = #value#	
+	</select>
 
 </sqlMap>
