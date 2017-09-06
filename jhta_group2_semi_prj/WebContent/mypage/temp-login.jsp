@@ -21,6 +21,8 @@
 	
 	Lecturer loginedUser2 = lecDao.getLecturerByEmail(lecturer.getEmail());
 	
+	//session.setAttribute("userType", student.getType());
+	//session.setAttribute("loginedUser", loginedUser1);
 	session.setAttribute("userType", lecturer.getType());
 	session.setAttribute("loginedUser", loginedUser2);
 %>

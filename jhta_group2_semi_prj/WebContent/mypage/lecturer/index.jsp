@@ -1,3 +1,6 @@
+<%@page import="pro.utils.DateUtils"%>
+<%@page import="pro.qna.vo.Qna"%>
+<%@page import="pro.criteria.vo.Criteria"%>
 <%@page import="pro.course.vo.Course"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.mypage.dao.MypageLecturerDao"%>
@@ -123,26 +126,36 @@
 	                                </tr>
 	                            </thead>
 	                            <tbody>
-	                                <tr>
-	                                    <td><a href="#">Java가 무엇입니까?dddddddddddd</a></td>
-	                                    <td><a href="#">Java</a></td>
-	                                    <td>17/08/21</td>
-	                                </tr>                               
-	                                <tr>
-	                                    <td><a href="#">Java가 무엇입니까?dddddddddddd</a></td>
-	                                    <td><a href="#">Java</a></td>
-	                                    <td>17/08/21</td>
-	                                </tr>
-	                                <tr>
-	                                    <td><a href="#">Java가 무엇입니까?dddddddddddd</a></td>
-	                                    <td><a href="#">Java</a></td>
-	                                    <td>17/08/21</td>
-	                                </tr>                
-	                                <tr>
-	                                    <td><a href="#">Java가 무엇입니까?dddddddddddd</a></td>
-	                                    <td><a href="#">Java</a></td>
-	                                    <td>17/08/21</td>
-	                                </tr>
+	                            	<%
+	                            		Criteria criteria = new Criteria();
+	                            		criteria.setLecturerNo(lecturer.getNo());
+	                            		criteria.setBeginIndex(1);
+	                            		criteria.setEndIndex(10);
+	                            		criteria.setNoAnswer("Y");
+	                            		List<Qna> qnaList = lecDao.getQnaByLecturerNo(criteria);
+	                            		for(Qna forQna : qnaList) {
+	                            	%>
+			                                <tr>
+			                                    <td>
+			                                    	<a href="#"><%=forQna.getTitle() %></a>
+					                                <%
+						                          		if(forQna.getAnsContent() != null) {
+						                          	%>
+						                          		<span class="label label-success">답변완료</span>
+						                          	<%
+						                          		} else {
+						                          	%>
+						                          		<span class="label label-danger">미답변 질문</span>
+						                          	<%
+						                          		}
+						                          	%>
+			                                    </td>
+			                                    <td><a href="mycourse/course-info.jsp?cno=<%=forQna.getCourse().getNo() %>"><%=forQna.getCourse().getName() %></a></td>
+			                                    <td><%=DateUtils.yyyymmddhhmmss(forQna.getQuesDate()) %></td>
+			                                </tr>                               
+	                            	<%
+	                            		}
+	                            	%>
 	                            </tbody>
 	                        </table>
 	                    </div>

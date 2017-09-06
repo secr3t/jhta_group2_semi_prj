@@ -89,8 +89,7 @@
                       	<div class="col-sm-3">
                       		<select name="userphone-1" class="form-control" id="first-phone-number">
                       	<%
-                      		String phone = student.getPhone();
-                      		String[] splitNumber = phone.split("-");		
+                      		String[] splitNumber = student.getPhone().split("-");		
                       	%>
                               	<option value="010" <%="010".equals(splitNumber[0])?"selected" : "" %>> 010</option>
                               	<option value="011" <%="011".equals(splitNumber[0])?"selected" : "" %>> 011</option>
