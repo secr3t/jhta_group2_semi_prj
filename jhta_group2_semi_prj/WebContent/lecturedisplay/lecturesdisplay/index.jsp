@@ -24,7 +24,6 @@
 	LecturerDao lecturerDao = LecturerDao.getInstance();
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();
 	List<Course> courses =  courseDao.getAllCourses();
-
 %>
 
 	<%for(Course course : courses){
@@ -100,7 +99,7 @@
    document.getElementById("myDropdown-1").addEventListener("click", function(event){
 	  var target = event.target;
 	  if("인기" === target.innerText){
-		  
+		  location.href="/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/Filter.jsp?pno="+target.id;
 	  }
    });
    }());
@@ -117,5 +116,6 @@
 	   
    });
    }());
+   
 </script>
 </html>

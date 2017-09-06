@@ -23,13 +23,15 @@
 <%
 	if(request.getParameter("tno")!=null){
 		%>
-		<%@include file="individuallecture.jsp" %>
+		<%@include file="individuallecture1.jsp" %>
 		<%
 	}else if (request.getParameter("sno")!=null){
 		%>
+		<%@include file="individuallecture2.jsp" %>
 		<%
 	}else {
 		%>
+		<%@include file="individuallecture3.jsp" %>
 		<%
 	}
 	;	
@@ -100,5 +102,6 @@
 	   
    });
    }());
+   
 </script>
 </html>
