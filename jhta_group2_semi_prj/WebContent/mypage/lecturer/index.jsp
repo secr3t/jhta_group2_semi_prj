@@ -24,8 +24,10 @@
   </style>
 </head>
 <body>
-	<%@ include file="../../common/nav.jsp" %>
+	<%@ include file="/mypage/lecturer/logincheck.jsp" %>
+	<%@ include file="/common/nav.jsp" %>
     <div class="container">
+    
  		<div class="col-sm-offset-2 page-header">
 			<h1>My Page</h1>
 		</div>    
@@ -38,16 +40,9 @@
 		        <div class="col-sm-offset-1 col-sm-10">
 		              <div class="panel panel-success">
 		               <div class="panel-heading">
-		                   <label>김환희님 환영합니다.</label>
-		                   <a href="#" class="pull-right">내 정보로 이동</a>
+		                   <label><%=lecturer.getName() %>님 환영합니다.</label>
+		                   <a href="myinfo/update-myinfo.jsp" class="pull-right">내 정보로 이동</a>
 		               </div>
-		                <table class="table table-condensed">
-		                    <tr>
-		                        <th></th><td></td>
-		                        <th>잔여 포인트</th><td>500 <span class="glyphicon glyphicon-copyright-mark text-warning"></span></td>
-		                        <th><a href="#" class="btn btn-primary btn-sm pull-right">포인트 충전</a></th><td></td>
-		                    </tr>
-		                </table>
 		            </div>
 		        </div>
 		    </div>
@@ -56,7 +51,7 @@
 	            <div class="col-sm-12">
 	                <div class="panel panel-info">
 	                    <div class="panel-heading">
-	                        <label><a href="mycourse.jsp">내 강의 목록</a></label>
+	                        <label><a href="mycourse/mycourse.jsp">내 강의 목록</a></label>
 	                    </div>
 	                    <table class="table table-condensed table-hover">
 	                        <colgroup>
