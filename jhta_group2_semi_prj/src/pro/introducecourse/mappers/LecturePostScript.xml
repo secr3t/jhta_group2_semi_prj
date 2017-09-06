@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="postscription">
+
+	<typeAlias alias="post" type="pro.postscription.vo.Postscription"/>
+
+	<select id="getAllpostscriptions" resultClass="post">
+		select 
+			postscription_no			as "no",
+			postscription_title			as "title",
+			postscription_content		as "content",
+			postscription_regdate		as "regdate",
+			postscription_grade			as "grade",
+			postscription_active		as "active",
+			student_no					as "student.no",
+			course_no					as "course.no"
+		from
+			postscription
+	</select>
+	
+	<select id="getPostscriptionsByCourseNo" resultClass="post" parameterClass="int">
+		select 
+			postscription_no			as "no",
+			postscription_title			as "title",
+			postscription_content		as "content",
+			postscription_regdate		as "regdate",
+			postscription_grade			as "grade",
+			postscription_active		as "active",
+			student_no					as "student.no",
+			course_no					as "course.no"
+		from
+			postscription
+		where
+			course_no = #value#
+	</select>
+	
+	<select id="getPostscriptionAvgGradeByCourseNo" parameterClass="int" resultClass="double">
+		select avg(postscription_grade) as "avg"
+		from (select postscription_grade
+				from POSTSCRIPTION
+				where COURSE_NO = #value#)
+	</select>
+	
+</sqlMap>

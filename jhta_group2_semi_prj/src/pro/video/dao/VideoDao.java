@@ -31,4 +31,8 @@ public class VideoDao {
 	public List<Video> getVideosByCourseNo(int courseNo) throws SQLException{
 		return IbatisUtils.getSqlMap().queryForList("video.getVideosByCourseNo", courseNo);
 	}
+	
+	public int getVideoQtrByCourseNo(int courseNo) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("video.getVideoQtrByCourseNo", courseNo);
+	}
 }

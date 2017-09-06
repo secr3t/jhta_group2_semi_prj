@@ -28,6 +28,10 @@
 	<sqlMap resource="pro/enrollment/mapper/Enrollment.xml" /> -->
 	<sqlMap resource="pro/video/mapper/Video.xml" />
 	<sqlMap resource="pro/progress/mapper/Progress.xml" />
-	<sqlMap resource="pro/qtype/mapper/Qtype.xml" />
+	<sqlMap resource="pro/introducecourse/mappers/LectureCourse.xml" />
+	<sqlMap resource="pro/introducecourse/mappers/LecturePostScript.xml" />
+	<sqlMap resource="pro/introducecourse/mappers/Lecturer.xml" />
+	<sqlMap resource="pro/student/mapper/Student.xml" />
+	<sqlMap resource="pro/dept/mappers/Dept.xml" />
 	
 </sqlMapConfig>
