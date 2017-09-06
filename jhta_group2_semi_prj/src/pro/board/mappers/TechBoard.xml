@@ -62,8 +62,8 @@ select
 	update tech
 	set
 		
-		tech_ans_content = #ans#,
-		tech_ans_regdate = #sysdate#
+		tech_ans_content = #ansContent#,
+		tech_ans_regdate = sysdate
 	where
 		tech_no = #value#
 </update>
