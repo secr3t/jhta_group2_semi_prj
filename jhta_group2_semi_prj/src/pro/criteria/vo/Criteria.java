@@ -7,6 +7,7 @@ public class Criteria {
 	private int studentNo;
 	private int beginIndex;
 	private int endIndex;
+	private String noAnswer;
 	
 	public String getOpt() {
 		return opt;
@@ -38,4 +39,11 @@ public class Criteria {
 	public void setEndIndex(int endIndex) {
 		this.endIndex = endIndex;
 	}
+	public String getNoAnswer() {
+		return noAnswer;
+	}
+	public void setNoAnswer(String noAnswer) {
+		this.noAnswer = noAnswer;
+	}
+	
 }
