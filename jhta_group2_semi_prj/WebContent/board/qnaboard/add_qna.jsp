@@ -15,6 +15,6 @@
 	
 	qdao.AddQnaBoard(qna);
 	
-	response.sendRedirect("/jsp-practice/board/form.jsp");
+	response.sendRedirect("/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp");
 	
 %>
