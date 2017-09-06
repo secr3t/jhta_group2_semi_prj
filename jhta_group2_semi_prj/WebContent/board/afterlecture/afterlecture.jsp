@@ -1,4 +1,5 @@
-	<%@page import="pro.postscription.vo.Postscription"%>
+	<%@page import="pro.utils.DateUtils"%>
+<%@page import="pro.postscription.vo.Postscription"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.board.dao.AfterBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -40,7 +41,7 @@
 						<tr>
 							<th>번호</th>
 							<th>제목</th>
-							<th>질문내용</th>
+							<th>작성자</th>
 							<th>작성일</th>
 							<th>평점</th>
 							<!--  
@@ -56,8 +57,8 @@
 					    <tr>
 					       <th><%=board.getNo() %></th>
 					       <th><a href="afterlecture_detail.jsp?bno=<%=board.getNo() %>"><%=board.getTitle() %></a></th>
-							<th><%=board.getContent() %></th>
-							<th><%=board.getRegdate() %></th>
+							<th><%=board.getStudent().getName() %></th>
+							<th><%=DateUtils.yyyymmdd(board.getRegdate()) %></th>
 							<th><%=board.getGrade() %></th>
 					    </tr>
 					 <%} %>
