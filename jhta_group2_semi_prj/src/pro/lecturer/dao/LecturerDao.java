@@ -1,4 +1,4 @@
-package pro.introducecourse.dao;
+package pro.lecturer.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,5 +22,9 @@ public class LecturerDao {
 	
 	public Lecturer getlecturerByNo(int no) throws SQLException{
 		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("lecturer.getlecturerByNo", no);
+	}
+	
+	public Lecturer getlecturerByEmail(String email) throws SQLException {
+		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("lecturer.getlecturerByEmail", email);
 	}
 }
