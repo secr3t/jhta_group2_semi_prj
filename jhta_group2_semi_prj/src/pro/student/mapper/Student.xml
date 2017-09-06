@@ -6,9 +6,9 @@
 
 <sqlMap namespace="student">
 
-	<typeAlias alias="student" type="pro.student.vo.Student"/>
+	<typeAlias alias="Student" type="pro.student.vo.Student"/>
 	
-	<select id="getStudentByEmail" parameterClass="string" resultClass="student">
+	<select id="getStudentByEmail" parameterClass="string" resultClass="Student">
 		select
 			student_no			as no,
 			student_name		as name,
@@ -21,7 +21,7 @@
 		where student_email = #value#
 	</select>
 
-	<select id="getStudentByNo" parameterClass="int" resultClass="student">
+	<select id="getStudentByNo" parameterClass="int" resultClass="Student">
 		select
 			student_no			as no,
 			student_name		as name,

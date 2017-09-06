@@ -53,8 +53,8 @@
                         <div class="panel-body">    
                             <div class="form-group">
                                 <label>구분</label><br />
-                                <input type="radio" name="radio-student" value="student"/> 학생&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="radio" name="radio-lecturer" value="lecturer"/> 강사
+                                <input type="radio" name="div-user" value="student"/> 학생&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="div-user" value="lecturer"/> 강사
                             </div>                   
                             <div class="form-group">
                                 <label>아이디</label>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="lecturer">
+
+	<typeAlias alias="Lecturer" type="pro.student.vo.Lecturer"/>
+	
+	<select id="getLecturerByEmail" parameterClass="string" resultClass="Lecturer">
+		select
+			lecturer_name		as name,
+			lecturer_email		as email,
+			lecturer_pwd		as pwd,
+			lecturer_phone		as phone,
+			lecturer_career		as career,
+			lecturer_picture	as picture,
+			lecturer_permit		as permit,
+			user_type			as type
+		from lecturer
+		where lecturer_email = #value#
+	</select>
+
+	
+	
+	<insert id="addLecturer" parameterClass="Lecturer">
+		insert into student
+			(lecturer_name, lecturer_email, lecturer_pwd, lecturer_phone, lecturer_career, lecturer_picture, lecturer_permit, user_type)
+		values
+			(#name#, #email#, #pwd#, #phone#, #career#, #picture#, #permit#, #type#)
+	</insert>
+
+</sqlMap>
