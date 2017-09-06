@@ -16,9 +16,33 @@
 			postscription_regdate		as "regdate",
 			postscription_grade			as "grade",
 			postscription_active		as "active",
-			student_no					as "student",
-			course_no					as "course"
+			student_no					as "student.no",
+			course_no					as "course.no"
 		from
 			postscription
 	</select>
+	
+	<select id="getPostscriptionsByCourseNo" resultClass="post" parameterClass="int">
+		select 
+			postscription_no			as "no",
+			postscription_title			as "title",
+			postscription_content		as "content",
+			postscription_regdate		as "regdate",
+			postscription_grade			as "grade",
+			postscription_active		as "active",
+			student_no					as "student.no",
+			course_no					as "course.no"
+		from
+			postscription
+		where
+			course_no = #value#
+	</select>
+	
+	<select id="getPostscriptionAvgGradeByCourseNo" parameterClass="int" resultClass="double">
+		select avg(postscription_grade) as "avg"
+		from (select postscription_grade
+				from POSTSCRIPTION
+				where COURSE_NO = #value#)
+	</select>
+	
 </sqlMap>

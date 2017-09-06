@@ -16,19 +16,20 @@ public class LectureCourseDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Course> getAllCourses() throws SQLException{
-		return IbatisUtils.getSqlMap().queryForList("getAllCourses");
+		return IbatisUtils.getSqlMap().queryForList("course.getAllCourses");
 	}
 	
 	public Course getCourseByNo(int no) throws SQLException {
-		return (Course) IbatisUtils.getSqlMap().queryForObject("getCourseByNo", no);
+		return (Course) IbatisUtils.getSqlMap().queryForObject("course.getCourseByNo", no);
 	}
 	
 	public Course getCourseByLecturerNo(int no) throws SQLException {
-		return (Course) IbatisUtils.getSqlMap().queryForObject("getCourseByLecturerNo", no);
+		return (Course) IbatisUtils.getSqlMap().queryForObject("course.getCourseByLecturerNo", no);
 	}
 	
-	public Course getCourseByDeptNo(int no) throws SQLException {
-		return (Course) IbatisUtils.getSqlMap().queryForObject("getCourseByDeptNo", no);
+	@SuppressWarnings("unchecked")
+	public List<Course> getCourseByDeptNo(int no) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("course.getCourseByDeptNo", no);
 	}
 	
 }

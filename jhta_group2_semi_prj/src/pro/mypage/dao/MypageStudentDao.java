@@ -30,14 +30,6 @@ public class MypageStudentDao {
 		return IbatisUtils.getSqlMap().queryForList("MyPageStudent.getEnrollmentByStudentNo", studentNo);
 	}
 	
-	public int getTotalFinishedCourseByMap(Map<String, Integer> intMap) throws SQLException {
-		return (int) IbatisUtils.getSqlMap().queryForObject("MyPageStudent.getTotalFinishedCourseByMap", intMap);
-	}
-
-	public int getTotalCourseVideoByCourseNo(int courseNo) throws SQLException {
-		return (int) IbatisUtils.getSqlMap().queryForObject("MyPageStudent.getTotalCourseVideoByCourseNo", courseNo);
-	}
-	
 	@SuppressWarnings("unchecked")
 	public List<Qna> getQnaByStudentNo(int studentNo) throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("MyPageStudent.getQnaByStudentNo", studentNo);

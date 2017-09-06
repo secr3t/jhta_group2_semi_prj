@@ -11,9 +11,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-		.glyphicon {
-		    font-size: 20px;
-		}
 		.table-hover {
 		    table-layout: fixed;
 		}
@@ -93,50 +90,13 @@
                       		<select name="userphone-1" class="form-control" id="first-phone-number">
                       	<%
                       		String phone = student.getPhone();
-                      		String[] splitNumber = phone.split("-");
-                      		if("018".equals(splitNumber[0])) {
-                      			
+                      		String[] splitNumber = phone.split("-");		
                       	%>
-                              	<option value="010"> 010</option>
-                              	<option value="011"> 011</option>
-                              	<option value="016"> 016</option>
-                              	<option value="017"> 017</option>
-                              	<option value="018" selected="selected"> 018</option>
-                      	<%		
-                      		} else if("017".equals(splitNumber[0])) {
-                      	%>
-                              	<option value="010"> 010</option>
-                              	<option value="011"> 011</option>
-                              	<option value="016"> 016</option>
-                              	<option value="017" selected="selected"> 017</option>
-                              	<option value="018"> 018</option>
-                      	<%		
-                      		} else if("016".equals(splitNumber[0])) {
-                      	%>
-                              	<option value="010"> 010</option>
-                              	<option value="011"> 011</option>
-                              	<option value="016" selected="selected"> 016</option>
-                              	<option value="017"> 017</option>
-                              	<option value="018"> 018</option>
-                      	<%		
-                      		} else if("011".equals(splitNumber[0])) {
-                      	%>
-                              	<option value="010"> 010</option>
-                              	<option value="011" selected="selected"> 011</option>
-                              	<option value="016"> 016</option>
-                              	<option value="017"> 017</option>
-                              	<option value="018"> 018</option>
-                      	<%		
-                      		} else {
-                      	%>
-                              	<option value="010" selected="selected"> 010</option>
-                              	<option value="011"> 011</option>
-                              	<option value="016"> 016</option>
-                              	<option value="017"> 017</option>
-                              	<option value="018"> 018</option>
-                      	<%		
-                      		}
-                      	%>
+                              	<option value="010" <%="010".equals(splitNumber[0])?"selected" : "" %>> 010</option>
+                              	<option value="011" <%="011".equals(splitNumber[0])?"selected" : "" %>> 011</option>
+                              	<option value="016" <%="016".equals(splitNumber[0])?"selected" : "" %>> 016</option>
+                              	<option value="017" <%="017".equals(splitNumber[0])?"selected" : "" %>> 017</option>
+                              	<option value="018" <%="018".equals(splitNumber[0])?"selected" : "" %>> 018</option>
                           	</select>
                   	  	</div>
                       	<label class="col-sm-1">-</label>

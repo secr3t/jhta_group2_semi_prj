@@ -15,6 +15,16 @@ public class LecturePostScriptDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Postscription> getAllpostscriptions()throws SQLException {
-		return IbatisUtils.getSqlMap().queryForList("getAllpostscriptions");
+		return IbatisUtils.getSqlMap().queryForList("postscription.getAllpostscriptions");
 	}
+	@SuppressWarnings("unchecked")
+	public List<Postscription> getPostscriptionsByCourseNo(int courseNo) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("postscription.getPostscriptionsByCourseNo", courseNo);
+	}
+
+	public double getPostscriptionAvgGradeByCourseNo(int courseNo) throws SQLException{
+		return (double) IbatisUtils.getSqlMap().queryForObject("postscription.getPostscriptionAvgGradeByCourseNo", courseNo);
+	}
+	
 }
+
