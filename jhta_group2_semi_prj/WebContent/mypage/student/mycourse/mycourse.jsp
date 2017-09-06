@@ -1,3 +1,4 @@
+<%@page import="pro.mypage.dao.MypageCourseDao"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="pro.enrollment.vo.Enrollment"%>
@@ -73,16 +74,17 @@
                                  	for(Enrollment forEnroll : enrollList) {
                                  %>
                                  <tr>
-                                     <td><a href="course-info.jsp?no=<%=forEnroll.getCourse().getNo() %>"><%=forEnroll.getCourse().getName() %></a></td>
+                                     <td><a href="course-info.jsp?cno=<%=forEnroll.getCourse().getNo() %>"><%=forEnroll.getCourse().getName() %></a></td>
                                      <td><%=forEnroll.getCourse().getLecturer().getName() %></td>
                                      <td>
                                          <div class="progress">
                                          <%
-                                         	int totalVideo = stuDao.getTotalCourseVideoByCourseNo(forEnroll.getCourse().getNo());
+                                         	MypageCourseDao courDao = MypageCourseDao.getInstance();
+                                         	int totalVideo = courDao.getTotalCourseVideoByCourseNo(forEnroll.getCourse().getNo());
                                          	Map<String, Integer> intMap = new HashMap<>();
                                          	intMap.put("param1", student.getNo());
                                          	intMap.put("param2", forEnroll.getCourse().getNo());
-                                         	int finishVideo = stuDao.getTotalFinishedCourseByMap(intMap);
+                                         	int finishVideo = courDao.getTotalFinishedCourseByMap(intMap);
                                          %>
                                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: <%=(finishVideo / totalVideo) * 100 %>%;">
                                                 <span><%=(finishVideo / totalVideo) * 100 %>%</span>

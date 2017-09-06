@@ -11,10 +11,10 @@
 <insert id="addTechBoard" parameterClass="techboard">
 	insert into tech
 	(tech_no, tech_title, tech_ques_content, tech_ans_content,
-	  tech_active,  student_no)
+	  tech_active,  student_no, qtype_no)
 	values
 	(tech_no_seq.nextval, #title#, #quesContent#, #ansContent#,
-		#active#, #student.no#)
+		#active#, #student.no#, #qtypeNo#)
 </insert>
 
 <select id="getAllTechBoard" resultClass="techboard">
@@ -51,7 +51,7 @@ select
 		tech_ans_regdate			as	ansRegdate,
 	  	tech_active					as	active, 
 	  	student_no					as  "student.no", 
-	  	qtype_no						as qtypeNo
+	  	qtype_no					as qtypeNo
 	from
 		tech
 	where

@@ -30,7 +30,7 @@
 	  	</span> 1:1 문의
 	  	</h4>
 	  	<h4>
-	  	<p><span class="glyphicon glyphicon-ok"></span> 고객님과 관련된 1:1문의 게시판입니다.</p>
+	  	<span class="glyphicon glyphicon-ok"></span> 고객님과 관련된 1:1문의 게시판입니다.
 	  	</h4>
 	  	<hr>
 			<div class="panel-group col-md-9">
@@ -39,7 +39,8 @@
 					List<Tech> techs = tdao.getAllTecBoard();
 					
 					for(Tech tech : techs) {
-						String style = tech.getQtypeNo() == 1 ? "color:blue;" : "color:blue;";
+						String style = tech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
+
 				%>
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border:2px solid silver;">

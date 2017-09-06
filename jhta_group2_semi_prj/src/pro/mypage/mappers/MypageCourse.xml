@@ -6,19 +6,44 @@
 
 <sqlMap namespace="MyPageCourse">
 
-	<typeAlias alias="Student" type="pro.student.vo.Student"/>
+	<typeAlias alias="Course" type="pro.course.vo.Course"/>
 
-	<select id="getStudentByNo" parameterClass="int" resultClass="Student">
+	<select id="getTotalFinishedCourseByMap" parameterClass="java.util.Map" resultClass="int">
+		select count(*)
+		from course_video A, progress B
+		where A.course_video_no = B.course_video_no
+		and B.student_no = #param1#
+		and A.course_no = #param2#
+		and B.progress_complete = 'Y'
+	</select>
+
+	<select id="getTotalCourseVideoByCourseNo" parameterClass="int" resultClass="int">
+		select count(*)
+		from course_video
+		group by course_no
+		having course_no = #value#
+	</select>
+	
+	<select id="getCourseByCourseNo" parameterClass="int" resultClass="Course">
 		select
-			student_no			no
-			,student_name		name
-			,student_email		email
-			,student_pwd		pwd
-			,student_phone		phone
-			,student_point		point
-			,user_type			type
-		from student
-		where student_no = #value#
+			A.course_no			no
+			,A.course_name		name
+			,A.course_summary	summary
+			,B.dept_no			"dept.no"
+			,B.dept_name		"dept.name"
+			,C.lecturer_no		"lecturer.no"
+			,C.lecturer_name	"lecturer.name"
+		from course A, dept B, lecturer C
+		where A.dept_no = B.dept_no
+		and A.lecturer_no = C.lecturer_no
+		and A.course_no = #value#
+	</select>
+	
+	<select id="getGradeAvgByCourseNo" parameterClass="int" resultClass="double">
+		select round(avg(postscription_grade), 1) avg_grade
+		from postscription
+		group by course_no
+		having course_no = #value#
 	</select>
 
 </sqlMap>
