@@ -17,10 +17,10 @@ public class LecturerDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Lecturer> getAlllecturers() throws SQLException{
-		return IbatisUtils.getSqlMap().queryForList("getAlllecturers");
+		return IbatisUtils.getSqlMap().queryForList("lecturer.getAlllecturers");
 	}
 	
 	public Lecturer getlecturerByNo(int no) throws SQLException{
-		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("getlecturerByNo", no);
+		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("lecturer.getlecturerByNo", no);
 	}
 }
