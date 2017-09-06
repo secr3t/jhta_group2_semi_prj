@@ -13,6 +13,6 @@ public class QtypeDao {
 	}
 	
 	public int getQtypeNoByQtype(String qtype) throws SQLException {
-		return (int) IbatisUtils.getSqlMap().queryForObject("getQtypeNoByQtype", qtype);
+		return (int) IbatisUtils.getSqlMap().queryForObject("qtype.getQtypeNoByQtype", qtype);
 	}
 }
