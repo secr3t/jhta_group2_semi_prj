@@ -26,7 +26,7 @@ public class TecBoardDao {
 		IbatisUtils.getSqlMap().delete("TechBoard.deleteTechBoardByNo", no);
 	}
 	public void updateTechAnsBoard(Tech tech) throws SQLException {
-		IbatisUtils.getSqlMap().update("updateTechBoard", tech);
+		IbatisUtils.getSqlMap().update("TechBoard.updateTechBoard", tech);
 	}
 	
 	

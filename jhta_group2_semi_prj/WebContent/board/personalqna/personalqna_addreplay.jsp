@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	request.setCharacterEncoding("utf-8");
+	
  	String ans = request.getParameter("anscontent");
 	int no = Integer.parseInt(request.getParameter("no"));
 	
@@ -15,5 +17,5 @@
 	//detail에서 no로 한거 그 루트를 타는지 
 	tdao.updateTechAnsBoard(tech);
 	
-	response.sendRedirect("/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp?no="+tech.getNo());
+	response.sendRedirect("/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp");
 	%>

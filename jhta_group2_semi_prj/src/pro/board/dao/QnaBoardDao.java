@@ -22,4 +22,7 @@ public class QnaBoardDao {
 	public void deleteQnaBoard(int no) throws SQLException {
 		IbatisUtils.getSqlMap().delete("QueBoard.deletequeBoardByNo", no);
 	}
+	public void updateQnaAnsBoard(Qna qna) throws SQLException {
+		IbatisUtils.getSqlMap().update("QueBoard.updateQnaAnsBoard", qna);
+	}
 }
