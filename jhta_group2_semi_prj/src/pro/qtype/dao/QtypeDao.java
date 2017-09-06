@@ -1,9 +1,8 @@
-package qtype.dao;
+package pro.qtype.dao;
 
 import java.sql.SQLException;
 
 import pro.utils.IbatisUtils;
-import qtype.vo.Qtype;
 
 public class QtypeDao {
 

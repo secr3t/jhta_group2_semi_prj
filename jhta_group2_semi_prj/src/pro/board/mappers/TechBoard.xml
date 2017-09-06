@@ -61,11 +61,10 @@ select
 <update id="updateTechBoard" parameterClass="techboard">
 	update tech
 	set
-		
 		tech_ans_content = #ansContent#,
 		tech_ans_regdate = sysdate
 	where
-		tech_no = #value#
+		tech_no = #no#
 </update>
 
 </sqlMap>

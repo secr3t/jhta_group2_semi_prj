@@ -1,4 +1,4 @@
-package qtype.vo;
+package pro.qtype.vo;
 
 public class Qtype {
 
