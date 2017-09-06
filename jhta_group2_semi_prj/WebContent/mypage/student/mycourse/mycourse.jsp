@@ -1,3 +1,8 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="pro.enrollment.vo.Enrollment"%>
+<%@page import="java.util.List"%>
+<%@page import="pro.mypage.dao.MypageStudentDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,14 +17,15 @@
   <title>My Course</title>
 </head>
 <body>
-	<%@ include file="../../common/nav.jsp" %>
+	<%@ include file="/mypage/student/logincheck.jsp" %>
+	<%@ include file="/common/nav.jsp" %>
     <div class="container">
 		<div class="col-sm-offset-2 page-header">
 			<h1>내 강의</h1>
 		</div>    
 
     	<div class="col-sm-2">
-			<%@ include file="left-menu.jsp" %>
+			<%@ include file="/mypage/student/left-menu.jsp" %>
 		</div>
 
          <div class="col-sm-9">
@@ -61,50 +67,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><a href="course-info.jsp?no=1">Java</a></td>
-                                    <td>이응수</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: 20%;">
-                                                <span>20%</span>
+                                <%
+                                 	MypageStudentDao stuDao = MypageStudentDao.getInstance();
+                                 	List<Enrollment> enrollList= stuDao.getEnrollmentByStudentNo(student.getNo());
+                                 	for(Enrollment forEnroll : enrollList) {
+                                 %>
+                                 <tr>
+                                     <td><a href="course-info.jsp?no=<%=forEnroll.getCourse().getNo() %>"><%=forEnroll.getCourse().getName() %></a></td>
+                                     <td><%=forEnroll.getCourse().getLecturer().getName() %></td>
+                                     <td>
+                                         <div class="progress">
+                                         <%
+                                         	int totalVideo = stuDao.getTotalCourseVideoByCourseNo(forEnroll.getCourse().getNo());
+                                         	Map<String, Integer> intMap = new HashMap<>();
+                                         	intMap.put("param1", student.getNo());
+                                         	intMap.put("param2", forEnroll.getCourse().getNo());
+                                         	int finishVideo = stuDao.getTotalFinishedCourseByMap(intMap);
+                                         %>
+                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: <%=(finishVideo / totalVideo) * 100 %>%;">
+                                                <span><%=(finishVideo / totalVideo) * 100 %>%</span>
                                             </div>
                                         </div>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="course-info.jsp?no=1">Java</a></td>
-                                    <td>이응수</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: 40%;">
-                                                <span>40%</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="course-info.jsp?no=1">Java</a></td>
-                                    <td>이응수</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemin="100" style="width: 90%;">
-                                                <span>90%</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="course-info.jsp?no=1">Java</a></td>
-                                    <td>이응수</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemin="100" style="width: 0%;">
-                                                <span>0%</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>  
+                                 </tr>
+                                 <%
+                                 	}
+                                 %> 
                             </tbody>
                         </table>
                         <div class="panel-footer">
@@ -115,6 +103,6 @@
             </div>
         </div>
     </div>
-    <%@ include file="../../common/footer.jsp" %>
+    <%@ include file="/common/footer.jsp" %>
 </body>
 </html>

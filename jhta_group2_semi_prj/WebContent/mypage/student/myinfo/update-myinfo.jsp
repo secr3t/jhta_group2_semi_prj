@@ -25,25 +25,45 @@
   </style>
 </head>
 <body>
-	<% 
-		Student student = (Student) session.getAttribute("loginedUser");
-		if(student == null) {
-			response.sendRedirect("../temp-login.jsp");
-			return;
-		}
-	%>
-	<%@ include file="../../common/nav.jsp" %>
+	<%@ include file="/mypage/student/logincheck.jsp" %>
+	<%@ include file="/common/nav.jsp" %>
     <div class="container">
 		<div class="col-sm-offset-2 page-header">
 			<h1>내 정보</h1>
 		</div>   
     
    		<div class="col-sm-2">
-			<%@ include file="left-menu.jsp" %>
+			<%@ include file="../left-menu.jsp" %>
 		</div>         
        	<div class="col-sm-9">
              
-             <form method="post" action="#" class="form-horizontal">
+             <form method="post" action="update.jsp" class="form-horizontal">
+             	 <%
+             	 final String FAIL_CODE_NOT_SAME_PWD = "1";
+             	 final String FAIL_CODE_NOT_ACCEPT_PHONE_NO = "2";
+             	 
+             	 if(FAIL_CODE_NOT_SAME_PWD.equals(request.getParameter("fail"))) {
+             	 %>
+             		 <div class="alert alert-danger">
+             		 	<strong>ERROR!!</strong> 입력하신 두 비밀번호가 서로 일치하지 않습니다. 
+             		 </div>
+             	 <%
+             	 }
+             	 if(FAIL_CODE_NOT_ACCEPT_PHONE_NO.equals(request.getParameter("fail"))) {
+             	 %>
+             		 <div class="alert alert-danger">
+             		 	<strong>ERROR!!</strong> 유효하지 않은 핸드폰 번호입니다. 
+             		 </div>
+             	 <%
+             	 }
+             	 if(request.getParameter("success") != null) {
+             	 %>
+             		 <div class="alert alert-success">
+             		 	<strong>성공적으로 수정되었습니다.</strong> 
+             		 </div>
+             	 <%
+             	 }
+             	 %>
                  <div class="form-group">
                      <label class="control-label col-sm-2">이메일</label>
                      <div class="col-sm-7">
@@ -136,6 +156,6 @@
              </form>
          </div>
      </div>
-    <%@ include file="../../common/footer.jsp" %>
+    <%@ include file="/common/footer.jsp" %>
 </body>
 </html>

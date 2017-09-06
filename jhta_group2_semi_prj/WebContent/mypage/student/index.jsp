@@ -32,14 +32,8 @@
 	</style>
 </head>
 <body>
-	<% 
-		Student student = (Student) session.getAttribute("loginedUser");
-		if(student == null) {
-			response.sendRedirect("../temp-login.jsp");
-			return;
-		}
-	%>
-	<%@ include file="../../common/nav.jsp" %>
+	<%@ include file="/mypage/student/logincheck.jsp" %>
+	<%@ include file="/common/nav.jsp" %>
 	<div class="container">
 	
 		<div class="col-sm-offset-2 page-header">
@@ -56,7 +50,7 @@
                        <div class="panel panel-success">
                         	<div class="panel-heading">
                             	<label><%=student.getName() %>님 환영합니다.</label>
-                            	<a href="update-myinfo.jsp" class="pull-right">내 정보로 이동</a>
+                            	<a href="myinfo/update-myinfo.jsp" class="pull-right">내 정보로 이동</a>
                         	</div>
                          	<table class="table table-condensed">
                              	<tr>
@@ -93,7 +87,7 @@
                                  	for(Enrollment forEnroll : enrollList) {
                                  %>
                                  <tr>
-                                     <td><a href="course-info.jsp?no=<%=forEnroll.getCourse().getNo() %>"><%=forEnroll.getCourse().getName() %></a></td>
+                                     <td><a href="mycourse/course-info.jsp?no=<%=forEnroll.getCourse().getNo() %>"><%=forEnroll.getCourse().getName() %></a></td>
                                      <td><%=forEnroll.getCourse().getLecturer().getName() %></td>
                                      <td>
                                          <div class="progress">

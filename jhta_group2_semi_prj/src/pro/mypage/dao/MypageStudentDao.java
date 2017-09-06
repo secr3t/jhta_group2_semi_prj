@@ -42,4 +42,8 @@ public class MypageStudentDao {
 	public List<Qna> getQnaByStudentNo(int studentNo) throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("MyPageStudent.getQnaByStudentNo", studentNo);
 	}
+	
+	public void updateMyInfo(Student student) throws SQLException {
+		IbatisUtils.getSqlMap().update("MyPageStudent.updateMyInfo", student);
+	}
 }
