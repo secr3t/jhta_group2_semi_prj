@@ -50,31 +50,19 @@
 		and A.student_no = #value#
 	</select>
 	
-	<select id="getTotalFinishedCourseByMap" parameterClass="java.util.Map" resultClass="int">
-		select count(*)
-		from course_video A, progress B
-		where A.course_video_no = B.course_video_no
-		and B.student_no = #param1#
-		and A.course_no = #param2#
-		and B.progress_complete = 'Y'
-	</select>
-
-	<select id="getTotalCourseVideoByCourseNo" parameterClass="int" resultClass="int">
-		select course_no, count(*)
-		from course_video
-		group by course_no
-		having course_no = #value#
-	</select>
-	
 	<select id="getQnaByStudentNo" parameterClass="int" resultClass="Qna">
 		select 
-			A.qna_no 			no
-			,A.qna_title		title
-			,A.course_no		"course.no"
-			,B.course_name		"course.name"
-			,A.qna_ques_date	quesDate
+			A.qna_no 				no
+			,A.qna_title			title
+			,A.course_no			"course.no"
+			,B.course_name			"course.name"
+			,A.qna_ques_content 	quesContent
+			,A.qna_ques_date		quesDate
+			,A.qna_ans_content		ansContent
+			,A.qna_ans_regdate		ansRegdate
 		from qna A, course B
-		where A.student_no = #value#
+		where A.course_no = B.course_no
+		and A.student_no = #value#
 		and A.qna_active = 'Y'
 	</select>
 	

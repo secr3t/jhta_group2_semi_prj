@@ -1,3 +1,4 @@
+<%@page import="pro.mypage.dao.MypageCourseDao"%>
 <%@page import="pro.utils.DateUtils"%>
 <%@page import="pro.qna.vo.Qna"%>
 <%@page import="java.util.HashMap"%>
@@ -67,7 +68,7 @@
                  <div class="col-sm-12">
                      <div class="panel panel-info">
                          <div class="panel-heading">
-                             <label><a href="mycourse.jsp" class="pull-right">내 수강 목록</a></label>
+                             <label><a href="mycourse/mycourse.jsp" class="pull-right">내 수강 목록</a></label>
                          </div>
                          <table class="table table-condensed table-hover">
                              <colgroup>
@@ -87,16 +88,17 @@
                                  	for(Enrollment forEnroll : enrollList) {
                                  %>
                                  <tr>
-                                     <td><a href="mycourse/course-info.jsp?no=<%=forEnroll.getCourse().getNo() %>"><%=forEnroll.getCourse().getName() %></a></td>
+                                     <td><a href="mycourse/course-info.jsp?cno=<%=forEnroll.getCourse().getNo() %>"><%=forEnroll.getCourse().getName() %></a></td>
                                      <td><%=forEnroll.getCourse().getLecturer().getName() %></td>
                                      <td>
                                          <div class="progress">
                                          <%
-                                         	int totalVideo = stuDao.getTotalCourseVideoByCourseNo(forEnroll.getCourse().getNo());
+                                         	MypageCourseDao courDao = MypageCourseDao.getInstance();
+                                         	int totalVideo = courDao.getTotalCourseVideoByCourseNo(forEnroll.getCourse().getNo());
                                          	Map<String, Integer> intMap = new HashMap<>();
                                          	intMap.put("param1", student.getNo());
                                          	intMap.put("param2", forEnroll.getCourse().getNo());
-                                         	int finishVideo = stuDao.getTotalFinishedCourseByMap(intMap);
+                                         	int finishVideo = courDao.getTotalFinishedCourseByMap(intMap);
                                          %>
                                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: <%=(finishVideo / totalVideo) * 100 %>%;">
                                                 <span><%=(finishVideo / totalVideo) * 100 %>%</span>
@@ -135,7 +137,7 @@
                                 	%>
                                     <tr>
                                         <td><a href="#"><%=forQna.getTitle() %></a></td>
-                                        <td><a href="course-info.jsp?no=<%=forQna.getCourse().getNo() %>"><%=forQna.getCourse().getName() %></a></td>
+                                        <td><a href="mycourse/course-info.jsp?cno=<%=forQna.getCourse().getNo() %>"><%=forQna.getCourse().getName() %></a></td>
                                         <td><%=DateUtils.yyyymmddhhmmss(forQna.getQuesDate()) %></td>
                                     </tr>       	
                                 	<%
@@ -149,6 +151,6 @@
             </div>
         </div>
     </div>
-   	<%@ include file="../../common/footer.jsp" %>
+   	<%@ include file="/common/footer.jsp" %>
 </body>
 </html>

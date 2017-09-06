@@ -1,3 +1,9 @@
+<%@page import="pro.course.vo.Course"%>
+<%@page import="pro.mypage.dao.MypageCourseDao"%>
+<%@page import="pro.utils.DateUtils"%>
+<%@page import="pro.qna.vo.Qna"%>
+<%@page import="java.util.List"%>
+<%@page import="pro.mypage.dao.MypageStudentDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,7 +27,8 @@
   </style>
 </head>
 <body>
-	<%@ include file="../../common/nav.jsp" %>
+	<%@ include file="/mypage/student/logincheck.jsp" %>
+	<%@ include file="/common/nav.jsp" %>
     <div class="container">
 		<div class="col-sm-offset-2 page-header">
 			<h1>등록된 Q&amp;A</h1>
@@ -32,7 +39,7 @@
 		</div>  
         <div class="col-sm-9">
         
-             <form method="post" action="#" class="form-inline text-right">
+             <form method="get" action="#" class="form-inline text-right">
                  <div class="form-group">
                      <label class="sr-only">검색분류</label>
                      <select name="searchcategory" class="form-control">
@@ -52,10 +59,10 @@
              <div class="table-responsive">
                  <table class="table table-hover">
                      <colgroup>
-                         <col width="50%">
+                         <col width="40%">
                          <col width="30%">
                          <col width="10%">
-                         <col width="10%">
+                         <col width="20%">
                      </colgroup>                                   
                      <thead>
                          <tr>
@@ -63,30 +70,39 @@
                          </tr>
                      </thead>
                      <tbody>
-                         <tr>
-                             <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                             <td><a href="course-info.jsp?no=1">Java</a></td>
-                             <td>이응수</td>
-                             <td>17/08/21</td>
-                         </tr>                               
-                         <tr>
-                             <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                             <td><a href="course-info.jsp?no=1">Java</a></td>
-                             <td>이응수</td>
-                             <td>17/08/21</td>
-                         </tr>
-                         <tr>
-                             <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                             <td><a href="course-info.jsp?no=1">Java</a></td>
-                             <td>이응수</td>
-                             <td>17/08/21</td>
-                         </tr>                
-                         <tr>
-                             <td><a href="#">Java가 무엇입니까?dddddddddddd</a> [4]</td>
-                             <td><a href="course-info.jsp?no=1">Java</a></td>
-                             <td>이응수</td>
-                             <td>17/08/21</td>
-                         </tr>
+	                  	<%
+	                  		MypageStudentDao stuDao = MypageStudentDao.getInstance();
+	                  		List<Qna> qnaList = stuDao.getQnaByStudentNo(student.getNo());
+	                  		for(Qna forQna : qnaList) {
+	                  	%>
+		                      <tr>
+		                          <td>
+		                          	<a href="#"><%=forQna.getTitle() %></a>
+		                          	<%
+		                          		if(forQna.getAnsContent() != null) {
+		                          	%>
+		                          		<span class="label label-success">답변완료</span>
+		                          	<%
+		                          		} else {
+		                          	%>
+		                          		<span class="label label-danger">미답변 질문</span>
+		                          	<%
+		                          		}
+		                          	%>
+		                          </td>
+		                          <td><a href="mycourse/course-info.jsp?cno=<%=forQna.getCourse().getNo() %>"><%=forQna.getCourse().getName() %></a></td>
+		                          <td>
+		                          <%
+			                  		MypageCourseDao courDao = MypageCourseDao.getInstance();
+			                  		Course course = courDao.getCourseByCourseNo(forQna.getCourse().getNo());
+		                          %>
+		                          <%=course.getLecturer().getName() %>
+		                          </td>
+		                          <td><%=DateUtils.yyyymmddhhmmss(forQna.getQuesDate()) %></td>
+		                      </tr>       	
+	                  	<%
+	                  		}
+	                  	%>
                      </tbody>
                  </table>
                  <div class="text-center">
@@ -105,6 +121,6 @@
              </div>
          </div>
      </div>
-   	<%@ include file="../../common/footer.jsp" %>  
+   	<%@ include file="/common/footer.jsp" %>  
 </body>
 </html>
