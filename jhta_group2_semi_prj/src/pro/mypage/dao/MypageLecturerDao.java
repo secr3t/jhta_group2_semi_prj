@@ -1,7 +1,9 @@
 package pro.mypage.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
+import pro.course.vo.Course;
 import pro.lecturer.vo.Lecturer;
 import pro.utils.IbatisUtils;
 
@@ -19,5 +21,10 @@ public class MypageLecturerDao {
 	
 	public Lecturer getLecturerByEmail(String lecturerEmail) throws SQLException {
 		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("MyPageLecturer.getLecturerByEmail", lecturerEmail);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Course> getCourseByLecturerNo(int lecturerNo) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("MyPageLecturer.getCourseByLecturerNo", lecturerNo); 
 	}
 }

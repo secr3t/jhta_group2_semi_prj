@@ -7,6 +7,10 @@
 <sqlMap namespace="MyPageLecturer">
 
 	<typeAlias alias="Lecturer" type="pro.lecturer.vo.Lecturer"/>
+	<typeAlias alias="Course" type="pro.course.vo.Course"/>
+	<typeAlias alias="Qna" type="pro.qna.vo.Qna"/>
+	<typeAlias alias="Criteria" type="pro.criteria.vo.Criteria"/>
+	
 
 	<select id="getLecturerByNo" parameterClass="int" resultClass="Lecturer">
 		select
@@ -36,6 +40,63 @@
 			,user_type			type	
 		from lecturer
 		where lecturer_email = #value#
+	</select>
+	
+	<select id="getCourseByLecturerNo" parameterClass="int" resultClass="Course">
+		select
+			course_no			no
+			,course_name		name
+			,course_summary		summary
+			,course_detail		detail
+			,course_point		point
+			,dept_no			"dept.no"
+		from course 
+		where lecturer_no = #value#
+	</select>
+	
+	<select id="getQnaByStudentNo" parameterClass="Criteria" resultClass="Qna">
+		select 
+			A.qna_no 				no
+			,A.qna_title			title
+			,A.course_no			"course.no"
+			,B.course_name			"course.name"
+			,A.qna_ques_content 	quesContent
+			,A.qna_ques_date		quesDate
+			,A.qna_ans_content		ansContent
+			,A.qna_ans_regdate		ansRegdate
+			,C.lecturer_no			"course.lecture.no"
+			,C.lecturer_name		"course.lecture.name"
+		from (select row_number() over(order by qna_no desc) rn, qna_no, qna_title, course_no, 
+					qna_ques_content, qna_ques_date, qna_ans_content, qna_ans_regdate, student_no, qna_active 
+			from qna
+			where qna_active = 'Y'
+			and student_no = #studentNo#) A, course B, lecturer C
+		where A.course_no = B.course_no
+		and B.lecturer_no = C.lecturer_no
+		<dynamic>
+			<isNotNull property="opt">
+				<isNotNull property ="keyword">
+					<isEqual property="opt" compareValue="title">
+						and A.qna_title like '%' || #keyword# || '%'
+					</isEqual>
+					<isEqual property="opt" compareValue="course">
+						and B.course_name like '%' || #keyword# || '%'					
+					</isEqual>
+					<isEqual property="opt" compareValue="lecturer">
+						and C.lecturer_name like '%' || #keyword# || '%'
+					</isEqual>
+				</isNotNull>
+			</isNotNull>
+			<isNotNull property="noAnswer">
+				<isEqual property="noAnswer" compareValue="Y">
+						and A.qna_ans_content is not null
+				</isEqual>
+			</isNotNull>
+		</dynamic>
+		<![CDATA[
+			and rn >= #beginIndex#
+			and rn <= #endIndex#
+		]]>
 	</select>
 
 </sqlMap>

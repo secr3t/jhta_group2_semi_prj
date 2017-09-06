@@ -1,3 +1,7 @@
+<%@page import="pro.course.vo.Course"%>
+<%@page import="java.util.List"%>
+<%@page import="pro.mypage.dao.MypageLecturerDao"%>
+<%@page import="pro.mypage.dao.MypageCourseDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -66,36 +70,37 @@
 	                            </tr>
 	                        </thead>
 	                        <tbody>
+	                        	<%
+	                        		MypageCourseDao courDao = MypageCourseDao.getInstance();
+	                        		MypageLecturerDao lecDao = MypageLecturerDao.getInstance();
+	                        		List<Course> courseList = lecDao.getCourseByLecturerNo(lecturer.getNo());
+	                        		for(Course forCourse : courseList) {
+	                        	%>
 	                            <tr>
-	                                <td><a href="course-info.jsp?no=1">Java</a></td>
-	                                <td>10</td>
-	                                <td>20</td>
-	                                <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
-	                            </tr>                                      
-	                            <tr>
-	                                <td><a href="course-info.jsp?no=1">Java</a></td>
-	                                <td>10</td>
-	                                <td>20</td>
-	                                <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
-	                            </tr>                                      
-	                            <tr>
-	                                <td><a href="course-info.jsp?no=1">Java</a></td>
-	                                <td>10</td>
-	                                <td>20</td>
-	                                <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
-	                            </tr>                                      
-	                            <tr>
-	                                <td><a href="course-info.jsp?no=1">Java</a></td>
-	                                <td>10</td>
-	                                <td>20</td>
-	                                <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
-	                            </tr>                                      
-	                            <tr>
-	                                <td><a href="course-info.jsp?no=1">Java</a></td>
-	                                <td>10</td>
-	                                <td>20</td>
-	                                <td><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></td>
-	                            </tr>                                    
+	                                <td><a href="mycourse/course-info.jsp?cno=<%=forCourse.getNo() %>"><%=forCourse.getName() %></a></td>
+	                                <td><%=courDao.getTotalCourseVideoByCourseNo(forCourse.getNo()) %></td>
+	                                <td><%=courDao.getTotalStudentByCourseNo(forCourse.getNo()) %></td>
+	                                <td>
+									<%
+										double avgGrade = courDao.getGradeAvgByCourseNo(forCourse.getNo());
+										int intGrade = (int) Math.round(avgGrade);
+										for(int i=0; i<intGrade; i++) {
+									%>
+										<span class="glyphicon glyphicon-star"></span>
+									<%		
+										}
+										for(int i=0; i<(5-intGrade); i++) {
+									%>
+										<span class="glyphicon glyphicon-star-empty"></span>
+									<%		
+										}
+									%>
+										<label class="badge"><%= avgGrade %></label>
+	                                </td>
+	                            </tr>
+	                        	<%
+	                        		}
+	                        	%>
 	                        </tbody>
 	                    </table>
 	                </div>

@@ -14,19 +14,23 @@ public class MypageCourseDao {
 		return self;
 	}
 	
-	public int getTotalFinishedCourseByMap(Map<String, Integer> intMap) throws SQLException {
-		return (int) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalFinishedCourseByMap", intMap);
+	public Integer getTotalFinishedCourseByMap(Map<String, Integer> intMap) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalFinishedCourseByMap", intMap);
 	}
 
 	public Integer getTotalCourseVideoByCourseNo(int courseNo) throws SQLException {
 		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalCourseVideoByCourseNo", courseNo);
 	}
 	
+	public Integer getTotalStudentByCourseNo(int courseNo) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalStudentByCourseNo", courseNo);
+	}
+	
 	public Course getCourseByCourseNo (int courseNo) throws SQLException {
 		return (Course) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getCourseByCourseNo", courseNo);
 	}
 	
-	public double getGradeAvgByCourseNo(int courseNo) throws SQLException {
-		return (double) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getGradeAvgByCourseNo", courseNo);
+	public Double getGradeAvgByCourseNo(int courseNo) throws SQLException {
+		return (Double) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getGradeAvgByCourseNo", courseNo);
 	}
 }
