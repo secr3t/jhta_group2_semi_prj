@@ -16,13 +16,13 @@
 			postscription_regdate		as "regdate",
 			postscription_grade			as "grade",
 			postscription_active		as "active",
-			student_no					as "student",
-			course_no					as "course"
+			student_no					as "student.no",
+			course_no					as "course.no"
 		from
 			postscription
 	</select>
 	
-	<select id="getPostscriptionByCourseNo" resultClass="post" parameterClass="int">
+	<select id="getPostscriptionsByCourseNo" resultClass="post" parameterClass="int">
 		select 
 			postscription_no			as "no",
 			postscription_title			as "title",
@@ -30,8 +30,8 @@
 			postscription_regdate		as "regdate",
 			postscription_grade			as "grade",
 			postscription_active		as "active",
-			student_no					as "student",
-			course_no					as "course"
+			student_no					as "student.no",
+			course_no					as "course.no"
 		from
 			postscription
 		where

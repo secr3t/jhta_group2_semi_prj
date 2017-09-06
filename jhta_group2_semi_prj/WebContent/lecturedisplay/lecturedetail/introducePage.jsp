@@ -1,3 +1,7 @@
+<%@page import="pro.utils.DateUtils"%>
+<%@page import="pro.student.dao.StudentDao"%>
+<%@page import="java.util.List"%>
+<%@page import="pro.video.dao.VideoDao"%>
 <%@page import="pro.introducecourse.dao.LecturerDao"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
 <%@page import="pro.postscription.vo.Postscription"%>
@@ -18,9 +22,12 @@
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();
 	LecturePostScriptDao lecturePostScriptDao = LecturePostScriptDao.getInstance();
 	LecturerDao lecturerDao = LecturerDao.getInstance();
+	VideoDao videoDao = VideoDao.getInstance();
 
 	Course course = courseDao.getCourseByNo(courseNo);
 	Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
+	List<Postscription> postscriptions = lecturePostScriptDao.getPostscriptionsByCourseNo(courseNo);
+	StudentDao studentDao = StudentDao.getInstance();
 %>
    <div class="row">
         <p><small>Home>All subjects>Economic>Marketing Analytics</small></p>
@@ -41,9 +48,8 @@
            </div>
             <div class="text-left">
                 <p><small>강사 : <%=lecturer.getName() %></small></p>
-                <p><small>등록일 : 2017-09-01</small></p>
-                <p><small>강의수 : 60강</small></p>
-                <p><small>가격 : 900P</small></p>
+                <p><small>강의수 : <%=videoDao.getVideoQtrByCourseNo(courseNo) %>강</small></p>
+                <p><small>가격 : <%=course.getPoint() %>P</small></p>
             </div>
             <div class="text-right">
                 <button class="btn btn-success">수강신청</button>
@@ -55,7 +61,7 @@
             <div class="row well">
                 <div class="row">
                     <div class="col-sm-8">
-                        <h4>About this course</h4>
+                        <h4><strong>과정소개</strong></h4>
                     </div>
                     <div class="col-sm-4">
                         <span><strong>평점 : </strong></span>
@@ -81,21 +87,10 @@
                                  aria-controls="collapseExample">+ See More</button>
                     </div> -->
                 </div>
+               
                 <div class="row">
                     <div class="col-sm-8"  style="padding-top:30px;">
-                        <h4>What you'll learn</h4>
-                    </div>
-                </div>    
-                <div class="row">
-                    <ul>
-                        <li>How to identify market trends</li>
-                        <li>How to predict future conditions</li>
-                        <li>An understanding of metrics used to measure marketing success</li>
-                    </ul>
-                </div>
-                <div class="row">
-                    <div class="col-sm-8"  style="padding-top:30px;">
-                        <h4>Teacher Inroduction</h4>
+                        <h4><strong>강사소개</strong></h4>
                     </div>
                 </div>    
                 <div class="row">
@@ -113,29 +108,44 @@
                     </div>
                 </div>
               
-<%@include file="lecturereviews.jsp"%>
+ 		<div class="row">
+      		 <div class="col-sm-8"  style="padding-top:30px;">
+       		   <h4><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp"><strong>과정후기</strong></a></h4>
+      		 </div>
+ 		</div>    
+ 		<table class="table table-condensed">
+	 		<tr>
+	 			<th>글번호</th> <th>제목</th> <th>작성자</th> <th>작성일</th> <th>평점</th> 
+	 		</tr>
+ 			<%for(Postscription postscription : postscriptions){ 
+ 					
+ 			%>
+            	<tr>
+            		<td><%=postscription.getNo() %></td>
+            		<td><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_detail.jsp?bno=<%=postscription.getNo()%>"><%=postscription.getTitle() %></a></td>
+            		<td><%=studentDao.getStudentByNo(postscription.getStudent().getNo()).getName() %></td>
+            		<td><%=DateUtils.yyyymmddhhmmss(postscription.getRegdate())  %></td>
+            		<td><%=postscription.getGrade() %>
+            	</tr>
+            <% } %>
+        </table>
+       </div>
+    </div>
+			<% List<Course> courses = courseDao.getCourseByDeptNo(course.getDept().getNo()); %>
         	<div class="col-sm-3">
           	  <div class="row well">
                	<div class="row">
     	         <h5><strong>연관 강의</strong></h5>
         	     <ul>
-	        	      <li><a href=""><small>Introduction to Brokerage Operations</small></a></li>
-	                  <li><a href=""><small>Macroeconomics</small></a></li>
+	        	      <%for(Course c : courses){ %>
+	        	      <li><a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=c.getNo()%>"><small><%=c.getName() %></small></a></li>
+	                  <%} %>
              	 </ul>
                	</div>
-               	<div class="row">
-                   <h5><strong>인기 강의</strong></h5>
-                   <ul>
-	        	      <li><a href=""><small>Introduction to Brokerage Operations</small></a></li>
-	                  <li><a href=""><small>Macroeconomics</small></a></li>
-             	 </ul>
-          		</div>
        		  </div>
        		 </div>  
       	</div>  
      </div>
-   </div>
- </div>
 <%@include file="../../common/footer.jsp" %>
 </body>
 <script type="text/javascript">

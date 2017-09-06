@@ -10,7 +10,7 @@
 <%@include file="../../common/header.jsp" %>
 <body>
 <div class="container">
-		<%@include file="../../common/nav.jsp" %>
+<%@include file="../../common/nav.jsp" %>
 	<div class="col-sm-2">
 		<h2><a href="">강의 목록</a></h2>
 		<hr>
@@ -22,6 +22,7 @@
 	LecturerDao lecturerDao = LecturerDao.getInstance();
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();
 	List<Course> courses =  courseDao.getAllCourses();
+
 %>
 
 	<%for(Course course : courses){
@@ -29,22 +30,22 @@
 		Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
 	%>
 	<!--과정 소개  -->
-       <div class="col-sm-offset-1 col-sm-3 well" >
+       <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >
              <div>
-                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 40%; float:left">
+                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 40%;float:left">
              </div>
              <div class="text-center">
                  <h4><strong><%=course.getName()%></strong></h4>
              </div>
-             <div class="text-right">
-                  <p><%=course.getSummary()%></p>
-                  <p>강사 <strong><%=lecturer.getName()%></strong></p>
+             <div class="text-center">
+                  <p><small><%=course.getSummary()%></small></p>
              </div>
-             <div class=" text-right"> 
+             <div class="text-right">
+                  <p>강사 <strong><%=lecturer.getName()%></strong></p>
                  <p>포인트 <strong><%=course.getPoint()%>p</strong></p>
              </div>
             		
-            <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group btn-group-justified" role="group" style="padding-top: 30px;">
                     <a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getNo()%>" class="btn btn-primary">소개</a>
                     <a href="" class="btn btn-success">수강신청</a>
             </div>
@@ -58,13 +59,13 @@
 <script type="text/javascript">
     document.getElementById("myDropdown-1").addEventListener("click", function(event){
        var clicked =event.target;
-        console.log(clicked);
         if(clicked.id === "teacher"){
             var htmlContent = "";
-            htmlContent += "<li id='uisil' style='cursor:pointer'>맹의실</li>";
-            htmlContent += "<li id='seungyong' style='cursor:pointer'>이승용</li>";
-            htmlContent += "<li id='daenyeong' style='cursor:pointer'>허대녕</li>";
-            htmlContent += "<li id='seonghwan' style='cursor:pointer'>이성환</li>";
+            <%	List<Lecturer> lecturers = lecturerDao.getAlllecturers();
+            for(Lecturer lecturer : lecturers){
+            %>
+            htmlContent += "<li id='uisil' style='cursor:pointer'><%=lecturer.getName()%></li>";
+            <%}%>
             document.getElementById("menu2").setAttribute("data-toggle", "dropdown");
             document.getElementById("menu2").innerHTML = "필터"+"<span class='caret'></span>"; 
             document.getElementById("myDropdown-2").innerHTML = htmlContent;
@@ -83,6 +84,7 @@
             document.getElementById("menu2").innerHTML = ""
             document.getElementById("menu2").setAttribute("data-toggle", "");
         }
+       
     });
     
    document.getElementById("myDropdown-2").addEventListener("click", function(event){

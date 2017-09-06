@@ -46,4 +46,11 @@
 	where course_no = #value#
 </select>
 
+	<select id="getVideoQtrByCourseNo" resultClass="int" parameterClass="int">
+		select
+			count(*)
+		from
+			course_video
+		where course_no = #value#
+	</select>
 </sqlMap>
