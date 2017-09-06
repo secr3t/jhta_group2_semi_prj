@@ -56,16 +56,16 @@
 						<%} %>
 					</tbody>
 				</table>
-		</div>
+			</div>
 		<br><br />
 		<!-- <p>
 		<button id= "btn-down">down</button>
 		<button id= "btn-up">up</button>
 		</p> -->
 		<div align="center">
-		<button type="button" class="btn btn-default" aria-label="">
-  		<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-		</button>
+			<button type="button" class="btn btn-default" aria-label="">
+  				<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+			</button>
 		</div>
 		
 		<br><br />
@@ -87,10 +87,11 @@
 		</div>
 	<div class= "text-right">
 		<ul class="well">
-			<li>예상포인트</li>
-			<li>현재포인트</li>
-			<li>수강과목수</li>
 			
+				<li>예상포인트:<strong id="point"></strong></li>
+				<li>현재포인트</li>
+				<li>수강과목수</li>
+
 		</ul>
 	</div>
 	<form action="add-enrollment.jsp">
@@ -107,28 +108,43 @@
 	var trNodeList = document.querySelectorAll("#dept-list>tr");
 	var selectedList = document.getElementById("selected-list");
 	var deptList = document.getElementById("dept-list");
-
+	var pointValue = 0;
+	
 	for(var i=0; i<trNodeList.length; i++){
 		var tr = trNodeList.item(i);
 		 tr.addEventListener('click', function(event){
 			var self = event.target;
 				if(self.parentNode.parentNode == deptList && selectedList.getElementsByTagName('tr').length<10){
 					selectedList.append(self.parentNode);
+						
 				} else if(self.parentNode.parentNode == selectedList){
 					deptList.append(self.parentNode);
 				}
-				
+		var selectedPointNodeList = document.querySelectorAll('#selected-list .point');
+		var selectedPointValues = [];
+		var point = 0;
+		Array.from(selectedPointNodeList).forEach(function(item, index){
+			selectedPointValues.push(item.textContent);
+			point += parseInt(item.textContent);
+			})
+			console.log(selectedPointValues);
+			document.getElementById('point').innerText = point; 
+					
 		})
 	};		
 }())
 
 	document.getElementById("btn").addEventListener('click',function(event){
-	var selectedNodeList = document.querySelectorAll('#selected-list .course-no.hide');
-	var selectedValues = [];
-	Array.from(selectedNodeList).forEach(function(item, index){
-		selectedValues.push(item.textContent);
+		event.preventDefault();
+	var selectedCourseNoNodeList = document.querySelectorAll('#selected-list .course-no.hide');
+	var selectedCourseNoValues = [];
+	Array.from(selectedCourseNoNodeList).forEach(function(item, index){
+		selectedCourseNoValues.push(item.textContent);
 		})
+		console.log(selectedCourseNoValues);
+	
 	});
-
+	
+	
 </script>
 </html>

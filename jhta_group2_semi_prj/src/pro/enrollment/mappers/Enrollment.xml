@@ -25,6 +25,5 @@
 		and A.COURSE_NO = B.COURSE_NO
 		order by A.ENROLLMENT_NO asc
 	</select>
-	
 
 </sqlMap>
