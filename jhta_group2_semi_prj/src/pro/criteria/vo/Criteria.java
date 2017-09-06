@@ -5,6 +5,7 @@ public class Criteria {
 	private String opt;
 	private String keyword;
 	private int studentNo;
+	private int lecturerNo;
 	private int beginIndex;
 	private int endIndex;
 	private String noAnswer;
@@ -26,6 +27,12 @@ public class Criteria {
 	}
 	public void setStudentNo(int studentNo) {
 		this.studentNo = studentNo;
+	}
+	public int getLecturerNo() {
+		return lecturerNo;
+	}
+	public void setLecturerNo(int lecturerNo) {
+		this.lecturerNo = lecturerNo;
 	}
 	public int getBeginIndex() {
 		return beginIndex;
