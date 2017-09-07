@@ -12,4 +12,13 @@ public class StringUtils {
 		}
 		return Integer.parseInt(str);
 	}
+
+	public static double changeStringToDouble(String str) {
+		return (changeStringToDouble(str, 0.00));
+	}
+	
+	public static double changeStringToDouble(String str, double defaultValue) {
+		return str == null ? defaultValue : Double.parseDouble(str);
+	}
+	
 }
