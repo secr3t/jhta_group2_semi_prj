@@ -1,3 +1,6 @@
+<%@page import="pro.course.vo.Course"%>
+<%@page import="pro.mypage.dao.MypageCourseDao"%>
+<%@page import="pro.utils.StringUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,9 +21,14 @@
 <body>
 	<%@ include file="/mypage/lecturer/logincheck.jsp" %>
 	<%@ include file="/common/nav.jsp" %>
+	<%
+		int courseNo = StringUtils.changeIntToString(request.getParameter("cno"));
+		MypageCourseDao courDao = MypageCourseDao.getInstance();
+		Course course = courDao.getCourseByCourseNo(courseNo);
+	%>
     <div class="container">
  		<div class="col-sm-offset-2 page-header">
-			<h1>영상 상세 정보<small> - Java</small></h1>
+			<h1>영상 상세 정보<small> - <%=course.getName() %></small></h1>
            	<div class="text-right">
      			<a href="#" class="btn btn-md btn-primary">강의 페이지로</a>
       		</div>
@@ -31,14 +39,13 @@
         </div>
         <div class="col-sm-9">
             
-            
             <div class="row well">
                 <div class="col-sm-8">
                     <label>강의 소개</label>
-                    <p>간단한 강의에 대한 소개입니다.</p>
+                    <p><%=course.getSummary() %></p>
                 </div>
                 <div class="col-sm-4">
-                    <img src="../images/cassano.jpg" alt="강사사진" style="width: 240px;"/>
+                    <img src="/jhta_group2_semi_prj/images/<%=lecturer.getPicture() %>" alt="강사사진" style="width: 240px;"/>
                 </div>
             </div>
             
@@ -54,12 +61,12 @@
                             <col width="20%">
                         </colgroup>
                         <tr>
-                            <th>현재 등록된 강의 수</th><td>10개</td>
+                            <th>현재 등록된 강의 수</th><td><%=courDao.getTotalCourseVideoByCourseNo(course.getNo()) %>개</td>
                             <td><a href="upload-lectureform.jsp" class="btn btn-info pull-right">새영상 등록</a></td>
                         </tr>                        
                         <tr>
-                            <th>수강 중인 학생 수</th><td>20명</td>
-                            <td><a href="manager-student.jsp" class="btn btn-info pull-right">학생 관리</a></td>
+                            <th>수강 중인 학생 수</th><td><%=courDao.getTotalStudentByCourseNo(course.getNo()) %>명</td>
+                            <td><a href="manager-student.jsp?cno=<%=course.getNo() %>" class="btn btn-info pull-right">학생 관리</a></td>
                         </tr>
                     </table>
                 </div>

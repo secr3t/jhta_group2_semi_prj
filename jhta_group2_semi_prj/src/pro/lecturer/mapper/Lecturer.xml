@@ -23,7 +23,7 @@
 			lecturer
 	</select>
 	
-	<select id="getlecturerByNo" parameterClass="int" resultClass="lecturer">
+	<select id="getLecturerByNo" parameterClass="int" resultClass="lecturer">
 		select
 			lecturer_no			as "no",
 			lecturer_name		as "name",
@@ -40,7 +40,7 @@
 			lecturer_no = #value#
 	</select>
 	
-	<select id="getlecturerByEmail" parameterClass="string" resultClass="lecturer">
+	<select id="getLecturerByEmail" parameterClass="string" resultClass="lecturer">
 		select
 			lecturer_no			as "no",
 			lecturer_name		as "name",

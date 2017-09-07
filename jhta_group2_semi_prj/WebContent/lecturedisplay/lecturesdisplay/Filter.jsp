@@ -11,8 +11,8 @@
 <html lang="ko">
 <%@include file="../../common/header.jsp" %>
 <body>
-<div class="container">
 <%@include file="../../common/nav.jsp" %>
+<div class="container">
 	<div class="col-sm-2">
 		<h2><a href="index.jsp">강의 목록</a></h2>
 		<hr>

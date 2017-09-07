@@ -92,8 +92,11 @@
 				</isNotNull>
 			</isNotNull>
 			<isNotNull property="noAnswer">
-				<isEqual property="noAnswer" compareValue="Y">
+				<isEqual property="noAnswer" compareValue="N">
 						and A.qna_ans_content is not null
+				</isEqual>
+				<isEqual property="noAnswer" compareValue="Y">
+						and A.qna_ans_content is null
 				</isEqual>
 			</isNotNull>
 		</dynamic>
