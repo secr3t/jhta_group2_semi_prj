@@ -1,5 +1,5 @@
 <%@page import="pro.introducecourse.dao.LectureCourseDao"%>
-<%@page import="pro.introducecourse.dao.LecturerDao"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
 <%@page import="java.util.Date"%>
 <%@page import="pro.enrollment.vo.Enrollment"%>
 <%@page import="pro.enrollment.dao.EnrollmentDao"%>

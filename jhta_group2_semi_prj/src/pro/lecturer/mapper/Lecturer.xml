@@ -6,23 +6,56 @@
 
 <sqlMap namespace="lecturer">
 
-	<typeAlias alias="Lecturer" type="pro.student.vo.Lecturer"/>
-	
-	<select id="getLecturerByEmail" parameterClass="string" resultClass="Lecturer">
-		select
-			lecturer_name		as name,
-			lecturer_email		as email,
-			lecturer_pwd		as pwd,
-			lecturer_phone		as phone,
-			lecturer_career		as career,
-			lecturer_picture	as picture,
-			lecturer_permit		as permit,
-			user_type			as type
-		from lecturer
-		where lecturer_email = #value#
-	</select>
+	<typeAlias alias="lecturer" type="pro.lecturer.vo.Lecturer"/>
 
+	<select id="getAllLecturers" resultClass="lecturer">
+		select
+			lecturer_no			as "no",
+			lecturer_name		as "name",
+			lecturer_email		as "email",
+			lecturer_pwd		as "pwd",
+			lecturer_phone		as "phone",
+			lecturer_career		as "career",
+			lecturer_picture	as "picture",
+			lecturer_permit		as "permit",
+			user_type			as "type"
+		from
+			lecturer
+	</select>
 	
+	<select id="getlecturerByNo" parameterClass="int" resultClass="lecturer">
+		select
+			lecturer_no			as "no",
+			lecturer_name		as "name",
+			lecturer_email		as "email",
+			lecturer_pwd		as "pwd",
+			lecturer_phone		as "phone",
+			lecturer_career		as "career",
+			lecturer_picture	as "picture",
+			lecturer_permit		as "permit",
+			user_type			as "type"
+		from
+			lecturer
+		where 
+			lecturer_no = #value#
+	</select>
+	
+	<select id="getlecturerByEmail" parameterClass="string" resultClass="lecturer">
+		select
+			lecturer_no			as "no",
+			lecturer_name		as "name",
+			lecturer_email		as "email",
+			lecturer_pwd		as "pwd",
+			lecturer_phone		as "phone",
+			lecturer_career		as "career",
+			lecturer_picture	as "picture",
+			lecturer_permit		as "permit",
+			user_type			as "type"
+		from
+			lecturer
+		where 
+			lecturer_email = #value#
+	</select>
 	
 	<insert id="addLecturer" parameterClass="Lecturer">
 		insert into student
