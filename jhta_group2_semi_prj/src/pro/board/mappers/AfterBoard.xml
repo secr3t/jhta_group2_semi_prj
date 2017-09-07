@@ -32,7 +32,7 @@ select "no"        as  no,
 		"student.no"  as "student.no",
 		"course.no"    as "course.no",
 		"student.name" as "student.name"
-	from(	select row_number() over (order by postscription_no asc) m,	A.postscription_no 			as "no",
+	from(select row_number() over (order by postscription_no asc) m,	A.postscription_no 			as "no",
 																		A.postscription_title			as "title",
 																		A.postscription_content		as "content",
 																		A.postscription_regdate		as	"regDate",
@@ -45,6 +45,18 @@ select "no"        as  no,
 																		postscription A, student B
 																	where 
 																		A.student_no = B.student_no)
+	<dynamic>
+		<isNotNull property="opt">
+			<isNotNull property="keyword">
+				<isEqual property="opt" compareValue="title">
+					where "title" like '%' || #keyword# || '%'
+				</isEqual>
+				<isEqual property="opt" compareValue="writer">
+					where "student.name" like '%' || #keyword# || '%'
+				</isEqual>
+			</isNotNull>
+		</isNotNull>
+	</dynamic>																		
 	where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 

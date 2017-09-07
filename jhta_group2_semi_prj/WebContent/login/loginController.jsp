@@ -46,7 +46,7 @@
 		}
 	} else if ("lecturer".equals(type)){
 		dao = LecturerDao.getInstance();
-		user = ((LecturerDao)dao).getlecturerByEmail(id);
+		user = ((LecturerDao)dao).getLecturerByEmail(id);
 		System.out.println(user);
 			if(user == null){
 				%>

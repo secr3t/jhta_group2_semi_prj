@@ -33,8 +33,11 @@
 	  	</h4>
 	  	<hr>
 	  	<% 
-	  	    	final int rowsPerPage = 1;
-	  	    	final int naviPerPage = 2;
+	  			String opt = request.getParameter("opt");
+	    		String keyword = request.getParameter("keyword");
+	  		
+	  	    	final int rowsPerPage = 8;
+	  	    	final int naviPerPage = 5;
 	  	    	
 	  	    	AlertBoardDao adao = new AlertBoardDao();
 	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
@@ -56,8 +59,26 @@
 	  	    	Criteria criteria = new Criteria();
 	  	    	criteria.setBeginIndex(beginIndex);
 	  	    	criteria.setEndIndex(endIndex);
+	  	    	criteria.setOpt(opt);
+	  	    	criteria.setKeyword(keyword);
 	  	    	
 	  	    %>
+	  	    <div class="text-right">
+	  	    	<form action="" class="form-inline" method="get">
+	  	    		<div class="form-group align-right">
+	  	    			<label class="sr-only">옵션</label>
+	  	    			<select class="form-control col-sm-offcet-4 col-sm-3 control-label" style="width: 100px;" name="opt">
+							<option value="title"<%= ("title".equals(opt) ? "selected":"") %>>제목</option>
+							<option value="writer"<%= ("writer".equals(opt) ? "selected":"") %>>작성자</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="sr-only">검색어</label>
+						<input type="text" class="form-control" name="keyword" value="<%=StringUtils.nullToBlank(keyword)%>"/>
+					</div>
+					<button type="submit" class="btn btn-default">검색</button>
+	  	    	</form>
+	  	    </div>
 			<div class="panel-group col-md-9">
 				<%
 					
