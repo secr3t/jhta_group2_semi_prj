@@ -25,9 +25,13 @@ public class MypageLecturerDao {
 		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("MyPageLecturer.getLecturerByEmail", lecturerEmail);
 	}
 	
+	public Integer getTotalCourseRows(int lecturerNo) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageLecturer.getTotalCourseRows", lecturerNo);
+	}
+	
 	@SuppressWarnings("unchecked")
-	public List<Course> getCourseByLecturerNo(int lecturerNo) throws SQLException {
-		return IbatisUtils.getSqlMap().queryForList("MyPageLecturer.getCourseByLecturerNo", lecturerNo); 
+	public List<Course> getCourseByLecturerNo(Criteria criteria) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("MyPageLecturer.getCourseByLecturerNo", criteria); 
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -41,16 +41,29 @@
 		where lecturer_email = #value#
 	</select>
 	
-	<select id="getCourseByLecturerNo" parameterClass="int" resultClass="Course">
-		select
-			course_no			no
-			,course_name		name
-			,course_summary		summary
-			,course_detail		detail
-			,course_point		point
-			,dept_no			"dept.no"
-		from course 
+	<select id="getTotalCourseRows" parameterClass="int" resultClass="int">
+		select count(*)
+		from course
 		where lecturer_no = #value#
+	</select>
+	
+	<select id="getCourseByLecturerNo" parameterClass="Criteria" resultClass="Course">
+		select
+			B.course_no			no
+			,B.course_name		name
+			,B.course_summary		summary
+			,B.course_detail		detail
+			,B.course_point		point
+			,B.dept_no			"dept.no"
+		from (select row_number() over(order by course_no desc) rn, course_no ,course_name
+					,course_summary ,course_detail ,course_point ,dept_no
+			from course) A, course B 
+		where A.course_no = B.course_no
+		and B.lecturer_no = #lecturerNo#
+		<![CDATA[
+			and A.rn >= #beginIndex#
+			and A.rn <= #endIndex#
+		]]>
 	</select>
 	
 	<select id="getQnaByLecturerNo" parameterClass="Criteria" resultClass="Qna">

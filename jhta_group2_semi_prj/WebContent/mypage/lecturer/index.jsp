@@ -76,7 +76,11 @@
 	                        	<%
 	                        		MypageCourseDao courDao = MypageCourseDao.getInstance();
 	                        		MypageLecturerDao lecDao = MypageLecturerDao.getInstance();
-	                        		List<Course> courseList = lecDao.getCourseByLecturerNo(lecturer.getNo());
+	                        		Criteria CourCriteria = new Criteria();
+	                        		CourCriteria.setLecturerNo(lecturer.getNo());
+	                        		CourCriteria.setBeginIndex(1);
+	                        		CourCriteria.setEndIndex(8);
+	                        		List<Course> courseList = lecDao.getCourseByLecturerNo(CourCriteria);
 	                        		for(Course forCourse : courseList) {
 	                        	%>
 	                            <tr>
@@ -127,12 +131,12 @@
 	                            </thead>
 	                            <tbody>
 	                            	<%
-	                            		Criteria criteria = new Criteria();
-	                            		criteria.setLecturerNo(lecturer.getNo());
-	                            		criteria.setBeginIndex(1);
-	                            		criteria.setEndIndex(10);
-	                            		criteria.setNoAnswer("Y");
-	                            		List<Qna> qnaList = lecDao.getQnaByLecturerNo(criteria);
+	                            		Criteria QnaCriteria = new Criteria();
+	                            		QnaCriteria.setLecturerNo(lecturer.getNo());
+	                            		QnaCriteria.setBeginIndex(1);
+	                            		QnaCriteria.setEndIndex(10);
+	                            		QnaCriteria.setNoAnswer("Y");
+	                            		List<Qna> qnaList = lecDao.getQnaByLecturerNo(QnaCriteria);
 	                            		for(Qna forQna : qnaList) {
 	                            	%>
 			                                <tr>
