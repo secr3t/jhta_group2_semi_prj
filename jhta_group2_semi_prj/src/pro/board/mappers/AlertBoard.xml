@@ -17,18 +17,28 @@
 		#active#)
 </insert>
 
-<select id="getAllAlertBoard" resultClass="alertboard">
-	select
-		notice_no 			as no,
-		notice_title		as title,
-		notice_content		as content,
-		notice_regdate		as	regdate,
-		notice_expiredate 	as expiredate,
-		notice_active		as active
-	from
-		notice
-	order by 
-		notice_no desc
+<select id="getTotalRows" resultClass="int">
+	select count(*)
+	from notice
+</select>
+
+<select id="getAllAlertBoard" parameterClass="pro.criteria.vo.Criteria" resultClass="alertboard">
+	select 
+	"no" as no,
+	"title" as title,
+	"content" as content,
+	"regdate" as regdate,
+	"expiredate" as expiredate,
+	"active" as active 
+	from (select row_number() over (order by notice_no asc) m,	notice_no 			as "no",
+																notice_title		as "title",
+																notice_content		as "content",
+																notice_regdate		as	"regdate",
+																notice_expiredate 	as "expiredate",
+																notice_active		as "active"
+															from
+																notice)
+	where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 
 <delete id="deleteAlertBoardByNo" parameterClass="int">

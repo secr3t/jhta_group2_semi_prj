@@ -4,7 +4,7 @@
 <%@page import="pro.course.vo.Course"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.introducecourse.dao.LectureCourseDao"%>
-<%@page import="pro.introducecourse.dao.LecturerDao"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -1,4 +1,12 @@
 package pro.lecturer.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import pro.course.vo.Course;
+import pro.lecturer.vo.Lecturer;
+import pro.utils.IbatisUtils;
+
 import java.sql.SQLException;
 import pro.student.vo.Student;
 import pro.utils.IbatisUtils;
@@ -10,12 +18,15 @@ public class LecturerDao {
 		return self;
 	}	
 	
-	
-	public Student getStudentByEmail(String email) throws SQLException {
-		return (Student) IbatisUtils.getSqlMap().queryForObject("student.getStudentByEmail",  email);
+	public List<Lecturer> getAllLecturers() throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("lecturer.getAllLecturers");
+	}
+	public Lecturer getLecturerByEmail(String email) throws SQLException {
+		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("lecturer.getLecturerByEmail",  email);
 	}
 	
-	public Student getStudentByNo (int no) throws SQLException {
-		return (Student) IbatisUtils.getSqlMap().queryForObject("student.getStudentByNo", no);
+	public Lecturer getLecturerByNo (int no) throws SQLException {
+		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("lecturer.getLecturerByNo", no);
 	}
+	
 }

@@ -2,7 +2,7 @@
 <%@page import="pro.course.vo.Course"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.introducecourse.dao.LectureCourseDao"%>
-<%@page import="pro.introducecourse.dao.LecturerDao"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -15,7 +15,7 @@
 
 	<%for(Course course : courses){
 		//강사 객체
-		Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
+		Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
 	%>
 	<!--과정 소개  -->
        <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >

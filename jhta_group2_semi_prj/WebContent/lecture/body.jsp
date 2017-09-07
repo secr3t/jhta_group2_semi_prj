@@ -51,17 +51,19 @@ ul>li>a>.thumbnail {
 		<div class="container">
 			<div class="center-block">
 				<div id="video-wrapper">
-					<embed class="embed-responsive-item embed-reponsive-16by9"
+					<iframe class="embed-responsive-item embed-reponsive-16by9"
 						width="854" height="480" autoplay="1" start="4"
 						src="https://www.youtube.com/embed/5UxU1g0YH0M" frameborder="0"
-						allowfullscreen />
+						allowfullscreen ></iframe>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
-	getFirstEBC('center-block').style.width = getFirstEBT('embed')
+	var embedElement = getFirstEBT('iframe');
+		
+		getFirstEBC('center-block').style.width = getFirstEBT('iframe')
 			.getAttribute('width')
 			+ 'px';
 </script>

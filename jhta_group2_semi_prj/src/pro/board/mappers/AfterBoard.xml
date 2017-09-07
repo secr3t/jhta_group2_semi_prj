@@ -17,23 +17,47 @@
 		#active#, #student.no#, #course.no#)
 </insert>
 
-<select id="getAllAfterBoard" resultClass="afterboard">
-	select
-		A.postscription_no 			as no,
-		A.postscription_title			as title,
-		A.postscription_content		as content,
-		A.postscription_regdate		as	regDate,
-		A.postscription_grade 		as grade,
-		A.postscription_active		as active,
-		A.student_no					as	"student.no",
-		A.course_no					as	"course.no",
-		B.student_name				as	"student.name"
-	from
-		postscription A, student B
-	where 
-		A.student_no = B.student_no 
-	order by 
-		A.student_no desc
+<select id="getTotalRows" resultClass="int">
+	select count(*)
+	from postscription
+</select>
+
+<select id="getAllAfterBoard" parameterClass="pro.criteria.vo.Criteria" resultClass="afterboard">
+select "no"        as  no,
+		"title"           as title,
+		"content"          as content,
+		"regDate" as regdate,
+		 "grade" as grade,
+		"active"  as active,
+		"student.no"  as "student.no",
+		"course.no"    as "course.no",
+		"student.name" as "student.name"
+	from(select row_number() over (order by postscription_no asc) m,	A.postscription_no 			as "no",
+																		A.postscription_title			as "title",
+																		A.postscription_content		as "content",
+																		A.postscription_regdate		as	"regDate",
+																		A.postscription_grade 		as "grade",
+																		A.postscription_active		as "active",
+																		A.student_no					as	"student.no",
+																		A.course_no					as	"course.no",
+																		B.student_name				as	"student.name"
+																	from
+																		postscription A, student B
+																	where 
+																		A.student_no = B.student_no)
+	<dynamic>
+		<isNotNull property="opt">
+			<isNotNull property="keyword">
+				<isEqual property="opt" compareValue="title">
+					where "title" like '%' || #keyword# || '%'
+				</isEqual>
+				<isEqual property="opt" compareValue="writer">
+					where "student.name" like '%' || #keyword# || '%'
+				</isEqual>
+			</isNotNull>
+		</isNotNull>
+	</dynamic>																		
+	where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 
 <delete id="deleteAfterBoardByNo" parameterClass="int">

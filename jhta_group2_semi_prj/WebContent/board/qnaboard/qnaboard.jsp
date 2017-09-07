@@ -1,3 +1,4 @@
+<%@page import="com.sun.xml.internal.messaging.saaj.packaging.mime.util.BEncoderStream"%>
 <%@page import="pro.utils.StringUtils"%>
 <%@page import="pro.criteria.vo.Criteria"%>
 <%@page import="pro.utils.DateUtils"%>
@@ -27,11 +28,14 @@
 	    </div>
 	  	    <hr>
 	  	    <% 
-	  	    	final int rowsPerPage = 10;
+	  	  		String opt = request.getParameter("opt");
+  	    		String keyword = request.getParameter("keyword");
+	  	    
+	  	    	final int rowsPerPage = 8;
 	  	    	final int naviPerPage = 5;
 	  	    	
 	  	    	QnaBoardDao qdao = new QnaBoardDao();
-	  	    	int p = StringUtils.changeIntToString(request.getParameter("no"), 1);
+	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
 	  	    	
 	  	    	int totalRows = qdao.getTotalRows();
 	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
@@ -50,8 +54,26 @@
 	  	    	Criteria criteria = new Criteria();
 	  	    	criteria.setBeginIndex(beginIndex);
 	  	    	criteria.setEndIndex(endIndex);
+	  	    	criteria.setOpt(opt);
+	  	    	criteria.setKeyword(keyword);
 	  	    	
 	  	    %>
+	  	    <div class="text-right">
+	  	    	<form action="" class="form-inline" method="get">
+	  	    		<div class="form-group align-right">
+	  	    			<label class="sr-only">옵션</label>
+	  	    			<select class="form-control col-sm-offcet-4 col-sm-3 control-label" style="width: 100px;" name="opt">
+							<option value="title"<%= ("title".equals(opt) ? "selected":"") %>>제목</option>
+							<option value="writer"<%= ("writer".equals(opt) ? "selected":"") %>>작성자</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="sr-only">검색어</label>
+						<input type="text" class="form-control" name="keyword" value="<%=StringUtils.nullToBlank(keyword)%>"/>
+					</div>
+					<button type="submit" class="btn btn-default">검색</button>
+	  	    	</form>
+	  	    </div>
 			<div class="panel panel-default">
 				<table class="table table-hover">
 					<thead>
@@ -72,11 +94,11 @@
 					    %>
 					    <tr>
 					       <th><%=qna.getNo() %></th>
-							<th><a href="qna_detail.jsp?no=<%=qna.getNo() %>"><%=qna.getTitle() %></a></th>
+							<th><a href="qna_detail.jsp?p=<%=qna.getNo() %>"><%=qna.getTitle() %></a></th>
 							<th><%=qna.getStudent().getName() %></th>
 							<th><%=DateUtils.yyyymmdd(qna.getQuesDate()) %></th>
 							<th><%=qna.getCourse().getName() %></th>
-							<th><%=qna.getActive() %></th> 
+							<th></th> 
 					    </tr>
 					    <%} %>
 					</tbody>
@@ -84,13 +106,39 @@
 				</table>
 				<div class="panel-body text-center">
 					<ul class="pagination">
+					<%if(p>naviPerPage) { %>
+						<li><a href="qnaboard.jsp?p=<%=beginPage-naviPerPage %>">&lt;&lt;</a></li>
 					<%
+					} else {}
+						if(p>1) {
+					%>
+						<li><a href="qnaboard.jsp?p=<%=(p - 1)%>">&lt;</a></li>
+					<%
+						} else {
+					%>
+						<li class="disabled"><a href="qnaboard.jsp?p=1">&lt;</a></li>
+					<%
+						}
 						for(int index=beginPage; index<=endPage; index++) {		
 					%>
-						<li class="<%=(p==index?"active":"")%>"><a href="qnaboard.jsp?no=<%=index %>"><%=index %></a></li>
+						<li class="<%=(p==index?"active":"")%>"><a href="qnaboard.jsp?p=<%=index %>"><%=index %></a></li>
 					<% 
 						}
 					%>
+					<%
+						if(p<=totalPages) {
+					%>
+						<li><a href="qnaboard.jsp?p=<%=(p + 1) %>">&gt;</a></li>
+					<% 
+						} else {
+					%>
+						<li class="disabled"><a href="qnaboard.jsp?p=1">&gt;</a></li>
+					<%
+						}
+						if(currentNaviBlock != totalNaviBlocks) {
+					%>
+						<li><a href="qnaboard.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
+					<% } %>
 					</ul>
 					<a href="/jhta_group2_semi_prj/board/qnaboard/qna_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
 				</div>

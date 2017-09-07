@@ -32,7 +32,7 @@
 	    </div>
 	    <%
 	    	QnaBoardDao qdao = new QnaBoardDao();
-	    	int no = Integer.parseInt(request.getParameter("no"));	
+	    	int no = Integer.parseInt(request.getParameter("p"));	
 	   
 	    	Qna qna = qdao.getQnaBoardByNo(no);
 	    %>

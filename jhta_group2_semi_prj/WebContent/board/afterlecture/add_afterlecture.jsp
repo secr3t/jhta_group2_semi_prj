@@ -1,3 +1,4 @@
+<%@page import="pro.student.vo.Student"%>
 <%@page import="pro.board.dao.AfterBoardDao"%>
 <%@page import="pro.postscription.vo.Postscription"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,6 +12,10 @@
 	String contents = request.getParameter("contents");
 	String grade = request.getParameter("inlineRadioOptions");
 	int no = Integer.parseInt(request.getParameter("inlineRadioOptions"));
+	
+	
+	Student student = (Student)session.getAttribute("loginUser");
+		
 	
 	Postscription pos = new Postscription();
 	pos.setTitle(title);
