@@ -14,7 +14,7 @@
 <div class="container">
 <%@include file="../../common/nav.jsp" %>
 	<div class="col-sm-2">
-		<h2><a href="index.jsp">강의 목록</a></h2>
+		<h2><a href="index.jsp">강의목록</a></h2>
 		<hr>
 	<%@include file="left-menu.jsp" %> 
 	</div>
@@ -33,7 +33,7 @@
 	<!--과정 소개  -->
        <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >
              <div>
-                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 40%;float:left">
+                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 30%;float:left">
              </div>
              <div class="text-center">
                  <h4><strong><%=course.getName()%></strong></h4>
