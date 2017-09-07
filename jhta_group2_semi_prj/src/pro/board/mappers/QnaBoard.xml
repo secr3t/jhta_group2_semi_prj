@@ -51,7 +51,7 @@
 <update id="deletequeBoardByNo" parameterClass="int">
 	update from qna
 	set
-		qna_active = 'N'
+		 qna_active = 'N'
 	where qna_no = #value#
 </update>
 
