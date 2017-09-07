@@ -4,8 +4,20 @@
 <html lang="ko">
 <%@include file="../../common/header.jsp" %>
 <body>
-<div class="container">
 <%@include file="../../common/nav.jsp" %>
+<div class="container">
+<style>
+input#point {
+    background-color: white;
+}
+</style>
+<%
+	if(!"S".equals(loginUser.getType().toUpperCase())){
+		response.sendError(401);
+	}
+	Student student = (Student)loginUser;
+	
+%>
 	<div class="row">
 		<div class="col-sm-2">
 			<h2><a href="/jhta_group2_semi_prj/lecturer/lecturerIndex.jsp">결제</a></h2>
@@ -14,9 +26,9 @@
 			<%@include file="nav.jsp" %>
 			<div class="row">
 				<div class="panel panel-default">
-					<div class="panel-heading text-center"><strong>누구누구님의 결제페이지</strong></div>
+					<div class="panel-heading text-center"><strong><%=student.getName() %>님의 결제 페이지</strong></div>
 				 	<div class="panel-body text-center">
-				 		<span>현재 포인트 : </span><span><strong id="currentPoint">3700</strong></span>
+ 			 		<span>현재 포인트 : </span><span><strong id="currentPoint"><%=student.getPoint() %></strong></span>
 				 		<span><strong>P</strong></span>
 				 		<span>&emsp;&emsp;결제 후 포인트 : </span><span style="color:red;"><strong id="afterPoint"></strong></span>
 				 		<span style="color:red;"><strong>P</strong></span>
@@ -25,7 +37,7 @@
 			</div>
 			<hr>
 			<div class="row">
-				<div class="col-sm-offset-1 col-sm-3">
+				<div class="col-sm-offset-2 col-sm-3">
 	         		 <a href="" id="p1000">
 	              		<div class="panel panel-primary">
 				    		<div class="panel-heading text-center">1000P</div>
@@ -55,14 +67,14 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-offset-3  col-sm-8">
-			<form action="" class="form-inline">
+			<form action="/jhta_group2_semi_prj/payment/paymentController.jsp" class="form-inline" method="get">
 				<div class="form-group">
 					<label for="point">결제포인트 : </label>
-					<input id="point" type="number" min="0" max="100000" class="form-control" value="0" required>Point
+					<input name="paymentpoint" id="point" type="number" min="0" max="100000" class="form-control" value="0" required readonly>Point
 				</div>
 				<div class="text-right">
 					<input type="reset" class="btn btn-danger" value="초기화" id="resetButton">
-					<a href="" class="btn btn-success">결제</a>
+					<input type="submit" class="btn btn-success" value="결제">
 				</div>
 			</form>
 		</div>

@@ -41,7 +41,7 @@
 			(#no#, #name#, #email#, #pwd#, #phone#, #point#, #type#)
 	</insert>
 
-	<select id="updateStudent" parameterClass="Student">
+	<update id="updateStudent" parameterClass="Student">
 		update student
 		set
 			student_name	= #name#,
@@ -52,5 +52,5 @@
 			user_type		= #type#
 		where
 			student_no		= #no#
-	</select>
+	</update>
 </sqlMap>

@@ -20,6 +20,6 @@ public class StudentDao {
 	}
 	
 	public void updateStudent (Student student) throws SQLException {
-		IbatisUtils.getSqlMap().update("updateStudent", student);
+		IbatisUtils.getSqlMap().update("student.updateStudent", student);
 	}
 }

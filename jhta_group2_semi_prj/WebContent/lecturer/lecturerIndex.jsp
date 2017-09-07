@@ -15,8 +15,8 @@
 <html lang="ko">
 <%@include file="../../common/header.jsp" %>
 <body>
-<div class="container">
 <%@include file="../../common/nav.jsp" %>
+<div class="container">
 	<div class="col-sm-2">
 		<h2><a href="/jhta_group2_semi_prj/lecturer/lecturerIndex.jsp">강사소개</a></h2>
 		<hr>

@@ -25,6 +25,10 @@
   		<location>/common/error/error.jsp</location>
   </error-page>
   <error-page>
+  		<error-code>401</error-code>
+  		<location>/common/error/error.jsp</location>
+  </error-page>
+  <error-page>
   		<error-code>403</error-code>
   		<location>/common/error/error.jsp</location>
   </error-page>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="point">
+
+	<typeAlias alias="point" type="pro.point.vo.Point"/>
+	
+	<insert id="addPoint" parameterClass="point">
+		insert into point
+			(POINT_PAYMENT, POINT_HISTORY, POINT_DATE ,STUDENT_NO)
+		values
+			(#payment#, #history#, #date#, #student.no#);
+	</insert>
+</sqlMap>
