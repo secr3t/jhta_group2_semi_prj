@@ -39,7 +39,7 @@
 				if(request.getParameter("success") != null) {
 			%>
 			         <div class="alert alert-success">
-             		 	<strong>성공적으로 신청되었습니다.</strong> 
+             		 	<strong>성공적으로 신청되었습니다!</strong> 
              		 </div>
 			<%
 				}
