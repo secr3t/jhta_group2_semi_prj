@@ -1,3 +1,4 @@
+<%@page import="com.sun.xml.internal.messaging.saaj.packaging.mime.util.BEncoderStream"%>
 <%@page import="pro.utils.StringUtils"%>
 <%@page import="pro.criteria.vo.Criteria"%>
 <%@page import="pro.utils.DateUtils"%>
@@ -31,7 +32,7 @@
 	  	    	final int naviPerPage = 5;
 	  	    	
 	  	    	QnaBoardDao qdao = new QnaBoardDao();
-	  	    	int p = StringUtils.changeIntToString(request.getParameter("no"), 1);
+	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
 	  	    	
 	  	    	int totalRows = qdao.getTotalRows();
 	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
@@ -72,11 +73,11 @@
 					    %>
 					    <tr>
 					       <th><%=qna.getNo() %></th>
-							<th><a href="qna_detail.jsp?no=<%=qna.getNo() %>"><%=qna.getTitle() %></a></th>
+							<th><a href="qna_detail.jsp?p=<%=qna.getNo() %>"><%=qna.getTitle() %></a></th>
 							<th><%=qna.getStudent().getName() %></th>
 							<th><%=DateUtils.yyyymmdd(qna.getQuesDate()) %></th>
 							<th><%=qna.getCourse().getName() %></th>
-							<th><%=qna.getActive() %></th> 
+							<th></th> 
 					    </tr>
 					    <%} %>
 					</tbody>
@@ -84,13 +85,39 @@
 				</table>
 				<div class="panel-body text-center">
 					<ul class="pagination">
+					<%if(p>naviPerPage) { %>
+						<li><a href="qnaboard.jsp?p=<%=beginPage-naviPerPage %>">&lt;&lt;</a></li>
 					<%
+					} else {}
+						if(p>1) {
+					%>
+						<li><a href="qnaboard.jsp?p=<%=(p - 1)%>">&lt;</a></li>
+					<%
+						} else {
+					%>
+						<li class="disabled"><a href="qnaboard.jsp?p=1">&lt;</a></li>
+					<%
+						}
 						for(int index=beginPage; index<=endPage; index++) {		
 					%>
-						<li class="<%=(p==index?"active":"")%>"><a href="qnaboard.jsp?no=<%=index %>"><%=index %></a></li>
+						<li class="<%=(p==index?"active":"")%>"><a href="qnaboard.jsp?p=<%=index %>"><%=index %></a></li>
 					<% 
 						}
 					%>
+					<%
+						if(p<=totalPages) {
+					%>
+						<li><a href="qnaboard.jsp?p=<%=(p + 1) %>">&gt;</a></li>
+					<% 
+						} else {
+					%>
+						<li class="disabled"><a href="qnaboard.jsp?p=1">&gt;</a></li>
+					<%
+						}
+						if(currentNaviBlock != totalNaviBlocks) {
+					%>
+						<li><a href="qnaboard.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
+					<% } %>
 					</ul>
 					<a href="/jhta_group2_semi_prj/board/qnaboard/qna_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
 				</div>

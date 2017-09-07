@@ -3,6 +3,7 @@ package pro.board.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import pro.criteria.vo.Criteria;
 import pro.postscription.vo.Postscription;
 import pro.utils.IbatisUtils;
 
@@ -17,10 +18,13 @@ public class AfterBoardDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Postscription> getAllAfterBoard() throws SQLException {
-		return IbatisUtils.getSqlMap().queryForList("AfterBoard.getAllAfterBoard");
+	public List<Postscription> getAllAfterBoard(Criteria criteria) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("AfterBoard.getAllAfterBoard", criteria);
 	}
 	public void deleteAfterBoard(int no) throws SQLException {
 		IbatisUtils.getSqlMap().delete("AfterBoard.deleteAfterBoardByNo", no);
+	}
+	public int getTotalRows () throws SQLException {
+		return (Integer)IbatisUtils.getSqlMap().queryForObject("AfterBoard.getTotalRows");
 	}
 }
