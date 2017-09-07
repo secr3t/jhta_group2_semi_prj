@@ -14,7 +14,7 @@ public class App {
 		stu.setNo(1);
 		Course cour = new Course();
 		cour.setNo(1);
-		EnrollmentDao eDao = new EnrollmentDao();
+		EnrollmentDao eDao = EnrollmentDao.getInstance();
 		Enrollment enRo = new Enrollment();
 		enRo.setCourse(cour);
 		enRo.setStudent(stu);

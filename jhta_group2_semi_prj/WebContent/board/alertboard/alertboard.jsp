@@ -39,10 +39,11 @@
 	  	    	final int rowsPerPage = 8;
 	  	    	final int naviPerPage = 5;
 	  	    	
-	  	    	AlertBoardDao adao = new AlertBoardDao();
+	  	    	AlertBoardDao adao = AlertBoardDao.getInstance();
 	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
 	  	    	
-	  	    	int totalRows = adao.getTotalRows();
+	  	    	Criteria criteria = new Criteria();
+	  	    	int totalRows = adao.getTotalRows(criteria);
 	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
 	  	    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
 	  	    	int currentNaviBlock = (int) Math.ceil(p/(double)naviPerPage);
@@ -56,7 +57,6 @@
 	  	    	int beginIndex = (p-1)*rowsPerPage + 1;
 	  	    	int endIndex = p*rowsPerPage;
 	  	    	
-	  	    	Criteria criteria = new Criteria();
 	  	    	criteria.setBeginIndex(beginIndex);
 	  	    	criteria.setEndIndex(endIndex);
 	  	    	criteria.setOpt(opt);

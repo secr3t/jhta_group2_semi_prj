@@ -10,7 +10,7 @@ import pro.utils.IbatisUtils;
 public class QnaBoardDao {
 	public static QnaBoardDao self = new QnaBoardDao();
 	private QnaBoardDao () {}
-	public QnaBoardDao getInstance () {
+	public static QnaBoardDao getInstance () {
 		return self;
 	}
 	

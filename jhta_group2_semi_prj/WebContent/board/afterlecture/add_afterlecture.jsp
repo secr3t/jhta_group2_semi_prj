@@ -8,7 +8,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 		
-	AfterBoardDao adao = new AfterBoardDao();	
+	AfterBoardDao adao = AfterBoardDao.getInstance();	
 
 	String title = request.getParameter("title");
 	String contents = request.getParameter("contents");
@@ -29,7 +29,7 @@
 	pos.setContent(contents);
 	pos.setGrade(no);
 		
-	adao.AddAfterBoard(pos);
+	adao.addAfterBoard(pos);
 	
 	
 	response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp");

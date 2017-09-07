@@ -15,7 +15,7 @@ public class LecturePostScriptDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Postscription> getAllpostscriptions()throws SQLException {
-		return IbatisUtils.getSqlMap().queryForList("postscription.getAllpostscriptions");
+		return IbatisUtils.getSqlMap().queryForList("postscription.getAllPostscriptions");
 	}
 	@SuppressWarnings("unchecked")
 	public List<Postscription> getPostscriptionsByCourseNo(int courseNo) throws SQLException {

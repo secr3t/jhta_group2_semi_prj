@@ -26,7 +26,7 @@
 	  	<div class="content-header">
 	        <div class="col-lg-12">
 	        	<%
-	  	        	AlertBoardDao adao = new AlertBoardDao();
+	  	        	AlertBoardDao adao = AlertBoardDao.getInstance();
 	  	        	int no = Integer.parseInt(request.getParameter("no"));
 	  	        
 	  	        	Notice noe = adao.getAlertBoardByNo(no);	

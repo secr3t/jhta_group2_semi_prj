@@ -5,7 +5,7 @@ import pro.utils.IbatisUtils;
 public class StudentDao {
 	
 	private static StudentDao self = new StudentDao();
-	public StudentDao() {}
+	private StudentDao() {}
 	public static StudentDao getInstance() {
 		return self;
 	}	

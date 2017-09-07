@@ -9,6 +9,7 @@ import pro.video.vo.Video;
 public class VideoDao {
 
 	private static VideoDao instance = new VideoDao();
+	private VideoDao() {}
 	public static VideoDao getInstance() {
 		return instance;
 	}

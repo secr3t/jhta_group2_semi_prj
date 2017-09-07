@@ -27,7 +27,7 @@
 	  				<% 
 	  					int no = Integer.parseInt(request.getParameter("bno"));
 	  				
-	  					AfterBoardDao adao = new AfterBoardDao();
+	  					AfterBoardDao adao = AfterBoardDao.getInstance();
 	  					
 	  					Postscription pos = adao.getAfterBoardByNo(no);
 	  				 %>

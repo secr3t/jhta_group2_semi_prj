@@ -11,7 +11,7 @@ import pro.utils.IbatisUtils;
 public class TechBoardDao {
 	public static TechBoardDao self = new TechBoardDao();
 	private TechBoardDao () {}
-	public TechBoardDao getInstance () {
+	public static TechBoardDao getInstance () {
 		return self;
 	}
 	

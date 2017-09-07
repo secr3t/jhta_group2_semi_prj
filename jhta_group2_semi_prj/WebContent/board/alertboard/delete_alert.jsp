@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
  <%
  	int no = Integer.parseInt(request.getParameter("no"));
- 	AlertBoardDao adao = new AlertBoardDao();
+ 	AlertBoardDao adao = AlertBoardDao.getInstance();
  	
  	adao.deleteAlertBoardByNo(no);
  	

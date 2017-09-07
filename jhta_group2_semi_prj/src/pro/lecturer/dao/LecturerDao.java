@@ -13,7 +13,7 @@ import pro.utils.IbatisUtils;
 public class LecturerDao {
 	
 	private static LecturerDao self = new LecturerDao();
-	public LecturerDao() {}
+	private LecturerDao() {}
 	public static LecturerDao getInstance() {
 		return self;
 	}	

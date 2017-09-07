@@ -51,19 +51,47 @@ ul>li>a>.thumbnail {
 		<div class="container">
 			<div class="center-block">
 				<div id="video-wrapper">
-					<iframe class="embed-responsive-item embed-reponsive-16by9"
+					<embed class="embed-responsive-item embed-reponsive-16by9"
 						width="854" height="480" autoplay="1" start="4"
 						src="https://www.youtube.com/embed/5UxU1g0YH0M" frameborder="0"
-						allowfullscreen ></iframe>
+						allowfullscreen />
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
-	var embedElement = getFirstEBT('iframe');
+		var video = $('.html5-video-container > video');
+		video.onplay = 		timer(ajaxUpdate(), 1000);
+		function ajaxUpdate() {
+		xhr = new XMLHttpRequest();
+		var totalMin = totalTime.split(':')[0];
+		var restSecs = totalTime.split(':')[1];
+		var totalSecs = parseFloat(totalMin) * 60 + parseFloat(restSecs);
+		var totalTime = $('.ytp-time-duration').textContent;
+		var progress ;				//  video.currentTime/totalSecs * 100;
+		var response;
+		xhr.onreadystatechange = function() {
+		    	if (this.readyState == 4 && this.status == 200) {
+				response = this.responseText;
+				console.log(response);
+		    }
+		};
+		progress =  video.currentTime/totalSecs * 100;
+		progress = progress.toFixed(2);
+		xhr.open('POST', 'update-progress.jsp');
+		xhr.send(progress);
+	}
 		
-		getFirstEBC('center-block').style.width = getFirstEBT('iframe')
-			.getAttribute('width')
-			+ 'px';
+$(document).ready(function() {
+
+	});
+
+	var embedElement = getFirstEBT('embed');
+		
+		getFirstEBC('center-block').style.width = getFirstEBT('embed').getAttribute('width')+ 'px';
+
+
+		
+		
 </script>

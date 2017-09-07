@@ -5,7 +5,7 @@
  <%
  	int no = Integer.parseInt(request.getParameter("bno"));
  	
- 	AfterBoardDao adao = new AfterBoardDao();
+ 	AfterBoardDao adao = AfterBoardDao.getInstance();
  	
  	adao.deleteAfterBoard(no);
  	

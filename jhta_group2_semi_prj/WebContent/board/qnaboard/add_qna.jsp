@@ -8,12 +8,12 @@
 	String title = request.getParameter("title");
 	String contents = request.getParameter("contents");
 	
-	QnaBoardDao qdao = new QnaBoardDao();
+	QnaBoardDao qdao = QnaBoardDao.getInstance();
 	Qna qna = new Qna();
 	qna.setTitle(title);
 	qna.setQuesContent(contents);
 	
-	qdao.AddQnaBoard(qna);
+	qdao.addQnaBoard(qna);
 	
 	response.sendRedirect("/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp");
 	

@@ -9,12 +9,12 @@
 	String type = request.getParameter("type");
 	String contents = request.getParameter("contents");
 	
-	AlertBoardDao adao = new AlertBoardDao();
+	AlertBoardDao adao = AlertBoardDao.getInstance();
 	Notice notice = new Notice();
 	notice.setTitle(title);
 	notice.setContent(contents);
 	
-	adao.AddAlertBoard(notice);
+	adao.addAlertBoard(notice);
 	
 	response.sendRedirect("/jhta_group2_semi_prj/board/alertboard/alertboard.jsp");
 	

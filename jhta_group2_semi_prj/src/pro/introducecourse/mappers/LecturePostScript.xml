@@ -8,7 +8,7 @@
 
 	<typeAlias alias="post" type="pro.postscription.vo.Postscription"/>
 
-	<select id="getAllpostscriptions" resultClass="post">
+	<select id="getAllPostscriptions" resultClass="post">
 		select 
 			postscription_no			as "no",
 			postscription_title			as "title",

@@ -2,7 +2,7 @@
 <%@page import="pro.utils.StringUtils"%>
 <%@page import="pro.tech.vo.Tech"%>
 <%@page import="java.util.List"%>
-<%@page import="pro.board.dao.TecBoardDao"%>
+<%@page import="pro.board.dao.TechBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,8 +44,9 @@
 	  	    	
 	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
 	  	    	
-					TecBoardDao tdao = new TecBoardDao(); 
-	  	    	int totalRows = tdao.getTotalRows();
+	  	    	Criteria criteria = new Criteria();
+	  	    	TechBoardDao tdao = TechBoardDao.getInstance(); 
+	  	    	int totalRows = tdao.getTotalRows(criteria);
 	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
 	  	    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
 	  	    	int currentNaviBlock = (int) Math.ceil(p/(double)naviPerPage);
@@ -59,7 +60,6 @@
 	  	    	int beginIndex = (p-1)*rowsPerPage + 1;
 	  	    	int endIndex = p*rowsPerPage;
 	  	    	
-	  	    	Criteria criteria = new Criteria();
 	  	    	criteria.setBeginIndex(beginIndex);
 	  	    	criteria.setEndIndex(endIndex);
 	  	    	criteria.setOpt(opt);
@@ -84,7 +84,7 @@
 	  	    </div>
 			<div class="panel-group col-md-9">
 				<%
-					List<Tech> techs = tdao.getAllTecBoard(criteria);
+					List<Tech> techs = tdao.getAllTechBoard(criteria);
 					for(Tech tech : techs) {
 						String style = tech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
 

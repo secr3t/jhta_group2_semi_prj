@@ -5,7 +5,7 @@
  <%
  	int no = Integer.parseInt(request.getParameter("p"));
  	
- 	QnaBoardDao qdao = new QnaBoardDao();
+ 	QnaBoardDao qdao = QnaBoardDao.getInstance();
  	
  	qdao.deleteQnaBoard(no);
  	

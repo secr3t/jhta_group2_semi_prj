@@ -31,7 +31,7 @@
 	  	<hr>
 	    </div>
 	    <%
-	    	QnaBoardDao qdao = new QnaBoardDao();
+	    	QnaBoardDao qdao =  QnaBoardDao.getInstance();
 	    	int no = Integer.parseInt(request.getParameter("p"));	
 	   
 	    	Qna qna = qdao.getQnaBoardByNo(no);

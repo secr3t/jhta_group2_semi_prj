@@ -11,7 +11,7 @@ import pro.utils.IbatisUtils;
 public class AlertBoardDao {
 	public static AlertBoardDao self = new AlertBoardDao();
 	private AlertBoardDao () {}
-	public AlertBoardDao getIntance () {
+	public static AlertBoardDao getInstance () {
 		return self;
 	}
 	
