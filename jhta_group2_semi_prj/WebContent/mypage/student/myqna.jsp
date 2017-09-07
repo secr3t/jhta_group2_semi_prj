@@ -41,7 +41,7 @@
 		</div>  
         <div class="col-sm-9">
         
-             <form method="get" action="#" class="form-inline text-right">
+             <form method="get" action="myqna.jsp" class="form-inline text-right">
                  <div class="form-group">
                      <label class="sr-only">검색분류</label>
                      <select name="searchopt" class="form-control">
@@ -77,7 +77,7 @@
                      	 <%
 	                  		MypageStudentDao stuDao = MypageStudentDao.getInstance();
                      	 
-                     	 	int rowsPerPage = 1;
+                     	 	int rowsPerPage = 5;
                      	 	int nowPage = StringUtils.changeIntToString(request.getParameter("p"), 1);                     	 	
                      	 	
                      	 	int totalRows = stuDao.getTotalQnaRows(student.getNo());
@@ -85,7 +85,7 @@
                      	 	int beginIndex = (nowPage - 1) * rowsPerPage + 1;
                      	 	int endIndex = nowPage * rowsPerPage;
                      	 	                     	 			
-                     	 	int pagesPerBlock = 1;
+                     	 	int pagesPerBlock = 5;
                      	 	int nowBlock = (int) Math.ceil((double) nowPage / pagesPerBlock);
                      	 	
                      	 	int totalBlock = (int) Math.ceil((double) totalPages / pagesPerBlock);

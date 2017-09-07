@@ -7,6 +7,8 @@
 <sqlMap namespace="MyPageCourse">
 
 	<typeAlias alias="Course" type="pro.course.vo.Course"/>
+	<typeAlias alias="Enrollment" type="pro.enrollment.vo.Enrollment"/>
+	<typeAlias alias="Criteria" type="pro.criteria.vo.Criteria"/>
 
 	<select id="getTotalFinishedCourseByMap" parameterClass="java.util.Map" resultClass="int">
 		select count(*)
@@ -35,6 +37,28 @@
 			group by course_no) A, course B
 		where B.course_no = A.course_no (+)
 		and B.course_no = #value#		
+	</select>
+	
+	<select id="getStudentsByCourseNo" parameterClass="Criteria" resultClass="Enrollment">
+		select 
+			B.student_no				"student.no"
+			,B.student_name				"student.name"
+			,B.student_email			"student.email"
+			,A.course_no				"course.no"
+			,C.course_name				"course.name"
+			,A.enrollment_start_date	startDate
+		from (select row_number() over(order by enrollment_start_date desc) rn, enrollment_start_date, course_no, student_no
+			from enrollment
+			where course_no = #courseNo#) A, student B, course C
+		where A.student_no = B.student_no
+		and A.course_no = C.course_no
+		<isNotNull property="keyword">
+			and B.student_name like '%' || #keyword# || '%'
+		</isNotNull>		
+		<![CDATA[
+			and rn >= #beginIndex#
+			and rn <= #endIndex#
+		]]>
 	</select>
 	
 	<select id="getCourseByCourseNo" parameterClass="int" resultClass="Course">

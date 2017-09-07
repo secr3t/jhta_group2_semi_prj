@@ -1,9 +1,12 @@
 package pro.mypage.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import pro.course.vo.Course;
+import pro.criteria.vo.Criteria;
+import pro.enrollment.vo.Enrollment;
 import pro.utils.IbatisUtils;
 
 public class MypageCourseDao {
@@ -24,6 +27,11 @@ public class MypageCourseDao {
 	
 	public Integer getTotalStudentByCourseNo(int courseNo) throws SQLException {
 		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalStudentByCourseNo", courseNo);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Enrollment> getStudentsByCourseNo(Criteria criteria) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("MyPageCourse.getStudentsByCourseNo", criteria);
 	}
 	
 	public Course getCourseByCourseNo (int courseNo) throws SQLException {
