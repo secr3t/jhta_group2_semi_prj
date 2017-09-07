@@ -57,7 +57,7 @@
 			lecturer_email = #value#
 	</select>
 	
-	<insert id="addLecturer" parameterClass="Lecturer">
+	<insert id="addLecturer" parameterClass="lecturer">
 		insert into student
 			(lecturer_name, lecturer_email, lecturer_pwd, lecturer_phone, lecturer_career, lecturer_picture, lecturer_permit, user_type)
 		values
