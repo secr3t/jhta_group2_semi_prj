@@ -8,9 +8,10 @@
     pageEncoding="UTF-8"%>
     
 <%
+	int pno = Integer.parseInt(request.getParameter("pno"));
 	LecturerDao lecturerDao = LecturerDao.getInstance();
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();
-	List<Course> courses =  courseDao.getAllCourses();
+	List<Course> courses = courseDao.getCourseByLecturerNo(pno);
 	VideoDao videoDao = VideoDao.getInstance();
 %>
 
