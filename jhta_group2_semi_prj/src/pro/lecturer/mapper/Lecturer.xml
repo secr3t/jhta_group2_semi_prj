@@ -54,7 +54,7 @@
 		from
 			lecturer
 		where 
-			lecturer_no = #value#
+			lecturer_email = #value#
 	</select>
 	
 	

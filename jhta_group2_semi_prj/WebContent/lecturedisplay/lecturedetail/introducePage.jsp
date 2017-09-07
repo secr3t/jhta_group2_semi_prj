@@ -2,7 +2,7 @@
 <%@page import="pro.student.dao.StudentDao"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.video.dao.VideoDao"%>
-<%@page import="pro.introducecourse.dao.LecturerDao"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
 <%@page import="pro.postscription.vo.Postscription"%>
 <%@page import="pro.introducecourse.dao.LecturePostScriptDao"%>

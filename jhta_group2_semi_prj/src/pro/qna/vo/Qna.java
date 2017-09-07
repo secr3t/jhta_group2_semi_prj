@@ -17,6 +17,7 @@ public class Qna {
 	private Course course;
 	private Student student;
 	
+	
 	public int getNo() {
 		return no;
 	}

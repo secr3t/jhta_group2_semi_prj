@@ -30,7 +30,7 @@
 	<sqlMap resource="pro/progress/mapper/Progress.xml" />
 	<sqlMap resource="pro/introducecourse/mappers/LectureCourse.xml" />
 	<sqlMap resource="pro/introducecourse/mappers/LecturePostScript.xml" />
-	<sqlMap resource="pro/lecturer/mappers/Lecturer.xml" />
+	<sqlMap resource="pro/lecturer/mapper/Lecturer.xml" />
 	<sqlMap resource="pro/student/mapper/Student.xml" />
 	<sqlMap resource="pro/dept/mappers/Dept.xml" />
 	
