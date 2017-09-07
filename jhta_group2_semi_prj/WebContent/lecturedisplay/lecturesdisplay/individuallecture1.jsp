@@ -1,3 +1,4 @@
+<%@page import="pro.video.dao.VideoDao"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
 <%@page import="pro.course.vo.Course"%>
 <%@page import="java.util.List"%>
@@ -6,11 +7,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%   
-	int tno = Integer.parseInt(request.getParameter("tno"));
+<%
 	LecturerDao lecturerDao = LecturerDao.getInstance();
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();
-	List<Course> courses = courseDao.getCourseByLecturerNo(tno);
+	List<Course> courses =  courseDao.getAllCourses();
+	VideoDao videoDao = VideoDao.getInstance();
 %>
 
 	<%for(Course course : courses){
@@ -30,13 +31,13 @@
              </div>
              <div class="text-right">
                   <p>강사 <strong><%=lecturer.getName()%></strong></p>
+                  <p>강의수 <strong><%=videoDao.getVideoQtrByCourseNo(course.getNo()) %>강</strong></p>
                  <p>포인트 <strong><%=course.getPoint()%>p</strong></p>
              </div>
             		
-            <div class="btn-group btn-group-justified" role="group" style="padding-top: 30px;">
+            <div class="btn-group btn-group-justified" role="group" style="padding-bottom: 10px;">
                     <a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getNo()%>" class="btn btn-primary">소개</a>
                     <a href="" class="btn btn-success">수강신청</a>
             </div>
         </div>
         <%} %>
- 

@@ -34,7 +34,7 @@
    </div>
    <div class="row well">
         <div class="col-sm-3">
-            <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 70%;">
+            <img src=<%=lecturer.getPicture() %> style="width: 70%;">
             <p><strong>맛보기 동영상</strong></p>
         </div>
         <div class="col-sm-6">
@@ -95,7 +95,7 @@
                 </div>    
                 <div class="row">
                     <div class="col-sm-3" style="padding-top:30px;">
-                        <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 80%;">
+                        <img src=<%=lecturer.getPicture() %> style="width: 80%;">
                     </div>
                     <div class="col-sm-9">
                         <div class="text-right">
