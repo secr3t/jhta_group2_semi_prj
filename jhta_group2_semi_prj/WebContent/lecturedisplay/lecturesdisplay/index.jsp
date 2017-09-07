@@ -14,7 +14,7 @@
 <div class="container">
 <%@include file="../../common/nav.jsp" %>
 	<div class="col-sm-2">
-		<h2><a href="index.jsp">강의 목록</a></h2>
+		<h2><a href="index.jsp">강의목록</a></h2>
 		<hr>
 	<%@include file="left-menu.jsp" %> 
 	</div>
@@ -28,12 +28,12 @@
 
 	<%for(Course course : courses){
 		//강사 객체
-		Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
+		Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
 	%>
 	<!--과정 소개  -->
        <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >
              <div>
-                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 40%;float:left">
+                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 30%;float:left">
              </div>
              <div class="text-center">
                  <h4><strong><%=course.getName()%></strong></h4>
@@ -62,7 +62,7 @@
        var clicked =event.target;
         if(clicked.id === "teacher"){
             var htmlContent = "";
-            <%	List<Lecturer> lecturers = lecturerDao.getAlllecturers();
+            <%	List<Lecturer> lecturers = lecturerDao.getAllLecturers();
             for(Lecturer lecturer : lecturers){
             %>
             htmlContent += "<li id='<%=lecturer.getNo()%>' style='cursor:pointer'><%=lecturer.getName()%></li>";
