@@ -9,8 +9,13 @@ import pro.postscription.vo.Postscription;
 import pro.utils.IbatisUtils;
 
 public class AlertBoardDao {
-
-	public void AddAlertBoard (Notice notice) throws SQLException{
+	public static AlertBoardDao self = new AlertBoardDao();
+	private AlertBoardDao () {}
+	public AlertBoardDao getIntance () {
+		return self;
+	}
+	
+	public void addAlertBoard (Notice notice) throws SQLException{
 		IbatisUtils.getSqlMap().insert("AlertBoard.addAlertBoard", notice);
 	}
 	
@@ -24,7 +29,7 @@ public class AlertBoardDao {
 	public void deleteAlertBoardByNo (int no) throws SQLException {
 		IbatisUtils.getSqlMap().delete("AlertBoard.deleteAlertBoardByNo", no);
 	}
-	public int getTotalRows () throws SQLException {
-		return (Integer)IbatisUtils.getSqlMap().queryForObject("AlertBoard.getTotalRows");
+	public int getTotalRows (Criteria criteria) throws SQLException {
+		return (Integer)IbatisUtils.getSqlMap().queryForObject("AlertBoard.getTotalRows", criteria);
 	}
 }

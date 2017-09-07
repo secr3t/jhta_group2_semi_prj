@@ -41,10 +41,12 @@
 	where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 
-<delete id="deleteAlertBoardByNo" parameterClass="int">
-	delete from notice
+<update id="deleteAlertBoardByNo" parameterClass="int">
+	update notice
+	set
+		notice_active = 'N'
 	where notice_no = #value#
-</delete>
+</update>
 
 <select id="getAlertBoardByNo" parameterClass="int" resultClass="alertboard">
 select

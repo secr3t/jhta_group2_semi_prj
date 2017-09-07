@@ -17,10 +17,21 @@
 		#active#, #student.no#, #course.no#)
 </insert>
 
-<select id="getTotalRows" resultClass="int">
+<select id="getTotalRows" parameterClass="pro.criteria.vo.Criteria" resultClass="int">
 	select count(*)
 	from postscription
+	<dynamic>
+		<isNotEmpty property="keyword" prepend="where">
+			<isEqual property="opt" compareValue="title">
+				postscription_title like '%' || #keyword# || '%'
+			</isEqual>
+			<isEqual property="opt" compareValue="writer">
+				student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
+			</isEqual>
+		</isNotEmpty>
+	</dynamic>
 </select>
+
 
 <select id="getAllAfterBoard" parameterClass="pro.criteria.vo.Criteria" resultClass="afterboard">
 select "no"        as  no,
@@ -44,7 +55,7 @@ select "no"        as  no,
 																	from
 																		postscription A, student B
 																	where 
-																		A.student_no = B.student_no)
+																		A.student_no = B.student_no
 	<dynamic>
 		<isNotNull property="opt">
 			<isNotNull property="keyword">
@@ -57,13 +68,17 @@ select "no"        as  no,
 			</isNotNull>
 		</isNotNull>
 	</dynamic>																		
+																		)
 	where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 
-<delete id="deleteAfterBoardByNo" parameterClass="int">
-	delete from postscription
-	where postscription_no = #value#
-</delete>
+<update id="deleteAfterBoardByNo" parameterClass="int">
+	update postscription
+	set
+		postscription_active = 'N'
+	where 
+		postscription_no = #value#
+</update>
 
 <select id="getAfterBoardByNo" parameterClass="int" resultClass="afterboard">
 	select

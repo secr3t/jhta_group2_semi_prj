@@ -8,8 +8,13 @@ import pro.postscription.vo.Postscription;
 import pro.utils.IbatisUtils;
 
 public class AfterBoardDao {
+	public static AfterBoardDao self = new AfterBoardDao();
+	private AfterBoardDao() {}
+	public static AfterBoardDao getInstance () {
+		return self;
+	}
 	
-	public void AddAfterBoard (Postscription postscription) throws SQLException{
+	public void addAfterBoard (Postscription postscription) throws SQLException{
 		IbatisUtils.getSqlMap().insert("AfterBoard.addAfterBoard", postscription);
 	}
 	
@@ -24,7 +29,7 @@ public class AfterBoardDao {
 	public void deleteAfterBoard(int no) throws SQLException {
 		IbatisUtils.getSqlMap().delete("AfterBoard.deleteAfterBoardByNo", no);
 	}
-	public int getTotalRows () throws SQLException {
-		return (Integer)IbatisUtils.getSqlMap().queryForObject("AfterBoard.getTotalRows");
+	public int getTotalRows (Criteria criteria) throws SQLException {
+		return (Integer)IbatisUtils.getSqlMap().queryForObject("AfterBoard.getTotalRows", criteria);
 	}
 }

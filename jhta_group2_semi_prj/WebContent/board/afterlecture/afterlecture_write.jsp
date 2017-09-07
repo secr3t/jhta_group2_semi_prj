@@ -24,15 +24,23 @@
 	    </div>
 	  	    <hr>
 				<div class="container">
-					<div class="row col-md-9">
+					<div class="row col-md-10">
 						<form class="form-horizontal" method="post" action="add_afterlecture.jsp">
 							<div class="form-group">
 								<label class="col-sm-1 control-label">제목</label>
-								<div class="col-sm-6">
+								<div class="col-sm-4">
 									<input type="text" class="form-control" name="title" />
 								</div>
+								<div class="col-sm-1 control-label">
+										<strong>과목</strong>
+									</div>
+									<select class="form-control col-sm-1 control-label" style="width: 100px;" name="type" id="subject">
+										<option>국어</option>
+										<option>영어</option>
+										<option>수학</option>
+									</select>
 								<label class="col-sm-1 control-label"><strong>평점</strong></label>
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<label class="radio-inline">
 	 								 <input type="radio" name="inlineRadioOptions" value="1"> 1
 									</label>

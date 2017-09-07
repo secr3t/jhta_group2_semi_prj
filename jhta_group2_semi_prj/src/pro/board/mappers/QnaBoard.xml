@@ -48,10 +48,12 @@
 		where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 
-<delete id="deletequeBoardByNo" parameterClass="int">
-	delete from qna
+<update id="deletequeBoardByNo" parameterClass="int">
+	update from qna
+	set
+		qna_active = 'N'
 	where qna_no = #value#
-</delete>
+</update>
 
 <select id="getQnaBoardByNo" parameterClass="int" resultClass="questionboard">
 select
