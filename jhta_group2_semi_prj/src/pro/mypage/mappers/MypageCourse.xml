@@ -27,6 +27,16 @@
 		and A.course_no = #value#
 	</select>
 	
+	<select id="getTotalStudentByCourseNo" parameterClass="int" resultClass="int">
+		select
+			nvl(A.cn, 0)
+		from (select course_no, count(*) cn
+			from enrollment
+			group by course_no) A, course B
+		where B.course_no = A.course_no (+)
+		and B.course_no = #value#		
+	</select>
+	
 	<select id="getCourseByCourseNo" parameterClass="int" resultClass="Course">
 		select
 			A.course_no			no

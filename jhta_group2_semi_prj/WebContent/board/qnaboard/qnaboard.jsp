@@ -1,3 +1,5 @@
+<%@page import="pro.utils.StringUtils"%>
+<%@page import="pro.criteria.vo.Criteria"%>
 <%@page import="pro.utils.DateUtils"%>
 <%@page import="pro.qna.vo.Qna"%>
 <%@page import="java.util.List"%>
@@ -24,6 +26,32 @@
 	        </div>
 	    </div>
 	  	    <hr>
+	  	    <% 
+	  	    	final int rowsPerPage = 10;
+	  	    	final int naviPerPage = 5;
+	  	    	
+	  	    	QnaBoardDao qdao = new QnaBoardDao();
+	  	    	int p = StringUtils.changeIntToString(request.getParameter("no"), 1);
+	  	    	
+	  	    	int totalRows = qdao.getTotalRows();
+	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
+	  	    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
+	  	    	int currentNaviBlock = (int) Math.ceil(p/(double)naviPerPage);
+	  	    	int beginPage = (currentNaviBlock - 1)*naviPerPage +1;
+	  	    	int endPage = currentNaviBlock*naviPerPage;
+	  	    	
+	  	    	if(currentNaviBlock == totalNaviBlocks) {
+	  	    		endPage = totalPages;
+	  	    	}
+	  	    	
+	  	    	int beginIndex = (p-1)*rowsPerPage + 1;
+	  	    	int endIndex = p*rowsPerPage;
+	  	    	
+	  	    	Criteria criteria = new Criteria();
+	  	    	criteria.setBeginIndex(beginIndex);
+	  	    	criteria.setEndIndex(endIndex);
+	  	    	
+	  	    %>
 			<div class="panel panel-default">
 				<table class="table table-hover">
 					<thead>
@@ -37,9 +65,9 @@
 						</tr>
 					</thead>
 					<tbody>
-					    <%
-					    	QnaBoardDao qdao = new QnaBoardDao();
-					    	List<Qna> qnas = qdao.getAllQnaBoard();
+					    <%					    	
+					    	
+					    	List<Qna> qnas = qdao.getAllQnaBoard(criteria);
 					    	for(Qna qna : qnas) {
 					    %>
 					    <tr>
@@ -56,11 +84,13 @@
 				</table>
 				<div class="panel-body text-center">
 					<ul class="pagination">
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
+					<%
+						for(int index=beginPage; index<=endPage; index++) {		
+					%>
+						<li class="<%=(p==index?"active":"")%>"><a href="qnaboard.jsp?no=<%=index %>"><%=index %></a></li>
+					<% 
+						}
+					%>
 					</ul>
 					<a href="/jhta_group2_semi_prj/board/qnaboard/qna_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
 				</div>

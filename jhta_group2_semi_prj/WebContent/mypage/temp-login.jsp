@@ -7,7 +7,7 @@
 <%
 	Student student = new Student();
 	student.setType("s");
-	student.setEmail("ga@gmail.com");
+	student.setEmail("gildong@gmail.com");
 	student.setPwd("zxcv1234");
 	MypageStudentDao stuDao = MypageStudentDao.getInstance();
 	

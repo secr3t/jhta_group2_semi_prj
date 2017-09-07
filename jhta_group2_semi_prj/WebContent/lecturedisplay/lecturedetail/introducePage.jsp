@@ -24,9 +24,9 @@
 	LecturerDao lecturerDao = LecturerDao.getInstance();
 	VideoDao videoDao = VideoDao.getInstance();
 
+	List<Postscription> postscriptions = lecturePostScriptDao.getPostscriptionsByCourseNo(courseNo);
 	Course course = courseDao.getCourseByNo(courseNo);
 	Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
-	List<Postscription> postscriptions = lecturePostScriptDao.getPostscriptionsByCourseNo(courseNo);
 	StudentDao studentDao = StudentDao.getInstance();
 %>
    <div class="row">
@@ -117,8 +117,8 @@
 	 		<tr>
 	 			<th>글번호</th> <th>제목</th> <th>작성자</th> <th>작성일</th> <th>평점</th> 
 	 		</tr>
- 			<%for(Postscription postscription : postscriptions){ 
- 					
+ 			<%
+ 				for(Postscription postscription : postscriptions){ 
  			%>
             	<tr>
             		<td><%=postscription.getNo() %></td>
@@ -127,7 +127,7 @@
             		<td><%=DateUtils.yyyymmddhhmmss(postscription.getRegdate())  %></td>
             		<td><%=postscription.getGrade() %>
             	</tr>
-            <% } %>
+            <%}%>
         </table>
        </div>
     </div>

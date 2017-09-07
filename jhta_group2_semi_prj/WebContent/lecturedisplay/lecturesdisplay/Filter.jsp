@@ -21,37 +21,21 @@
 <div class="col-sm-10">
 <%@include file="nav.jsp" %>
 <%
-	LecturerDao lecturerDao = LecturerDao.getInstance();
-	LectureCourseDao courseDao = LectureCourseDao.getInstance();
-	List<Course> courses =  courseDao.getAllCourses();
+	if(request.getParameter("tno")!=null){
+		%>
+		<%@include file="individuallecture1.jsp" %>
+		<%
+	}else if (request.getParameter("sno")!=null){
+		%>
+		<%@include file="individuallecture2.jsp" %>
+		<%
+	}else {
+		%>
+		<%@include file="individuallecture3.jsp" %>
+		<%
+	}
+	;	
 %>
-
-	<%for(Course course : courses){
-		//강사 객체
-		Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
-	%>
-	<!--과정 소개  -->
-       <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >
-             <div>
-                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 40%;float:left">
-             </div>
-             <div class="text-center">
-                 <h4><strong><%=course.getName()%></strong></h4>
-             </div>
-             <div class="text-center">
-                  <p><small><%=course.getSummary()%></small></p>
-             </div>
-             <div class="text-right">
-                  <p>강사 <strong><%=lecturer.getName()%></strong></p>
-                 <p>포인트 <strong><%=course.getPoint()%>p</strong></p>
-             </div>
-            		
-            <div class="btn-group btn-group-justified" role="group" style="padding-top: 30px;">
-                    <a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getNo()%>" class="btn btn-primary">소개</a>
-                    <a href="" class="btn btn-success">수강신청</a>
-            </div>
-        </div>
-        <%} %>
 </div>
 <%@include file="pagination.jsp" %>
 </div>
@@ -62,7 +46,9 @@
        var clicked =event.target;
         if(clicked.id === "teacher"){
             var htmlContent = "";
-            <%	List<Lecturer> lecturers = lecturerDao.getAlllecturers();
+            <%	
+            LecturerDao lecturerDao = LecturerDao.getInstance();
+            List<Lecturer> lecturers = lecturerDao.getAlllecturers();
             for(Lecturer lecturer : lecturers){
             %>
             htmlContent += "<li id='<%=lecturer.getNo()%>' style='cursor:pointer'><%=lecturer.getName()%></li>";
@@ -99,7 +85,7 @@
    document.getElementById("myDropdown-1").addEventListener("click", function(event){
 	  var target = event.target;
 	  if("인기" === target.innerText){
-		  location.href="/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/Filter.jsp?pno="+target.id;
+		  
 	  }
    });
    }());

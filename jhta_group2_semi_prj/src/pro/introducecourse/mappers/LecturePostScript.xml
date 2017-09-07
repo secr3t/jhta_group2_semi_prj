@@ -39,7 +39,7 @@
 	</select>
 	
 	<select id="getPostscriptionAvgGradeByCourseNo" parameterClass="int" resultClass="double">
-		select avg(postscription_grade) as "avg"
+		select nvl(avg(postscription_grade),0)
 		from (select postscription_grade
 				from POSTSCRIPTION
 				where COURSE_NO = #value#)

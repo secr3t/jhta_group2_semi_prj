@@ -24,7 +24,7 @@
   </style>
 </head>
 <body>
-	<%@ include file="/mypage/student/logincheck.jsp" %>
+	<%@ include file="/mypage/lecturer/logincheck.jsp" %>
 	<%@ include file="/common/nav.jsp" %>
     <div class="container">
  		<div class="col-sm-offset-2 page-header">
