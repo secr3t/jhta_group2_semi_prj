@@ -66,6 +66,30 @@
 		]]>
 	</select>
 	
+	<select id="getTotalQnaRows" parameterClass="int" resultClass="int">
+		select count(*)
+		from (select
+					A.qna_no 				no
+					,A.qna_title			title
+					,A.course_no			"course.no"
+					,B.course_name			"course.name"
+					,A.qna_ques_content 	quesContent
+					,A.qna_ques_date		quesDate
+					,A.qna_ans_content		ansContent
+					,A.qna_ans_regdate		ansRegdate
+					,C.student_no			"student.no"
+					,C.student_name			"student.name"
+			from(select row_number() over(order by qna_no desc) rn, qna_no, qna_title, course_no, 
+						qna_ques_content, qna_ques_date, qna_ans_content, qna_ans_regdate, student_no, qna_active
+				from qna
+				where qna_active = 'Y'
+				and course_no in (select course_no
+								from course
+								where lecturer_no = #value#)) A, course B, student C
+				where A.course_no = B.course_no
+				and A.student_no = C.student_no)
+	</select>
+	
 	<select id="getQnaByLecturerNo" parameterClass="Criteria" resultClass="Qna">
 		select
 			A.qna_no 				no

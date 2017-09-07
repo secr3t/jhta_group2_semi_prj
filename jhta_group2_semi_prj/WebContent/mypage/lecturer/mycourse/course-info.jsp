@@ -39,7 +39,6 @@
         </div>
         <div class="col-sm-9">
             
-            
             <div class="row well">
                 <div class="col-sm-8">
                     <label>강의 소개</label>
@@ -67,7 +66,7 @@
                         </tr>                        
                         <tr>
                             <th>수강 중인 학생 수</th><td><%=courDao.getTotalStudentByCourseNo(course.getNo()) %>명</td>
-                            <td><a href="manager-student.jsp" class="btn btn-info pull-right">학생 관리</a></td>
+                            <td><a href="manager-student.jsp?cno=<%=course.getNo() %>" class="btn btn-info pull-right">학생 관리</a></td>
                         </tr>
                     </table>
                 </div>

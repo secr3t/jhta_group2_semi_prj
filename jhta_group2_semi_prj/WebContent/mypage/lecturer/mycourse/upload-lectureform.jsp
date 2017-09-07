@@ -24,19 +24,19 @@
   </style>
 </head>
 <body>
-	<%@ include file="../../common/nav.jsp" %>
+	<%@ include file="/mypage/lecturer/logincheck.jsp" %>
+	<%@ include file="/common/nav.jsp" %>
     <div class="container">
  		<div class="col-sm-offset-2 page-header">
 			<h1>새 영상 등록</h1>
 		</div>
 		    
        	<div class="col-sm-2">
-			<%@ include file="left-menu.jsp" %>
+			<%@ include file="../left-menu.jsp" %>
 		</div>
 		<div class="col-sm-9"> 
 	        <div class="row">
-                
-                <form method="post" action="#" class="form-horizontal">
+                <form method="post" action="#" enctype="multipart/form-data" class="form-horizontal">
                     <div class="form-group">
                         <label class="control-label col-sm-2">강의 제목</label>
                         <div class="col-sm-7">
@@ -68,8 +68,7 @@
                 </form>
 	        </div>
 		</div>
-	    <div class="col-sm-1" style="border: 1px solid silver; width: 40px; heigth: 1020px;">ddd</div>
     </div>
-    <%@ include file="../../common/footer.jsp" %>
+    <%@ include file="/common/footer.jsp" %>
 </body>
 </html>
