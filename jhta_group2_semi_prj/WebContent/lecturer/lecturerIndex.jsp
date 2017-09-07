@@ -8,7 +8,7 @@
 <%@page import="pro.course.vo.Course"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
 <%@page import="java.util.List"%>
-<%@page import="pro.introducecourse.dao.LecturerDao"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
 <%@include file="nav.jsp" %>
 <%
 	LecturerDao lecturerDao = LecturerDao.getInstance();
-	List<Lecturer> lecturers = lecturerDao.getAlllecturers();
+	List<Lecturer> lecturers = lecturerDao.getAllLecturers();
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();
 	DeptDao deptDao = DeptDao.getInstance();
 	for(Lecturer lecturer : lecturers){

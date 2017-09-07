@@ -28,7 +28,7 @@
 
 	<%for(Course course : courses){
 		//강사 객체
-		Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
+		Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
 	%>
 	<!--과정 소개  -->
        <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >
@@ -62,7 +62,7 @@
        var clicked =event.target;
         if(clicked.id === "teacher"){
             var htmlContent = "";
-            <%	List<Lecturer> lecturers = lecturerDao.getAlllecturers();
+            <%	List<Lecturer> lecturers = lecturerDao.getAllLecturers();
             for(Lecturer lecturer : lecturers){
             %>
             htmlContent += "<li id='<%=lecturer.getNo()%>' style='cursor:pointer'><%=lecturer.getName()%></li>";

@@ -26,7 +26,7 @@
 
 	List<Postscription> postscriptions = lecturePostScriptDao.getPostscriptionsByCourseNo(courseNo);
 	Course course = courseDao.getCourseByNo(courseNo);
-	Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
+	Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
 	StudentDao studentDao = StudentDao.getInstance();
 %>
    <div class="row">
