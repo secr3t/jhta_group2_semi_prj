@@ -1,3 +1,4 @@
+<%@page import="pro.utils.DateUtils"%>
 <%@page import="pro.qna.vo.Qna"%>
 <%@page import="pro.board.dao.QnaBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -31,7 +32,7 @@
 	    </div>
 	    <%
 	    	QnaBoardDao qdao = new QnaBoardDao();
-	    	int no = Integer.parseInt(request.getParameter("no"));	
+	    	int no = Integer.parseInt(request.getParameter("p"));	
 	   
 	    	Qna qna = qdao.getQnaBoardByNo(no);
 	    %>
@@ -46,7 +47,7 @@
 	  					<th>작성자</th>
 	  					<td><%=qna.getStudent().getName() %></td>
 	  					<th>날짜</th>
-	  					<td><%=qna.getQuesDate() %></td>
+	  					<td><%=DateUtils.yyyymmdd(qna.getQuesDate()) %></td>
 	  				</tr>
 	  				<tr>
 	  					<td colspan="6"><%=qna.getQuesContent() %></td>
@@ -65,7 +66,7 @@
   					<th>작성자</th>
   					<td><%=qna.getCourse().getLecturer().getName() %></td>
   					<th>답변날짜</th>
-  					<td><%=qna.getAnsRegdate() %></td>
+  					<td><%=DateUtils.yyyymmdd(qna.getAnsRegdate()) %></td>
   				</tr>
   				<tr>
   					<td colspan="6"><%=qna.getAnsContent() %></td>

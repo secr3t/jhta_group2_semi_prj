@@ -65,8 +65,5 @@
 		where
 			dept_no = #value#	
 	</select>
-	
-	
-	
 
 </sqlMap>

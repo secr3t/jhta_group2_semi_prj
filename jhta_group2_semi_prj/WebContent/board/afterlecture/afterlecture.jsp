@@ -1,4 +1,7 @@
-	<%@page import="pro.postscription.vo.Postscription"%>
+	<%@page import="pro.utils.StringUtils"%>
+<%@page import="pro.criteria.vo.Criteria"%>
+<%@page import="pro.utils.DateUtils"%>
+<%@page import="pro.postscription.vo.Postscription"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.board.dao.AfterBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -33,6 +36,47 @@
 	        </div>
 	    </div>
 	  	    <hr>
+	  	    <% 
+	  	    	final int rowsPerPage = 10;
+	  	    	final int naviPerPage = 5;
+	  	    	
+	  	    	AfterBoardDao adao = new AfterBoardDao();
+	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
+	  	    	
+	  	    	int totalRows = adao.getTotalRows();
+	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
+	  	    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
+	  	    	int currentNaviBlock = (int) Math.ceil(p/(double)naviPerPage);
+	  	    	int beginPage = (currentNaviBlock - 1)*naviPerPage +1;
+	  	    	int endPage = currentNaviBlock*naviPerPage;
+	  	    	
+	  	    	if(currentNaviBlock == totalNaviBlocks) {
+	  	    		endPage = totalPages;
+	  	    	}
+	  	    	
+	  	    	int beginIndex = (p-1)*rowsPerPage + 1;
+	  	    	int endIndex = p*rowsPerPage;
+	  	    	
+	  	    	Criteria criteria = new Criteria();
+	  	    	criteria.setBeginIndex(beginIndex);
+	  	    	criteria.setEndIndex(endIndex);
+	  	    	
+	  	    %>
+	  	    <div class="text-right">
+	  	    	<form action="" class="form-inline" method="get">
+	  	    		<div class="form-group align-right">
+	  	    			<select class="form-control col-sm-offcet-4 col-sm-3 control-label" style="width: 100px;" name="type">
+							<option>작성자</option>
+							<option>제목</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="sr-only">검색어</label>
+						<input type="text" class="form-control" name="keyword" value="">
+					</div>
+					<button></button>
+	  	    	</form>
+	  	    </div>
 			<div class="panel panel-default">
 				<table class="table table-hover">
 					<thead>
@@ -40,7 +84,7 @@
 						<tr>
 							<th>번호</th>
 							<th>제목</th>
-							<th>질문내용</th>
+							<th>작성자</th>
 							<th>작성일</th>
 							<th>평점</th>
 							<!--  
@@ -50,14 +94,13 @@
 					</thead>
 					<tbody>
 					<%
-						AfterBoardDao adao = new AfterBoardDao();
-						List<Postscription> boards = adao.getAllAfterBoard();
+						List<Postscription> boards = adao.getAllAfterBoard(criteria);
 						for(Postscription board : boards) { %>
 					    <tr>
 					       <th><%=board.getNo() %></th>
 					       <th><a href="afterlecture_detail.jsp?bno=<%=board.getNo() %>"><%=board.getTitle() %></a></th>
-							<th><%=board.getContent() %></th>
-							<th><%=board.getRegdate() %></th>
+							<th><%=board.getStudent().getName() %></th>
+							<th><%=DateUtils.yyyymmdd(board.getRegdate()) %></th>
 							<th><%=board.getGrade() %></th>
 					    </tr>
 					 <%} %>
@@ -66,11 +109,39 @@
 				</table>
 				<div class="panel-body text-center">
 					<ul class="pagination">
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
+						<%if(p>naviPerPage) { %>
+						<li><a href="afterlecture.jsp?p=<%=beginPage-naviPerPage %>">&lt;&lt;</a></li>
+					<%
+					} else {}
+						if(p>1) {
+					%>
+						<li><a href="afterlecture.jsp?p=<%=(p - 1)%>">&lt;</a></li>
+					<%
+						} else {
+					%>
+						<li class="disabled"><a href="afterlecture.jsp?p=1">&lt;</a></li>
+					<%
+						}
+						for(int index=beginPage; index<=endPage; index++) {		
+					%>
+						<li class="<%=(p==index?"active":"")%>"><a href="afterlecture.jsp?p=<%=index %>"><%=index %></a></li>
+					<% 
+						}
+					%>
+					<%
+						if(p<=totalPages) {
+					%>
+						<li><a href="afterlecture.jsp?p=<%=(p + 1) %>">&gt;</a></li>
+					<% 
+						} else {
+					%>
+						<li class="disabled"><a href="afterlecture.jsp?p=1">&gt;</a></li>
+					<%
+						}
+						if(currentNaviBlock != totalNaviBlocks) {
+					%>
+						<li><a href="afterlecture.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
+					<% } %>
 					</ul>
 					<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
 				</div>

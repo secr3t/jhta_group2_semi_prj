@@ -1,3 +1,5 @@
+<%@page import="pro.criteria.vo.Criteria"%>
+<%@page import="pro.utils.StringUtils"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.notice.vo.Notice"%>
 <%@page import="pro.board.dao.AlertBoardDao"%>
@@ -30,11 +32,36 @@
 	  	</span> 공지사항
 	  	</h4>
 	  	<hr>
+	  	<% 
+	  	    	final int rowsPerPage = 1;
+	  	    	final int naviPerPage = 2;
+	  	    	
+	  	    	AlertBoardDao adao = new AlertBoardDao();
+	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
+	  	    	
+	  	    	int totalRows = adao.getTotalRows();
+	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
+	  	    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
+	  	    	int currentNaviBlock = (int) Math.ceil(p/(double)naviPerPage);
+	  	    	int beginPage = (currentNaviBlock - 1)*naviPerPage +1;
+	  	    	int endPage = currentNaviBlock*naviPerPage;
+	  	    	
+	  	    	if(currentNaviBlock == totalNaviBlocks) {
+	  	    		endPage = totalPages;
+	  	    	}
+	  	    	
+	  	    	int beginIndex = (p-1)*rowsPerPage + 1;
+	  	    	int endIndex = p*rowsPerPage;
+	  	    	
+	  	    	Criteria criteria = new Criteria();
+	  	    	criteria.setBeginIndex(beginIndex);
+	  	    	criteria.setEndIndex(endIndex);
+	  	    	
+	  	    %>
 			<div class="panel-group col-md-9">
 				<%
-					AlertBoardDao adao = new AlertBoardDao();
 					
-					List<Notice> notices = adao.getAllAlertBoard();
+					List<Notice> notices = adao.getAllAlertBoard(criteria);
 					for(Notice notice : notices) {
 				%>
 			    <div class="panel">
@@ -45,6 +72,43 @@
 			        </div>
 	            </div>
 			    <%} %>
+			    	<div class="panel-body text center">
+			    		<ul class="pagination">
+			    		<%if(p>naviPerPage) { %>
+						<li><a href="alertboard.jsp?p=<%=beginPage-naviPerPage %>">&lt;&lt;</a></li>
+					<%
+					} else {}
+						if(p>1) {
+					%>
+						<li><a href="alertboard.jsp?p=<%=(p - 1)%>">&lt;</a></li>
+					<%
+						} else {
+					%>
+						<li class="disabled"><a href="alertboard.jsp?p=1">&lt;</a></li>
+					<%
+						}
+						for(int index=beginPage; index<=endPage; index++) {		
+					%>
+						<li class="<%=(p==index?"active":"")%>"><a href="alertboard.jsp?p=<%=index %>"><%=index %></a></li>
+					<% 
+						}
+					%>
+					<%
+						if(p<=totalPages) {
+					%>
+						<li><a href="alertboard.jsp?p=<%=(p + 1) %>">&gt;</a></li>
+					<% 
+						} else {
+					%>
+						<li class="disabled"><a href="qnaboard.jsp?p=1">&gt;</a></li>
+					<%
+						}
+						if(currentNaviBlock != totalNaviBlocks) {
+					%>
+						<li><a href="alertboard.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
+					<% } %>
+			    		</ul>
+			    	</div>
 			    	<div class="text-right">
 			    		<a href="/jhta_group2_semi_prj/board/alertboard/alert_write.jsp" class="btn btn-primary btn-md">글쓰기</a>
 			    	</div>

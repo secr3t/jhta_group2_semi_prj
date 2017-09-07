@@ -86,8 +86,8 @@
                                          	intMap.put("param2", forEnroll.getCourse().getNo());
                                          	int finishVideo = courDao.getTotalFinishedCourseByMap(intMap);
                                          %>
-                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: <%=(finishVideo / totalVideo) * 100 %>%;">
-                                                <span><%=(finishVideo / totalVideo) * 100 %>%</span>
+                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemin="100" style="width: <%=totalVideo == 0? "0" :(finishVideo / totalVideo) * 100 %>%;">
+                                                <span><%=totalVideo == 0? "0" :(finishVideo / totalVideo) * 100 %>%</span>
                                             </div>
                                         </div>
                                     </td>

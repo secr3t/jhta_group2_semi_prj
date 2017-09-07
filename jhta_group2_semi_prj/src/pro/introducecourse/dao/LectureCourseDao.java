@@ -23,8 +23,9 @@ public class LectureCourseDao {
 		return (Course) IbatisUtils.getSqlMap().queryForObject("course.getCourseByNo", no);
 	}
 	
-	public Course getCourseByLecturerNo(int no) throws SQLException {
-		return (Course) IbatisUtils.getSqlMap().queryForObject("course.getCourseByLecturerNo", no);
+	@SuppressWarnings("unchecked")
+	public List<Course> getCourseByLecturerNo(int no) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("course.getCourseByLecturerNo", no);
 	}
 	
 	@SuppressWarnings("unchecked")

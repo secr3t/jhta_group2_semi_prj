@@ -60,7 +60,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-1 col-sm-11 text-right">
-									<a href="/jhta_group2_semi_prj/board/afterlecture/delete_afterlecture.jsp" class="btn btn-warning btn-md">취소</a>
+									<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-warning btn-md">취소</a>
 									<button type="submit" class="btn btn-primary btn-md">완료</button>
 								</div>
 							</div>

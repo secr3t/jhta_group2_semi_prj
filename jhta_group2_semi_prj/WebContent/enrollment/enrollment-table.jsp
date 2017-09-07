@@ -1,3 +1,10 @@
+<%@page import="java.util.List"%>
+<%@page import="pro.dept.dao.DeptDao"%>
+<%@page import="pro.lecturer.vo.Lecturer"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
+<%@page import="pro.course.vo.Course"%>
+<%@page import="pro.introducecourse.dao.LectureCourseDao"%>
+<%@page import="pro.dept.vo.Dept"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,92 +24,36 @@
 					<li><a href="enrollment-eng.jsp">영어</a></li>
 					<li><a href="enrollment-math.jsp">수학</a></li>
 					<li><a href="enrollment-sci.jsp">과학</a></li>
-					
 				</ul>
 			</div>
 				 
 				<table class="table table-hover table-condensed">
 					<thead>
 						<tr>
-							<th>과정명</th>
 							<th>과목명</th>
+							<th>과정명</th>
 							<th>소개</th>
-							<th>교수이름</th>
+							<th>강사이름</th>
+							<th>Point</th>
 						</tr>
 					</thead>
 					<tbody id="dept-list">
+						<%
+						LectureCourseDao courseDao = LectureCourseDao.getInstance();
+						List<Course> courses = courseDao.getAllCourses();
+						DeptDao deptDao = DeptDao.getInstance();
+						LecturerDao lecturerDao = LecturerDao.getInstance();
+						for(Course course : courses ){
+						%>
 						<tr>
-							<td>영어선생님코스</td>
-							<td>영어</td>
-							<td><a href="">링크</a></td>
-							<td>이광수</td>
+							<td class="deptName"><%=deptDao.getDeptByNo(course.getDept().getNo()).getName() %></td>
+							<td class="courseName"><%=course.getName() %></td>
+							<td><a href="#">링크</a></td>
+							<td class="lecturerName"><%=lecturerDao.getLecturerByNo(course.getLecturer().getNo()).getName() %></td>
+							<td class="point"><%=course.getPoint()%></td>
+							<td class="course-no hide">1</td>
 						</tr>
-						<tr>
-							<td>수학선생님코스</td>
-							<td>수학</td>
-							<td><a href="">링크</a></td>
-							<td>김수학</td>
-						</tr>
-						<tr>
-							<td>국어선생님코스</td>
-							<td>국어</td>
-							<td><a href="">링크</a></td>
-							<td>한지리</td>
-						</tr>
-						<tr>
-							<td>국어선생님코스</td>
-							<td>국어</td>
-							<td><a href="">링크</a></td>
-							<td>한지리</td>
-						</tr>
-						<tr>
-							<td>국어선생님코스</td>
-							<td>국어</td>
-							<td><a href="">링크</a></td>
-							<td>한지리</td>
-						</tr>
-						<tr>
-							<td>국어선생님코스</td>
-							<td>국어</td>
-							<td><a href="">링크</a></td>
-							<td>한지리</td>
-						</tr>
-						<tr>
-							<td>국어선생님코스</td>
-							<td>국어</td>
-							<td><a href="">링크</a></td>
-							<td>한지리</td>
-						</tr>
-						<tr>
-							<td>국어선생님코스</td>
-							<td>국어</td>
-							<td><a href="">링크</a></td>
-							<td>한지리</td>
-						</tr>
-						<tr>
-							<td>국어선생님코스</td>
-							<td>국어</td>
-							<td><a href="">링크</a></td>
-							<td>한지리</td>
-						</tr>
-						<tr>
-							<td>국어선생님코스</td>
-							<td>국어</td>
-							<td><a href="">링크</a></td>
-							<td>한지리</td>
-						</tr>
-						<tr>
-							<td>국어선생님코스</td>
-							<td>국어</td>
-							<td><a href="">링크</a></td>
-							<td>한지리</td>
-						</tr>
-						<tr>
-							<td>국어선생님코스</td>
-							<td>국어</td>
-							<td><a href="">링크</a></td>
-							<td>한지리</td>
-						</tr>
+						<%} %>
 					</tbody>
 				</table>
 		</div>
@@ -122,10 +73,11 @@
 				<table class="table table-hover table-condensed">
 					<thead>
 						<tr>
-							<th>No</th>
 							<th>과목명</th>
+							<th>과정명</th>
 							<th>소개</th>
-							<th>교수이름</th>
+							<th>강사이름</th>
+							<th>Point</th>
 						</tr>
 					</thead>
 					<tbody id="selected-list">
@@ -141,9 +93,15 @@
 			
 		</ul>
 	</div>
+	<form action="add-enrollment.jsp">
+		<div class="text-right">
+			<button id="btn" type="submit" class="btn btn-primary">제출</button>		
+		</div>
+	</form>
 	<%@include file="../common/footer.jsp" %>
 	</div>
 </body>
+
 <script type="text/javascript">
 (function(){	
 	var trNodeList = document.querySelectorAll("#dept-list>tr");
@@ -161,9 +119,16 @@
 				}
 				
 		})
-	};
-	
-	
+	};		
 }())
+
+	document.getElementById("btn").addEventListener('click',function(event){
+	var selectedNodeList = document.querySelectorAll('#selected-list .course-no.hide');
+	var selectedValues = [];
+	Array.from(selectedNodeList).forEach(function(item, index){
+		selectedValues.push(item.textContent);
+		})
+	});
+
 </script>
 </html>

@@ -3,12 +3,12 @@ import java.sql.SQLException;
 import pro.student.vo.Student;
 import pro.utils.IbatisUtils;
 public class StudentDao {
-
+	
 	private static StudentDao self = new StudentDao();
-	private StudentDao() {}
+	public StudentDao() {}
 	public static StudentDao getInstance() {
 		return self;
-	}
+	}	
 	
 	
 	public Student getStudentByEmail(String email) throws SQLException {

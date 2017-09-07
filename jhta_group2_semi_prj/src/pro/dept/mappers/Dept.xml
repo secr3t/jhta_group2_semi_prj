@@ -15,4 +15,13 @@
 		from
 			dept
 	</select>
+	
+	<select id="getDeptByNo" parameterClass="int" resultClass="dept">
+		select
+			dept_no		as "no",
+			dept_name	as "name"
+		from
+			dept
+		where dept_no = #value#
+	</select>
 </sqlMap>

@@ -11,33 +11,45 @@
 <insert id="addQueBoard" parameterClass="questionboard">
 	insert into qna
 	(qna_no, qna_title, qna_ques_content, qna_ans_content,
-	  qna_active, course_no, sutudent_no)
+	  qna_active, course_no, student_no)
 	values
 	(qna_no_seq.nextval, #title#, #quesContent#, #ansContent#,
 		#active#, #course.no#, #student.no#)
 </insert>
 
-<select id="getAllQueBoard" resultClass="questionboard">
+<select id="getTotalRows" resultClass="int">
+	select count(*)
+	from qna
+</select>
+
+<select id="getAllQueBoard" parameterClass="pro.criteria.vo.Criteria" resultClass="questionboard">
 	select
-		A.qna_no						as no, 
-		A.qna_title					as title, 
-		A.qna_ques_content			as quesContent,
-		A.qna_ques_date				as quesDate,
-		A.qna_ans_content				as	ansContent,
-		A.qna_ans_regdate				as	ansRegdate,
-	  	A.qna_active					as	active, 
-	  	A.course_no					as	"course.no", 
-	  	A.student_no					as  "student.no"
-	from
-		qna A, student B
-	where 
-		A.student_no = B.student_no
-	order by 
-		qna_no desc
+		"no"					as no, 
+		"title"					as title, 
+		"quesContent"			as	quesContent,
+		"quesDate"				as quesDate,
+		"ansContent"			as	ansContent,
+		"ansRegdate"			as	ansRegdate,
+	  	"active"					as	active, 
+	  	"student.no"					as  "student.no",
+	  	"student.name"			as	"student.name",
+	  	"course.name"			as	"course.name"
+	from (select row_number() over (order by qna_no asc) m,	A.qna_no					as "no", 
+															A.qna_title					as "title", 
+															A.qna_ques_content			as	"quesContent",
+															A.qna_ques_date				as "quesDate",
+															A.qna_ans_content			as  "ansContent",
+															A.qna_ans_regdate			as	"ansRegdate",
+														  	A.qna_active					as	"active", 
+														  	A.student_no					as  "student.no",
+														  	B.student_name				as	"student.name",
+														  	C.course_name				as	"course.name"
+		from qna A, student B, course C where A.student_no = B.student_no and A.course_no = C.course_no)
+		where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 
 <delete id="deletequeBoardByNo" parameterClass="int">
-	delete form qna
+	delete from qna
 	where qna_no = #value#
 </delete>
 
@@ -63,5 +75,14 @@ select
 	and
 		A.qna_no = #value#
 </select>
+
+<update id="updateQnaAnsBoard" parameterClass="questionboard">
+update qna
+	set
+		qna_ans_content = #ansContent#,
+		qna_ans_regdate = sysdate
+	where
+		qna_no = #no#
+</update>
 
 </sqlMap>

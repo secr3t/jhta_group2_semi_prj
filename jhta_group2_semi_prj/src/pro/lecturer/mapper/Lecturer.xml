@@ -8,7 +8,7 @@
 
 	<typeAlias alias="lecturer" type="pro.lecturer.vo.Lecturer"/>
 
-	<select id="getAlllecturers" resultClass="lecturer">
+	<select id="getAllLecturers" resultClass="lecturer">
 		select
 			lecturer_no			as "no",
 			lecturer_name		as "name",
@@ -57,6 +57,11 @@
 			lecturer_email = #value#
 	</select>
 	
-	
-	
+	<insert id="addLecturer" parameterClass="Lecturer">
+		insert into student
+			(lecturer_name, lecturer_email, lecturer_pwd, lecturer_phone, lecturer_career, lecturer_picture, lecturer_permit, user_type)
+		values
+			(#name#, #email#, #pwd#, #phone#, #career#, #picture#, #permit#, #type#)
+	</insert>
+
 </sqlMap>

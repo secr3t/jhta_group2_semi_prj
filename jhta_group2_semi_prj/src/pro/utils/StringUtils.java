@@ -21,4 +21,10 @@ public class StringUtils {
 		return str == null ? defaultValue : Double.parseDouble(str);
 	}
 	
+	public static String nullToBlank(String str) {
+		if (str == null) {
+			return "";
+		}
+		return str.trim();
+	}
 }

@@ -16,7 +16,8 @@
   </style>	
 </head>
 <body>
-	<%@ include file="../../common/nav.jsp" %>
+	<%@ include file="/mypage/lecturer/logincheck.jsp" %>
+	<%@ include file="/common/nav.jsp" %>
     <div class="container">
  		<div class="col-sm-offset-2 page-header">
 			<h1>영상 상세 정보<small> - Java</small></h1>
@@ -26,7 +27,7 @@
 		</div>    
 
         <div class="col-sm-2">
-			<%@ include file="left-menu.jsp" %>
+			<%@ include file="../left-menu.jsp" %>
         </div>
         <div class="col-sm-9">
             
@@ -65,6 +66,6 @@
             </div>
         </div>
     </div>
-    <%@ include file="../../common/footer.jsp" %> 
+    <%@ include file="/common/footer.jsp" %> 
 </body>
 </html>

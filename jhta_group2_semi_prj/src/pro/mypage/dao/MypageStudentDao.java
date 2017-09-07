@@ -2,8 +2,8 @@ package pro.mypage.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
+import pro.criteria.vo.Criteria;
 import pro.enrollment.vo.Enrollment;
 import pro.qna.vo.Qna;
 import pro.student.vo.Student;
@@ -30,12 +30,17 @@ public class MypageStudentDao {
 		return IbatisUtils.getSqlMap().queryForList("MyPageStudent.getEnrollmentByStudentNo", studentNo);
 	}
 	
+	public int getTotalQnaRows(int studentNo) throws SQLException {
+		return (int) IbatisUtils.getSqlMap().queryForObject("MyPageStudent.getTotalQnaRows", studentNo);
+	}
+	
 	@SuppressWarnings("unchecked")
-	public List<Qna> getQnaByStudentNo(int studentNo) throws SQLException {
-		return IbatisUtils.getSqlMap().queryForList("MyPageStudent.getQnaByStudentNo", studentNo);
+	public List<Qna> getQnaByStudentNo(Criteria criteria) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("MyPageStudent.getQnaByStudentNo", criteria);
 	}
 	
 	public void updateMyInfo(Student student) throws SQLException {
 		IbatisUtils.getSqlMap().update("MyPageStudent.updateMyInfo", student);
 	}
+
 }
