@@ -6,7 +6,7 @@
 	request.setCharacterEncoding("utf-8");
 	
 	String ans = request.getParameter("anscontent");
-	int no = Integer.parseInt(request.getParameter("no"));
+	int no = Integer.parseInt(request.getParameter("p"));
 	
 	QnaBoardDao qdao = new QnaBoardDao();
 	Qna qna = qdao.getQnaBoardByNo(no);

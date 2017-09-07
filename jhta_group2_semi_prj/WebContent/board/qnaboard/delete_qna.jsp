@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%
- 	int no = Integer.parseInt(request.getParameter("no"));
+ 	int no = Integer.parseInt(request.getParameter("p"));
  	
  	QnaBoardDao qdao = new QnaBoardDao();
  	
