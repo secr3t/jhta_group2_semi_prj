@@ -65,5 +65,29 @@
 		where
 			dept_no = #value#	
 	</select>
+	
+	<select id="getCourseQty" resultClass="int">
+		select
+			count(*)
+		from  course
+	</select>
 
+	<select id="getLecturesInfo" resultClass="pro.lectureinfo.vo.LectureInfo">
+			SELECT
+			A.COURSE_NAME			as "name",
+			B.LECTURER_PICTURE		as "picture",
+			A.COURSE_DETAIL			as "detail",
+			B.LECTURER_NAME			as "name",
+			D."qty"					as "qty",
+			A.COURSE_POINT			as "point",
+			c.DEPT_NAME				as "name"
+			
+			from COURSE A, LECTURER B, DEPT C,(select  A.course_no as "countno",COUNT(*) as "qty"
+														from course A, course_video B
+														where A.COURSE_NO = B.COURSE_NO
+														group by A.course_no) D
+			where  A.COURSE_NO = D."countno"
+			and B.Lecturer_no = A.LECTURER_NO
+			and A.DEPT_NO = C.dept_no;
+	</select>
 </sqlMap>

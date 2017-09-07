@@ -3,12 +3,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
 	// request로부터 email, pwd를 받아옴
 	String email = request.getParameter("user-email");
 	String pwd = request.getParameter("user-pwd");
 	String divUser = request.getParameter("div-user");
 	String returnUrl = request.getParameter("returnUrl");
-	
+/*	
 	if (divUser == "student") {
 		// dao객체를 만들어 email로 학생찾는 메소드 실행
 		StudentDao studentDao = new StudentDao();
@@ -54,6 +55,6 @@
 	} else {
 		response.sendRedirect(returnUrl);
 	}
-	
+*/	
 	
 %>
