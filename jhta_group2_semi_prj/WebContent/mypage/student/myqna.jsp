@@ -77,7 +77,7 @@
                      	 <%
 	                  		MypageStudentDao stuDao = MypageStudentDao.getInstance();
                      	 
-                     	 	int rowsPerPage = 5;
+                     	 	int rowsPerPage = 1;
                      	 	int nowPage = StringUtils.changeIntToString(request.getParameter("p"), 1);                     	 	
                      	 	
                      	 	int totalRows = stuDao.getTotalQnaRows(student.getNo());
@@ -85,7 +85,7 @@
                      	 	int beginIndex = (nowPage - 1) * rowsPerPage + 1;
                      	 	int endIndex = nowPage * rowsPerPage;
                      	 	                     	 			
-                     	 	int pagesPerBlock = 5;
+                     	 	int pagesPerBlock = 1;
                      	 	int nowBlock = (int) Math.ceil((double) nowPage / pagesPerBlock);
                      	 	
                      	 	int totalBlock = (int) Math.ceil((double) totalPages / pagesPerBlock);

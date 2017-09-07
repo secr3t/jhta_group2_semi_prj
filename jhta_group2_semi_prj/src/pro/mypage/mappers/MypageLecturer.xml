@@ -11,7 +11,6 @@
 	<typeAlias alias="Qna" type="pro.qna.vo.Qna"/>
 	<typeAlias alias="Criteria" type="pro.criteria.vo.Criteria"/>
 	
-
 	<select id="getLecturerByNo" parameterClass="int" resultClass="Lecturer">
 		select
 			lecturer_no			no
@@ -42,20 +41,33 @@
 		where lecturer_email = #value#
 	</select>
 	
-	<select id="getCourseByLecturerNo" parameterClass="int" resultClass="Course">
-		select
-			course_no			no
-			,course_name		name
-			,course_summary		summary
-			,course_detail		detail
-			,course_point		point
-			,dept_no			"dept.no"
-		from course 
+	<select id="getTotalCourseRows" parameterClass="int" resultClass="int">
+		select count(*)
+		from course
 		where lecturer_no = #value#
 	</select>
 	
-	<select id="getQnaByStudentNo" parameterClass="Criteria" resultClass="Qna">
-		select 
+	<select id="getCourseByLecturerNo" parameterClass="Criteria" resultClass="Course">
+		select
+			B.course_no			no
+			,B.course_name		name
+			,B.course_summary		summary
+			,B.course_detail		detail
+			,B.course_point		point
+			,B.dept_no			"dept.no"
+		from (select row_number() over(order by course_no desc) rn, course_no ,course_name
+					,course_summary ,course_detail ,course_point ,dept_no
+			from course) A, course B 
+		where A.course_no = B.course_no
+		and B.lecturer_no = #lecturerNo#
+		<![CDATA[
+			and A.rn >= #beginIndex#
+			and A.rn <= #endIndex#
+		]]>
+	</select>
+	
+	<select id="getQnaByLecturerNo" parameterClass="Criteria" resultClass="Qna">
+		select
 			A.qna_no 				no
 			,A.qna_title			title
 			,A.course_no			"course.no"
@@ -64,15 +76,17 @@
 			,A.qna_ques_date		quesDate
 			,A.qna_ans_content		ansContent
 			,A.qna_ans_regdate		ansRegdate
-			,C.lecturer_no			"course.lecture.no"
-			,C.lecturer_name		"course.lecture.name"
-		from (select row_number() over(order by qna_no desc) rn, qna_no, qna_title, course_no, 
-					qna_ques_content, qna_ques_date, qna_ans_content, qna_ans_regdate, student_no, qna_active 
+			,C.student_no			"student.no"
+			,C.student_name			"student.name"
+		from(select row_number() over(order by qna_no desc) rn, qna_no, qna_title, course_no, 
+							qna_ques_content, qna_ques_date, qna_ans_content, qna_ans_regdate, student_no, qna_active 
 			from qna
 			where qna_active = 'Y'
-			and student_no = #studentNo#) A, course B, lecturer C
+			and course_no in (select course_no
+							from course
+							where lecturer_no = #lecturerNo#)) A, course B, student C
 		where A.course_no = B.course_no
-		and B.lecturer_no = C.lecturer_no
+		and A.student_no = C.student_no
 		<dynamic>
 			<isNotNull property="opt">
 				<isNotNull property ="keyword">
@@ -82,14 +96,17 @@
 					<isEqual property="opt" compareValue="course">
 						and B.course_name like '%' || #keyword# || '%'					
 					</isEqual>
-					<isEqual property="opt" compareValue="lecturer">
-						and C.lecturer_name like '%' || #keyword# || '%'
+					<isEqual property="opt" compareValue="student">
+						and C.student_name like '%' || #keyword# || '%'
 					</isEqual>
 				</isNotNull>
 			</isNotNull>
 			<isNotNull property="noAnswer">
-				<isEqual property="noAnswer" compareValue="Y">
+				<isEqual property="noAnswer" compareValue="N">
 						and A.qna_ans_content is not null
+				</isEqual>
+				<isEqual property="noAnswer" compareValue="Y">
+						and A.qna_ans_content is null
 				</isEqual>
 			</isNotNull>
 		</dynamic>
@@ -98,5 +115,14 @@
 			and rn <= #endIndex#
 		]]>
 	</select>
-
+	
+	<update id="updateMyInfo" parameterClass="Lecturer">
+		update lecturer
+		set
+			lecturer_pwd = #pwd#
+			,lecturer_phone = #phone#
+			,lecturer_career = #career#
+			,lecturer_picture = #picture#
+		where lecturer_no = #no#
+	</update>	
 </sqlMap>

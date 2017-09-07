@@ -1,3 +1,6 @@
+<%@page import="pro.utils.DateUtils"%>
+<%@page import="pro.qna.vo.Qna"%>
+<%@page import="pro.criteria.vo.Criteria"%>
 <%@page import="pro.course.vo.Course"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.mypage.dao.MypageLecturerDao"%>
@@ -73,7 +76,11 @@
 	                        	<%
 	                        		MypageCourseDao courDao = MypageCourseDao.getInstance();
 	                        		MypageLecturerDao lecDao = MypageLecturerDao.getInstance();
-	                        		List<Course> courseList = lecDao.getCourseByLecturerNo(lecturer.getNo());
+	                        		Criteria CourCriteria = new Criteria();
+	                        		CourCriteria.setLecturerNo(lecturer.getNo());
+	                        		CourCriteria.setBeginIndex(1);
+	                        		CourCriteria.setEndIndex(8);
+	                        		List<Course> courseList = lecDao.getCourseByLecturerNo(CourCriteria);
 	                        		for(Course forCourse : courseList) {
 	                        	%>
 	                            <tr>
@@ -123,26 +130,36 @@
 	                                </tr>
 	                            </thead>
 	                            <tbody>
-	                                <tr>
-	                                    <td><a href="#">Java가 무엇입니까?dddddddddddd</a></td>
-	                                    <td><a href="#">Java</a></td>
-	                                    <td>17/08/21</td>
-	                                </tr>                               
-	                                <tr>
-	                                    <td><a href="#">Java가 무엇입니까?dddddddddddd</a></td>
-	                                    <td><a href="#">Java</a></td>
-	                                    <td>17/08/21</td>
-	                                </tr>
-	                                <tr>
-	                                    <td><a href="#">Java가 무엇입니까?dddddddddddd</a></td>
-	                                    <td><a href="#">Java</a></td>
-	                                    <td>17/08/21</td>
-	                                </tr>                
-	                                <tr>
-	                                    <td><a href="#">Java가 무엇입니까?dddddddddddd</a></td>
-	                                    <td><a href="#">Java</a></td>
-	                                    <td>17/08/21</td>
-	                                </tr>
+	                            	<%
+	                            		Criteria QnaCriteria = new Criteria();
+	                            		QnaCriteria.setLecturerNo(lecturer.getNo());
+	                            		QnaCriteria.setBeginIndex(1);
+	                            		QnaCriteria.setEndIndex(10);
+	                            		QnaCriteria.setNoAnswer("Y");
+	                            		List<Qna> qnaList = lecDao.getQnaByLecturerNo(QnaCriteria);
+	                            		for(Qna forQna : qnaList) {
+	                            	%>
+			                                <tr>
+			                                    <td>
+			                                    	<a href="#"><%=forQna.getTitle() %></a>
+					                                <%
+						                          		if(forQna.getAnsContent() != null) {
+						                          	%>
+						                          		<span class="label label-success">답변완료</span>
+						                          	<%
+						                          		} else {
+						                          	%>
+						                          		<span class="label label-danger">미답변 질문</span>
+						                          	<%
+						                          		}
+						                          	%>
+			                                    </td>
+			                                    <td><a href="mycourse/course-info.jsp?cno=<%=forQna.getCourse().getNo() %>"><%=forQna.getCourse().getName() %></a></td>
+			                                    <td><%=DateUtils.yyyymmddhhmmss(forQna.getQuesDate()) %></td>
+			                                </tr>                               
+	                            	<%
+	                            		}
+	                            	%>
 	                            </tbody>
 	                        </table>
 	                    </div>
