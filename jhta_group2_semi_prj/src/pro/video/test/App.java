@@ -22,7 +22,7 @@ public class App {
 		video.setOrder(1);
 		video.setTitle("배틀그라운드 Vector 실탄사격");
 		
-		VideoDao dao = new VideoDao();
+		VideoDao dao = VideoDao.getInstance();
 		
 		video = dao.getVideoByVideoNo(1);
 		System.out.println(video);

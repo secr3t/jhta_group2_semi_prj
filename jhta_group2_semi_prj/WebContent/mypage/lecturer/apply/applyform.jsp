@@ -35,8 +35,49 @@
 			<%@ include file="../left-menu.jsp" %>
 		</div>         
 	    <div class="col-sm-9">
-             
-             <form method="post" action="#" class="form-horizontal">
+             <%
+           	 final String FAIL_CODE_NO_COURSE_NAME = "1";
+           	 final String FAIL_CODE_NO_DEPT_NAME = "2";
+           	 final String FAIL_CODE_LIMIT_POINT = "3";
+           	 final String FAIL_CODE_NO_SUMMARY = "4";
+           	 
+           	 if(FAIL_CODE_NO_COURSE_NAME.equals(request.getParameter("fail"))) {
+           	 %>
+           	     <div class="alert alert-danger">
+           		 	<strong>ERROR!!</strong> 강의명을 입력해주세요. 
+           		 </div>
+           	 <%
+           	 }
+           	 if(FAIL_CODE_NO_DEPT_NAME.equals(request.getParameter("fail"))) {
+           	 %>
+           		 <div class="alert alert-danger">
+           		 	<strong>ERROR!!</strong> 강의분류가 선택되지 않았습니다.
+           		 </div>
+           	 <%
+           	 }
+           	 if(FAIL_CODE_LIMIT_POINT.equals(request.getParameter("fail"))) {
+           	 %>
+           		 <div class="alert alert-danger">
+           		 	<strong>ERROR!!</strong> 구매 포인트는 최대 999까지만 가능합니다.
+           		 </div>
+           	 <%
+           	 }
+           	 if(FAIL_CODE_NO_SUMMARY.equals(request.getParameter("fail"))) {
+           	 %>
+           		 <div class="alert alert-danger">
+           		 	<strong>ERROR!!</strong> 강의 요약 설명은 반드시 입력해주세요.
+           		 </div>
+           	 <%
+           	 }
+           	 if(request.getParameter("success") != null) {
+           	 %>
+           		 <div class="alert alert-success">
+           		 	<strong>성공적으로 수정되었습니다.</strong> 
+           		 </div>
+           	 <%
+           	 }
+           	 %>
+             <form method="post" action="apply.jsp" class="form-horizontal">
                  <div class="form-group">
                      <label class="control-label col-sm-2">강의명</label>
                      <div class="col-sm-7">
@@ -46,21 +87,22 @@
                  <div class="form-group">
                      <label class="control-label col-sm-2">강의분류</label>
                      <div class="col-sm-3">
-                         <select name="coursecategory" class="form-control">
-                             <option value="" selected="selected"> 선택</option>
-                             <option value="kor"> 언어</option>
-                             <option value="eng"> 영어</option>
-                             <option value="math"> 수학</option>
-                             <option value="sci"> 과학</option>
+                         <select name="coursedept" class="form-control">
+                             <option value="0" selected="selected"> 선택</option>
+                             <option value="1"> 언어</option>
+                             <option value="2"> 영어</option>
+                             <option value="3"> 수학</option>
+                             <option value="4"> 과학</option>
                          </select>
                      </div>
                  </div>
                  <div class="form-group">
                      <label class="control-label col-sm-2">강의 구매 포인트</label>
                      <div class="col-sm-2">
-                         <input type="number" name="coursepoint" class="form-control"/>
+                         <input type="number" name="coursepoint" max="999" class="form-control"/>
                      </div>
-                     <label><span class="glyphicon glyphicon-copyright-mark text-warning"></span></label>
+                     <label class="col-sm-1"><span class="glyphicon glyphicon-copyright-mark text-warning"></span></label>
+                     <p class="col-sm-4 help-block"><small>포인트는 최대 3자리 수까지만 가능합니다.</small></p>
                  </div>
                  <div class="form-group">
                  	<label class="control-label col-sm-2">강의 요약</label>

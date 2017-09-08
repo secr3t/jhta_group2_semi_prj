@@ -20,6 +20,20 @@
 <select id="getTotalRows" resultClass="int">
 	select count(*)
 	from qna
+	where qna_active = 'Y'
+	<dynamic>
+		<isNotEmpty property="keyword">
+			<isEqual property="opt" compareValue="title">
+				and qna_title like '%' || #keyword# || '%'
+			</isEqual>
+			<isEqual property="opt" compareValue="writer">
+				and student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
+			</isEqual>
+			<isEqual property="opt" compareValue="courseName">
+				and course_no in (select course_no from course where course_name like '%' || #keyword# || '%')
+			</isEqual>
+		</isNotEmpty>
+	</dynamic>
 </select>
 
 <select id="getAllQueBoard" parameterClass="pro.criteria.vo.Criteria" resultClass="questionboard">
@@ -34,7 +48,7 @@
 	  	"student.no"					as  "student.no",
 	  	"student.name"			as	"student.name",
 	  	"course.name"			as	"course.name"
-	from (select row_number() over (order by qna_no asc) m,	A.qna_no					as "no", 
+	from (select row_number() over (order by qna_no desc) m,	A.qna_no					as "no", 
 															A.qna_title					as "title", 
 															A.qna_ques_content			as	"quesContent",
 															A.qna_ques_date				as "quesDate",
@@ -43,15 +57,36 @@
 														  	A.qna_active					as	"active", 
 														  	A.student_no					as  "student.no",
 														  	B.student_name				as	"student.name",
+														  	C.course_no					as	"course.no",
 														  	C.course_name				as	"course.name"
-		from qna A, student B, course C where A.student_no = B.student_no and A.course_no = C.course_no)
+		from qna A, student B, course C 
+		where A.student_no = B.student_no and A.course_no = C.course_no
+		and A.qna_active = 'Y'
+		<dynamic>
+		<isNotNull property="opt">
+			<isNotNull property="keyword">
+				<isEqual property="opt" compareValue="title">
+					and A.qna_title like '%' || #keyword# || '%'
+				</isEqual>
+				<isEqual property="opt" compareValue="writer">
+					and A.student_no in (select student_no from student where student_name like '%' || #keyword# || '%')  
+				</isEqual>
+				<isEqual property="opt" compareValue="courseName">
+					and C.course_no in (select course_no from course where course_name like '%' || #keyword# || '%')
+				</isEqual>
+			</isNotNull>
+		</isNotNull>
+	</dynamic>		
+															)
 		where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 
-<delete id="deletequeBoardByNo" parameterClass="int">
-	delete from qna
+<update id="deletequeBoardByNo" parameterClass="int">
+	update from qna
+	set
+		 qna_active = 'N'
 	where qna_no = #value#
-</delete>
+</update>
 
 <select id="getQnaBoardByNo" parameterClass="int" resultClass="questionboard">
 select

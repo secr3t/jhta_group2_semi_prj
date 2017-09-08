@@ -33,4 +33,8 @@ public class LectureCourseDao {
 		return IbatisUtils.getSqlMap().queryForList("course.getCourseByDeptNo", no);
 	}
 	
+	public int getCourseQty() throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("course.getCourseQty");
+	}
+	
 }

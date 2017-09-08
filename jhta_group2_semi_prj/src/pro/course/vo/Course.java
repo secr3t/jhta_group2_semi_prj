@@ -12,6 +12,7 @@ public class Course {
 	private int point;
 	private Lecturer lecturer;
 	private Dept dept;
+	private String permit;
 	
 	public int getNo() {
 		return no;
@@ -55,10 +56,16 @@ public class Course {
 	public void setDept(Dept dept) {
 		this.dept = dept;
 	}
+	public String getPermit() {
+		return permit;
+	}
+	public void setPermit(String permit) {
+		this.permit = permit;
+	}
 	
 	@Override
 	public String toString() {
 		return "Course [no : " + no + ", name : " + name + ", summary : " + summary + ", detail : " + detail
-				+ ", point : " + point + ", lecturer : " + lecturer + ", dept : " + dept + "]";
+				+ ", point : " + point + ", lecturer : " + lecturer + ", dept : " + dept + ", permit : " + permit + "]";
 	}
 }

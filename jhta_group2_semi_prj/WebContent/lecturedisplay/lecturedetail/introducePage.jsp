@@ -2,7 +2,7 @@
 <%@page import="pro.student.dao.StudentDao"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.video.dao.VideoDao"%>
-<%@page import="pro.introducecourse.dao.LecturerDao"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
 <%@page import="pro.postscription.vo.Postscription"%>
 <%@page import="pro.introducecourse.dao.LecturePostScriptDao"%>
@@ -26,7 +26,7 @@
 
 	List<Postscription> postscriptions = lecturePostScriptDao.getPostscriptionsByCourseNo(courseNo);
 	Course course = courseDao.getCourseByNo(courseNo);
-	Lecturer lecturer = lecturerDao.getlecturerByNo(course.getLecturer().getNo());
+	Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
 	StudentDao studentDao = StudentDao.getInstance();
 %>
    <div class="row">
@@ -34,7 +34,7 @@
    </div>
    <div class="row well">
         <div class="col-sm-3">
-            <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 70%;">
+            <img src=<%=lecturer.getPicture() %> style="width: 70%;">
             <p><strong>맛보기 동영상</strong></p>
         </div>
         <div class="col-sm-6">
@@ -95,7 +95,7 @@
                 </div>    
                 <div class="row">
                     <div class="col-sm-3" style="padding-top:30px;">
-                        <img src="../../images/%EA%B0%95%EC%82%AC%EC%82%AC%EC%A7%84.jpg" style="width: 80%;">
+                        <img src=<%=lecturer.getPicture() %> style="width: 80%;">
                     </div>
                     <div class="col-sm-9">
                         <div class="text-right">

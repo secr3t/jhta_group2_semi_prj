@@ -1,18 +1,19 @@
 package pro.progress.vo;
 
 import pro.student.vo.Student;
+import pro.utils.StringUtils;
 import pro.video.vo.Video;
 
 public class Progress {
 
-	private String complete;
+	private Double complete;
 	private Student student;
 	private Video video;
 	
-	public String getComplete() {
+	public Double getComplete() {
 		return complete;
 	}
-	public void setComplete(String complete) {
+	public void setComplete(Double complete) {
 		this.complete = complete;
 	}
 	public Student getStudent() {

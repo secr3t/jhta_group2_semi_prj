@@ -4,15 +4,15 @@
 <%@page import="pro.course.vo.Course"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.introducecourse.dao.LectureCourseDao"%>
-<%@page import="pro.introducecourse.dao.LecturerDao"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <%@include file="../../common/header.jsp" %>
 <body>
-<div class="container">
 <%@include file="../../common/nav.jsp" %>
+<div class="container">
 	<div class="col-sm-2">
 		<h2><a href="index.jsp">강의 목록</a></h2>
 		<hr>
@@ -48,7 +48,7 @@
             var htmlContent = "";
             <%	
             LecturerDao lecturerDao = LecturerDao.getInstance();
-            List<Lecturer> lecturers = lecturerDao.getAlllecturers();
+            List<Lecturer> lecturers = lecturerDao.getAllLecturers();
             for(Lecturer lecturer : lecturers){
             %>
             htmlContent += "<li id='<%=lecturer.getNo()%>' style='cursor:pointer'><%=lecturer.getName()%></li>";

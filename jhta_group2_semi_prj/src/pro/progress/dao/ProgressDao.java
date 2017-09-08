@@ -9,7 +9,7 @@ import pro.utils.IbatisUtils;
 public class ProgressDao {
 
 	private static ProgressDao instance = new ProgressDao();
-	
+	private ProgressDao() {}
 	public static ProgressDao getInstance() {
 		return instance;
 	}

@@ -8,8 +8,13 @@ import pro.qna.vo.Qna;
 import pro.utils.IbatisUtils;
 
 public class QnaBoardDao {
-
-	public void AddQnaBoard (Qna qna) throws SQLException{
+	public static QnaBoardDao self = new QnaBoardDao();
+	private QnaBoardDao () {}
+	public static QnaBoardDao getInstance () {
+		return self;
+	}
+	
+	public void addQnaBoard (Qna qna) throws SQLException{
 		IbatisUtils.getSqlMap().insert("QueBoard.addQueBoard", qna);
 	}
 	public Qna getQnaBoardByNo(int no) throws SQLException {
@@ -20,12 +25,12 @@ public class QnaBoardDao {
 		return IbatisUtils.getSqlMap().queryForList("QueBoard.getAllQueBoard", criteria);
 	}
 	public void deleteQnaBoard(int no) throws SQLException {
-			IbatisUtils.getSqlMap().delete("QueBoard.deletequeBoardByNo", no);
+			IbatisUtils.getSqlMap().update("QueBoard.deletequeBoardByNo", no);
 	}
 	public void updateQnaAnsBoard(Qna qna) throws SQLException {
 		IbatisUtils.getSqlMap().update("QueBoard.updateQnaAnsBoard", qna);
 	}
-	public int getTotalRows() throws SQLException {
-		return (Integer) IbatisUtils.getSqlMap().queryForObject("QueBoard.getTotalRows");
+	public int getTotalRows(Criteria criteria) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("QueBoard.getTotalRows", criteria);
 	}
 }

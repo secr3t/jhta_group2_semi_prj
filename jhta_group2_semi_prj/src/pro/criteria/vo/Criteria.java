@@ -6,6 +6,7 @@ public class Criteria {
 	private String keyword;
 	private int studentNo;
 	private int lecturerNo;
+	private int courseNo;
 	private int beginIndex;
 	private int endIndex;
 	private String noAnswer;
@@ -33,6 +34,12 @@ public class Criteria {
 	}
 	public void setLecturerNo(int lecturerNo) {
 		this.lecturerNo = lecturerNo;
+	}
+	public int getCourseNo() {
+		return courseNo;
+	}
+	public void setCourseNo(int courseNo) {
+		this.courseNo = courseNo;
 	}
 	public int getBeginIndex() {
 		return beginIndex;

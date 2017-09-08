@@ -17,29 +17,71 @@
 		#active#, #student.no#, #course.no#)
 </insert>
 
-<select id="getAllAfterBoard" resultClass="afterboard">
-	select
-		A.postscription_no 			as no,
-		A.postscription_title			as title,
-		A.postscription_content		as content,
-		A.postscription_regdate		as	regDate,
-		A.postscription_grade 		as grade,
-		A.postscription_active		as active,
-		A.student_no					as	"student.no",
-		A.course_no					as	"course.no",
-		B.student_name				as	"student.name"
-	from
-		postscription A, student B
-	where 
-		A.student_no = B.student_no 
-	order by 
-		A.student_no desc
+<select id="getTotalRows" parameterClass="pro.criteria.vo.Criteria" resultClass="int">
+	select count(*)
+	from postscription
+	where postscription_active = 'Y'
+	<dynamic>
+		<isNotEmpty property="keyword">
+			<isEqual property="opt" compareValue="title">
+				and postscription_title like '%' || #keyword# || '%'
+			</isEqual>
+			<isEqual property="opt" compareValue="writer">
+				and student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
+			</isEqual>
+		</isNotEmpty>
+	</dynamic>
 </select>
 
-<delete id="deleteAfterBoardByNo" parameterClass="int">
-	delete from postscription
-	where postscription_no = #value#
-</delete>
+
+<select id="getAllAfterBoard" parameterClass="pro.criteria.vo.Criteria" resultClass="afterboard">
+select "no"        as  no,
+		"title"           as title,
+		"content"          as content,
+		"regDate" as regdate,
+		 "grade" as grade,
+		"active"  as active,
+		"student.no"  as "student.no",
+		"course.no"    as "course.no",
+		"student.name" as "student.name"
+	from(select row_number() over (order by postscription_no desc) m,	A.postscription_no 			as "no",
+																		A.postscription_title			as "title",
+																		A.postscription_content		as "content",
+																		A.postscription_regdate		as	"regDate",
+																		A.postscription_grade 		as "grade",
+																		A.postscription_active		as "active",
+																		A.student_no					as	"student.no",
+																		A.course_no					as	"course.no",
+																		B.student_name				as	"student.name"
+																	from
+																		postscription A, student B
+																	where 
+																		A.student_no = B.student_no
+																	and 
+																		A.postscription_active = 'Y'
+	<dynamic>
+		<isNotNull property="opt">
+			<isNotNull property="keyword">
+				<isEqual property="opt" compareValue="title">
+					and A.postscription_title like '%' || #keyword# || '%'
+				</isEqual>
+				<isEqual property="opt" compareValue="writer">
+					and B.student_no in (select student_no from student where student_name like '%' || #keyword# || '%')  
+				</isEqual>
+			</isNotNull>
+		</isNotNull>
+	</dynamic>																		
+																		)
+	where m >= #beginIndex# and m &lt;= #endIndex#
+</select>
+
+<update id="deleteAfterBoardByNo" parameterClass="int">
+	update postscription
+	set
+		postscription_active = 'N'
+	where 
+		postscription_no = #value#
+</update>
 
 <select id="getAfterBoardByNo" parameterClass="int" resultClass="afterboard">
 	select
@@ -56,5 +98,7 @@
 	where
 		postscription_no = #value#
 </select>
+
+
 
 </sqlMap>

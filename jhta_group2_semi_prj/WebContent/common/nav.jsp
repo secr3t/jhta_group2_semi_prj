@@ -1,11 +1,18 @@
+<%@page import="pro.user.vo.User"%>
+<%@page import="pro.lecturer.vo.Lecturer"%>
+<%@page import="pro.student.vo.Student"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
    
 <%-- <%
    String cp= (String)pageContext.getAttribute("cp");
 
-   User loginUser = (User) session.getAttribute("loginUser");
 %> --%>
+
+<%
+User loginUser = null;
+	loginUser = (User) session.getAttribute("loginUser");
+%>
 
     <div class="navbar-header">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -38,10 +45,11 @@
          <%} else { %>
             <li><a href="/simple-jsp-board/user/logout.jsp">로그아웃</a></li>
          <%} %>
-         </ul>
+         </ul>--%>
          <%if(loginUser != null){ %>         
          <p class="navbar-text navbar-right"><strong><%=loginUser.getName() %></strong>님 환영합니다.</p>
-         <%} %> --%>
+         <%} %> 
+         
       </div>
       </div>
 </nav>

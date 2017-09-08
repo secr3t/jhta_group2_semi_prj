@@ -1,5 +1,5 @@
 <%@page import="pro.tech.vo.Tech"%>
-<%@page import="pro.board.dao.TecBoardDao"%>
+<%@page import="pro.board.dao.TechBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -8,9 +8,9 @@
  	String ans = request.getParameter("anscontent");
 	int no = Integer.parseInt(request.getParameter("no"));
 	
-	TecBoardDao tdao = new TecBoardDao();
+	TechBoardDao tdao = TechBoardDao.getInstance();
 	
-	Tech tech = tdao.getTecBoardByNo(no);
+	Tech tech = tdao.getTechBoardByNo(no);
 	tech.setAnsContent(ans);
 	// no로 가져올 방법
 	//기존 객체에 들어가는지 아니면 전객체 있고 새로 객체가 만들어 지는지 

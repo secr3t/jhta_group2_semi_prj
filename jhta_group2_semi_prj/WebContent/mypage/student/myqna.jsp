@@ -41,7 +41,7 @@
 		</div>  
         <div class="col-sm-9">
         
-             <form method="get" action="#" class="form-inline text-right">
+             <form method="get" action="myqna.jsp" class="form-inline text-right">
                  <div class="form-group">
                      <label class="sr-only">검색분류</label>
                      <select name="searchopt" class="form-control">

@@ -7,5 +7,6 @@
   <link rel="stylesheet" href="/jhta_group2_semi_prj/css/bootstrap.min.css">
   <script src="/jhta_group2_semi_prj/js/jQuery.js"></script>
   <script src="/jhta_group2_semi_prj/js/bootstrap.min.js"></script>
+  <script src="/jhta_group2_semi_prj/js/util.js"></script>
   
 </head>

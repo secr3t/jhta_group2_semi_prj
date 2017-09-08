@@ -6,29 +6,62 @@
 
 <sqlMap namespace="lecturer">
 
-	<typeAlias alias="Lecturer" type="pro.student.vo.Lecturer"/>
-	
-	<select id="getLecturerByEmail" parameterClass="string" resultClass="Lecturer">
-		select
-			lecturer_name		as name,
-			lecturer_email		as email,
-			lecturer_pwd		as pwd,
-			lecturer_phone		as phone,
-			lecturer_career		as career,
-			lecturer_picture	as picture,
-			lecturer_permit		as permit,
-			user_type			as type
-		from lecturer
-		where lecturer_email = #value#
-	</select>
+	<typeAlias alias="lecturer" type="pro.lecturer.vo.Lecturer"/>
 
+	<select id="getAllLecturers" resultClass="lecturer">
+		select
+			lecturer_no			as "no",
+			lecturer_name		as "name",
+			lecturer_email		as "email",
+			lecturer_pwd		as "pwd",
+			lecturer_phone		as "phone",
+			lecturer_career		as "career",
+			lecturer_picture	as "picture",
+			lecturer_permit		as "permit",
+			user_type			as "type"
+		from
+			lecturer
+	</select>
 	
+	<select id="getLecturerByNo" parameterClass="int" resultClass="lecturer">
+		select
+			lecturer_no			as "no",
+			lecturer_name		as "name",
+			lecturer_email		as "email",
+			lecturer_pwd		as "pwd",
+			lecturer_phone		as "phone",
+			lecturer_career		as "career",
+			lecturer_picture	as "picture",
+			lecturer_permit		as "permit",
+			user_type			as "type"
+		from
+			lecturer
+		where 
+			lecturer_no = #value#
+	</select>
 	
-	<insert id="addLecturer" parameterClass="Lecturer">
+	<select id="getLecturerByEmail" parameterClass="string" resultClass="lecturer">
+		select
+			lecturer_no			as "no",
+			lecturer_name		as "name",
+			lecturer_email		as "email",
+			lecturer_pwd		as "pwd",
+			lecturer_phone		as "phone",
+			lecturer_career		as "career",
+			lecturer_picture	as "picture",
+			lecturer_permit		as "permit",
+			user_type			as "type"
+		from
+			lecturer
+		where 
+			lecturer_email = #value#
+	</select>
+	
+	<insert id="addLecturer" parameterClass="lecturer">
 		insert into student
 			(lecturer_name, lecturer_email, lecturer_pwd, lecturer_phone, lecturer_career, lecturer_picture, lecturer_permit, user_type)
 		values
-			(#name#, #email#, #pwd#, #phone#, #career#, #picture#, #permit#, #type#)
+			(lecturer_seq.nextval, #email#, #pwd#, #phone#, #career#, #picture#, null, "T")
 	</insert>
 
 </sqlMap>

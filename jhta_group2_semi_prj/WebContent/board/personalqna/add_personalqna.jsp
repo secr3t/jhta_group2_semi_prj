@@ -1,5 +1,5 @@
 <%@page import="pro.tech.vo.Tech"%>
-<%@page import="pro.board.dao.TecBoardDao"%>
+<%@page import="pro.board.dao.TechBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -12,13 +12,13 @@
 
 	String contents = request.getParameter("contents");
 	
-	TecBoardDao tdao = new TecBoardDao();
+	TechBoardDao tdao = TechBoardDao.getInstance();
 	Tech tech = new Tech();
 	tech.setTitle(title);
 	tech.setQuesContent(contents);
 	tech.setQtypeNo(qtypeNo);
 	
-	tdao.AddTecBoard(tech);
+	tdao.addTechBoard(tech);
 	
 	
 	response.sendRedirect("/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp");

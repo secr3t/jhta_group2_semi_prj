@@ -61,7 +61,37 @@ ul>li>a>.thumbnail {
 	</div>
 </div>
 <script>
-	getFirstEBC('center-block').style.width = getFirstEBT('embed')
-			.getAttribute('width')
-			+ 'px';
+		var video = $('.html5-video-container > video');
+		video.onplay = 		timer(ajaxUpdate(), 1000);
+		function ajaxUpdate() {
+		xhr = new XMLHttpRequest();
+		var totalMin = totalTime.split(':')[0];
+		var restSecs = totalTime.split(':')[1];
+		var totalSecs = parseFloat(totalMin) * 60 + parseFloat(restSecs);
+		var totalTime = $('.ytp-time-duration').textContent;
+		var progress ;				//  video.currentTime/totalSecs * 100;
+		var response;
+		xhr.onreadystatechange = function() {
+		    	if (this.readyState == 4 && this.status == 200) {
+				response = this.responseText;
+				console.log(response);
+		    }
+		};
+		progress =  video.currentTime/totalSecs * 100;
+		progress = progress.toFixed(2);
+		xhr.open('POST', 'update-progress.jsp');
+		xhr.send(progress);
+	}
+		
+$(document).ready(function() {
+
+	});
+
+	var embedElement = getFirstEBT('embed');
+		
+		getFirstEBC('center-block').style.width = getFirstEBT('embed').getAttribute('width')+ 'px';
+
+
+		
+		
 </script>

@@ -7,6 +7,9 @@
 <sqlMap namespace="MyPageCourse">
 
 	<typeAlias alias="Course" type="pro.course.vo.Course"/>
+	<typeAlias alias="Video" type="pro.video.vo.Video"/>
+	<typeAlias alias="Enrollment" type="pro.enrollment.vo.Enrollment"/>
+	<typeAlias alias="Criteria" type="pro.criteria.vo.Criteria"/>
 
 	<select id="getTotalFinishedCourseByMap" parameterClass="java.util.Map" resultClass="int">
 		select count(*)
@@ -37,6 +40,28 @@
 		and B.course_no = #value#		
 	</select>
 	
+	<select id="getStudentsByCourseNo" parameterClass="Criteria" resultClass="Enrollment">
+		select 
+			B.student_no				"student.no"
+			,B.student_name				"student.name"
+			,B.student_email			"student.email"
+			,A.course_no				"course.no"
+			,C.course_name				"course.name"
+			,A.enrollment_start_date	startDate
+		from (select row_number() over(order by enrollment_start_date desc) rn, enrollment_start_date, course_no, student_no
+			from enrollment
+			where course_no = #courseNo#) A, student B, course C
+		where A.student_no = B.student_no
+		and A.course_no = C.course_no
+		<isNotNull property="keyword">
+			and B.student_name like '%' || #keyword# || '%'
+		</isNotNull>		
+		<![CDATA[
+			and rn >= #beginIndex#
+			and rn <= #endIndex#
+		]]>
+	</select>
+	
 	<select id="getCourseByCourseNo" parameterClass="int" resultClass="Course">
 		select
 			A.course_no			no
@@ -52,11 +77,73 @@
 		and A.course_no = #value#
 	</select>
 	
+	<select id="getCourseInfo" parameterClass="Criteria" resultClass="Course">
+		select
+			A.course_no			no
+			,A.course_name		name
+			,A.course_summary	summary
+			,A.course_detail	detail
+			,A.course_point		point
+			,B.dept_no			"dept.no"
+			,B.dept_name		"dept.name"
+			,C.lecturer_no		"lecturer.no"
+			,C.lecturer_name	"lecturer.name"
+		from (select row_number() over(order by course_no desc) rn, course_no, course_name, course_summary, course_detail, course_point, lecturer_no, dept_no, course_permit
+			from course
+			where course_name is not null
+			<isNotNull property="noAnswer">
+				<isEqual property="noAnswer" compareValue="Y">
+					and course_permit = 'N'	
+				</isEqual>
+				<isEqual property="noAnswer" compareValue="N">
+					and course_permit = 'Y'	
+				</isEqual>
+			</isNotNull>
+			) A, dept B, lecturer C
+		where A.dept_no = B.dept_no
+		and A.lecturer_no = C.lecturer_no
+	</select>
+	
+	<select id="getVideoInfo" parameterClass="Criteria" resultClass="Video">
+		select 	
+				A.course_video_no				no
+				,A.course_video_link			link
+				,A.course_video_title			title
+				,A.course_video_description		description
+				,A.course_video_attached		attached
+				,A.course_video_permit			permit
+				,A.course_video_order			"order"
+				,A.course_no					"course.no"
+				,B.course_name					"course.name"
+		from (select row_number() over(order by course_video_no desc) rn ,course_video_no ,course_video_link ,course_video_title ,course_video_description ,course_video_attached
+				,course_video_permit ,course_video_order ,course_no
+			from course_video
+			where course_video_link is not null
+			<isNotNull property="noAnswer">
+				<isEqual property="noAnswer" compareValue="Y">
+					and course_video_permit = 'N'
+				</isEqual>
+				<isEqual property="noAnswer" compareValue="N">
+					and course_video_permit = 'Y'
+				</isEqual>
+			</isNotNull>
+			) A, course B
+		where A.course_no = B.course_no
+		<![CDATA[
+			and A.rn >= #beginIndex#
+			and A.rn <= #endIndex#
+		]]>		
+	</select>
+	
 	<select id="getGradeAvgByCourseNo" parameterClass="int" resultClass="double">
-		select round(avg(postscription_grade), 1) avg_grade
-		from postscription
-		group by course_no
-		having course_no = #value#
+		select
+			nvl(A.avg_grade, 0)
+			,B.course_no
+		from (select course_no, round(avg(postscription_grade), 1) avg_grade
+			from postscription
+			group by course_no) A, course B
+		where B.course_no = A.course_no (+)
+		and B.course_no = #value#
 	</select>
 
 </sqlMap>

@@ -17,29 +17,70 @@
 		#active#, #student.no#, #qtypeNo#)
 </insert>
 
-<select id="getAllTechBoard" resultClass="techboard">
-	select
-		A.tech_no						as no, 
-		A.tech_title					as title, 
-		A.tech_ques_content				as quesContent,
-		A.tech_ques_regdate				as quesRegdate,
-		A.tech_ans_content				as	ansContent,
-		A.tech_ans_regdate				as	ansRegdate,
-	  	A.tech_active					as	active, 
-	  	A.student_no					as  "student.no", 
-	  	A.qtype_no						as qtypeNo
-	from
-		tech A, student B
-	where 
-		A.student_no = B.student_no
-	order by 
-		tech_no desc
+<select id="getTotalRows" parameterClass="pro.criteria.vo.Criteria" resultClass="int">
+	select count(*)
+	from tech
+	where tech_active = 'Y'
+	<dynamic>
+		<isNotEmpty property="keyword">
+			<isEqual property="opt" compareValue="title">
+				and tech_title like '%' || #keyword# || '%'
+			</isEqual>
+			<isEqual property="opt" compareValue="writer">
+				and student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
+			</isEqual>
+		</isNotEmpty>
+	</dynamic>
 </select>
 
-<delete id="deleteTechBoardByNo" parameterClass="int">
-	delete from tech
+<select id="getAllTechBoard" parameterClass="pro.criteria.vo.Criteria" resultClass="techboard">
+	select 
+	"no" as no,
+	"title" as title, 
+	"quesContent" as quesContent,
+	"quesRegdate" as quesRegdate,
+	"ansContent"  as ansContent,
+	"ansRegdate" as ansRegdate,
+	"active" as active, 
+	"student.no" as "student.no", 
+	"qtypeNo" as qtypeNo
+from (select row_number() over (order by tech_no desc) m,	A.tech_no   as "no",
+															A.tech_title					as "title", 
+															A.tech_ques_content				as "quesContent",
+															A.tech_ques_regdate				as "quesRegdate",
+															A.tech_ans_content				as	"ansContent",
+															A.tech_ans_regdate				as	"ansRegdate",
+														  	A.tech_active					as	"active", 
+														  	A.student_no					as  "student.no", 
+														  	A.qtype_no						as "qtypeNo"
+														from
+															tech A, student B
+														where 
+															A.student_no = B.student_no
+														and 
+															A.tech_active = 'Y'
+	<dynamic>
+		<isNotNull property="opt">
+			<isNotNull property="keyword">
+				<isEqual property="opt" compareValue="title">
+					and A.tech_title like '%' || #keyword# || '%'
+				</isEqual>
+				<isEqual property="opt" compareValue="writer">
+					and A.student_no in (select student_no from student where student_name like '%' || #keyword# || '%')  
+				</isEqual>
+			</isNotNull>
+		</isNotNull>
+	</dynamic>			
+															)
+where m >= #beginIndex# and m &lt;= #endIndex#
+</select>
+
+<update id="deleteTechBoardByNo" parameterClass="int">
+	update tech
+	set
+		tech_active = 'N'
 	where tech_no = #value#
-</delete>
+</update>
 
 <select id="getTechBoardByNo" parameterClass="int" resultClass="techboard">
 select
