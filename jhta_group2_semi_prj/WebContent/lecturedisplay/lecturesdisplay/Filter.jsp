@@ -29,6 +29,7 @@
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();
 	LecturerDao lecturerDao = LecturerDao.getInstance();
 	LectureInfoDao infoDao = LectureInfoDao.getInstance();
+	DeptDao deptDao = DeptDao.getInstance();
 	List<LectureInfo> courses;
 	String selectedName = null;
 	int no = 0; //= Integer.parseInt(request.getParameter("tno"));
@@ -39,20 +40,16 @@
 		Lecturer lecturer = lecturerDao.getLecturerByNo(no);
 		selectedName = lecturer.getName();
 		noTotalRows = infoDao.getLecturesInfoQty(lecturer.getName());
-		System.out.println(noTotalRows);
-	} else if(request.getParameter("sno") != null){
+	} else {
 		no = Integer.parseInt(request.getParameter("sno"));
-		DeptDao deptDao = DeptDao.getInstance();
 		Dept dept = deptDao.getDeptByNo(no);
-		noTotalRows = infoDao.getSubjectsInfoQty(dept.getName());
 		selectedName = dept.getName();
-	} else if(request.getParameter("pno") != null){
-		no = Integer.parseInt(request.getParameter("pno"));
-	}
-	
+		noTotalRows = infoDao.getSubjectsInfoQty(dept.getName());
+		System.out.println("선택한 과목 : " + selectedName);
+	} 
 %>
 <% 
-    	final int rowsPerPage = 6;
+    	final int rowsPerPage = 7;
     	final int naviPerPage = 5;
     	
     	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
@@ -77,12 +74,13 @@
     %>
 		
 	<%
+ 		List<LectureInfo> infos = infoDao.getLecturesInfo();
 	    List<LectureInfo> lectureInfos = infoDao.getLecturesInfo(criteria);
-		for(LectureInfo course : lectureInfos){
+		for(LectureInfo course : infos){
+			System.out.println(course.getDeptName());
 			if(selectedName.equals(course.getLecturerName()) || selectedName.equals(course.getDeptName())){
-				System.out.println(course.getDeptName());
-		//강사 객체
-		//Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
+	
+	
 	%>
 	<!--과정 소개  -->
        <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >
@@ -119,7 +117,7 @@
 		<%
 			}else{
 		%>
-			 <li class="disabled"><a href="Filter.jsp?p=<%=p%>"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+			 <li class="disabled"><a><span class="glyphicon glyphicon-chevron-left"></span></a></li>
 		<% 		
 			}
 		 	for(int index=beginPage; index<=endPage; index++){ %>
@@ -132,7 +130,7 @@
 		<% 
 			} else {
 		%> 
-		  <li class="disabled"><a href="Filter.jsp?p=<%=p%>"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+		  <li class="disabled"><a><span class="glyphicon glyphicon-chevron-right"></span></a></li>
 		<%
 			}
 		%>

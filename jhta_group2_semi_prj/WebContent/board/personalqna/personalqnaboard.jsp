@@ -17,9 +17,17 @@
 </head>
 <%@include file="../../common/header.jsp"%>
 <body>
+<%
+ if(request.getParameter("error")!=null){
+%>
+<script type="text/javascript">
+	alert("권한이 없습니다.");
+</script>
+<%  
+ }
+%>
 <%@include file="../../common/nav.jsp"%>
-
-
+<%-- <%@include file="../logincheck/studentlogincheck.jsp" %> --%>
 <div class="container">
 	<div class="col-sm-2">
 	<%@ include file="../boardbanner/left-menu.jsp" %>
@@ -35,6 +43,12 @@
 	  	<span class="glyphicon glyphicon-ok"></span> 고객님과 관련된 1:1문의 게시판입니다.
 	  	</h4>
 	  	<hr>
+	  	<% 
+	  		if(loginUser == null || loginUser.getType().toUpperCase().equals("T")) {
+	  			response.sendRedirect("/jhta_group2_semi_prj/board/boardmain.jsp?error=1");
+	  			return;	  			
+	  		}
+	  		%>
 	  	<% 
 	  			String opt = request.getParameter("opt");
 	   	 		String keyword = request.getParameter("keyword");
@@ -74,6 +88,7 @@
 				<%
 					List<Tech> techs = tdao.getAllTechBoard(criteria);
 					for(Tech tech : techs) {
+						System.out.println(tech);
 						String style = tech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
 
 				%>
@@ -139,9 +154,11 @@
 					<% } %>
 					</ul>
 					</div>
+					
 			    	<div class="text-right">
 			    		<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_write.jsp" class="btn btn-primary btn-md">글쓰기</a>
 			    	</div>
+			    	
 			    
 			</div>
 		</div>

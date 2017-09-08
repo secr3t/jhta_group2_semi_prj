@@ -9,7 +9,6 @@
             <ul id="myDropdown-1" class="dropdown-menu" role="menu" aria-labelledby="menu1">
                  <li id="teacher" style="cursor:pointer">강사</li>
                  <li id="subject" style="cursor:pointer">과목</li>
-                 <li id="popular" style="cursor:pointer">인기</li>
             </ul>
         </div>
      </ul>

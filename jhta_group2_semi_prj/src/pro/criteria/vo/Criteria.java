@@ -10,6 +10,14 @@ public class Criteria {
 	private int beginIndex;
 	private int endIndex;
 	private String noAnswer;
+	private int deptNo;
+	
+	public int getDeptNo() {
+		return deptNo;
+	}
+	public void setDeptNo(int deptNo) {
+		this.deptNo = deptNo;
+	}
 	
 	public String getOpt() {
 		return opt;
@@ -59,5 +67,12 @@ public class Criteria {
 	public void setNoAnswer(String noAnswer) {
 		this.noAnswer = noAnswer;
 	}
+	@Override
+	public String toString() {
+		return "Criteria [opt=" + opt + ", keyword=" + keyword + ", studentNo=" + studentNo + ", lecturerNo="
+				+ lecturerNo + ", courseNo=" + courseNo + ", beginIndex=" + beginIndex + ", endIndex=" + endIndex
+				+ ", noAnswer=" + noAnswer + "]";
+	}
+	
 	
 }

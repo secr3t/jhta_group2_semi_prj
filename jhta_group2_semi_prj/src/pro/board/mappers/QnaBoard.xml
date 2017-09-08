@@ -98,15 +98,18 @@ select
 		A.qna_ans_regdate				as	ansRegdate,
 	  	A.qna_active					as	active, 
 	  	A.course_no					as	"course.no", 
-	  	A.student_no					as  "student.no",
+	  	D.student_no				as  "student.no",
+	  	D.student_name				as "student.name",
 	  	B.course_name				as	"course.name",
 		C.lecturer_name				as	"course.lecturer.name"
 	from
-		qna A, course B, lecturer C 
+		qna A, student D, course B, lecturer C 
 	where
 		A.course_no = B.course_no 
 	and	
 		B.lecturer_no = C.lecturer_no
+	and 
+		A.student_no = D.student_no
 	and
 		A.qna_no = #value#
 </select>

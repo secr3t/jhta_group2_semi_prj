@@ -138,12 +138,10 @@
 					<% } %>
 			    		</ul>
 			    	<div class="text-right">
-			    	<% if(loginUser != null &&  "A".equals(loginUser.getType().toUpperCase())){ 
-						
+			    	<% if(loginUser != null &&  "A".equals(loginUser.getType().toUpperCase())){ 	
 					%>
 					<a href="/jhta_group2_semi_prj/board/alertboard/alert_write.jsp" class="btn btn-primary btn-md">글쓰기</a>
-					<% } %>
-			    		
+					<% } %>	
 			    	</div>
 			    	</div>
 			    

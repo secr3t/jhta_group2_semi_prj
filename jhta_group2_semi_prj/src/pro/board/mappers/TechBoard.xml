@@ -57,7 +57,7 @@ from (select row_number() over (order by tech_no desc) m,	A.tech_no   as "no",
 															tech A, student B
 														where 
 															A.student_no = B.student_no
-														and 
+														and
 															A.tech_active = 'Y'
 	<dynamic>
 		<isNotNull property="opt">

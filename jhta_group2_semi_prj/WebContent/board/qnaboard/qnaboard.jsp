@@ -27,7 +27,14 @@
 	        </div>
 	    </div>
 	  	    <hr>
+	  	   	<%
+	  	   		if(loginUser == null) {
+	  	   			response.sendRedirect("/jhta_group2_semi_prj/board/boardmain.jsp?error=1");
+	  	   			return;
+	  	   		}
+	  	   	%>
 	  	    <% 
+	  	    	
 	  	  		String opt = request.getParameter("opt");
   	    		String keyword = request.getParameter("keyword");
 	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);

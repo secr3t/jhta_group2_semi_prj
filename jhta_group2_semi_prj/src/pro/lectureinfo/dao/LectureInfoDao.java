@@ -28,4 +28,8 @@ public class LectureInfoDao {
 	public int getSubjectsInfoQty (String name) throws SQLException {
 		return (int) IbatisUtils.getSqlMap().queryForObject("lectureInfo.getSubjectsInfoQty",name);
 	}
+	@SuppressWarnings("unchecked")
+	public List<LectureInfo> getLecturesInfo() throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("lectureInfo.getAllLecturesInfo");
+	}
 }
