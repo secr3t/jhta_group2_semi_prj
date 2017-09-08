@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="pro.video.dao.VideoDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
@@ -76,6 +78,16 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '360',
     width: '640',
+    
+<%--     <%
+    HashMap<String, Integer> map = new HashMap<>();
+  map.put("courseNo", 1);				//	parameter에서 가져와야함
+  map.put("orderNo", 1);				//	parameter에서 가져와야함
+  String src = 
+  VideoDao.getInstance().getVideoAttachedSrcByVideoOrderNoAndCourseNo(map); 
+    %>
+    videoId: '<%=src%>',  --%>
+    
     videoId: '5UxU1g0YH0M',
     events: {
 	 /*     'onReady': onPlayerReady, */

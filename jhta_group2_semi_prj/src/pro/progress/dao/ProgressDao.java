@@ -25,4 +25,8 @@ public class ProgressDao {
 	public List<Progress> getProgressesByStudentNo(int studentNo) throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("progress.getProgressesByStudentNo", studentNo);
 	}
+	
+	public Double getCompleteByStudentAndVideo(Progress progress) throws SQLException {
+		return (Double) IbatisUtils.getSqlMap().queryForObject("progress.getCompleteByStudentAndVideo", progress);
+	}
 }

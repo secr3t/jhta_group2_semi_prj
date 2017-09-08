@@ -53,4 +53,12 @@
 			course_video
 		where course_no = #value#
 	</select>
+	
+	<select id="getVideoAttachedSrcByVideoOrderNoAndCourseNo" parameterClass="java.util.Map" resultClass="string">
+		select
+			course_video_attached
+		from course_video
+		where course_no = #courseNo#
+		and course_video_order = #orderNo#
+	</select>
 </sqlMap>

@@ -13,7 +13,8 @@
 request.setCharacterEncoding("utf-8");
 
 Student student = new Student();		// 후에 session에서 꺼낸 user정보를 바로 전달해주면됨.
-User user = (User) session.getAttribute("loginUser");
+Student loginUser = (Student) session.getAttribute("loginUser");
+// 후에 loginUser의 no를 받아와서 update 하면됨.
 Video video = new Video();
 Progress progress = new Progress();
  
@@ -28,7 +29,20 @@ BufferedReader br = request.getReader();
 
 double complete = Double.parseDouble(br.readLine());
 System.out.println(complete);
-progress.setComplete(complete);
 
+
+double beforeComplete = 0.0;
+try {
+	beforeComplete = dao.getCompleteByStudentAndVideo(progress);
+} catch(Exception e) {
+	// beforeComplete가 null인경우 0과 마찬가지이므로 업데이트 함.
+}
+
+if(beforeComplete < complete){
+progress.setComplete(complete);
 dao.updateProgress(progress);
+} else {
+	System.out.println("이전 진행률이 더 높습니다. 업데이트를 하지 않습니다.");
+}
+
 %>
