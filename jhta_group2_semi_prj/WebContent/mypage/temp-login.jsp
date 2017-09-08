@@ -1,3 +1,4 @@
+<%@page import="pro.user.vo.User"%>
 <%@page import="pro.mypage.dao.MypageLecturerDao"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
 <%@page import="pro.student.vo.Student"%>
@@ -21,8 +22,14 @@
 	
 	Lecturer loginedUser2 = lecDao.getLecturerByEmail(lecturer.getEmail());
 	
+	User user = new User();
+	user.setName("운영자");
+	user.setType("a");
+	
 	//session.setAttribute("userType", student.getType());
 	//session.setAttribute("loginedUser", loginedUser1);
-	session.setAttribute("userType", lecturer.getType());
-	session.setAttribute("loginedUser", loginedUser2);
+	//session.setAttribute("userType", lecturer.getType());
+	//session.setAttribute("loginedUser", loginedUser2);
+	session.setAttribute("userType", user.getType());
+	session.setAttribute("loginedUser", user);
 %>

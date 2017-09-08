@@ -47,7 +47,7 @@ public class UploadServlet extends HttpServlet {
 		
 		part.write(SAVED_DIRECTORY + fileName);
 		
-		lecturer.setPicture(fileName);
+		lecturer.setPicture("/jhta_group2_semi_prj/images/" + fileName);
 		
 		pw.println(fileName);
 		

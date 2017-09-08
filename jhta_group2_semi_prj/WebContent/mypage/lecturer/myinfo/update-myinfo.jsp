@@ -131,7 +131,7 @@
       		  <div class="row">
                	  <label class="control-label">사진</label>
                	  <div class="row">
-                     <img src="../../../images/<%=lecturer.getPicture() %>" width="120px" height="140px" alt="강사사진" id="image-uploaded"/>
+                     <img src="<%=lecturer.getPicture() %>" width="120px" height="140px" alt="강사사진" id="image-uploaded"/>
              	  </div>
                   <input type="file" name="userimage" id="file-upload"/>
                   <button type="submit" class="btn btn-default" id="upload-btn">사진변경</button>
@@ -156,7 +156,7 @@
 		xhr.onload = function() {
 			if(xhr.readyState == 4 && xhr.status == 200) {
 				var data = xhr.responseText;
-				document.getElementById("image-uploaded").src = "../../../images/" + data;
+				document.getElementById("image-uploaded").src = "/jhta_group2_semi_prj/images/" + data;
 			}
 		}
 		xhr.open("POST", "image-update.jsp", true);

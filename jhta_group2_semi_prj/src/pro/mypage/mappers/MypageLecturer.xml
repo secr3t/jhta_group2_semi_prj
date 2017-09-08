@@ -22,6 +22,46 @@
 		values (course_no_seq.nextval, #name#, #summary#, #detail#, #point#, #lecturer.no#, #dept.no#)
 	</insert>
 	
+	<select id="getLecturerInfo" parameterClass="Criteria" resultClass="Lecturer">
+		select
+			A.lecturer_no			no
+			,A.lecturer_name		name
+			,A.lecturer_email		email
+			,A.lecturer_pwd			pwd
+			,A.lecturer_phone		phone
+			,A.lecturer_career		career
+			,A.lecturer_picture		picture
+			,A.lecturer_permit		permit		
+		from (select row_number() over(order by lecturer_no desc) rn, lecturer_no ,lecturer_name 
+					,lecturer_email ,lecturer_pwd ,lecturer_phone ,lecturer_career ,lecturer_picture 
+					,lecturer_permit, user_type		
+			from lecturer
+			where user_type = 'T'
+			<isNotNull property="opt">
+				<isNotNull property="keyword">
+					<isEqual property="opt" compareValue="id">
+						and lecturer_email like '%' || #keyword# || '%'				
+					</isEqual>
+					<isEqual property="opt" compareValue="name">
+						and lecturer_name like '%' || #keyword# || '%'
+					</isEqual>
+				</isNotNull>
+			</isNotNull>
+			<isNotNull property="noAnswer">
+				<isEqual property="noAnswer" compareValue="Y">
+					and lecturer_permit = 'N'
+				</isEqual>		
+				<isEqual property="noAnswer" compareValue="N">
+					and lecturer_permit = 'Y'
+				</isEqual>
+			</isNotNull>
+			) A
+		<![CDATA[
+			where A.rn >= #beginIndex#
+			and A.rn <= #endIndex#
+		]]>
+	</select>
+	
 	<select id="getLecturerByNo" parameterClass="int" resultClass="Lecturer">
 		select
 			lecturer_no			no

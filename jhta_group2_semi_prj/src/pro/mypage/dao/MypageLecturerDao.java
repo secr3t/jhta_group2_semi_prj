@@ -26,6 +26,11 @@ public class MypageLecturerDao {
 		IbatisUtils.getSqlMap().insert("MyPageLecturer.addCourse", course);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Lecturer> getLecturerInfo(Criteria criteria) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("MyPageLecturer.getLecturerInfo", criteria);
+	}
+	
 	public Lecturer getLecturerByNo(int lecturerNo) throws SQLException {
 		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("MyPageLecturer.getLecturerByNo", lecturerNo);
 	}
