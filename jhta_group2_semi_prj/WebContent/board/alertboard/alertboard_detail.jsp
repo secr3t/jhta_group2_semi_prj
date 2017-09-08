@@ -1,3 +1,5 @@
+<%@page import="pro.utils.DateUtils"%>
+<%@page import="pro.utils.StringUtils"%>
 <%@page import="pro.notice.vo.Notice"%>
 <%@page import="pro.board.dao.AlertBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -35,9 +37,9 @@
 	  	        <p class="read"></p>
 	  	        <hr>
 	  	        
-	  	        <p><span class="glyphicon glyphicon-time"></span><%=noe.getRegdate() %></p>
+	  	        <p><span class="glyphicon glyphicon-time"></span><%=DateUtils.yyyymmdd(noe.getRegdate()) %></p>
 	  	        <hr>
-	  	        <p><span class="glyphicon glyphicon-time"></span><%=noe.getExpiredate() %></p>
+	  	        <p><span class="glyphicon glyphicon-time"></span><%=DateUtils.yyyymmdd(noe.getExpiredate()) %></p>
 	  	        <hr>
 	        </div>
 	    </div>

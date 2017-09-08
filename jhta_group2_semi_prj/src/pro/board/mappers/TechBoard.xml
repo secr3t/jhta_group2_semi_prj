@@ -20,13 +20,14 @@
 <select id="getTotalRows" parameterClass="pro.criteria.vo.Criteria" resultClass="int">
 	select count(*)
 	from tech
+	where tech_active = 'Y'
 	<dynamic>
-		<isNotEmpty property="keyword" prepend="where">
+		<isNotEmpty property="keyword">
 			<isEqual property="opt" compareValue="title">
-				tech_title like '%' || #keyword# || '%'
+				and tech_title like '%' || #keyword# || '%'
 			</isEqual>
 			<isEqual property="opt" compareValue="writer">
-				student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
+				and student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
 			</isEqual>
 		</isNotEmpty>
 	</dynamic>
@@ -43,7 +44,7 @@
 	"active" as active, 
 	"student.no" as "student.no", 
 	"qtypeNo" as qtypeNo
-from (select row_number() over (order by tech_no asc) m,	A.tech_no   as "no",
+from (select row_number() over (order by tech_no desc) m,	A.tech_no   as "no",
 															A.tech_title					as "title", 
 															A.tech_ques_content				as "quesContent",
 															A.tech_ques_regdate				as "quesRegdate",
@@ -56,6 +57,8 @@ from (select row_number() over (order by tech_no asc) m,	A.tech_no   as "no",
 															tech A, student B
 														where 
 															A.student_no = B.student_no
+														and 
+															A.tech_active = 'Y'
 	<dynamic>
 		<isNotNull property="opt">
 			<isNotNull property="keyword">

@@ -35,9 +35,10 @@
 										<strong>과목</strong>
 									</div>
 									<select class="form-control col-sm-1 control-label" style="width: 100px;" name="type" id="subject">
-										<option>국어</option>
-										<option>영어</option>
-										<option>수학</option>
+										<option value="1">국어</option>
+										<option value="2">수학</option>
+										<option value="3">수학</option>
+										<option value="4">과학</option>
 									</select>
 								<label class="col-sm-1 control-label"><strong>평점</strong></label>
 								<div class="col-sm-3">

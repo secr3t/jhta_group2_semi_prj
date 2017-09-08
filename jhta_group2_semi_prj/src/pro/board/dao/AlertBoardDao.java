@@ -1,6 +1,7 @@
 package pro.board.dao;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import pro.criteria.vo.Criteria;

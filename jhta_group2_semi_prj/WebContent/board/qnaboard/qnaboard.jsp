@@ -138,7 +138,7 @@
 					<% 
 						} else {
 					%>
-						<li class="disabled"><a href="qnaboard.jsp?p=1">&gt;</a></li>
+						<li class="disabled"><a 	href="qnaboard.jsp?p=1">&gt;</a></li>
 					<%
 						}
 						if(currentNaviBlock != totalNaviBlocks) {
