@@ -1,3 +1,5 @@
+<%@page import="pro.student.vo.Student"%>
+<%@page import="pro.student.dao.StudentDao"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.dept.dao.DeptDao"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
@@ -26,7 +28,7 @@
 					<li><a href="enrollment-sci.jsp">과학</a></li>
 				</ul>
 			</div>
-				 
+			<form id="list-form">
 				<table class="table table-hover table-condensed">
 					<thead>
 						<tr>
@@ -43,19 +45,21 @@
 						List<Course> courses = courseDao.getAllCourses();
 						DeptDao deptDao = DeptDao.getInstance();
 						LecturerDao lecturerDao = LecturerDao.getInstance();
+						StudentDao studentDao = StudentDao.getInstance();
 						for(Course course : courses ){
 						%>
 						<tr>
-							<td class="deptName"><%=deptDao.getDeptByNo(course.getDept().getNo()).getName() %></td>
+							<td class="deptName" id="name"><%=deptDao.getDeptByNo(course.getDept().getNo()).getName() %></td>
 							<td class="courseName"><%=course.getName() %></td>
 							<td><a href="#">링크</a></td>
 							<td class="lecturerName"><%=lecturerDao.getlecturerByNo(course.getLecturer().getNo()).getName() %></td>
 							<td class="point"><%=course.getPoint()%></td>
-							<td class="course-no hide">1</td>
+							<td class="course-no hide" ><%=course.getNo() %></td>						
 						</tr>
 						<%} %>
 					</tbody>
 				</table>
+			</form>
 			</div>
 		<br><br />
 		<!-- <p>
@@ -69,33 +73,39 @@
 		</div>
 		
 		<br><br />
-		<div class="book-table">
-				<table class="table table-hover table-condensed">
-					<thead>
-						<tr>
-							<th>과목명</th>
-							<th>과정명</th>
-							<th>소개</th>
-							<th>강사이름</th>
-							<th>Point</th>
-						</tr>
-					</thead>
-					<tbody id="selected-list">
-						
-					</tbody>
-				</table>
-		</div>
+		<!-- <form id="selected-form"> -->
+		<form id="button-form" method="get" action="add-enrollment.jsp">
+			<div class="book-table">
+					<table class="table table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>과목명</th>
+								<th>과정명</th>
+								<th>소개</th>
+								<th>강사이름</th>
+								<th>Point</th>
+							</tr>
+						</thead>
+						<tbody id="selected-list">
+							
+						</tbody>
+					</table>
+			</div>
+					<input type="hidden" id="selected-course-no" name="courseNo"/>
+		<!-- </form> -->
 	<div class= "text-right">
 		<ul class="well">
+				
 			
 				<li>예상포인트:<strong id="point"></strong></li>
-				<li>현재포인트</li>
+				<li>현재포인트:<strong id="student-point"></strong></li>
 				<li>수강과목수</li>
 
 		</ul>
 	</div>
-	<form action="add-enrollment.jsp">
+	<!-- <form id="button-form" method="get" action="add-enrollment.jsp"> -->
 		<div class="text-right">
+		
 			<button id="btn" type="submit" class="btn btn-primary">제출</button>		
 		</div>
 	</form>
@@ -116,9 +126,21 @@
 			var self = event.target;
 				if(self.parentNode.parentNode == deptList && selectedList.getElementsByTagName('tr').length<10){
 					selectedList.append(self.parentNode);
-						
+					var selectedCourseNoNodeList = document.querySelectorAll('#selected-list .course-no.hide');
+					var selectedCourseNoValues = [];
+					Array.from(selectedCourseNoNodeList).forEach(function(item, index){
+						selectedCourseNoValues.push(item.textContent);
+					})
+				document.getElementById("selected-course-no").value = selectedCourseNoValues;
 				} else if(self.parentNode.parentNode == selectedList){
+					
 					deptList.append(self.parentNode);
+					var selectedCourseNoNodeList = document.querySelectorAll('#selected-list .course-no.hide');
+					var selectedCourseNoValues = [];
+					Array.from(selectedCourseNoNodeList).forEach(function(item, index){
+						selectedCourseNoValues.push(item.textContent);
+					})
+				document.getElementById("selected-course-no").value = selectedCourseNoValues;
 				}
 		var selectedPointNodeList = document.querySelectorAll('#selected-list .point');
 		var selectedPointValues = [];
@@ -127,23 +149,38 @@
 			selectedPointValues.push(item.textContent);
 			point += parseInt(item.textContent);
 			})
+			document.getElementById('point').innerText = point;
 			console.log(selectedPointValues);
-			document.getElementById('point').innerText = point; 
-					
 		})
+		
 	};		
 }())
 
-	document.getElementById("btn").addEventListener('click',function(event){
+	 /* document.getElementById("btn").addEventListener('click',function(event){
 		event.preventDefault();
-	var selectedCourseNoNodeList = document.querySelectorAll('#selected-list .course-no.hide');
-	var selectedCourseNoValues = [];
-	Array.from(selectedCourseNoNodeList).forEach(function(item, index){
-		selectedCourseNoValues.push(item.textContent);
+		var selectedCourseNoNodeList = document.querySelectorAll('#selected-list .course-no.hide');
+		var selectedCourseNoValues = [];
+		Array.from(selectedCourseNoNodeList).forEach(function(item, index){
+			selectedCourseNoValues.push(item.textContent);
 		})
-		console.log(selectedCourseNoValues);
+		
+		 var selectedCourseNo = {"courseNo":selectedCourseNoValues};			
+		var transfer = JSON.stringify(selectedCourseNo);
+		 
+	});  */
 	
-	});
+	/* function courseNo(event){
+	
+		event.preventDefault();
+		var selectedCourseNoNodeList = document.querySelectorAll('#selected-list .course-no.hide');
+		var selectedCourseNoValues = [];
+		Array.from(selectedCourseNoNodeList).forEach(function(item, index){
+			selectedCourseNoValues.push(item.textContent);
+		})
+		console.log(selectedCourseNoValues); 
+		 document.getElementById("button-form").submit(); 
+	} */
+	
 	
 	
 </script>
