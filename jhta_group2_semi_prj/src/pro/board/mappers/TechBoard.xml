@@ -49,10 +49,12 @@ from (select row_number() over (order by tech_no asc) m,	A.tech_no   as "no",
 where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 
-<delete id="deleteTechBoardByNo" parameterClass="int">
-	delete from tech
+<update id="deleteTechBoardByNo" parameterClass="int">
+	update tech
+	set
+		tech_active = 'N'
 	where tech_no = #value#
-</delete>
+</update>
 
 <select id="getTechBoardByNo" parameterClass="int" resultClass="techboard">
 select
