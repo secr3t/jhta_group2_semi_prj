@@ -1,3 +1,8 @@
+<%@page import="pro.lectureinfo.dao.LectureInfoDao"%>
+<%@page import="pro.lectureinfo.vo.LectureInfo"%>
+<%@page import="pro.criteria.vo.Criteria"%>
+<%@page import="pro.utils.StringUtils"%>
+<%@page import="pro.video.dao.VideoDao"%>
 <%@page import="pro.dept.dao.DeptDao"%>
 <%@page import="pro.dept.vo.Dept"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
@@ -14,30 +19,126 @@
 <%@include file="../../common/nav.jsp" %>
 <div class="container">
 	<div class="col-sm-2">
-		<h2><a href="index.jsp">강의 목록</a></h2>
+		<h2><a href="index.jsp">강의목록</a></h2>
 		<hr>
 	<%@include file="left-menu.jsp" %> 
 	</div>
 <div class="col-sm-10">
 <%@include file="nav.jsp" %>
 <%
-	if(request.getParameter("tno")!=null){
-		%>
-		<%@include file="individuallecture1.jsp" %>
-		<%
-	}else if (request.getParameter("sno")!=null){
-		%>
-		<%@include file="individuallecture2.jsp" %>
-		<%
-	}else {
-		%>
-		<%@include file="individuallecture3.jsp" %>
-		<%
+	LectureCourseDao courseDao = LectureCourseDao.getInstance();
+	LecturerDao lecturerDao = LecturerDao.getInstance();
+	LectureInfoDao infoDao = LectureInfoDao.getInstance();
+	List<LectureInfo> courses;
+	String selectedName = null;
+	int no = 0; //= Integer.parseInt(request.getParameter("tno"));
+	int noTotalRows = 0;
+	
+	if(request.getParameter("tno") != null){
+		no = Integer.parseInt(request.getParameter("tno"));
+		Lecturer lecturer = lecturerDao.getLecturerByNo(no);
+		selectedName = lecturer.getName();
+		noTotalRows = infoDao.getLecturesInfoQty(lecturer.getName());
+		System.out.println(noTotalRows);
+	} else if(request.getParameter("sno") != null){
+		no = Integer.parseInt(request.getParameter("sno"));
+		DeptDao deptDao = DeptDao.getInstance();
+		Dept dept = deptDao.getDeptByNo(no);
+		noTotalRows = infoDao.getSubjectsInfoQty(dept.getName());
+		selectedName = dept.getName();
+	} else if(request.getParameter("pno") != null){
+		no = Integer.parseInt(request.getParameter("pno"));
 	}
-	;	
+	
 %>
+<% 
+    	final int rowsPerPage = 6;
+    	final int naviPerPage = 5;
+    	
+    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
+    	
+    	int totalRows = noTotalRows;
+    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
+    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
+    	int currentNaviBlock = (int) Math.ceil(p/(double)naviPerPage);
+    	int beginPage = (currentNaviBlock - 1)*naviPerPage +1;
+    	int endPage = currentNaviBlock*naviPerPage;
+    	
+    	if(currentNaviBlock >= totalNaviBlocks) {
+    		endPage = totalPages;
+    	}
+    	
+    	int beginIndex = (p-1)*rowsPerPage + 1;
+    	int endIndex = p*rowsPerPage;
+    	
+    	Criteria criteria = new Criteria();
+    	criteria.setBeginIndex(beginIndex);
+    	criteria.setEndIndex(endIndex);
+    %>
+		
+	<%
+	    List<LectureInfo> lectureInfos = infoDao.getLecturesInfo(criteria);
+		for(LectureInfo course : lectureInfos){
+			if(selectedName.equals(course.getLecturerName()) || selectedName.equals(course.getDeptName())){
+				System.out.println(course.getDeptName());
+		//강사 객체
+		//Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
+	%>
+	<!--과정 소개  -->
+       <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >
+             
+             <div>
+                 <img src="<%=course.getPicture()%>" alt="강사사진" style="width: 40%;float:left">
+             </div>
+             <div class="text-center">
+                 <h4><strong><%=course.getBoardName() %></strong></h4>
+             </div>
+             <div class="text-center">
+                  <p><small><%=course.getSummary() %></small></p>
+             </div>
+             <div class="text-right">
+                  <p>강사 <strong><%=course.getLecturerName() %></strong></p>
+                  <p>강의수 <strong><%=course.getQty()%>강</strong></p>
+                  <p>포인트 <strong><%=course.getPoint()%>p</strong></p>
+             </div>
+            		
+            <div class="btn-group btn-group-justified" role="group" style="padding-bottom: 10px;">
+                    <a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getCourseNo()%>" class="btn btn-primary">소개</a>
+                    <a href="" class="btn btn-success">수강신청</a>
+            </div>
+        </div>
+       		 <%} %>
+        <%} %>
 </div>
-<%@include file="pagination.jsp" %>
+<div class="row text-center">
+		<ul class="pagination">
+		<% 
+			if(p!=1) {
+		%>
+		  <li><a href="Filter.jsp?p=<%=(p - 1)%>"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+		<%
+			}else{
+		%>
+			 <li class="disabled"><a href="Filter.jsp?p=<%=p%>"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+		<% 		
+			}
+		 	for(int index=beginPage; index<=endPage; index++){ %>
+		  <li class="<%=(p==index?"active":"")%>"><a href="Filter.jsp?p=<%=index %>"><%=index %></a></li>		
+		<%
+			} 
+		 	if(p<totalPages) {
+		%>
+		  <li><a href="Filter.jsp?p=<%=(p + 1)%>"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+		<% 
+			} else {
+		%> 
+		  <li class="disabled"><a href="Filter.jsp?p=<%=p%>"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+		<%
+			}
+		%>
+		</ul>
+	</div>
+<hr>
 </div>
 <%@include file="../../common/footer.jsp" %>
 </body>
@@ -46,15 +147,13 @@
        var clicked =event.target;
         if(clicked.id === "teacher"){
             var htmlContent = "";
-            <%	
-            LecturerDao lecturerDao = LecturerDao.getInstance();
-            List<Lecturer> lecturers = lecturerDao.getAllLecturers();
+            <%	List<Lecturer> lecturers = lecturerDao.getAllLecturers();
             for(Lecturer lecturer : lecturers){
             %>
             htmlContent += "<li id='<%=lecturer.getNo()%>' style='cursor:pointer'><%=lecturer.getName()%></li>";
             <%}%>
             document.getElementById("menu2").setAttribute("data-toggle", "dropdown");
-            document.getElementById("menu2").innerHTML = "필터"+"<span class='caret'></span>"; 
+            document.getElementById("menu2").innerHTML = "소분류"+"<span class='caret'></span>"; 
             document.getElementById("myDropdown-2").innerHTML = htmlContent;
             document.getElementById("menu1").innerHTML = clicked.innerText+"<span class='caret'></span>";
         }else if(clicked.id === "subject"){
@@ -65,7 +164,7 @@
             htmlContent +="<li id='<%= dept.getNo()%>' style='cursor:pointer'><%= dept.getName()%></li>";
             <%}%>
             document.getElementById("menu2").setAttribute("data-toggle", "dropdown");
-            document.getElementById("menu2").innerHTML = "필터"+"<span class='caret'></span>"; 
+            document.getElementById("menu2").innerHTML = "소분류"+"<span class='caret'></span>"; 
             document.getElementById("myDropdown-2").innerHTML = htmlContent;
             document.getElementById("menu1").innerHTML = clicked.innerText+"<span class='caret'></span>";
         }else if(clicked.id === "popular"){
@@ -85,7 +184,7 @@
    document.getElementById("myDropdown-1").addEventListener("click", function(event){
 	  var target = event.target;
 	  if("인기" === target.innerText){
-		  
+		  location.href="/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/Filter.jsp?pno="+target.id;
 	  }
    });
    }());
@@ -102,6 +201,6 @@
 	   
    });
    }());
-   
+
 </script>
 </html>

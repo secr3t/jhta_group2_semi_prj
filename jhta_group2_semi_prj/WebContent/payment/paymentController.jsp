@@ -14,14 +14,16 @@
 	int paymentpoint = Integer.parseInt(request.getParameter("paymentpoint"));
 	int newpoint = student.getPoint()+paymentpoint;
 	
+	student.setPoint(newpoint);
 	Point point = new Point();
 	point.setDate(new Date());
 	point.setHistory("충전");
+	point.setPayment(paymentpoint);
 	point.setStudent(student);
-	student.setPoint(newpoint);
+	System.out.println(student);
+	System.out.println(point);
 	
 	pointDao.addPoint(point);
-	
 	
 	studentDao.updateStudent(student);
 	

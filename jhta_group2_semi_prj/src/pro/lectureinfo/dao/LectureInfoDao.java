@@ -21,5 +21,11 @@ public class LectureInfoDao {
 		return IbatisUtils.getSqlMap().queryForList("lectureInfo.getLecturesInfo", criteria);
 	}
 	
+	public int getLecturesInfoQty (String name)throws SQLException {
+		return (int) IbatisUtils.getSqlMap().queryForObject("lectureInfo.getLecturesInfoQty", name);
+	}
 	
+	public int getSubjectsInfoQty (String name) throws SQLException {
+		return (int) IbatisUtils.getSqlMap().queryForObject("lectureInfo.getSubjectsInfoQty",name);
+	}
 }

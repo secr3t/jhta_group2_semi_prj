@@ -1,3 +1,5 @@
+<%@page import="pro.lectureinfo.dao.LectureInfoDao"%>
+<%@page import="pro.lectureinfo.vo.LectureInfo"%>
 <%@page import="pro.criteria.vo.Criteria"%>
 <%@page import="pro.utils.StringUtils"%>
 <%@page import="pro.video.dao.VideoDao"%>
@@ -26,8 +28,7 @@
 <%
 	LecturerDao lecturerDao = LecturerDao.getInstance();
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();
-	List<Course> courses =  courseDao.getAllCourses();
-	VideoDao videoDao = VideoDao.getInstance();
+	LectureInfoDao infoDao = LectureInfoDao.getInstance();
 %>
 <% 
 
@@ -55,30 +56,33 @@
     	criteria.setEndIndex(endIndex);
     	
     %>
-
-	<%for(Course course : courses){
+		
+	<%
+	
+	    List<LectureInfo> lectureInfos = infoDao.getLecturesInfo(criteria);
+		for(LectureInfo course : lectureInfos){
 		//강사 객체
-		Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
+		//Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
 	%>
 	<!--과정 소개  -->
        <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >
              <div>
-                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 40%;float:left">
+                 <img src="<%=course.getPicture()%>" alt="강사사진" style="width: 40%;float:left">
              </div>
              <div class="text-center">
-                 <h4><strong><%=course.getName()%></strong></h4>
+                 <h4><strong><%=course.getBoardName() %></strong></h4>
              </div>
              <div class="text-center">
-                  <p><small><%=course.getSummary()%></small></p>
+                  <p><small><%=course.getSummary() %></small></p>
              </div>
              <div class="text-right">
-                  <p>강사 <strong><%=lecturer.getName()%></strong></p>
-                  <p>강의수 <strong><%=videoDao.getVideoQtrByCourseNo(course.getNo()) %>강</strong></p>
+                  <p>강사 <strong><%=course.getLecturerName() %></strong></p>
+                  <p>강의수 <strong><%=course.getQty()%>강</strong></p>
                  <p>포인트 <strong><%=course.getPoint()%>p</strong></p>
              </div>
             		
             <div class="btn-group btn-group-justified" role="group" style="padding-bottom: 10px;">
-                    <a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getNo()%>" class="btn btn-primary">소개</a>
+                    <a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getCourseNo()%>" class="btn btn-primary">소개</a>
                     <a href="" class="btn btn-success">수강신청</a>
             </div>
         </div>
@@ -86,11 +90,30 @@
 </div>
 <div class="row text-center">
 		<ul class="pagination">
-		  <li class="disabled"><a href="index.jsp?p=<%=(p - 1)%>"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-		  <%for(int index=beginPage; index<=endPage; index++){ %>
+		<% 
+			if(p!=1) {
+		%>
+		  <li><a href="index.jsp?p=<%=(p - 1)%>"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+		<%
+			}else{
+		%>
+			 <li class="disabled"><a href="index.jsp?p=<%=p%>"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+		<% 		
+			}
+		 	for(int index=beginPage; index<=endPage; index++){ %>
 		  <li class="<%=(p==index?"active":"")%>"><a href="index.jsp?p=<%=index %>"><%=index %></a></li>		
-		  <%} %>
+		<%
+			} 
+		 	if(p<totalPages) {
+		%>
 		  <li><a href="index.jsp?p=<%=(p + 1)%>"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+		<% 
+			} else {
+		%> 
+		  <li class="disabled"><a href="index.jsp?p=<%=p%>"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+		<%
+			}
+		%>
 		</ul>
 	</div>
 <hr>
@@ -108,7 +131,7 @@
             htmlContent += "<li id='<%=lecturer.getNo()%>' style='cursor:pointer'><%=lecturer.getName()%></li>";
             <%}%>
             document.getElementById("menu2").setAttribute("data-toggle", "dropdown");
-            document.getElementById("menu2").innerHTML = "필터"+"<span class='caret'></span>"; 
+            document.getElementById("menu2").innerHTML = "소분류"+"<span class='caret'></span>"; 
             document.getElementById("myDropdown-2").innerHTML = htmlContent;
             document.getElementById("menu1").innerHTML = clicked.innerText+"<span class='caret'></span>";
         }else if(clicked.id === "subject"){
@@ -119,7 +142,7 @@
             htmlContent +="<li id='<%= dept.getNo()%>' style='cursor:pointer'><%= dept.getName()%></li>";
             <%}%>
             document.getElementById("menu2").setAttribute("data-toggle", "dropdown");
-            document.getElementById("menu2").innerHTML = "필터"+"<span class='caret'></span>"; 
+            document.getElementById("menu2").innerHTML = "소분류"+"<span class='caret'></span>"; 
             document.getElementById("myDropdown-2").innerHTML = htmlContent;
             document.getElementById("menu1").innerHTML = clicked.innerText+"<span class='caret'></span>";
         }else if(clicked.id === "popular"){

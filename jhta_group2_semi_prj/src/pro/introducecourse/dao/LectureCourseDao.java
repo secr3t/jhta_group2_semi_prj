@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import pro.course.vo.Course;
+import pro.criteria.vo.Criteria;
+import pro.lectureinfo.vo.LectureInfo;
 import pro.utils.IbatisUtils;
 
 public class LectureCourseDao {
@@ -37,4 +39,9 @@ public class LectureCourseDao {
 		return (Integer) IbatisUtils.getSqlMap().queryForObject("course.getCourseQty");
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<LectureInfo> getLecturesInfo (Criteria criteria) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("course.getLecturesInfo", criteria);
+	}
+
 }

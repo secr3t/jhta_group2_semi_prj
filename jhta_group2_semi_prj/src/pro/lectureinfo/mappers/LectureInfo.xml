@@ -17,7 +17,7 @@
 				"lecturerName",
 				"qty",
 				"point",
-				"name",
+				"deptName",
 				"summary"
 		from (SELECT
 				row_number() over (order by A.course_no asc) as "m",
@@ -28,7 +28,7 @@
 				B.LECTURER_NAME			as "lecturerName",
 				(select count(*) from course_video where COURSE_NO = A.course_no)	as "qty",
 				A.COURSE_POINT			as "point",
-				c.DEPT_NAME				as "name",
+				c.DEPT_NAME				as "deptName",
 				A.course_summary      	as "summary"
 				
 				from COURSE A, LECTURER B, DEPT C
@@ -37,7 +37,21 @@
 				and A.DEPT_NO = C.dept_no
 				order by A.DEPT_NO asc )
 		where  	"m" >= #beginIndex# and "m" &lt;= #endIndex#
-
+	</select>
+	
+	<select id="getLecturesInfoQty" parameterClass="string" resultClass="int">
+		select 	count(*)
+		from 	COURSE A, LECTURER B
+		where 	B.Lecturer_no = A.LECTURER_NO
+		and 	B.LECTURER_NAME = #value#
+	</select>
+	
+	
+	<select id="getSubjectsInfoQty" parameterClass="string" resultClass="int">
+		select 	count(*)
+		from 	COURSE A, DEPT B
+		where 	B.DEPT_NO = A.DEPT_NO
+		and 	B.DEPT_NAME = #value#
 	</select>
 	
 </sqlMap>
