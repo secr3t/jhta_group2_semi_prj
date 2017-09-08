@@ -18,11 +18,11 @@ function $$$(el){
 	return document.querySelector(el);
 }
 
-function timer(fn, time) {                                       //check interval is running
+function timer(fn, time, el) {                                       //check interval is running
     var timer = false;
     this.start = function () {
         if (!this.isRunning()){
-            timer = setInterval(fn, time);
+            timer = setInterval(fn, time, el);
 }
     };
     this.stop = function () {
