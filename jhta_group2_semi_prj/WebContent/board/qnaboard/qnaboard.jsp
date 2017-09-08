@@ -30,14 +30,20 @@
 	  	    <% 
 	  	  		String opt = request.getParameter("opt");
   	    		String keyword = request.getParameter("keyword");
+	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
 	  	    
-	  	    	final int rowsPerPage = 8;
+	  	    	final int rowsPerPage = 7;
 	  	    	final int naviPerPage = 5;
 	  	    	
 	  	    	QnaBoardDao qdao = QnaBoardDao.getInstance();
-	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
 	  	    	
 	  	    	Criteria criteria = new Criteria();
+	  	    	if(opt != null && !opt.isEmpty()) {
+	  	    		criteria.setOpt(opt);
+	  	    	}
+	  	    	if(keyword != null && !keyword.isEmpty()) {
+	  	    		criteria.setKeyword(keyword);
+	  	    	}
 	  	    	int totalRows = qdao.getTotalRows(criteria);
 	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
 	  	    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
@@ -54,22 +60,22 @@
 	  	    	
 	  	    	criteria.setBeginIndex(beginIndex);
 	  	    	criteria.setEndIndex(endIndex);
-	  	    	criteria.setOpt(opt);
-	  	    	criteria.setKeyword(keyword);
 	  	    	
 	  	    %>
 	  	    <div class="text-right">
-	  	    	<form action="" class="form-inline" method="get">
+	  	    	<form action="qnaboard.jsp" class="form-inline" method="get" id="search-form">
 	  	    		<div class="form-group align-right">
+	  	    			<input type="hidden" name="p" id="p-field" value="<%=p %>">
 	  	    			<label class="sr-only">옵션</label>
 	  	    			<select class="form-control col-sm-offcet-4 col-sm-3 control-label" style="width: 100px;" name="opt">
 							<option value="title"<%= ("title".equals(opt) ? "selected":"") %>>제목</option>
 							<option value="writer"<%= ("writer".equals(opt) ? "selected":"") %>>작성자</option>
+							<option value="courseName"<%= ("courseName".equals(opt) ? "selected":"") %>>과정명</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label class="sr-only">검색어</label>
-						<input type="text" class="form-control" name="keyword" value="<%=StringUtils.nullToBlank(keyword)%>"/>
+						<input type="text" class="form-control" name="keyword" id="keyword" value="<%=StringUtils.nullToBlank(keyword)%>"/>
 					</div>
 					<button type="submit" class="btn btn-default">검색</button>
 	  	    	</form>
@@ -112,7 +118,7 @@
 					} else {}
 						if(p>1) {
 					%>
-						<li><a href="qnaboard.jsp?p=<%=(p - 1)%>">&lt;</a></li>
+						<li><a href="javascript:goList(<%=p-1%>)">&lt;</a></li>
 					<%
 						} else {
 					%>
@@ -128,7 +134,7 @@
 					<%
 						if(p<=totalPages) {
 					%>
-						<li><a href="qnaboard.jsp?p=<%=(p + 1) %>">&gt;</a></li>
+						<li><a href="javascript:goList(<%=p+1%>)">&gt;</a></li>
 					<% 
 						} else {
 					%>
@@ -151,4 +157,16 @@
 </div>
 <%@include file="../../common/footer.jsp"%>
 </body>
+<script type="text/javascript">
+function search(event) {
+	event.preventDefault();
+	document.getElementById("p-field").value = 1;
+	document.getElementById("search-form").submit();
+}
+
+function goList(p) {
+	document.getElementById("p-field").value = p;
+	document.getElementById("search-form").submit();
+}
+</script>
 </html>

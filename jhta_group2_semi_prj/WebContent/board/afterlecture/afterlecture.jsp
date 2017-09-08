@@ -41,9 +41,7 @@
 	  	    	String keyword = request.getParameter("keyword");
 	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
 	  	    	
-	  	    	System.out.println("opt " + opt);
-	  	    	System.out.println("p " + p);
-	  	    	System.out.println("keyword " + keyword);
+	  	    	
 	  	    	
 	  	    	
 	  	    	final int rowsPerPage = 5;
@@ -124,31 +122,37 @@
 				</table>
 				<div class="panel-body text-center">
 					<ul class="pagination">
-						
+					<%if(p>naviPerPage) { %>
+						<li><a href="afterlecture.jsp?p=<%=beginPage-naviPerPage %>">&lt;&lt;</a></li>
 					<%
-			
+						} else {}					
 						if(p>1) {
 					%>
 						<li><a href="javascript:goList(<%=p-1%>)">&lt;</a></li>
 					<%
-						} 
+						} else {
 					%>
-						
+						<li class="disabled"><a href="afterlecture.jsp?p=1">&lt;</a></li>					
 					<%
-						
+						}
 						for(int index=beginPage; index<=endPage; index++) {		
 					%>
 						<li class="<%=(p==index?"active":"")%>"><a href="javascript:goList(<%=index %>) %>"><%=index %></a></li>
 					<% 
 						}
-					%>
-					<%
 						if(p<=totalPages) {
 					%>
 						<li><a href="javascript:goList(<%=p+1%>)">&gt;</a></li>
 					<% 
-						} 
+						} else {
 					%>
+						<li class="disabled"><a href="afterlecture.jsp?p=1">&gt;</a></li>
+					<%
+						}
+						if(currentNaviBlock != totalNaviBlocks) {
+					%>
+						<li><a href="alertboard.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
+					<% } %>
 						
 					</ul>
 					<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
