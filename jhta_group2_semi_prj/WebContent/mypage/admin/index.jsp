@@ -72,7 +72,6 @@
                                 		for(Lecturer forLecturer : lecList) {
                                 	%>
                                     <tr>
-                                        <td><a href="manager/course/course-detail.jsp?lno=<%=forLecturer.getNo() %>"><%=forLecturer.getEmail() %></a></td>
                                         <td><%=forLecturer.getName() %></td>
                                         <td><%=forLecturer.getCareer() %></td>
                                     </tr>                                		

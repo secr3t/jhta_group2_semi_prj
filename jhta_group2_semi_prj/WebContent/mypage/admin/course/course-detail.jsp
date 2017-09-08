@@ -11,6 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<%@ include file="/mypage/admin/logincheck.jsp" %>
 	<%@ include file="/common/nav.jsp" %>
     <div class="container">
  
