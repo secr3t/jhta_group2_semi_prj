@@ -7,7 +7,7 @@ public class StringUtils {
 	}
 	
 	public static int changeIntToString(String str, int defaultValue) {
-		if(str == null) {
+		if(str == null || "".equals(str)) {
 			return defaultValue;
 		}
 		return Integer.parseInt(str);

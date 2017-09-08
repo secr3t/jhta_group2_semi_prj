@@ -30,13 +30,13 @@ public class AttachUploadServlet extends HttpServlet {
 	
 		HttpSession session = req.getSession(false);
 		if(session == null) {
-			resp.sendRedirect("/mypae/temp-login.jsp");
+			resp.sendRedirect("/mypage/temp-login.jsp");
 			return;
 		}
 		
 		Lecturer lecturer = (Lecturer) session.getAttribute("loginedUser");
 		if(lecturer == null) {			
-			resp.sendRedirect("/mypae/temp-login.jsp");
+			resp.sendRedirect("/mypage/temp-login.jsp");
 			return;
 		}
 		
@@ -65,7 +65,7 @@ public class AttachUploadServlet extends HttpServlet {
 		part.write(ATTACH_SAVED_DIRECTORY + fileName);
 		try {
 			MypageLecturerDao.getInstance().addCourseVideo(video);
-			resp.sendRedirect("/upload-lectureform.jsp?success");
+			resp.sendRedirect("/jhta_group2_semi_prj/mypage/lecturer/mycourse/upload-lectureform.jsp?success");
 		} catch (SQLException e) {
 				e.printStackTrace();
 				throw new ServletException(e);
