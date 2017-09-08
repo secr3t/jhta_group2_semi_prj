@@ -1,3 +1,4 @@
+<%@page import="pro.dept.dao.DeptDao"%>
 <%@page import="pro.utils.DateUtils"%>
 <%@page import="pro.student.dao.StudentDao"%>
 <%@page import="java.util.List"%>
@@ -29,9 +30,12 @@
 	Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
 	StudentDao studentDao = StudentDao.getInstance();
 %>
-   <div class="row">
-        <p><small>Home>All subjects>Economic>Marketing Analytics</small></p>
+   <div class="row" style="font-size: 13px; font-weight: bold;">
+        <span id="category1"><a href="/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/index.jsp">강의목록></a></span><span id="category2"></span><span id="category3"></span><span id="category4"></span>
    </div>
+   <script type="text/javascript">
+   
+   </script>
    <div class="row well">
         <div class="col-sm-3">
             <img src=<%=lecturer.getPicture() %> style="width: 70%;">
@@ -61,7 +65,7 @@
             <div class="row well">
                 <div class="row">
                     <div class="col-sm-8">
-                        <h4><strong>과정소개</strong></h4>
+                       <h4><strong>과정소개</strong></h4>
                     </div>
                     <div class="col-sm-4">
                         <span><strong>평점 : </strong></span>
@@ -72,20 +76,6 @@
                     <div style="padding-top:20px">
                         <p><%=course.getDetail() %></p>
                     </div>
-                 <!--    <div class="col-sm-12 row collapse" id="collapseExample">
-                        <div class="car card-block" style="white-space: pre-line;">
-                            <p>In this marketing course, you will learn how to execute market sizing, identify market trends, and predict future conditions.
-
-                            This course is taught by Stephan Sorger who has held leadership roles in marketing and product development at companies such as Oracle, 3Com and NASA. He has also taught for over a decade at UC Berkeley Extension and is the author of two widely adopted marketing textbooks. This course will equip you with the knowledge and skills necessary to immediately see practical benefits in the workplace.
-
-                            Analytics-based marketing is increasingly important in determining a company’s spending and ROI. Many entry-level positions in marketing now require some basic level of knowledge in this rapidly growing field.</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                         <button class="btn btn-default" type="button" data-toggle="collapse" 
-                                 data-target="#collapseExample" aria-expanded="false" 
-                                 aria-controls="collapseExample">+ See More</button>
-                    </div> -->
                 </div>
                
                 <div class="row">
@@ -107,13 +97,16 @@
                         </div> 
                     </div>
                 </div>
-              
  		<div class="row">
       		 <div class="col-sm-8"  style="padding-top:30px;">
-       		   <h4><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp"><strong>과정후기</strong></a></h4>
+	       		   <h4><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp"><strong>강의후기</strong></a></h4>
       		 </div>
  		</div>    
  		<table class="table table-condensed">
+ 				<div class= "text-right">
+	       		   <span><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp?courseNo=<%=course.getNo() %>" class="btn btn-success">강의 후기 작성</a></span>
+      		 	</div>
+      		 	<br>
 	 		<tr>
 	 			<th>글번호</th> <th>제목</th> <th>작성자</th> <th>작성일</th> <th>평점</th> 
 	 		</tr>
@@ -149,6 +142,19 @@
 <%@include file="../../common/footer.jsp" %>
 </body>
 <script type="text/javascript">
-	
+	<%
+		DeptDao deptDao = DeptDao.getInstance();
+		course = courseDao.getCourseByNo(Integer.parseInt(request.getParameter("courseNo")));
+		String deptName = deptDao.getDeptByNo(course.getDept().getNo()).getName(); //과목이름
+		int deptNo = course.getDept().getNo(); //과목번호
+		String lecturerName = lecturerDao.getLecturerByNo(course.getLecturer().getNo()).getName(); //강사 이름
+		int lecturerNo = course.getLecturer().getNo();	//강사번호
+		String courseName = course.getName();
+		
+	%>
+		document.getElementById("category2").innerHTML = "<a href='/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/Filter.jsp?sno=<%=deptNo%>'><%=deptName %>></a>"; 
+		document.getElementById("category3").innerHTML = "<a href='/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/Filter.jsp?tno=<%=lecturerNo%>'><%=lecturerName %>></a>"; 
+		document.getElementById("category4").innerText = "<%=courseName %>"; 
+
 </script>
 </html>

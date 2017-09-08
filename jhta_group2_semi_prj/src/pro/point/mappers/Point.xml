@@ -12,6 +12,6 @@
 		insert into point
 			(POINT_PAYMENT, POINT_HISTORY, POINT_DATE ,STUDENT_NO)
 		values
-			(#payment#, #history#, #date#, #student.no#);
+			(#payment#, #history#, #date#, #student.no#)
 	</insert>
 </sqlMap>
