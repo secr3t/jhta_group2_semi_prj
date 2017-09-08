@@ -17,9 +17,19 @@
 		#active#, #student.no#, #qtypeNo#)
 </insert>
 
-<select id="getTotalRows" resultClass="int">
+<select id="getTotalRows" parameterClass="pro.criteria.vo.Criteria" resultClass="int">
 	select count(*)
 	from tech
+	<dynamic>
+		<isNotEmpty property="keyword" prepend="where">
+			<isEqual property="opt" compareValue="title">
+				tech_title like '%' || #keyword# || '%'
+			</isEqual>
+			<isEqual property="opt" compareValue="writer">
+				student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
+			</isEqual>
+		</isNotEmpty>
+	</dynamic>
 </select>
 
 <select id="getAllTechBoard" parameterClass="pro.criteria.vo.Criteria" resultClass="techboard">
@@ -45,7 +55,20 @@ from (select row_number() over (order by tech_no asc) m,	A.tech_no   as "no",
 														from
 															tech A, student B
 														where 
-															A.student_no = B.student_no)
+															A.student_no = B.student_no
+	<dynamic>
+		<isNotNull property="opt">
+			<isNotNull property="keyword">
+				<isEqual property="opt" compareValue="title">
+					and A.tech_title like '%' || #keyword# || '%'
+				</isEqual>
+				<isEqual property="opt" compareValue="writer">
+					and A.student_no in (select student_no from student where student_name like '%' || #keyword# || '%')  
+				</isEqual>
+			</isNotNull>
+		</isNotNull>
+	</dynamic>			
+															)
 where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 
