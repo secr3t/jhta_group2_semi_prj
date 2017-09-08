@@ -91,7 +91,7 @@
                      	 	int totalBlock = (int) Math.ceil((double) totalPages / pagesPerBlock);
                      	 	int beginPage = (nowBlock - 1) * pagesPerBlock + 1;
                      	 	int endPage = nowBlock * pagesPerBlock;
-                     	 	if(nowBlock == totalBlock) {
+                     	 	if(nowBlock >= totalBlock) {
                      	 		endPage = totalPages;
                      	 	}
                      	 	
