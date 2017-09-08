@@ -15,5 +15,5 @@
 	qdao.updateQnaAnsBoard(qna);
 	
 	response.sendRedirect("/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp");
-	
+
 %>

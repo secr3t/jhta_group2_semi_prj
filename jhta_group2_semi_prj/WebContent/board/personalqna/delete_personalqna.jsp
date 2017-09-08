@@ -19,5 +19,5 @@
 	} else {
 		response.sendRedirect("/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp?error=1");
 	}
- 	 	
+
  %>

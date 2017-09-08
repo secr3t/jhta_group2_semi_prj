@@ -12,6 +12,15 @@
 </head>
 <%@include file="../common/header.jsp"%>
 <body>
+<%
+ if(request.getParameter("error")!=null){
+%>
+<script type="text/javascript">
+	alert("권한이 없습니다.");
+</script>
+<%  
+ }
+%>
     <div class="container">
         <div class="row row-offcanvas row-offcanvas-right">
             <div class="col-xs-12 col-sm-12">

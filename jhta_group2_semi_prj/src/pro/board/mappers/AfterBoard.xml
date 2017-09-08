@@ -99,6 +99,4 @@ select "no"        as  no,
 		postscription_no = #value#
 </select>
 
-
-
 </sqlMap>
