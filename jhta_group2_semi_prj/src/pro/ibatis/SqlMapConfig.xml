@@ -34,5 +34,6 @@
 	<sqlMap resource="pro/student/mapper/Student.xml" />
 	<sqlMap resource="pro/dept/mappers/Dept.xml" />
 	<sqlMap resource="pro/point/mappers/Point.xml " />
+	<sqlMap resource="pro/lectureinfo/mappers/LectureInfo.xml " />
 	
 </sqlMapConfig>
