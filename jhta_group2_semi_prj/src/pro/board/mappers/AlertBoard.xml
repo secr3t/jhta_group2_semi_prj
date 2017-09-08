@@ -17,9 +17,16 @@
 		#active#)
 </insert>
 
-<select id="getTotalRows" resultClass="int">
+<select id="getTotalRows" parameterClass="pro.criteria.vo.Criteria" resultClass="int">
 	select count(*)
 	from notice
+	<dynamic>
+		<isNotEmpty property="keyword" prepend="where">
+			<isEqual property="opt" compareValue="title">
+				notice_title like '%' || #keyword# || '%'
+			</isEqual>
+		</isNotEmpty>
+	</dynamic>
 </select>
 
 <select id="getAllAlertBoard" parameterClass="pro.criteria.vo.Criteria" resultClass="alertboard">
@@ -37,7 +44,14 @@
 																notice_expiredate 	as "expiredate",
 																notice_active		as "active"
 															from
-																notice)
+																notice
+	<dynamic>
+		<isNotEmpty property="keyword" prepend="where">
+			<isEqual property="opt" compareValue="title">
+				notice_title like '%' || #keyword# || '%'
+			</isEqual>
+		</isNotEmpty>
+	</dynamic>													)
 	where m >= #beginIndex# and m &lt;= #endIndex#
 </select>
 

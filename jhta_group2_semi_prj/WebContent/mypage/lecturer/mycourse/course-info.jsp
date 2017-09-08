@@ -62,7 +62,7 @@
                         </colgroup>
                         <tr>
                             <th>현재 등록된 강의 수</th><td><%=courDao.getTotalCourseVideoByCourseNo(course.getNo()) %>개</td>
-                            <td><a href="upload-lectureform.jsp" class="btn btn-info pull-right">새영상 등록</a></td>
+                            <td><a href="upload-lectureform.jsp?cno=<%=course.getNo() %>" class="btn btn-info pull-right">새영상 등록</a></td>
                         </tr>                        
                         <tr>
                             <th>수강 중인 학생 수</th><td><%=courDao.getTotalStudentByCourseNo(course.getNo()) %>명</td>

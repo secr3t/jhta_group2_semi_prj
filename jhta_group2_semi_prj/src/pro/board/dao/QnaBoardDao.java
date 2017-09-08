@@ -25,7 +25,7 @@ public class QnaBoardDao {
 		return IbatisUtils.getSqlMap().queryForList("QueBoard.getAllQueBoard", criteria);
 	}
 	public void deleteQnaBoard(int no) throws SQLException {
-			IbatisUtils.getSqlMap().delete("QueBoard.deletequeBoardByNo", no);
+			IbatisUtils.getSqlMap().update("QueBoard.deletequeBoardByNo", no);
 	}
 	public void updateQnaAnsBoard(Qna qna) throws SQLException {
 		IbatisUtils.getSqlMap().update("QueBoard.updateQnaAnsBoard", qna);

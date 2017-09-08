@@ -34,9 +34,26 @@
        	<div class="col-sm-2">
 			<%@ include file="../left-menu.jsp" %>
 		</div>
-		<div class="col-sm-9"> 
+		<div class="col-sm-9">
+			<%
+				if(request.getParameter("success") != null) {
+			%>
+			         <div class="alert alert-success">
+             		 	<strong>성공적으로 신청되었습니다!</strong> 
+             		 </div>
+			<%
+				}
+			%>
 	        <div class="row">
-                <form method="post" action="#" enctype="multipart/form-data" class="form-horizontal">
+                <form method="post" action="update.jsp" enctype="multipart/form-data" class="form-horizontal">
+                	<input type="hidden" name="cno" value="<%=request.getParameter("cno") %>"/>
+                    <div class="form-group">
+                    	<label class="control-label col-sm-2">강의 순서</label>
+                    	<div class="col-sm-5">
+                    		<input type="number" name="lectureorder" class="form-control"/>
+                    	</div>
+                    	<label class="col-sm-2 text-primary">번째 영상</label>
+                    </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2">강의 제목</label>
                         <div class="col-sm-7">
@@ -52,7 +69,7 @@
                     <div class="form-group">
                     	<label class="control-label col-sm-2">첨부파일</label>
                     	<div class="col-sm-7">
-                    		<input type="file" name="lecturefile" class="form-control"/>
+                    		<input type="file" name="attachedfile" class="form-control"/>
                     	</div>
                     </div>
                     <div class="form-group">

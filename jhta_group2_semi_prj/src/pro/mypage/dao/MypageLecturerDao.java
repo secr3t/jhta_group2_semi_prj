@@ -8,6 +8,7 @@ import pro.criteria.vo.Criteria;
 import pro.lecturer.vo.Lecturer;
 import pro.qna.vo.Qna;
 import pro.utils.IbatisUtils;
+import pro.video.vo.Video;
 
 public class MypageLecturerDao {
 	
@@ -15,6 +16,14 @@ public class MypageLecturerDao {
 	private MypageLecturerDao() {}
 	public static MypageLecturerDao getInstance() {
 		return self;
+	}
+	
+	public void addCourseVideo(Video video)  throws SQLException{
+		IbatisUtils.getSqlMap().insert("MyPageLecturer.addCourseVideo", video);
+	}
+	
+	public void addCourse(Course course) throws SQLException {
+		IbatisUtils.getSqlMap().insert("MyPageLecturer.addCourse", course);
 	}
 	
 	public Lecturer getLecturerByNo(int lecturerNo) throws SQLException {

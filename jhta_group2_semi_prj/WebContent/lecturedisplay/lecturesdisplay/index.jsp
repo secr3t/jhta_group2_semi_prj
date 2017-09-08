@@ -1,3 +1,5 @@
+<%@page import="pro.criteria.vo.Criteria"%>
+<%@page import="pro.utils.StringUtils"%>
 <%@page import="pro.video.dao.VideoDao"%>
 <%@page import="pro.dept.dao.DeptDao"%>
 <%@page import="pro.dept.vo.Dept"%>
@@ -27,6 +29,32 @@
 	List<Course> courses =  courseDao.getAllCourses();
 	VideoDao videoDao = VideoDao.getInstance();
 %>
+<% 
+
+    	final int rowsPerPage = 6;
+    	final int naviPerPage = 5;
+    	
+    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
+    	
+    	int totalRows = courseDao.getCourseQty();
+    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
+    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
+    	int currentNaviBlock = (int) Math.ceil(p/(double)naviPerPage);
+    	int beginPage = (currentNaviBlock - 1)*naviPerPage +1;
+    	int endPage = currentNaviBlock*naviPerPage;
+    	
+    	if(currentNaviBlock == totalNaviBlocks) {
+    		endPage = totalPages;
+    	}
+    	
+    	int beginIndex = (p-1)*rowsPerPage + 1;
+    	int endIndex = p*rowsPerPage;
+    	
+    	Criteria criteria = new Criteria();
+    	criteria.setBeginIndex(beginIndex);
+    	criteria.setEndIndex(endIndex);
+    	
+    %>
 
 	<%for(Course course : courses){
 		//강사 객체
@@ -56,7 +84,16 @@
         </div>
         <%} %>
 </div>
-<%@include file="pagination.jsp" %>
+<div class="row text-center">
+		<ul class="pagination">
+		  <li class="disabled"><a href="index.jsp?p=<%=(p - 1)%>"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+		  <%for(int index=beginPage; index<=endPage; index++){ %>
+		  <li class="<%=(p==index?"active":"")%>"><a href="index.jsp?p=<%=index %>"><%=index %></a></li>		
+		  <%} %>
+		  <li><a href="index.jsp?p=<%=(p + 1)%>"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+		</ul>
+	</div>
+<hr>
 </div>
 <%@include file="../../common/footer.jsp" %>
 </body>

@@ -60,7 +60,7 @@
              </div>
             		
             <div class="btn-group btn-group-justified" role="group" style="padding-bottom: 10px;">
-                    <a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=" class="btn btn-primary">관련강의</a>
+                    <a href="/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/Filter.jsp?tno=<%=lecturer.getNo() %>" class="btn btn-primary">관련강의</a>
             </div>
         </div>
         

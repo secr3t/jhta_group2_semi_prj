@@ -27,7 +27,7 @@ public class AlertBoardDao {
 		return IbatisUtils.getSqlMap().queryForList("AlertBoard.getAllAlertBoard", criteria);
 	}
 	public void deleteAlertBoardByNo (int no) throws SQLException {
-		IbatisUtils.getSqlMap().delete("AlertBoard.deleteAlertBoardByNo", no);
+		IbatisUtils.getSqlMap().update("AlertBoard.deleteAlertBoardByNo", no);
 	}
 	public int getTotalRows (Criteria criteria) throws SQLException {
 		return (Integer)IbatisUtils.getSqlMap().queryForObject("AlertBoard.getTotalRows", criteria);

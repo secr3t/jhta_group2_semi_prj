@@ -62,7 +62,7 @@
              	 <%
              	 }
              	 %>
-             <form method="post" action="update.jsp" class="form-horizontal col-sm-11">
+             <form method="post" action="image-update.jsp" class="form-horizontal col-sm-11">
               	 <div class="form-group">
                   	 <label class="control-label col-sm-2">이메일</label>
                   	 <div class="col-sm-7">

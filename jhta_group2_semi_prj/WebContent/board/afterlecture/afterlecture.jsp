@@ -39,14 +39,24 @@
 	  	    <% 
 	  	    	String opt = request.getParameter("opt");
 	  	    	String keyword = request.getParameter("keyword");
+	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
+	  	    	
+	  	    	System.out.println("opt " + opt);
+	  	    	System.out.println("p " + p);
+	  	    	System.out.println("keyword " + keyword);
 	  	    	
 	  	    	
-	  	    	final int rowsPerPage = 8;
+	  	    	final int rowsPerPage = 5;
 	  	    	final int naviPerPage = 5;
 	  	    	
 	  	    	AfterBoardDao adao = AfterBoardDao.getInstance();
-	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
 	  	    	Criteria criteria= new Criteria();
+	  	    	if(opt != null && !opt.isEmpty()) {
+	  	    		criteria.setOpt(opt);
+	  	    	}
+	  	    	if(keyword != null && !keyword.isEmpty()) {
+	  	    		criteria.setKeyword(keyword);
+	  	    	}
 	  	    	int totalRows = adao.getTotalRows(criteria);
 	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
 	  	    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
@@ -63,12 +73,11 @@
 	  	    	
 	  	    	criteria.setBeginIndex(beginIndex);
 	  	    	criteria.setEndIndex(endIndex);
-	  	    	criteria.setOpt(opt);
-	  	    	criteria.setKeyword(keyword);
 	  	    	
 	  	    %>
 	  	    <div class="text-right">
-	  	    	<form action="" class="form-inline" method="get">
+	  	    	<form action="afterlecture.jsp" class="form-inline" method="get" id="search-form">
+	  	    		<input type="hidden" name="p" id="p-field" value="<%=p %>" />
 	  	    		<div class="form-group align-right">
 	  	    			<label class="sr-only">옵션</label>
 	  	    			<select class="form-control col-sm-offcet-4 col-sm-3 control-label" style="width: 100px;" name="opt">
@@ -77,8 +86,8 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label class="sr-only">검색어</label>
-						<input type="text" class="form-control" name="keyword" value="<%=StringUtils.nullToBlank(keyword)%>"/>
+						<label for="keyword" class="sr-only">검색어</label>
+						<input type="text" class="form-control" id="keyword" name="keyword" value="<%=StringUtils.nullToBlank(keyword)%>"/>
 					</div>
 					<button type="submit" class="btn btn-default">검색</button>
 	  	    	</form>
@@ -115,39 +124,32 @@
 				</table>
 				<div class="panel-body text-center">
 					<ul class="pagination">
-						<%if(p>naviPerPage) { %>
-						<li><a href="afterlecture.jsp?p=<%=beginPage-naviPerPage %>">&lt;&lt;</a></li>
+						
 					<%
-					} else {}
+			
 						if(p>1) {
 					%>
-						<li><a href="afterlecture.jsp?p=<%=(p - 1)%>">&lt;</a></li>
+						<li><a href="javascript:goList(<%=p-1%>)">&lt;</a></li>
 					<%
-						} else {
+						} 
 					%>
-						<li class="disabled"><a href="afterlecture.jsp?p=1">&lt;</a></li>
+						
 					<%
-						}
+						
 						for(int index=beginPage; index<=endPage; index++) {		
 					%>
-						<li class="<%=(p==index?"active":"")%>"><a href="afterlecture.jsp?p=<%=index %>"><%=index %></a></li>
+						<li class="<%=(p==index?"active":"")%>"><a href="javascript:goList(<%=index %>) %>"><%=index %></a></li>
 					<% 
 						}
 					%>
 					<%
 						if(p<=totalPages) {
 					%>
-						<li><a href="afterlecture.jsp?p=<%=(p + 1) %>">&gt;</a></li>
+						<li><a href="javascript:goList(<%=p+1%>)">&gt;</a></li>
 					<% 
-						} else {
+						} 
 					%>
-						<li class="disabled"><a href="afterlecture.jsp?p=1">&gt;</a></li>
-					<%
-						}
-						if(currentNaviBlock != totalNaviBlocks) {
-					%>
-						<li><a href="afterlecture.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
-					<% } %>
+						
 					</ul>
 					<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
 				</div>
@@ -161,4 +163,16 @@
 <%@include file="../../common/footer.jsp"%>
 
 </body>
+<script type="text/javascript">
+	function search(event) {
+		event.preventDefault();
+		document.getElementById("p-field").value = 1;
+		document.getElementById("search-form").submit();
+	}
+
+	function goList(p) {
+		document.getElementById("p-field").value = p;
+		document.getElementById("search-form").submit();
+	}
+</script>
 </html>

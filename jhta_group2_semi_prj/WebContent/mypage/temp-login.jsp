@@ -14,7 +14,7 @@
 	Student loginedUser1 = stuDao.getStudentByEmail(student.getEmail());
 	
 	Lecturer lecturer = new Lecturer();
-	lecturer.setType("t");
+	lecturer.setType("l");
 	lecturer.setEmail("gamchan@naver.com");
 	lecturer.setPwd("zxcv1234");
 	MypageLecturerDao lecDao = MypageLecturerDao.getInstance();
