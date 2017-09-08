@@ -17,6 +17,11 @@
 		values (course_video_no_seq.nextval, #link#, #title#, #description#, #attached#, #order#, #course.no#)
 	</insert>
 	
+	<insert id="addCourse" parameterClass="Course">
+		insert into course (course_no, course_name, course_summary, course_detail, course_point, lecturer_no, dept_no)
+		values (course_no_seq.nextval, #name#, #summary#, #detail#, #point#, #lecturer.no#, #dept.no#)
+	</insert>
+	
 	<select id="getLecturerByNo" parameterClass="int" resultClass="Lecturer">
 		select
 			lecturer_no			no

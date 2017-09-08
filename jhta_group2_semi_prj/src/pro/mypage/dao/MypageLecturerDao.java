@@ -22,6 +22,10 @@ public class MypageLecturerDao {
 		IbatisUtils.getSqlMap().insert("MyPageLecturer.addCourseVideo", video);
 	}
 	
+	public void addCourse(Course course) throws SQLException {
+		IbatisUtils.getSqlMap().insert("MyPageLecturer.addCourse", course);
+	}
+	
 	public Lecturer getLecturerByNo(int lecturerNo) throws SQLException {
 		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("MyPageLecturer.getLecturerByNo", lecturerNo);
 	}

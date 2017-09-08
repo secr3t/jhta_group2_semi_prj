@@ -126,7 +126,7 @@
                             </tbody>
                         </table>
                         <div class="panel-body">
-                            <p class="text-right"><a href="applyform.jsp" class="btn btn-primary">새 강의 신청</a></p>
+                            <p class="text-right"><a href="../apply/applyform.jsp" class="btn btn-primary">새 강의 신청</a></p>
                         </div>
                         <div class="panel-footer">
                             <div class="text-center">

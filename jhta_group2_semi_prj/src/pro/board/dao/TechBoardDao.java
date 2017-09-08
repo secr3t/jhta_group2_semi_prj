@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import pro.criteria.vo.Criteria;
-import pro.postscription.vo.Postscription;
 import pro.tech.vo.Tech;
 import pro.utils.IbatisUtils;
 
@@ -29,7 +28,7 @@ public class TechBoardDao {
 	}
 	
 	public void deleteTechBoard(int no) throws SQLException {
-		IbatisUtils.getSqlMap().delete("TechBoard.deleteTechBoardByNo", no);
+		IbatisUtils.getSqlMap().update("TechBoard.deleteTechBoardByNo", no);
 	}
 	public void updateTechAnsBoard(Tech tech) throws SQLException {
 		IbatisUtils.getSqlMap().update("TechBoard.updateTechBoard", tech);

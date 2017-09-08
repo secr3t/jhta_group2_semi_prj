@@ -60,10 +60,10 @@ select "no"        as  no,
 		<isNotNull property="opt">
 			<isNotNull property="keyword">
 				<isEqual property="opt" compareValue="title">
-					where "title" like '%' || #keyword# || '%'
+					and A.postscription_title like '%' || #keyword# || '%'
 				</isEqual>
 				<isEqual property="opt" compareValue="writer">
-					where "student.name" like '%' || #keyword# || '%'
+					and B.student_no in (select student_no from student where student_name like '%' || #keyword# || '%')  
 				</isEqual>
 			</isNotNull>
 		</isNotNull>

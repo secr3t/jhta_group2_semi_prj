@@ -77,10 +77,14 @@
 	</select>
 	
 	<select id="getGradeAvgByCourseNo" parameterClass="int" resultClass="double">
-		select round(avg(postscription_grade), 1) avg_grade
-		from postscription
-		group by course_no
-		having course_no = #value#
+		select
+			nvl(A.avg_grade, 0)
+			,B.course_no
+		from (select course_no, round(avg(postscription_grade), 1) avg_grade
+			from postscription
+			group by course_no) A, course B
+		where B.course_no = A.course_no (+)
+		and B.course_no = #value#
 	</select>
 
 </sqlMap>

@@ -35,14 +35,24 @@
 	  	<% 
 	  			String opt = request.getParameter("opt");
 	    		String keyword = request.getParameter("keyword");
+	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
+	  	    	
+	  	    	System.out.println("opt " + opt);
+	  	    	System.out.println("p " + p);
+	  	    	System.out.println("keyword " + keyword);
 	  		
-	  	    	final int rowsPerPage = 8;
+	  	    	final int rowsPerPage = 5;
 	  	    	final int naviPerPage = 5;
 	  	    	
 	  	    	AlertBoardDao adao = AlertBoardDao.getInstance();
-	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
-	  	    	
 	  	    	Criteria criteria = new Criteria();
+	  	    	if(opt != null && !opt.isEmpty()) {
+	  	    		criteria.setOpt(opt);
+	  	    	}
+	  	    	if(keyword != null && !keyword.isEmpty()) {
+	  	    		criteria.setKeyword(keyword);
+	  	    	}
+	  	    	
 	  	    	int totalRows = adao.getTotalRows(criteria);
 	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
 	  	    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
@@ -59,26 +69,8 @@
 	  	    	
 	  	    	criteria.setBeginIndex(beginIndex);
 	  	    	criteria.setEndIndex(endIndex);
-	  	    	criteria.setOpt(opt);
-	  	    	criteria.setKeyword(keyword);
 	  	    	
 	  	    %>
-	  	    <div class="text-right">
-	  	    	<form action="" class="form-inline" method="get">
-	  	    		<div class="form-group align-right">
-	  	    			<label class="sr-only">옵션</label>
-	  	    			<select class="form-control col-sm-offcet-4 col-sm-3 control-label" style="width: 100px;" name="opt">
-							<option value="title"<%= ("title".equals(opt) ? "selected":"") %>>제목</option>
-							<option value="writer"<%= ("writer".equals(opt) ? "selected":"") %>>작성자</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label class="sr-only">검색어</label>
-						<input type="text" class="form-control" name="keyword" value="<%=StringUtils.nullToBlank(keyword)%>"/>
-					</div>
-					<button type="submit" class="btn btn-default">검색</button>
-	  	    	</form>
-	  	    </div>
 			<div class="panel-group col-md-9">
 				<%
 					
@@ -93,22 +85,36 @@
 			        </div>
 	            </div>
 			    <%} %>
+			    <div class="text-right">
+	  	    	<form action="alertboard.jsp" class="form-inline" method="get" id="search-form">
+	  	    		<input type="hidden" name="p" id="p-field" value="<%=p %>">
+	  	    		<div class="form-group align-right">
+	  	    			<label class="sr-only">옵션</label>
+	  	    			<input type="hidden" class="form-control" name="opt" value="title">
+					</div>
+					<div class="form-group">
+						<label class="sr-only">검색어</label>
+						<input type="text" class="form-control" name="keyword" id="keyword" value="<%=StringUtils.nullToBlank(keyword)%>"/>
+					</div>
+					<button type="submit" class="btn btn-default" onclick="search(event)">검색</button>
+	  	    	</form>
+	  	    </div>
 			    	<div class="panel-body text center">
 			    		<ul class="pagination">
-			    		<%if(p>naviPerPage) { %>
+			   		<%if(p>naviPerPage) { %>
 						<li><a href="alertboard.jsp?p=<%=beginPage-naviPerPage %>">&lt;&lt;</a></li>
 					<%
 					} else {}
 						if(p>1) {
 					%>
-						<li><a href="alertboard.jsp?p=<%=(p - 1)%>">&lt;</a></li>
+						<li><a href="javascript:goList(<%=p-1%>)">&lt;</a></li>
 					<%
 						} else {
 					%>
 						<li class="disabled"><a href="alertboard.jsp?p=1">&lt;</a></li>
-					<%
+					<% 
 						}
-						for(int index=beginPage; index<=endPage; index++) {		
+						for (int index=beginPage; index<=endPage; index++) {		
 					%>
 						<li class="<%=(p==index?"active":"")%>"><a href="alertboard.jsp?p=<%=index %>"><%=index %></a></li>
 					<% 
@@ -117,7 +123,7 @@
 					<%
 						if(p<=totalPages) {
 					%>
-						<li><a href="alertboard.jsp?p=<%=(p + 1) %>">&gt;</a></li>
+						<li><a href="javascript:goList(<%=p+1%>)">&gt;</a></li>
 					<% 
 						} else {
 					%>
@@ -129,9 +135,9 @@
 						<li><a href="alertboard.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
 					<% } %>
 			    		</ul>
-			    	</div>
 			    	<div class="text-right">
 			    		<a href="/jhta_group2_semi_prj/board/alertboard/alert_write.jsp" class="btn btn-primary btn-md">글쓰기</a>
+			    	</div>
 			    	</div>
 			    
 			</div>
@@ -143,4 +149,15 @@
 
 
 </body>
+<script type="text/javascript">
+function search(event) {
+	event.preventDefault();
+	document.getElementById("p-field").value = 1;
+	document.getElementById("search-form").submit();
+}
+function goList(p) {
+	document.getElementById("p-field").value = p;
+	document.getElementById("search-form").submit();
+}
+</script>
 </html>
