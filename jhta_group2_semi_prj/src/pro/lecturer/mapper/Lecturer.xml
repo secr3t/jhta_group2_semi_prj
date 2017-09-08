@@ -61,7 +61,7 @@
 		insert into student
 			(lecturer_name, lecturer_email, lecturer_pwd, lecturer_phone, lecturer_career, lecturer_picture, lecturer_permit, user_type)
 		values
-			(#name#, #email#, #pwd#, #phone#, #career#, #picture#, #permit#, #type#)
+			(lecturer_seq.nextval, #email#, #pwd#, #phone#, #career#, #picture#, null, "T")
 	</insert>
 
 </sqlMap>
