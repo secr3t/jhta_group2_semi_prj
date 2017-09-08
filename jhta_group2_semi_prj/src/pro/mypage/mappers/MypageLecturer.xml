@@ -61,7 +61,7 @@
 			and A.rn <= #endIndex#
 		]]>
 	</select>
-	
+
 	<select id="getLecturerByNo" parameterClass="int" resultClass="Lecturer">
 		select
 			lecturer_no			no

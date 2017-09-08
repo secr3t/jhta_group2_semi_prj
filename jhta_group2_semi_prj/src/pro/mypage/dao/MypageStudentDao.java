@@ -17,6 +17,15 @@ public class MypageStudentDao {
 		return self;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Student> getStudentInfo(Criteria criteria) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("MyPageStudent.getStudentInfo", criteria);
+	}
+	
+	public Integer getTotalStudents(Criteria criteria) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageStudent.getTotalStudents", criteria);
+	}
+	
 	public Student getStudentByNo(int studentNo) throws SQLException {
 		return (Student) IbatisUtils.getSqlMap().queryForObject("MyPageStudent.getStudentByNo", studentNo);
 	}
