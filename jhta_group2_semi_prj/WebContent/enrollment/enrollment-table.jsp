@@ -3,7 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="pro.dept.dao.DeptDao"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
-<%@page import="pro.introducecourse.dao.LecturerDao"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
 <%@page import="pro.course.vo.Course"%>
 <%@page import="pro.introducecourse.dao.LectureCourseDao"%>
 <%@page import="pro.dept.vo.Dept"%>
@@ -52,7 +52,7 @@
 							<td class="deptName" id="name"><%=deptDao.getDeptByNo(course.getDept().getNo()).getName() %></td>
 							<td class="courseName"><%=course.getName() %></td>
 							<td><a href="#">링크</a></td>
-							<td class="lecturerName"><%=lecturerDao.getlecturerByNo(course.getLecturer().getNo()).getName() %></td>
+							<td class="lecturerName"><%=lecturerDao.getLecturerByNo(course.getLecturer().getNo()).getName() %></td>
 							<td class="point"><%=course.getPoint()%></td>
 							<td class="course-no hide" ><%=course.getNo() %></td>						
 						</tr>
