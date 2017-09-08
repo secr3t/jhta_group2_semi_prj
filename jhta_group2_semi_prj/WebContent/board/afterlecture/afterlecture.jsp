@@ -19,6 +19,16 @@
 
 <%@include file="../../common/header.jsp"%>
 <body>
+<%
+ if(request.getParameter("error")!=null){
+%>
+<script type="text/javascript">
+	alert("권한이 없습니다.");
+</script>
+<%  
+ }
+%>
+
 <%@include file="../../common/nav.jsp"%>
 
 <div class="content-primary">
@@ -158,8 +168,11 @@
 					<% } %>
 						
 					</ul>
-					
+					<%
+					 if(loginUser != null && "S".equals(loginUser.getType().toUpperCase())) {
+					%>
 					<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
+					<%} %>
 				</div>
 			</div>
 		</div>

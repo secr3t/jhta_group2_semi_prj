@@ -99,6 +99,6 @@ select "no"        as  no,
 		postscription_no = #value#
 </select>
 
-<select id="getCourseNo" parameterClass=""></select>
+
 
 </sqlMap>
