@@ -1,3 +1,8 @@
+<%@page import="pro.video.vo.Video"%>
+<%@page import="pro.progress.vo.Progress"%>
+<%@page import="pro.progress.dao.ProgressDao"%>
+<%@page import="pro.user.vo.User"%>
+<%@page import="pro.student.vo.Student"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="java.io.PrintWriter"%>
@@ -6,9 +11,24 @@
     pageEncoding="UTF-8"%>
     <%
 request.setCharacterEncoding("utf-8");
-response.setContentType("text/plain;charset=utf-8");
+
+Student student = new Student();		// 후에 session에서 꺼낸 user정보를 바로 전달해주면됨.
+User user = (User) session.getAttribute("loginUser");
+Video video = new Video();
+Progress progress = new Progress();
+ 
+student.setNo(1);
+video.setNo(1);
+progress.setStudent(student);
+progress.setVideo(video);
+ 
+ProgressDao dao = ProgressDao.getInstance();
+
 BufferedReader br = request.getReader();
-System.out.println(br.readLine());
-PrintWriter pw = response.getWriter();
-pw.println("update 완료");
+
+double complete = Double.parseDouble(br.readLine());
+System.out.println(complete);
+progress.setComplete(complete);
+
+dao.updateProgress(progress);
 %>
