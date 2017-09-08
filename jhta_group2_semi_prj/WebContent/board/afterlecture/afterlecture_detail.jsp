@@ -1,3 +1,4 @@
+<%@page import="pro.utils.DateUtils"%>
 <%@page import="pro.postscription.vo.Postscription"%>
 <%@page import="pro.board.dao.AfterBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -41,7 +42,7 @@
 	  					<th>작성자</th>
 	  					<td><%=pos.getStudent().getName() %></td>
 	  					<th>작성일</th>
-	  					<td><%=pos.getRegdate() %></td>
+	  					<td><%=DateUtils.yyyymmdd(pos.getRegdate()) %></td>
 	  				</tr>
 	  				<tr>
 	  					<td colspan="6"><%=pos.getContent() %></td>

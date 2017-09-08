@@ -13,17 +13,18 @@
 	(notice_no, notice_title, notice_content,
 	 notice_expiredate, notice_active)
 	values
-	(notice_no_seq.nextval, #title#, #content#, #expiredate#,
+	(notice_no_seq.nextval, #title#, #content#, sysdate + 365,
 		#active#)
 </insert>
 
 <select id="getTotalRows" parameterClass="pro.criteria.vo.Criteria" resultClass="int">
 	select count(*)
 	from notice
+	where notice_active = 'Y'
 	<dynamic>
-		<isNotEmpty property="keyword" prepend="where">
+		<isNotEmpty property="keyword">
 			<isEqual property="opt" compareValue="title">
-				notice_title like '%' || #keyword# || '%'
+				and notice_title like '%' || #keyword# || '%'
 			</isEqual>
 		</isNotEmpty>
 	</dynamic>
@@ -37,7 +38,7 @@
 	"regdate" as regdate,
 	"expiredate" as expiredate,
 	"active" as active 
-	from (select row_number() over (order by notice_no asc) m,	notice_no 			as "no",
+	from (select row_number() over (order by notice_no desc) m,	notice_no 			as "no",
 																notice_title		as "title",
 																notice_content		as "content",
 																notice_regdate		as	"regdate",
@@ -45,10 +46,12 @@
 																notice_active		as "active"
 															from
 																notice
+															where
+																notice_active = 'Y'
 	<dynamic>
-		<isNotEmpty property="keyword" prepend="where">
+		<isNotEmpty property="keyword">
 			<isEqual property="opt" compareValue="title">
-				notice_title like '%' || #keyword# || '%'
+				and notice_title like '%' || #keyword# || '%'
 			</isEqual>
 		</isNotEmpty>
 	</dynamic>													)

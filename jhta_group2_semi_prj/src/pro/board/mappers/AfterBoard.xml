@@ -20,13 +20,14 @@
 <select id="getTotalRows" parameterClass="pro.criteria.vo.Criteria" resultClass="int">
 	select count(*)
 	from postscription
+	where postscription_active = 'Y'
 	<dynamic>
-		<isNotEmpty property="keyword" prepend="where">
+		<isNotEmpty property="keyword">
 			<isEqual property="opt" compareValue="title">
-				postscription_title like '%' || #keyword# || '%'
+				and postscription_title like '%' || #keyword# || '%'
 			</isEqual>
 			<isEqual property="opt" compareValue="writer">
-				student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
+				and student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
 			</isEqual>
 		</isNotEmpty>
 	</dynamic>
@@ -43,7 +44,7 @@ select "no"        as  no,
 		"student.no"  as "student.no",
 		"course.no"    as "course.no",
 		"student.name" as "student.name"
-	from(select row_number() over (order by postscription_no asc) m,	A.postscription_no 			as "no",
+	from(select row_number() over (order by postscription_no desc) m,	A.postscription_no 			as "no",
 																		A.postscription_title			as "title",
 																		A.postscription_content		as "content",
 																		A.postscription_regdate		as	"regDate",
@@ -56,6 +57,8 @@ select "no"        as  no,
 																		postscription A, student B
 																	where 
 																		A.student_no = B.student_no
+																	and 
+																		A.postscription_active = 'Y'
 	<dynamic>
 		<isNotNull property="opt">
 			<isNotNull property="keyword">
@@ -95,5 +98,7 @@ select "no"        as  no,
 	where
 		postscription_no = #value#
 </select>
+
+<select id="getCourseNo" parameterClass=""></select>
 
 </sqlMap>

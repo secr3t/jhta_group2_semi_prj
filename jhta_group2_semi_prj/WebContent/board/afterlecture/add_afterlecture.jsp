@@ -13,6 +13,7 @@
 	String title = request.getParameter("title");
 	String contents = request.getParameter("contents");
 	String grade = request.getParameter("inlineRadioOptions");
+	int deptNo = Integer.parseInt(request.getParameter("type"));
 	int no = Integer.parseInt(request.getParameter("inlineRadioOptions"));
 	Postscription pos = new Postscription();
 		
@@ -22,15 +23,20 @@
 		Student student = new Student();
 		Course course = new Course();
 		student.setNo(((Student)user).getNo());
-	} else {
+		course.setNo(deptNo);
 		
+		pos.setStudent(student);
+		pos.setCourse(course);
+		pos.setTitle(title);
+		pos.setContent(contents);
+		pos.setGrade(no);
+		pos.setActive("Y");
+	} else {
+		response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp");
+		return;
 	}
-	pos.setTitle(title);
-	pos.setContent(contents);
-	pos.setGrade(no);
 		
 	adao.addAfterBoard(pos);
-	
 	
 	response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp");
 	

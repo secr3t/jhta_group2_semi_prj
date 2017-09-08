@@ -36,7 +36,7 @@
 	        </div>
 	    </div>
 	  	    <hr>
-	  	    <% 
+	  	   	  	    <% 
 	  	    	String opt = request.getParameter("opt");
 	  	    	String keyword = request.getParameter("keyword");
 	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
@@ -108,7 +108,10 @@
 					<tbody>
 					<%
 						List<Postscription> boards = adao.getAllAfterBoard(criteria);
-						for(Postscription board : boards) { %>
+						for(Postscription board : boards) { 
+						
+						%>
+						
 					    <tr>
 					       <th><%=board.getNo() %></th>
 					       <th><a href="afterlecture_detail.jsp?bno=<%=board.getNo() %>"><%=board.getTitle() %></a></th>
@@ -155,6 +158,7 @@
 					<% } %>
 						
 					</ul>
+					
 					<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
 				</div>
 			</div>
