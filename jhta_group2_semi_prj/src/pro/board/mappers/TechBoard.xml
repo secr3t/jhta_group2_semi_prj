@@ -29,10 +29,10 @@
 			<isEqual property="opt" compareValue="writer">
 				and student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
 			</isEqual>
-		</isNotEmpty>
-		<isNotNull property="studentNo">
+			<isEqual property="studentNo">
 			and B.student_no = #studentNo#
-		</isNotNull>
+			</isEqual>
+		</isNotEmpty>
 	</dynamic>
 </select>
 
@@ -108,25 +108,6 @@ select
 		tech_no = #value#
 </select>
 
-<select id="getAllTechBoardByNo" parameterClass="int" resultClass="techboard">
-select
-		A.tech_no						as no, 
-		A.tech_title					as title, 
-		A.tech_ques_content			as quesContent,
-		A.tech_ques_regdate			as quesRegdate,
-		A.tech_ans_content			as	ansContent,
-		A.tech_ans_regdate			as	ansRegdate,
-	  	A.tech_active					as	active, 
-	  	B.student_no					as  "student.no",
-	  	B.student_name				as	"student.name", 
-	  	A.qtype_no					as qtypeNo
-	from
-		tech A, student B
-	where
-		A.student_no = B.student_no
-	and
-		B.student_no = #value#
-</select>
 
 <update id="updateTechBoard" parameterClass="techboard">
 	update tech

@@ -89,7 +89,6 @@
 	  	    	
 	  	    	criteria.setBeginIndex(beginIndex);
 	  	    	criteria.setEndIndex(endIndex);
-	  	    	
 	  	    %>
 			<div class="panel-group col-md-9">
 				<%
@@ -97,6 +96,7 @@
 						
 					List<Tech> techs = tdao.getAllTechBoard(criteria);
 					for(Tech tech : techs) {
+						criteria.setStudentNo(tech.getStudent().getNo());
 						String style = tech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
 						String type = tech.getQtypeNo() == 1? "[결제]" : "[이용]";
 
