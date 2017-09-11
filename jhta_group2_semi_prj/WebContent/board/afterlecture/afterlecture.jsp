@@ -29,7 +29,6 @@
  }
 %>
 
-<%@include file="../../common/loginCheck.jsp"%>
 <%@include file="../../common/nav.jsp"%>
 
 <div class="content-primary">
@@ -151,21 +150,21 @@
 						}
 						for(int index=beginPage; index<=endPage; index++) {		
 					%>
-						<li class="<%=(p==index?"active":"")%>"><a href="javascript:goList(<%=index %>) %>"><%=index %></a></li>
+						<li class="<%=(p==index?"active":"")%>"><a href="afterlecture.jsp?p=<%=index %>"><%=index %></a></li>
 					<% 
 						}
-						if(p<=totalPages) {
+						if(p<totalPages) {
 					%>
 						<li><a href="javascript:goList(<%=p+1%>)">&gt;</a></li>
 					<% 
 						} else {
 					%>
-						<li class="disabled"><a href="afterlecture.jsp?p=1">&gt;</a></li>
+						<li class="disabled"><a>&gt;</a></li>
 					<%
 						}
 						if(currentNaviBlock != totalNaviBlocks) {
 					%>
-						<li><a href="alertboard.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
+						<li><a href="afterlecture.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
 					<% } %>
 						
 					</ul>

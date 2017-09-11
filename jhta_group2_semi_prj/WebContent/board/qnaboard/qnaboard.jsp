@@ -151,13 +151,13 @@
 						}
 					%>
 					<%
-						if(p<=totalPages) {
+						if(p<totalPages) {
 					%>
 						<li><a href="javascript:goList(<%=p+1%>)">&gt;</a></li>
 					<% 
 						} else {
 					%>
-						<li class="disabled"><a 	href="qnaboard.jsp?p=1">&gt;</a></li>
+						<li class="disabled"><a>&gt;</a></li>
 					<%
 						}
 						if(currentNaviBlock != totalNaviBlocks) {

@@ -17,6 +17,7 @@
 </head>
 <%@include file="../../common/header.jsp"%>
 <body>
+<%@include file="../../common/loginCheck.jsp"%>
 <%
  if(request.getParameter("error")!=null){
 %>
@@ -27,7 +28,6 @@
  }
 %>
 <%@include file="../../common/nav.jsp"%>
-<%-- <%@include file="../logincheck/studentlogincheck.jsp" %> --%>
 <div class="container">
 	<div class="col-sm-2">
 	<%@ include file="../boardbanner/left-menu.jsp" %>
@@ -148,7 +148,7 @@
 					<% 
 						} else {
 					%>
-						<li class="disabled"><a href="personalqnaboard.jsp?p=1">&gt;</a></li>
+						<li class="disabled"><a>&gt;</a></li>
 					<%
 						}
 						if(currentNaviBlock != totalNaviBlocks) {
@@ -157,10 +157,11 @@
 					<% } %>
 					</ul>
 					</div>
-					
+					<% if(loginUser.getType().toUpperCase().equals("S")){ %>
 			    	<div class="text-right">
 			    		<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_write.jsp" class="btn btn-primary btn-md">글쓰기</a>
 			    	</div>
+			    	<%} %>
 			    	
 			    
 			</div>
