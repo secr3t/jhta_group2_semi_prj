@@ -7,6 +7,7 @@ import pro.criteria.vo.Criteria;
 import pro.enrollment.vo.Enrollment;
 import pro.qna.vo.Qna;
 import pro.student.vo.Student;
+import pro.tech.vo.Tech;
 import pro.utils.IbatisUtils;
 
 public class MypageStudentDao {
@@ -46,6 +47,15 @@ public class MypageStudentDao {
 	@SuppressWarnings("unchecked")
 	public List<Qna> getQnaByStudentNo(Criteria criteria) throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("MyPageStudent.getQnaByStudentNo", criteria);
+	}
+	
+	public Integer getTotalTechRows(Criteria criteria) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageStudent.getTotalTechRows", criteria);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Tech> getTechInfo(Criteria criteria) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("MyPageStudent.getTechInfo", criteria);
 	}
 	
 	public void updateMyInfo(Student student) throws SQLException {

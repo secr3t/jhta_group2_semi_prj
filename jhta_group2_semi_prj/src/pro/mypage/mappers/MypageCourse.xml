@@ -53,9 +53,11 @@
 			where course_no = #courseNo#) A, student B, course C
 		where A.student_no = B.student_no
 		and A.course_no = C.course_no
-		<isNotNull property="keyword">
-			and B.student_name like '%' || #keyword# || '%'
-		</isNotNull>		
+		<dynamic>
+			<isNotNull property="keyword">
+				and B.student_name like '%' || #keyword# || '%'
+			</isNotNull>		
+		</dynamic>
 		<![CDATA[
 			and rn >= #beginIndex#
 			and rn <= #endIndex#
@@ -109,6 +111,41 @@
 			from course C, dept D, lecturer L
 			where C.dept_no = D.dept_no
 			and C.lecturer_no = L.lecturer_no
+			<dynamic>
+				<isNotNull property="opt">
+					<isNotNull property="keyword">
+						<isEqual property="opt" compareValue="course">
+							and C.course_name like '%' || #keyword# || '%'
+						</isEqual>
+						<isEqual property="opt" compareValue="lecturer">
+							and L.lecturer_name like '%' || #keyword# || '%'
+						</isEqual>
+						<isEqual property="opt" compareValue="dept">
+							and D.dept_name like '%' || #keyword# || '%'
+						</isEqual>
+					</isNotNull>
+				</isNotNull>
+				<isNotNull property="noAnswer">
+					<isEqual property="noAnswer" compareValue="Y">
+						and C.course_permit = 'N'	
+					</isEqual>
+					<isEqual property="noAnswer" compareValue="N">
+						and C.course_permit = 'Y'	
+					</isEqual>
+				</isNotNull>
+			</dynamic>
+			) A
+		<![CDATA[
+			where A.rn >= #beginIndex#
+			and A.rn <= #endIndex#
+		]]>
+	</select>
+	
+	<select id="getTotalCourses" parameterClass="Criteria" resultClass="int">
+		select count(*)
+		from course
+		where course_name is not null
+		<dynamic>
 			<isNotNull property="opt">
 				<isNotNull property="keyword">
 					<isEqual property="opt" compareValue="course">
@@ -121,39 +158,8 @@
 						and D.dept_name like '%' || #keyword# || '%'
 					</isEqual>
 				</isNotNull>
-			</isNotNull>
-			<isNotNull property="noAnswer">
-				<isEqual property="noAnswer" compareValue="Y">
-					and C.course_permit = 'N'	
-				</isEqual>
-				<isEqual property="noAnswer" compareValue="N">
-					and C.course_permit = 'Y'	
-				</isEqual>
-			</isNotNull>
-			) A
-		<![CDATA[
-			where A.rn >= #beginIndex#
-			and A.rn <= #endIndex#
-		]]>
-	</select>
-	
-	<select id="getTotalCourses" parameterClass="Criteria" resultClass="int">
-		select count(*)
-		from course
-		where course_name is not null
-		<isNotNull property="opt">
-			<isNotNull property="keyword">
-				<isEqual property="opt" compareValue="course">
-					and C.course_name like '%' || #keyword# || '%'
-				</isEqual>
-				<isEqual property="opt" compareValue="lecturer">
-					and L.lecturer_name like '%' || #keyword# || '%'
-				</isEqual>
-				<isEqual property="opt" compareValue="dept">
-					and D.dept_name like '%' || #keyword# || '%'
-				</isEqual>
-			</isNotNull>
-		</isNotNull>		
+			</isNotNull>		
+		</dynamic>
 	</select>
 	
 	<select id="getVideoInfo" parameterClass="Criteria" resultClass="Video">
@@ -172,17 +178,19 @@
 					,course_video_permit ,course_video_order ,course_no
 			from course_video
 			where course_video_link is not null
-			<isNotNull property="courseNo">
-				and course_no = #courseNo#
-			</isNotNull>
-			<isNotNull property="noAnswer">
-				<isEqual property="noAnswer" compareValue="Y">
-					and course_video_permit = 'N'
-				</isEqual>
-				<isEqual property="noAnswer" compareValue="N">
-					and course_video_permit = 'Y'
-				</isEqual>
-			</isNotNull>
+			<dynamic>
+				<isNotNull property="courseNo">
+					and course_no = #courseNo#
+				</isNotNull>
+				<isNotNull property="noAnswer">
+					<isEqual property="noAnswer" compareValue="Y">
+						and course_video_permit = 'N'
+					</isEqual>
+					<isEqual property="noAnswer" compareValue="N">
+						and course_video_permit = 'Y'
+					</isEqual>
+				</isNotNull>
+			</dynamic>
 			) A, course B
 		where A.course_no = B.course_no
 		<![CDATA[

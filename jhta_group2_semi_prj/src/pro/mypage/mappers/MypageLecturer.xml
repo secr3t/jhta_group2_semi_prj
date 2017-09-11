@@ -37,24 +37,26 @@
 					,lecturer_permit, user_type		
 			from lecturer
 			where user_type = 'T'
-			<isNotNull property="opt">
-				<isNotNull property="keyword">
-					<isEqual property="opt" compareValue="id">
-						and lecturer_email like '%' || #keyword# || '%'				
-					</isEqual>
-					<isEqual property="opt" compareValue="name">
-						and lecturer_name like '%' || #keyword# || '%'
+			<dynamic>
+				<isNotNull property="opt">
+					<isNotNull property="keyword">
+						<isEqual property="opt" compareValue="id">
+							and lecturer_email like '%' || #keyword# || '%'				
+						</isEqual>
+						<isEqual property="opt" compareValue="name">
+							and lecturer_name like '%' || #keyword# || '%'
+						</isEqual>
+					</isNotNull>
+				</isNotNull>
+				<isNotNull property="noAnswer">
+					<isEqual property="noAnswer" compareValue="Y">
+						and lecturer_permit = 'N'
+					</isEqual>		
+					<isEqual property="noAnswer" compareValue="N">
+						and lecturer_permit = 'Y'
 					</isEqual>
 				</isNotNull>
-			</isNotNull>
-			<isNotNull property="noAnswer">
-				<isEqual property="noAnswer" compareValue="Y">
-					and lecturer_permit = 'N'
-				</isEqual>		
-				<isEqual property="noAnswer" compareValue="N">
-					and lecturer_permit = 'Y'
-				</isEqual>
-			</isNotNull>
+			</dynamic>
 			) A
 		<![CDATA[
 			where A.rn >= #beginIndex#
@@ -66,16 +68,18 @@
 		select count(*)
 		from lecturer
 		where user_type = 'T'
-		<isNotNull property="opt">
-			<isNotNull property="keyword">
-				<isEqual property="opt" compareValue="id">
-					and lecturer_email like '%' || #keyword# || '%'
-				</isEqual>
-				<isEqual property="opt" compareValue="name">
-					and lecturer_name like '%' || #keyword# || '%'
-				</isEqual>
-			</isNotNull>		
-		</isNotNull>
+		<dynamic>
+			<isNotNull property="opt">
+				<isNotNull property="keyword">
+					<isEqual property="opt" compareValue="id">
+						and lecturer_email like '%' || #keyword# || '%'
+					</isEqual>
+					<isEqual property="opt" compareValue="name">
+						and lecturer_name like '%' || #keyword# || '%'
+					</isEqual>
+				</isNotNull>		
+			</isNotNull>
+		</dynamic>
 	</select>
 
 	<select id="getLecturerByNo" parameterClass="int" resultClass="Lecturer">

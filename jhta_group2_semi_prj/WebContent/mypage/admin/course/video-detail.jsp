@@ -1,3 +1,6 @@
+<%@page import="pro.mypage.dao.MypageCourseDao"%>
+<%@page import="pro.video.vo.Video"%>
+<%@page import="pro.utils.StringUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,31 +45,34 @@
               			<col width="20%">
               			<col width="80%">
               		</colgroup>
+              		<%
+              		int videoNo = StringUtils.changeIntToString(request.getParameter("vno"));
+              		Video video = MypageCourseDao.getInstance().getVideoByVideoNo(videoNo);
+              		%>
            			<tr>
-           				<th>강의 제목</th><td>Java란 무엇인가?</td>
+           				<th>수업 제목</th><td><%=video.getTitle() %></td>
            			</tr>
            			<tr>
-           				<th>강의 링크 주소</th><td><a href="#">www.naver.com</a></td>
+           				<th>수업 링크 주소</th><td><a href="<%=video.getLink() %>"><%=video.getLink() %></a></td>
            			</tr>
            			<tr>
-           				<th>첨부파일</th><td><a href="#">java.jpg</a></td>
+           				<th>첨부파일</th><td><a href="download.jsp?fname=<%=video.getAttached() %>"><%=video.getAttached() %></a></td>
+           			</tr>
+           			<tr>
+           				<th>현재 허용 여부</th><td><%=video.getPermit() %></td>
            			</tr>
            			<tr>
            				<th colspan="12">수업에 대한 소개</th>
            			</tr>
            			<tr>
            				<th></th>
-           				<td>
-           					수업에 대한 간단한 소개입니다.ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-            				ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-            			</td>
+           				<td><%=video.getDescription() %></td>
            			</tr>
               	</table>
             </div>		
             <div class="row text-right">
 	       		<div class="col-sm-10">
-	           		<a href="#" class="btn btn-primary">허용</a>
-	           		<a href="#" class="btn btn-danger">거절</a>
+	           		<a href="video-update.jsp?vno=<%=video.getNo() %>&change=<%="Y".equals(video.getPermit()) ? "2" : "1" %>" class="btn btn-<%="Y".equals(video.getPermit()) ? "danger" : "primary" %>"><%="Y".equals(video.getPermit()) ? "허가 취소" : "허가" %></a>
 	           	</div>
             </div>
         </div>

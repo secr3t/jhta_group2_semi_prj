@@ -45,4 +45,41 @@
 				where COURSE_NO = #value#)
 	</select>
 	
+	<select id="getPostscriptionsByCriteriaCourseNo" parameterClass="pro.criteria.vo.Criteria" resultClass="afterboard">
+		select 
+			"no",
+			"title",        
+			"content",      
+			"regDate", 
+			 "grade", 
+			"active", 
+			"student.no",
+			"course.no",  
+			"student.name" 
+		from(select row_number() over (order by postscription_no desc) m,	A.postscription_no 			as "no",
+																			A.postscription_title		as "title",
+																			A.postscription_content		as "content",
+																			A.postscription_regdate		as	"regDate",
+																			A.postscription_grade 		as "grade",
+																			A.postscription_active		as "active",
+																			A.student_no				as	"student.no",
+																			A.course_no					as	"course.no",
+																			B.student_name				as	"student.name"
+																		from
+																			postscription A, student B
+																		where 
+																			A.student_no = B.student_no
+																		and A.course_no	 = #courseNo#
+																		and 
+																			A.postscription_active = 'Y' )
+		where m >= #beginIndex# and m &lt;= #endIndex#
+	</select>
+	
+	<select id="getQtyByCriteriaCourseNo" parameterClass="int" resultClass="int">
+		select count(*)
+		from POSTSCRIPTION													
+		where COURSE_NO = #value#
+		and postscription_active = 'Y' 
+	</select>
+		
 </sqlMap>

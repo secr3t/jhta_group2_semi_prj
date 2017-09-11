@@ -1,3 +1,6 @@
+<%@page import="pro.utils.DateUtils"%>
+<%@page import="pro.mypage.dao.MypageStudentDao"%>
+<%@page import="pro.tech.vo.Tech"%>
 <%@page import="pro.course.vo.Course"%>
 <%@page import="pro.video.vo.Video"%>
 <%@page import="pro.mypage.dao.MypageCourseDao"%>
@@ -162,7 +165,49 @@
                                         </tr>                               
                                     <%
                                     }
-                                    %>                     
+                                    %>         
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                            <%                            
+                            Criteria techCriteria = new Criteria();
+                            techCriteria.setBeginIndex(1);
+                            techCriteria.setEndIndex(100);
+                            techCriteria.setNoAnswer("Y");
+                            
+                            List<Tech> techList = MypageStudentDao.getInstance().getTechInfo(techCriteria);
+                            %>
+                                <label><a href="techqna.jsp">새 질문 등록</a><span class="badge"><%=techList.size() %></span></label>                                
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-condensed table-hover">
+                                    <colgroup>
+                                        <col width="50%">
+                                        <col width="20%">
+                                        <col width="30%">
+                                    </colgroup>                                   
+                                    <thead>
+                                        <tr>
+                                            <th>질문제목</th><th>학생명</th><th>작성일</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+		                            <%
+		                            for(Tech forTech : techList) {
+		                            %>
+                                        <tr>
+                                            <td><a href="#"><%=forTech.getTitle() %></a></td>
+                                            <td><%=forTech.getStudent().getName() %></td>
+                                            <td><%=DateUtils.yyyymmddhhmmss(forTech.getQuesRegdate()) %></td>
+                                        </tr>                               
+                                    <%
+                                    }
+                                    %>
                                     </tbody>
                                 </table>
                             </div>
