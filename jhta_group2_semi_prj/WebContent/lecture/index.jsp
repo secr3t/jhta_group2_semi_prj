@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
+<%@include file="../common/loginCheck.jsp" %>
 <script type="text/javascript" src="../js/util.js"></script>
 <%@include file="../common/header.jsp" %>
 <body>
