@@ -15,15 +15,16 @@
 	String grade = request.getParameter("inlineRadioOptions");
 	int deptNo = Integer.parseInt(request.getParameter("type"));
 	int no = Integer.parseInt(request.getParameter("inlineRadioOptions"));
+	int cosNo = Integer.parseInt(request.getParameter("courseNo"));
 	Postscription pos = new Postscription();
 		
 	User user = (User)session.getAttribute("loginUser");
 	
-	if(user.getType().equals('S')) {	
+	if(user !=  null && user.getType().toUpperCase().equals("S")) {	
 		Student student = new Student();
 		Course course = new Course();
 		student.setNo(((Student)user).getNo());
-		course.setNo(deptNo);
+		course.setNo(cosNo);
 		
 		pos.setStudent(student);
 		pos.setCourse(course);
@@ -31,8 +32,9 @@
 		pos.setContent(contents);
 		pos.setGrade(no);
 		pos.setActive("Y");
+		
 	} else {
-		response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp");
+		response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp?error=1");
 		return;
 	}
 		

@@ -84,18 +84,21 @@ where m >= #beginIndex# and m &lt;= #endIndex#
 
 <select id="getTechBoardByNo" parameterClass="int" resultClass="techboard">
 select
-		tech_no						as no, 
-		tech_title					as title, 
-		tech_ques_content			as quesContent,
-		tech_ques_regdate			as quesRegdate,
-		tech_ans_content			as	ansContent,
-		tech_ans_regdate			as	ansRegdate,
-	  	tech_active					as	active, 
-	  	student_no					as  "student.no", 
-	  	qtype_no					as qtypeNo
+		A.tech_no						as no, 
+		A.tech_title					as title, 
+		A.tech_ques_content			as quesContent,
+		A.tech_ques_regdate			as quesRegdate,
+		A.tech_ans_content			as	ansContent,
+		A.tech_ans_regdate			as	ansRegdate,
+	  	A.tech_active					as	active, 
+	  	B.student_no					as  "student.no",
+	  	B.student_name				as	"student.name", 
+	  	A.qtype_no					as qtypeNo
 	from
-		tech
+		tech A, student B
 	where
+		A.student_no = B.student_no
+	and
 		tech_no = #value#
 </select>
 

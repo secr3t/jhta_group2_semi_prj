@@ -32,4 +32,14 @@ public class LectureInfoDao {
 	public List<LectureInfo> getLecturesInfo() throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("lectureInfo.getAllLecturesInfo");
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LectureInfo> getLecturesInfoByDeptNo(Criteria criteria) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("lectureInfo.getLecturesInfoByDeptNo", criteria);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LectureInfo> getLecturesInfoByLecturerNo(Criteria criteria) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("lectureInfo.getLecturesInfoByLecturerNo", criteria);
+	}
 }

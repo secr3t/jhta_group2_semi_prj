@@ -35,21 +35,9 @@
 	int no = 0; //= Integer.parseInt(request.getParameter("tno"));
 	int noTotalRows = 0;
 	
-	if(request.getParameter("tno") != null){
-		no = Integer.parseInt(request.getParameter("tno"));
-		Lecturer lecturer = lecturerDao.getLecturerByNo(no);
-		selectedName = lecturer.getName();
-		noTotalRows = infoDao.getLecturesInfoQty(lecturer.getName());
-	} else {
-		no = Integer.parseInt(request.getParameter("sno"));
-		Dept dept = deptDao.getDeptByNo(no);
-		selectedName = dept.getName();
-		noTotalRows = infoDao.getSubjectsInfoQty(dept.getName());
-		System.out.println("선택한 과목 : " + selectedName);
-	} 
-%>
-<% 
-    	final int rowsPerPage = 7;
+    Criteria criteria = new Criteria();
+
+    final int rowsPerPage = 6;
     	final int naviPerPage = 5;
     	
     	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
@@ -68,19 +56,29 @@
     	int beginIndex = (p-1)*rowsPerPage + 1;
     	int endIndex = p*rowsPerPage;
     	
-    	Criteria criteria = new Criteria();
     	criteria.setBeginIndex(beginIndex);
     	criteria.setEndIndex(endIndex);
-    %>
+
+	    List<LectureInfo> lectureInfos;
+	    
+	if(request.getParameter("tno") != null){
+		no = Integer.parseInt(request.getParameter("tno"));
+		Lecturer lecturer = lecturerDao.getLecturerByNo(no);
+		selectedName = lecturer.getName();
+		noTotalRows = infoDao.getLecturesInfoQty(lecturer.getName());
+  	    criteria.setLecturerNo(no);
+  	 	lectureInfos = infoDao.getLecturesInfoByLecturerNo(criteria);
 		
-	<%
- 		List<LectureInfo> infos = infoDao.getLecturesInfo();
-	    List<LectureInfo> lectureInfos = infoDao.getLecturesInfo(criteria);
-		for(LectureInfo course : infos){
-			System.out.println(course.getDeptName());
-			if(selectedName.equals(course.getLecturerName()) || selectedName.equals(course.getDeptName())){
-	
-	
+	} else {
+		no = Integer.parseInt(request.getParameter("sno"));
+		Dept dept = deptDao.getDeptByNo(no);
+		selectedName = dept.getName();
+		noTotalRows = infoDao.getSubjectsInfoQty(dept.getName());
+		System.out.println("선택한 과목 : " + selectedName);
+		criteria.setDeptNo(no);
+		lectureInfos = infoDao.getLecturesInfoByDeptNo(criteria);
+	} 
+		for(LectureInfo course : lectureInfos){
 	%>
 	<!--과정 소개  -->
        <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >
@@ -106,7 +104,6 @@
             </div>
         </div>
        		 <%} %>
-        <%} %>
 </div>
 <div class="row text-center">
 		<ul class="pagination">
