@@ -31,7 +31,7 @@
             white-space: nowrap;
             overflow-x: hidden;
             text-overflow: ellipsis;
-        }
+        } 
 	</style>
 </head>
 <body>
