@@ -145,7 +145,7 @@
 						}
 					%>
 					<%
-						 if(p<totalPages) {
+						if(p<totalPages) {
 					%>
 						<li><a href="javascript:goList(<%=p+1%>)">&gt;</a></li>
 					<% 
