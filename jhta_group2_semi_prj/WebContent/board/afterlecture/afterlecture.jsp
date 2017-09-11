@@ -46,7 +46,7 @@
 	        </div>
 	    </div>
 	  	    <hr>
-	  	   	  	    <% 
+	  	   	  	<% 
 	  	    	String opt = request.getParameter("opt");
 	  	    	String keyword = request.getParameter("keyword");
 	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);

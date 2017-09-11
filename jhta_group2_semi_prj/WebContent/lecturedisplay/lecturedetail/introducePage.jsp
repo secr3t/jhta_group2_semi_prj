@@ -1,3 +1,6 @@
+<%@page import="pro.criteria.vo.Criteria"%>
+<%@page import="pro.board.dao.AfterBoardDao"%>
+<%@page import="pro.utils.StringUtils"%>
 <%@page import="pro.dept.dao.DeptDao"%>
 <%@page import="pro.utils.DateUtils"%>
 <%@page import="pro.student.dao.StudentDao"%>
@@ -25,7 +28,6 @@
 	LecturerDao lecturerDao = LecturerDao.getInstance();
 	VideoDao videoDao = VideoDao.getInstance();
 
-	List<Postscription> postscriptions = lecturePostScriptDao.getPostscriptionsByCourseNo(courseNo);
 	Course course = courseDao.getCourseByNo(courseNo);
 	Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
 	StudentDao studentDao = StudentDao.getInstance();
@@ -112,6 +114,32 @@
 	       		   <h4><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp"><strong>강의후기</strong></a></h4>
       		 </div>
  		</div>    
+ 		
+ 		<% 
+	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
+	  	    	
+	  	    	final int rowsPerPage = 5;
+	  	    	final int naviPerPage = 5;
+	  	    	
+	  	    	Criteria criteria= new Criteria();
+	  	    	int totalRows = lecturePostScriptDao.getQtyByCriteriaCourseNo(courseNo);
+	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
+	  	    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
+	  	    	int currentNaviBlock = (int) Math.ceil(p/(double)naviPerPage);
+	  	    	int beginPage = (currentNaviBlock - 1)*naviPerPage +1;
+	  	    	int endPage = currentNaviBlock*naviPerPage;
+	  	    	
+	  	    	if(currentNaviBlock >= totalNaviBlocks) {
+	  	    		endPage = totalPages;
+	  	    	}
+	  	    	
+	  	    	int beginIndex = (p-1)*rowsPerPage + 1;
+	  	    	int endIndex = p*rowsPerPage;
+	  	    	
+	  	    	criteria.setBeginIndex(beginIndex);
+	  	    	criteria.setEndIndex(endIndex);
+	  	    %>
+ 		
  		<table class="table table-condensed">
  				<div class= "text-right">
 	       		   <span><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp?courseNo=<%=course.getNo() %>" class="btn btn-success">강의 후기 작성</a></span>
@@ -121,6 +149,8 @@
 	 			<th>글번호</th> <th>제목</th> <th>작성자</th> <th>작성일</th> <th>평점</th> 
 	 		</tr>
  			<%
+ 				criteria.setCourseNo(courseNo);
+ 				List<Postscription> postscriptions = lecturePostScriptDao.getPostscriptionsByCourseNo(criteria);
  				for(Postscription postscription : postscriptions){ 
  			%>
             	<tr>
@@ -132,6 +162,41 @@
             	</tr>
             <%}%>
         </table>
+        <div class="panel-body text-center">
+					<ul class="pagination">
+					<%
+						if(p>1) {
+					%>
+						<li><a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=courseNo %>&p=<%=p-1%>">&lt;</a></li>
+					<%
+						} else {
+					%>
+						<li class="disabled"><a>&lt;</a></li>					
+					<%
+						}
+						for(int index=beginPage; index<=endPage; index++) {		
+					%>
+						<li class="<%=(p==index?"active":"")%>"><a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=courseNo %>&p=<%=index %>"><%=index %></a></li>
+					<% 
+						}
+						if(p<totalPages) {
+					%>
+						<li><a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=courseNo %>&p=<%=p+1%>">&gt;</a></li>
+					<% 
+						} else {
+					%>
+						<li class="disabled"><a>&gt;</a></li>
+					<%
+						}
+					%>
+						
+					</ul>
+					<%
+					 if(loginUser != null && "S".equals(loginUser.getType().toUpperCase())) {
+					%>
+					<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
+					<%} %>
+				</div>
        </div>
     </div>
 			<% List<Course> courses = courseDao.getCourseByDeptNo(course.getDept().getNo()); %>

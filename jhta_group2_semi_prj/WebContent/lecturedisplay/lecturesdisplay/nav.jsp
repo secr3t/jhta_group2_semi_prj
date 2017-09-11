@@ -20,18 +20,4 @@
         </div>
     </ul>
     </div>
-    <div class="nav navbar-nav navbar-right">
-    	<form>
-    		<div class="input-group pull-right">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search" id="textSearch"/>
-					<div class="input-group-btn">
-						<button class="btn btn-primary" type="submit">
-							<span class="glyphicon glyphicon-search"></span>
-						</button>
-					</div>
-				</div>	 
-			</div>  	
-    	</form>
-    </div>
 </nav>
