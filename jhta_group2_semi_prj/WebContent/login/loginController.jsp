@@ -34,7 +34,7 @@
 			user.setName("운영자");
 			user.setType("a");
 			session.setAttribute("loginUser", user);
-			response.sendRedirect("/jhta_group2_semi_prj/");
+			return;
 		}
 	}
 	
