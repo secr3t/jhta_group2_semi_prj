@@ -34,15 +34,11 @@
 			user.setName("운영자");
 			user.setType("a");
 			session.setAttribute("loginUser", user);
-			response.sendRedirect("/jhta_group2_semi_prj/");
 		}
-	}
-	
-	if("student".equals(type)){
+	}else if("student".equals(type)) {
 		dao = StudentDao.getInstance();
 		user = ((StudentDao)dao).getStudentByEmail(id);
-		
-	System.out.println(user);
+		System.out.println(user);
 		if(user == null){
 			%>
 			<script>
@@ -65,7 +61,7 @@
 						<%
 			return;
 		}
-	} else if ("lecturer".equals(type)){
+	} else if ("lecturer".equals(type)) {
 		dao = LecturerDao.getInstance();
 		user = ((LecturerDao)dao).getLecturerByEmail(id);
 		System.out.println(user);
@@ -78,9 +74,9 @@
 							<%
 				return;
 			}
-		if( pwd.equals(user.getPwd().trim()) ){
+			if( pwd.equals(user.getPwd().trim()) ){
 			session.setAttribute("loginUser", user);
-		} else {
+			} else {
 			%>
 			<script>
 			window.location.href="login.jsp?returnUrl=<%=returnUrl%>";
@@ -88,10 +84,11 @@
 			</script>
 						<%
 			return;
-		}
-	} else {
+			}
+		} else {
 		// User가 악의적으로 해당 jsp 페이지로 이동할 경우에 대한 방어 코딩
 		response.sendError(400);
-	}
+		}
 		response.sendRedirect(returnUrl );
+		return;
 %>
