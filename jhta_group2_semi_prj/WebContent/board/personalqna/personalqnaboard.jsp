@@ -54,10 +54,6 @@
 	   	 		String keyword = request.getParameter("keyword");
 	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
 	  	    	
-	  	    	System.out.println(opt);
-	  	    	System.out.println(keyword);
-	  	    	System.out.println(p);
-	  	
 	  	    	final int rowsPerPage = 6;
 	  	    	final int naviPerPage = 5;
 	  	    	
@@ -69,7 +65,12 @@
 	  	    	if(keyword != null && !keyword.isEmpty()) {
 	  	    		criteria.setKeyword(keyword);
 	  	    	}
+	  	    	
 	  	    	TechBoardDao tdao = TechBoardDao.getInstance(); 
+	  	    	if(loginUser.getType().toUpperCase().endsWith("S")){
+	  	    		int studentNo = loginUser.getNo();
+	  	    		criteria.setStudentNo(studentNo);
+	  	    	}
 	  	    	int totalRows = tdao.getTotalRows(criteria);
 	  	    	int totalPages = (int) Math.ceil(totalRows/(double)rowsPerPage);
 	  	    	int totalNaviBlocks = (int) Math.ceil(totalPages/(double)naviPerPage);
@@ -77,8 +78,6 @@
 	  	    	int beginPage = (currentNaviBlock - 1)*naviPerPage +1;
 	  	    	int endPage = currentNaviBlock*naviPerPage;
 	  	    	
-	  	    	System.out.println(totalPages);
-	  	    	System.out.println(totalRows);
 	  	    	
 	  	    	if(currentNaviBlock == totalNaviBlocks) {
 	  	    		endPage = totalPages;
@@ -99,7 +98,6 @@
 						criteria.setStudentNo(tech.getStudent().getNo());
 						String style = tech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
 						String type = tech.getQtypeNo() == 1? "[결제]" : "[이용]";
-
 				%>
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border:2px solid silver;">
@@ -129,13 +127,13 @@
 					<button type="submit" class="btn btn-default">검색</button>
 	  	    	</form>
 	  	    </div>
-	  	    	<%} else if(loginUser.getType().toUpperCase().endsWith("S")) {
-	  	    		int studentNo = loginUser.getNo();
-	  	    		criteria.setStudentNo(studentNo);
+	  	    	<%} else if(loginUser.getType().toUpperCase().equals("S")) {
+	  	    		System.out.println(criteria);
 	  	    		List<Tech> studentTech = tdao.getAllTechBoard(criteria);
 	  	    		for (Tech sTech : studentTech) {
 	  	    			String style = sTech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
 						String type = sTech.getQtypeNo() == 1? "[결제]" : "[이용]";
+					System.out.println("st :" + sTech);
 	  	    		
 	  	    	%>
 	  	    	<div class="panel">

@@ -29,10 +29,10 @@
 			<isEqual property="opt" compareValue="writer">
 				and student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
 			</isEqual>
-			<isEqual property="studentNo">
-			and B.student_no = #studentNo#
-			</isEqual>
 		</isNotEmpty>
+		<isNotNull property="studentNo">
+		and student_no = #studentNo#
+		</isNotNull>
 	</dynamic>
 </select>
 
@@ -72,9 +72,9 @@ from (select row_number() over (order by tech_no desc) m,	A.tech_no   					as "n
 					and B.student_no in (select student_no from student where student_name like '%' || #keyword# || '%')  
 				</isEqual>
 			</isNotNull>
-			<isNotNull property="studentNo">
-				and B.student_no = #studentNo#
-			</isNotNull>
+		</isNotNull>
+		<isNotNull property="studentNo">
+			and B.student_no = #studentNo#
 		</isNotNull>
 	</dynamic>			
 															)
