@@ -61,6 +61,22 @@
 			and A.rn <= #endIndex#
 		]]>
 	</select>
+	
+	<select id="getTotalLecturers" parameterClass="Criteria" resultClass="int">
+		select count(*)
+		from lecturer
+		where user_type = 'T'
+		<isNotNull property="opt">
+			<isNotNull property="keyword">
+				<isEqual property="opt" compareValue="id">
+					and lecturer_email like '%' || #keyword# || '%'
+				</isEqual>
+				<isEqual property="opt" compareValue="name">
+					and lecturer_name like '%' || #keyword# || '%'
+				</isEqual>
+			</isNotNull>		
+		</isNotNull>
+	</select>
 
 	<select id="getLecturerByNo" parameterClass="int" resultClass="Lecturer">
 		select
@@ -100,17 +116,18 @@
 	
 	<select id="getCourseByLecturerNo" parameterClass="Criteria" resultClass="Course">
 		select
-			B.course_no			no
-			,B.course_name		name
-			,B.course_summary		summary
-			,B.course_detail		detail
-			,B.course_point		point
-			,B.dept_no			"dept.no"
+			A.course_no			no
+			,A.course_name		name
+			,A.course_summary		summary
+			,A.course_detail		detail
+			,A.course_point		point
+			,A.dept_no			"dept.no"
+			,B.dept_name		"dept.name"
 		from (select row_number() over(order by course_no desc) rn, course_no ,course_name
-					,course_summary ,course_detail ,course_point ,dept_no
-			from course) A, course B 
-		where A.course_no = B.course_no
-		and B.lecturer_no = #lecturerNo#
+					,course_summary ,course_detail ,course_point ,dept_no, lecturer_no
+			from course) A, dept B 
+		where A.dept_no = B.dept_no
+		and A.lecturer_no = #lecturerNo#
 		<![CDATA[
 			and A.rn >= #beginIndex#
 			and A.rn <= #endIndex#
@@ -198,6 +215,7 @@
 			,lecturer_phone = #phone#
 			,lecturer_career = #career#
 			,lecturer_picture = #picture#
+			,lecturer_permit = #permit#
 		where lecturer_no = #no#
 	</update>	
 </sqlMap>

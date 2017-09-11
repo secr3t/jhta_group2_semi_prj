@@ -30,6 +30,10 @@ public class MypageLecturerDao {
 	public List<Lecturer> getLecturerInfo(Criteria criteria) throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("MyPageLecturer.getLecturerInfo", criteria);
 	}
+
+	public Integer getTotalLecturers(Criteria criteria) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageLecturer.getTotalLecturers", criteria);
+	}
 	
 	public Lecturer getLecturerByNo(int lecturerNo) throws SQLException {
 		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("MyPageLecturer.getLecturerByNo", lecturerNo);
