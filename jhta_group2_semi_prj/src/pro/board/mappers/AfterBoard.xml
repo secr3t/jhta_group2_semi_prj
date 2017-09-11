@@ -85,17 +85,22 @@ select "no"        as  no,
 
 <select id="getAfterBoardByNo" parameterClass="int" resultClass="afterboard">
 	select
-		postscription_no 			as no,
-		postscription_title			as title,
-		postscription_content		as content,
-		postscription_regdate		as	regDate,
-		postscription_grade 		as grade,
-		postscription_active		as active,
-		student_no					as	"student.no",
-		course_no					as	"course.no"
+		A.postscription_no 			as no,
+		A.postscription_title			as title,
+		A.postscription_content		as content,
+		A.postscription_regdate		as	regDate,
+		A.postscription_grade 		as grade,
+		A.postscription_active		as active,
+		B.student_no					as	"student.no",
+		B.student_name				as	"student.name",
+		c.course_no					as	"course.no"
 	from
-		postscription
+		postscription A, student B, course C
 	where
+		A.student_no = B.student_no 
+	and	
+		A.course_no = C.course_no 
+	and 
 		postscription_no = #value#
 </select>
 

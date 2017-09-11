@@ -50,7 +50,10 @@
 	  </div>
 	  		<div class="panel text-right">
 	  			<hr>
+	  			<% if(loginUser != null && "A".equals(loginUser.getType().toUpperCase())) {
+	  				%>
 	  			<a href="/jhta_group2_semi_prj/board/alertboard/delete_alert.jsp?no=<%=noe.getNo() %>" class="btn btn-danger btn-md">삭제</a>
+	  			<% } %>
 	  			<a href="/jhta_group2_semi_prj/board/alertboard/alertboard.jsp" class="btn btn-primary btn-md">돌아가기</a>
 	  		</div>
 	  </div>

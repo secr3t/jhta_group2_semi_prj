@@ -40,8 +40,8 @@
 					</div>
 					<div class="col-sm-2 control-label"><strong>질문 타입</strong></div>
 						<select class="form-control col-sm-3" style="width:100px;" name="questiontype" id="qtype">
-						  <option value="1">결제</option>
-						  <option value="2">이용</option>
+						  <option value="결제">결제</option>
+						  <option value="이용">이용</option>
 						</select>
 					</div>
 				

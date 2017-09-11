@@ -12,7 +12,15 @@
 <%@include file="../../common/header.jsp"%>
 <body>
 <%@include file="../../common/nav.jsp"%>
-
+<%
+ if(request.getParameter("error")!=null){
+%>
+<script type="text/javascript">
+	alert("권한이 없습니다.");
+</script>
+<%  
+ }
+%>
 
 <div class="content-primary">
 <div class="container">

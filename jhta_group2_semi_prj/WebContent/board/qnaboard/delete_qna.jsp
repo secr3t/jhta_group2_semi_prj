@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
  <%
  	User user = (User)session.getAttribute("loginUser");
- 	int no = Integer.parseInt(request.getParameter("p"));
+ 	int no = Integer.parseInt(request.getParameter("no"));
 	 	
  	QnaBoardDao qdao = QnaBoardDao.getInstance();
  	Qna qna = qdao.getQnaBoardByNo(no);
