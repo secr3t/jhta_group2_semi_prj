@@ -28,7 +28,7 @@
 	LecturerDao lecturerDao = LecturerDao.getInstance();
 	List<Lecturer> lecturers = lecturerDao.getAllLecturers();
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();
-	DeptDao deptDao = DeptDao.getInstance();
+	DeptDao deptDao = DeptDao.getInstance(); 
 	for(Lecturer lecturer : lecturers){
 		List<Course> courses = courseDao.getCourseByLecturerNo(lecturer.getNo());
 		
@@ -36,7 +36,7 @@
 	<!--과정 소개  -->
        <div class="col-sm-offset-1 col-sm-3 well" style="height: 250px;" >
              <div>
-                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 60%;float:left">
+                 <img src="<%=lecturer.getPicture()%>" alt="강사사진" style="width: 45%;float:left">
              </div>
              <div class="text-center">
                 

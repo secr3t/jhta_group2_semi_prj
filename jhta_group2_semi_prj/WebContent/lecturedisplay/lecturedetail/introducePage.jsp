@@ -21,8 +21,11 @@
 <%@include file="../../common/nav.jsp" %>
 <div class="container">
 <%
+int sheight = 0;
+if(request.getParameter("sheight")!=null){
+	sheight = Integer.parseInt(request.getParameter("sheight"));
+} 
 	int courseNo = Integer.parseInt(request.getParameter("courseNo"));
-	System.out.println(courseNo);
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();
 	LecturePostScriptDao lecturePostScriptDao = LecturePostScriptDao.getInstance();
 	LecturerDao lecturerDao = LecturerDao.getInstance();
@@ -31,6 +34,7 @@
 	Course course = courseDao.getCourseByNo(courseNo);
 	Lecturer lecturer = lecturerDao.getLecturerByNo(course.getLecturer().getNo());
 	StudentDao studentDao = StudentDao.getInstance();
+	
 %>
    <div class="row" style="font-size: 13px; font-weight: bold;">
         <span id="category1"><a href="/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/index.jsp">강의목록></a></span><span id="category2"></span><span id="category3"></span><span id="category4"></span>
@@ -81,7 +85,7 @@
                     </div>
                     <div class="col-sm-4">
                         <span><strong>평점 : </strong></span>
-						<span><%=lecturePostScriptDao.getPostscriptionAvgGradeByCourseNo(courseNo)%></span>
+						<span><%= Math.round((lecturePostScriptDao.getPostscriptionAvgGradeByCourseNo(courseNo)*1000)/1000) %></span>
                     </div>
                 </div>
                 <div class="col-sm-12 row">
@@ -167,7 +171,7 @@
 					<%
 						if(p>1) {
 					%>
-						<li><a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=courseNo %>&p=<%=p-1%>">&lt;</a></li>
+						<li><a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?sheight=300&courseNo=<%=courseNo %>&p=<%=p-1%>">&lt;</a></li>
 					<%
 						} else {
 					%>
@@ -176,12 +180,12 @@
 						}
 						for(int index=beginPage; index<=endPage; index++) {		
 					%>
-						<li class="<%=(p==index?"active":"")%>"><a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=courseNo %>&p=<%=index %>"><%=index %></a></li>
+						<li  class="<%=(p==index?"active":"")%> " ><a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?sheight=300&courseNo=<%=courseNo %>&p=<%=index %>"><%=index %></a></li>
 					<% 
 						}
 						if(p<totalPages) {
 					%>
-						<li><a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=courseNo %>&p=<%=p+1%>">&gt;</a></li>
+						<li><a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?sheight=300&courseNo=<%=courseNo %>&p=<%=p+1%>">&gt;</a></li>
 					<% 
 						} else {
 					%>
@@ -212,6 +216,11 @@
 <%@include file="../../common/footer.jsp" %>
 </body>
 <script type="text/javascript">
+			(function scrollWin() {
+		   	 window.scrollTo(0, <%=sheight%>);
+			})();
+</script>
+<script type="text/javascript">
 	<%
 		DeptDao deptDao = DeptDao.getInstance();
 		course = courseDao.getCourseByNo(Integer.parseInt(request.getParameter("courseNo")));
@@ -226,5 +235,6 @@
 		document.getElementById("category3").innerHTML = "<a href='/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/Filter.jsp?tno=<%=lecturerNo%>'><%=lecturerName %>></a>"; 
 		document.getElementById("category4").innerText = "<%=courseName %>"; 
 
+	
 </script>
 </html>
