@@ -1,3 +1,7 @@
+<%@page import="pro.postscription.vo.Postscription"%>
+<%@page import="java.util.List"%>
+<%@page import="pro.criteria.vo.Criteria"%>
+<%@page import="pro.board.dao.AfterBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -36,16 +40,12 @@
                           
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    <th>평점</th>
                                 </tr>
+                                
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                   <tr>
                                     <td>1</td>
                                     <td>1</td>
                                     <td>1</td>

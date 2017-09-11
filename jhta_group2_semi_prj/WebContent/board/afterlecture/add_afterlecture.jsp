@@ -45,7 +45,6 @@
 	
 	response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp");
 	} else {
-		response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp?error=1");
 		return;
 	}
 		

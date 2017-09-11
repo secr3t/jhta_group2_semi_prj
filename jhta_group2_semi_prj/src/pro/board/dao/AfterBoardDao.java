@@ -24,7 +24,7 @@ public class AfterBoardDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<Postscription> getAllAfterBoard(Criteria criteria) throws SQLException {
-		return IbatisUtils.getSqlMap().queryForList("AfterBoard.getAllAlertBoard", criteria);
+		return IbatisUtils.getSqlMap().queryForList("AfterBoard.getAllAfterBoard", criteria);
 	}
 	public void deleteAfterBoard(int no) throws SQLException {
 		IbatisUtils.getSqlMap().update("AfterBoard.deleteAfterBoardByNo", no);

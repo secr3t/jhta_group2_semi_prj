@@ -7,6 +7,7 @@
 <html lang="ko">
 <%@include file="../../common/header.jsp"%>
 <body>
+<%@include file="../../common/loginCheck.jsp"%>
 
 <%@include file="../../common/nav.jsp"%>
 <div class="content-primary">
@@ -30,8 +31,9 @@
 					<div class="row col-md-10">
 						<form class="form-horizontal" method="post" action="add_afterlecture.jsp">
 						<% 
+							int courseNo = 0;
 							if(request.getParameter("courseNo") != null) {
-						int courseNo = Integer.parseInt(request.getParameter("courseNo")); 
+						courseNo = Integer.parseInt(request.getParameter("courseNo")); 
 						 %>
 						<input type="hidden" name="courseNo" value="<%=courseNo %>">
 						<%} %>
@@ -42,16 +44,18 @@
 									
 								</div>
 								<div class="col-sm-1 control-label">
-										<strong>과목</strong>
+										<strong>과정명</strong>
 									</div>
 									<select class="form-control col-sm-1 control-label" style="width: 100px;" name="type" id="subject">
 									<%LectureCourseDao ldao = LectureCourseDao.getInstance();
 										List<Course> courses = ldao.getAllCourses();
-										
+										if(request.getParameter("courseNo")== null) {
 										for(Course course : courses) {
 									%>
 										<option value="<%=course.getNo()%>"><%=course.getName() %></option>
-									<%} %>
+									<%
+											}
+										} %>
 									</select>
 								<label class="col-sm-1 control-label"><strong>평점</strong></label>
 								<div class="col-sm-3">
