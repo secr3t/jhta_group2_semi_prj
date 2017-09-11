@@ -40,8 +40,8 @@ public class MypageStudentDao {
 		return IbatisUtils.getSqlMap().queryForList("MyPageStudent.getEnrollmentByStudentNo", studentNo);
 	}
 	
-	public int getTotalQnaRows(int studentNo) throws SQLException {
-		return (int) IbatisUtils.getSqlMap().queryForObject("MyPageStudent.getTotalQnaRows", studentNo);
+	public Integer getTotalQnaRows(Criteria criteria) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageStudent.getTotalQnaRows", criteria);
 	}
 	
 	@SuppressWarnings("unchecked")
