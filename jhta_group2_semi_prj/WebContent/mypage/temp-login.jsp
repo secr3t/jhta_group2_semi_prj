@@ -26,10 +26,10 @@
 	user.setName("운영자");
 	user.setType("a");
 	
-	//session.setAttribute("userType", student.getType());
-	//session.setAttribute("loginedUser", loginedUser1);
+	session.setAttribute("userType", student.getType());
+	session.setAttribute("loginedUser", loginedUser1);
 	//session.setAttribute("userType", lecturer.getType());
 	//session.setAttribute("loginedUser", loginedUser2);
-	session.setAttribute("userType", user.getType());
-	session.setAttribute("loginedUser", user);
+	//session.setAttribute("userType", user.getType());
+	//session.setAttribute("loginedUser", user);
 %>
