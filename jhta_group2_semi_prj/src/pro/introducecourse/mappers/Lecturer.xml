@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="lecturer">
+
+	<typeAlias alias="lecturer" type="pro.lecturer.vo.Lecturer"/>
+
+	<select id="getAlllecturers" resultClass="lecturer">
+		select
+			lecturer_no			as "no",
+			lecturer_name		as "name",
+			lecturer_email		as "email",
+			lecturer_pwd		as "pwd",
+			lecturer_phone		as "phone",
+			lecturer_career		as "career",
+			lecturer_picture	as "picture",
+			lecturer_permit		as "permit",
+			user_type			as "type"
+		from
+			lecturer
+	</select>
+	
+	<select id="getlecturerByNo" parameterClass="int" resultClass="lecturer">
+		select
+			lecturer_no			as "no",
+			lecturer_name		as "name",
+			lecturer_email		as "email",
+			lecturer_pwd		as "pwd",
+			lecturer_phone		as "phone",
+			lecturer_career		as "career",
+			lecturer_picture	as "picture",
+			lecturer_permit		as "permit",
+			user_type			as "type"
+		from
+			lecturer
+		where 
+			lecturer_no = #value#
+	</select>
+	
+</sqlMap>

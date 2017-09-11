@@ -1,3 +1,4 @@
+<%@page import="javax.websocket.SendResult"%>
 <%@page import="pro.utils.DateUtils"%>
 <%@page import="pro.tech.vo.Tech"%>
 <%@page import="pro.board.dao.TechBoardDao"%>
@@ -22,11 +23,19 @@
   	</h4>
   	<hr>
     </div>
+    <%  
+    %>
     	<% 
     		int no = Integer.parseInt(request.getParameter("no"));
-    	TechBoardDao tdao = TechBoardDao.getInstance();
+    		TechBoardDao tdao = TechBoardDao.getInstance();
     		
     		Tech tech = tdao.getTechBoardByNo(no);
+    		
+    		if(!loginUser.getType().toUpperCase().equals("A") || loginUser.getNo() != tech.getStudent().getNo() ) {
+    		} else {
+    			response.sendRedirect("/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp?error=1");
+    			return;
+    		}
     		
     	%>
   		<div class="panel panel-default">
@@ -65,9 +74,12 @@
   				</tr> 
   			</table>
   				<div class="text-right">
+  					<% if( "A".equals(loginUser.getType().toUpperCase())){ 						
+					%>
 	  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_replywrite.jsp?no=<%=tech.getNo() %>" class="btn btn-warning btn-sm">답변</a>
+	  				<% } %>
 	  				<a href="/jhta_group2_semi_prj/board/personalqna/delete_personalqna.jsp?no=<%=tech.getNo() %>" class="btn btn-danger btn-sm">삭제</a>
-	  				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-primary btn-sm">돌아가기</a>
+	  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp" class="btn btn-primary btn-sm">돌아가기</a>
 	  			</div>
   				</tbody>
   		</div>  			

@@ -2,6 +2,7 @@ package pro.video.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import pro.utils.IbatisUtils;
 import pro.video.vo.Video;
@@ -35,5 +36,10 @@ public class VideoDao {
 	
 	public int getVideoQtrByCourseNo(int courseNo) throws SQLException {
 		return (Integer) IbatisUtils.getSqlMap().queryForObject("video.getVideoQtrByCourseNo", courseNo);
+	}
+	
+	public String getVideoAttachedSrcByVideoOrderNoAndCourseNo (Map<String, Integer> map) throws SQLException {
+		//orderNo, courseNo 로 key값을 설정할 것
+		return (String) IbatisUtils.getSqlMap().queryForObject("video.getVideoAttachedSrcByVideoOrderNoAndCourseNo", map);
 	}
 }

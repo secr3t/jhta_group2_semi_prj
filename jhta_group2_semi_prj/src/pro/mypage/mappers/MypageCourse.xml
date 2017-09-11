@@ -11,13 +11,13 @@
 	<typeAlias alias="Enrollment" type="pro.enrollment.vo.Enrollment"/>
 	<typeAlias alias="Criteria" type="pro.criteria.vo.Criteria"/>
 
-	<select id="getTotalFinishedCourseByMap" parameterClass="java.util.Map" resultClass="int">
+	<select id="getTotalFinishedCourseByMap" parameterClass="java.util.Map" resultClass="java.lang.Integer">
 		select count(*)
 		from course_video A, progress B
 		where A.course_video_no = B.course_video_no
 		and B.student_no = #param1#
 		and A.course_no = #param2#
-		and B.progress_complete = 'Y'
+		and B.progress_complete = 100
 	</select>
 
 	<select id="getTotalCourseVideoByCourseNo" parameterClass="int" resultClass="int">

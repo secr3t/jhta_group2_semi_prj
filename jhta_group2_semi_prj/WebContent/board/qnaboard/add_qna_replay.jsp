@@ -6,7 +6,7 @@
 	request.setCharacterEncoding("utf-8");
 	
 	String ans = request.getParameter("anscontent");
-	int no = Integer.parseInt(request.getParameter("p"));
+	int no = Integer.parseInt(request.getParameter("no"));
 	
 	QnaBoardDao qdao = QnaBoardDao.getInstance();
 	Qna qna = qdao.getQnaBoardByNo(no);
@@ -15,5 +15,5 @@
 	qdao.updateQnaAnsBoard(qna);
 	
 	response.sendRedirect("/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp");
-	
+
 %>

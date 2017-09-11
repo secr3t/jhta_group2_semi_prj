@@ -31,4 +31,11 @@ from progress
 where student_no = #value#
 </select>
 
+<select id="getCompleteByStudentAndVideo" resultClass="double" parameterClass="progress">
+select 
+progress_complete
+from progress
+where student_no = #student.no#
+and course_video_no = #video.no#
+</select>
 </sqlMap>
