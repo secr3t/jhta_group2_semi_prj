@@ -56,7 +56,17 @@
                 <p><small>가격 : <%=course.getPoint() %>P</small></p>
             </div>
             <div class="text-right">
-                <button class="btn btn-success">수강신청</button>
+                <% 
+                   if(course.getDept().getNo()==1){
+                    %><a href="/jhta_group2_semi_prj/enrollment/enrollment-kor.jsp?courseNo=<%=course.getNo() %>" class="btn btn-success">수강신청</a><%
+                   }else if(course.getDept().getNo()==2){
+                    %><a href="/jhta_group2_semi_prj/enrollment/enrollment-math.jsp?courseNo=<%=course.getNo() %>" class="btn btn-success">수강신청</a><%
+                   }else if(course.getDept().getNo()==3){
+                    %><a href="/jhta_group2_semi_prj/enrollment/enrollment-eng.jsp?courseNo=<%=course.getNo() %>" class="btn btn-success">수강신청</a><%
+                   }else if(course.getDept().getNo()==4){
+                    %><a href="/jhta_group2_semi_prj/enrollment/enrollment-sci.jsp?courseNo=<%=course.getNo() %>" class="btn btn-success">수강신청</a><%
+                   }
+                   %> 
             </div>
         </div>
    </div>

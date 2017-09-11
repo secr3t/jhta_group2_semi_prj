@@ -39,9 +39,17 @@ public class MypageCourseDao {
 		return (Course) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getCourseByCourseNo", courseNo);
 	}
 	
+	public Video getVideoByVideoNo(int videoNo) throws SQLException {
+		return (Video) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getVideoByVideoNo", videoNo);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Course> getCourseInfo(Criteria criteria) throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("MyPageCourse.getCourseInfo", criteria);
+	}
+	
+	public Integer getTotalCourses(Criteria criteria) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalCourses", criteria);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -51,5 +59,13 @@ public class MypageCourseDao {
 	
 	public Double getGradeAvgByCourseNo(int courseNo) throws SQLException {
 		return (Double) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getGradeAvgByCourseNo", courseNo);
+	}
+	
+	public void updateCourseInfo(Course course) throws SQLException {
+		IbatisUtils.getSqlMap().update("MyPageCourse.updateCourseInfo", course);
+	}
+	
+	public void updateVideoInfo(Video video) throws SQLException {
+		IbatisUtils.getSqlMap().update("MyPageCourse.updateVideoInfo", video);
 	}
 }

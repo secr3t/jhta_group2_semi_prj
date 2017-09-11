@@ -77,31 +77,83 @@
 		and A.course_no = #value#
 	</select>
 	
+	<select id="getVideoByVideoNo" parameterClass="int" resultClass="Video">
+		select 	
+			course_video_no				no
+			,course_video_link			link
+			,course_video_title			title
+			,course_video_description		description
+			,course_video_attached		attached
+			,course_video_permit			permit
+			,course_video_order			"order"
+			,course_no					"course.no"
+		from course_video
+		where course_video_no = #value#
+	</select>
+	
 	<select id="getCourseInfo" parameterClass="Criteria" resultClass="Course">
 		select
-			A.course_no			no
-			,A.course_name		name
-			,A.course_summary	summary
-			,A.course_detail	detail
-			,A.course_point		point
-			,B.dept_no			"dept.no"
-			,B.dept_name		"dept.name"
-			,C.lecturer_no		"lecturer.no"
-			,C.lecturer_name	"lecturer.name"
-		from (select row_number() over(order by course_no desc) rn, course_no, course_name, course_summary, course_detail, course_point, lecturer_no, dept_no, course_permit
-			from course
-			where course_name is not null
+			A.course_no				no
+			,A.course_name			name
+			,A.course_summary		summary
+			,A.course_detail		detail
+			,A.course_point			point
+			,A.dept_no				"dept.no"
+			,A.dept_name			"dept.name"
+			,A.course_permit		permit
+			,A.lecturer_no			"lecturer.no"
+			,A.lecturer_name		"lecturer.name"
+		from (select row_number() over(order by C.course_no desc) rn, C.course_no, C.course_name, C.course_summary
+					, C.course_detail, C.course_point, C.lecturer_no, D.dept_no, D.dept_name, C.course_permit
+					, L.lecturer_name
+			from course C, dept D, lecturer L
+			where C.dept_no = D.dept_no
+			and C.lecturer_no = L.lecturer_no
+			<isNotNull property="opt">
+				<isNotNull property="keyword">
+					<isEqual property="opt" compareValue="course">
+						and C.course_name like '%' || #keyword# || '%'
+					</isEqual>
+					<isEqual property="opt" compareValue="lecturer">
+						and L.lecturer_name like '%' || #keyword# || '%'
+					</isEqual>
+					<isEqual property="opt" compareValue="dept">
+						and D.dept_name like '%' || #keyword# || '%'
+					</isEqual>
+				</isNotNull>
+			</isNotNull>
 			<isNotNull property="noAnswer">
 				<isEqual property="noAnswer" compareValue="Y">
-					and course_permit = 'N'	
+					and C.course_permit = 'N'	
 				</isEqual>
 				<isEqual property="noAnswer" compareValue="N">
-					and course_permit = 'Y'	
+					and C.course_permit = 'Y'	
 				</isEqual>
 			</isNotNull>
-			) A, dept B, lecturer C
-		where A.dept_no = B.dept_no
-		and A.lecturer_no = C.lecturer_no
+			) A
+		<![CDATA[
+			where A.rn >= #beginIndex#
+			and A.rn <= #endIndex#
+		]]>
+	</select>
+	
+	<select id="getTotalCourses" parameterClass="Criteria" resultClass="int">
+		select count(*)
+		from course
+		where course_name is not null
+		<isNotNull property="opt">
+			<isNotNull property="keyword">
+				<isEqual property="opt" compareValue="course">
+					and C.course_name like '%' || #keyword# || '%'
+				</isEqual>
+				<isEqual property="opt" compareValue="lecturer">
+					and L.lecturer_name like '%' || #keyword# || '%'
+				</isEqual>
+				<isEqual property="opt" compareValue="dept">
+					and D.dept_name like '%' || #keyword# || '%'
+				</isEqual>
+			</isNotNull>
+		</isNotNull>		
 	</select>
 	
 	<select id="getVideoInfo" parameterClass="Criteria" resultClass="Video">
@@ -115,10 +167,14 @@
 				,A.course_video_order			"order"
 				,A.course_no					"course.no"
 				,B.course_name					"course.name"
-		from (select row_number() over(order by course_video_no desc) rn ,course_video_no ,course_video_link ,course_video_title ,course_video_description ,course_video_attached
-				,course_video_permit ,course_video_order ,course_no
+		from (select row_number() over(order by course_video_no desc) rn ,course_video_no ,course_video_link 
+					,course_video_title ,course_video_description ,course_video_attached
+					,course_video_permit ,course_video_order ,course_no
 			from course_video
 			where course_video_link is not null
+			<isNotNull property="courseNo">
+				and course_no = #courseNo#
+			</isNotNull>
 			<isNotNull property="noAnswer">
 				<isEqual property="noAnswer" compareValue="Y">
 					and course_video_permit = 'N'
@@ -145,5 +201,28 @@
 		where B.course_no = A.course_no (+)
 		and B.course_no = #value#
 	</select>
+	
+	<update id="updateCourseInfo" parameterClass="Course">
+		update course
+		set
+			course_name = #name#
+			,course_summary = #summary#
+			,course_detail = #detail#
+			,course_point = #point#
+			,course_permit = #permit#
+		where course_no = #no#
+	</update>
+	
+	<update id="updateVideoInfo" parameterClass="Video">
+		update course_video
+		set
+			course_video_link = #link#
+			,course_video_title = #title#
+			,course_video_description = #description#
+			,course_video_attached = #attached#
+			,course_video_permit = #permit#
+			,course_video_order = #order#
+		where course_video_no = #no#
+	</update>
 
 </sqlMap>
