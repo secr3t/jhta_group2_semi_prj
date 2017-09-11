@@ -20,7 +20,6 @@
 		 alert('잘못된 로그인 시도입니다. ID와 로그인 구분을 확인해주세요.');
 		</script>
 					<%
-		response.sendRedirect(returnUrl );
 	}
 	
 	System.out.println(id + " / " + pwd);
@@ -34,7 +33,7 @@
 			user.setName("운영자");
 			user.setType("a");
 			session.setAttribute("loginUser", user);
-			return;
+		response.sendRedirect(returnUrl );
 		}
 	}
 	
