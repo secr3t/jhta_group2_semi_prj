@@ -85,7 +85,7 @@
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border: 2px solid silver;" >
 			            <h4 class="panel-title">
-			                <a href="alertboard_detail.jsp?no=<%=notice.getNo() %>" class="collapsed" style="<%=style %>"><%=ntype %><%=notice.getTitle() %></a>
+			                 <a href="alertboard_detail.jsp?no=<%=notice.getNo() %>" class="collapsed" style="<%=style %>"><%=ntype %><%=notice.getTitle() %></a>
 			            </h4>
 			        </div>
 	            </div>
