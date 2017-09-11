@@ -11,11 +11,12 @@
 	String id = request.getParameter("user-id");
 	String pwd = request.getParameter("user-pwd");
 	String type = request.getParameter("login-type");
-	
+	String returnUrl = request.getParameter("returnUrl");
+	returnUrl = returnUrl == null?  "/jhta_group2_semi_prj/"  : returnUrl;
 	if(type == null ) {
 		%>
 		<script>
-		window.location.href="login.jsp";
+		window.location.href="login.jsp?returnUrl=<%=returnUrl%>";
 		 alert('잘못된 로그인 시도입니다. ID와 로그인 구분을 확인해주세요.');
 		</script>
 					<%
@@ -45,7 +46,7 @@
 		if(user == null){
 			%>
 			<script>
-			window.location.href="login.jsp";
+			window.location.href="login.jsp?returnUrl=<%=returnUrl%>";
 			 alert('잘못된 로그인 시도입니다. ID와 로그인 구분을 확인해주세요.');
 			</script>
 						<%
@@ -58,7 +59,7 @@
 			// javascript를 이용하여 alert를 띄우고 확인을 클릭하면 login page로 돌아가게한다.
 			%>
 			<script>
-			window.location.href="login.jsp";
+			window.location.href="login.jsp<%=returnUrl%>";
 			 alert('잘못된 로그인 시도입니다.비밀번호를 확인해주세요.');
 			</script>
 						<%
@@ -71,7 +72,7 @@
 			if(user == null){
 				%>
 				<script>
-				window.location.href="login.jsp";
+				window.location.href="login.jsp?returnUrl=<%=returnUrl%>";
 				 alert('잘못된 로그인 시도입니다. ID와 로그인 구분을 확인해주세요.');
 				</script>
 							<%
@@ -82,7 +83,7 @@
 		} else {
 			%>
 			<script>
-			window.location.href="login.jsp";
+			window.location.href="login.jsp?returnUrl=<%=returnUrl%>";
 			 alert('잘못된 로그인 시도입니다. 비밀번호를 확인해주세요.');
 			</script>
 						<%
@@ -92,5 +93,5 @@
 		// User가 악의적으로 해당 jsp 페이지로 이동할 경우에 대한 방어 코딩
 		response.sendError(400);
 	}
-		response.sendRedirect("/jhta_group2_semi_prj/");
+		response.sendRedirect(returnUrl );
 %>

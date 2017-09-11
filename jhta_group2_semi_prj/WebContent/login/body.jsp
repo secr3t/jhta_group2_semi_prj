@@ -23,6 +23,7 @@
                                 </div>
                             </div>
                             <div class="form-group"> 
+                            	<input type="hidden" name="returnUrl"/>
                                 <button class="btn btn-primary pull-right" id="login-btn">로그인</button>
                             </div>
                         </div>

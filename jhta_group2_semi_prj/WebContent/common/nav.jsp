@@ -28,7 +28,7 @@ User loginUser = null;
 
          </div>
          <ul class="nav navbar-nav">
-            <li class=""> <a href="#">홈</a></li>
+            <li class=""> <a href="/jhta_group2_semi_prj/">홈</a></li>
             <li><a href="#">정규과정</a></li>
             <li><a href="#">단기과정</a></li>
             <li class=""> <a href="#">자유게시판</a></li>
