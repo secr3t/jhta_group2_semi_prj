@@ -40,7 +40,8 @@
         <div class="col-sm-9">
          	<div class="row">
               <div class="col-sm-4">
-              <%              	
+              <%
+             	request.setCharacterEncoding("utf-8");
            		String opt = request.getParameter("searchopt");
            		String keyword = request.getParameter("searchtext");
            		String noAnswer = request.getParameter("noAnswer");

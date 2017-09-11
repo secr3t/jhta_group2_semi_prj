@@ -39,6 +39,7 @@
              <div class="row">
              	<div class="col-sm-3">
              	<%
+             		request.setCharacterEncoding("utf-8");
           			String keyword = request.getParameter("searchtext");
              		
              		String params = "";

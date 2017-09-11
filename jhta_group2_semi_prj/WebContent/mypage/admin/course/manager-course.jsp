@@ -30,24 +30,47 @@
              <div class="row">
                	<div class="col-sm-3">
                		<label>정렬 :</label>
-               		<button><span class="glyphicon glyphicon-ok-sign"></span></button>
-               		<button><span class="glyphicon glyphicon-remove-sign"></span></button>                		
+               	<%
+	                request.setCharacterEncoding("utf-8");
+	                String opt = request.getParameter("searchopt");
+	                String keyword = request.getParameter("searchtext");   
+	                String noAnswer = request.getParameter("noAnswer");   
+	           		
+	           		String params = "";           		
+	      			if(opt != null) {
+	      				params += "?searchopt=" + opt;
+	      				params += "&searchtext=" + keyword;
+	      			}
+	      			
+	      			if(opt != null && noAnswer != null) {
+	      				params += "&noAnswer=" + noAnswer;
+	      			} else if(opt == null && noAnswer != null) {
+	      				params += "?noAnswer=" + noAnswer;
+	      			}
+	      			
+	      			if(noAnswer == null) {
+              	%>
+	              	<a href="<%=params + ("".equals(params) ? "?" : "&") %>noAnswer=N" class="btn btn-info btn-sm">Y</a>
+	              	<a href="<%=params + ("".equals(params) ? "?" : "&") %>noAnswer=Y" class="btn btn-danger btn-sm">N</a>
+              	<%
+      				}
+              	%>               		
                		<button><span class="glyphicon glyphicon-sort-by-alphabet"></span></button>
                		<button><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span></button>
                	</div>
                	<div class="col-sm-7 pull-right">
-	                <form method="post" action="manager-course.jsp" class="form-inline text-right">
+	                <form method="get" action="manager-course.jsp" class="form-inline text-right">
 	            		<div class="form-group">
 	                        <label class="sr-only">검색분류</label>
-	                        <select name="searchcategory" class="form-control">
-	                            <option value="course">강의명</option>
-	                            <option value="lecturer">강사명</option>
-	                            <option value="dept">강의분류</option>
+	                        <select name="searchopt" class="form-control">
+	                            <option value="course" <%="course".equals(opt) ? "selected" : "" %>>강의명</option>
+	                            <option value="lecturer" <%="lecturer".equals(opt) ? "selected" : "" %>>강사명</option>
+	                            <option value="dept" <%="dept".equals(opt) ? "selected" : "" %>>강의분류</option>
 	                        </select>
 	                    </div>
 	                    <div class="form-group">
 	                        <label class="sr-only">검색</label>
-	                        <input type="text" name="searchtext" class="form-control" placeholder="검색어를 입력해주세요."/>
+	                        <input type="text" name="searchtext" class="form-control" value="<%=keyword != null ? keyword : "" %>" placeholder="검색어를 입력해주세요."/>
 	                    </div>
 	                    <div class="form-group">
 	                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
@@ -71,12 +94,7 @@
                      </thead>
                      <tbody>
                      <%
-                     request.setCharacterEncoding("utf-8");
                      MypageCourseDao courDao = MypageCourseDao.getInstance();
-                     
-                     String opt = request.getParameter("searchopt");
-                     String keyword = request.getParameter("searchtext");   
-                     String noAnswer = request.getParameter("noAnswer");   
                      
                      int rowsPerPage = 5;
                      int pagesPerBlock = 1;
@@ -90,17 +108,12 @@
                      int endPage = nowBlock * pagesPerBlock;
                      
                      Criteria criteria = new Criteria();
-                     if(opt != null) {
-	                     criteria.setOpt(opt);                    	 
-                     }
-                     if(keyword != null) {
-	                     criteria.setKeyword(keyword);                    	 
-                     }
+	                 criteria.setOpt(opt);                    	 
+					 criteria.setKeyword(keyword);                    	 
+                     criteria.setNoAnswer(noAnswer);
                      criteria.setBeginIndex(beginIndex);
                      criteria.setEndIndex(endIndex);
-                     criteria.setNoAnswer(noAnswer);
                      
-                     List<Course> courList = courDao.getCourseInfo(criteria);
                      int totalRows = courDao.getTotalCourses(criteria);
                      int totalPages = (int) Math.ceil((double) totalRows / rowsPerPage);
                      int totalBlock = (int) Math.ceil((double) totalPages / pagesPerBlock);
@@ -109,6 +122,7 @@
                   	   endPage = totalPages;
                      }
                      
+                     List<Course> courList = courDao.getCourseInfo(criteria);
                      for(Course forCourse : courList) {
 					 %>
                          <tr>
@@ -133,28 +147,28 @@
                      	 <%
                      	 	if(nowBlock != 1) {
                      	 %>
-		                         <li><a href="?p=<%=beginPage - 1 %>"><span class="glyphicon glyphicon-backward"></span></a></li>
+		                         <li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=beginPage - 1 %>"><span class="glyphicon glyphicon-backward"></span></a></li>
                      	 <%
                      	 	}
                      	 %>
                          <%
                          	if(nowPage != 1) {
                          %>
-		                         <li><a href="?p=<%=nowPage - 1 %>"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
+		                         <li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=nowPage - 1 %>"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
                          <%
                          	}
                          %>
                      	 <%
                      	 	for(int index=beginPage; index<=endPage; index++) {
                      	 %>
-                         		<li><a href="?p=<%=index %>"><%=index %></a></li>                     	 
+                         		<li class="<%=index == nowPage ? "active" : ""  %>"><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=index %>"><%=index %></a></li>                     	 
                      	 <%		
                      	 	}
                      	 %>
                      	 <%
                      	 	if(nowPage != totalPages) {
                      	 %>
-	                         	<li><a href="?p=<%=nowPage + 1 %>"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
+	                         	<li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=nowPage + 1 %>"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
                      	 <%
                      	 	}
                      	 %>
@@ -162,11 +176,14 @@
                      	 	if(nowBlock != totalBlock) {
                      	 		
                      	 %>
-		                         <li><a href="?p=<%=beginPage + pagesPerBlock %>"><span class="glyphicon glyphicon-forward"></span></a></li>
+		                         <li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=beginPage + pagesPerBlock %>"><span class="glyphicon glyphicon-forward"></span></a></li>
                      	 <%
                      	 	}
                      	 %>
                      </ul>
+                     <div class="pull-right">
+                     	<a href="manager-course.jsp" class="btn btn-default btn-sm">전체 목록으로</a>
+                     </div>    
                  </div>
             </div>
     	</div>

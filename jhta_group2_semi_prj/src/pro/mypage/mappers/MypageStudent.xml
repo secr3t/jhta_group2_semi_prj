@@ -185,28 +185,29 @@
 	
 	<select id="getTotalTechRows" parameterClass="Criteria" resultClass="int">
 		select count(*)
-		from tech
-		where tech_active = 'Y'
+		from tech A, student B
+		where A.student_no = B.student_no
+		and A.tech_active = 'Y'
 		<dynamic>
-			<isNotNull property="studentNo">
-				and student_no = #studentNo#
-			</isNotNull>
+			<isNotEqual property="studentNo" compareValue="0">
+				and A.student_no = #studentNo#
+			</isNotEqual>
 			<isNotNull property="opt">
 				<isNotNull property="keyword">
 					<isEqual property="opt" compareValue="title">
-						and tech_title like '%' || #keyword# || '%'
+						and A.tech_title like '%' || #keyword# || '%'
 					</isEqual>
 					<isEqual property="opt" compareValue="student">
-						and	student_name like '%' || #keyword# || '%'
+						and	B.student_name like '%' || #keyword# || '%'
 					</isEqual>
 				</isNotNull>
 			</isNotNull>
 			<isNotNull property="noAnswer">
 				<isEqual property="noAnswer" compareValue="Y">
-					and tech_ans_content is null
+					and A.tech_ans_content is null
 				</isEqual>
 				<isEqual property="noAnswer" compareValue="N">
-					and tech_ans_content is not null
+					and A.tech_ans_content is not null
 				</isEqual>
 			</isNotNull>
 		</dynamic>

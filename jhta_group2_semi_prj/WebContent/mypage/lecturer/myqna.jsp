@@ -43,6 +43,7 @@
          	<div class="row">
               <div class="col-sm-4">
               <%
+              	request.setCharacterEncoding("utf-8");
         		String opt = request.getParameter("searchopt");
         		String keyword = request.getParameter("searchtext");
         		String noAnswer = request.getParameter("noAnswer");
@@ -204,6 +205,6 @@
              </div>
          </div>
      </div>
-   	<%@ include file="../../common/footer.jsp" %>    
+   	<%@ include file="/common/footer.jsp" %>    
 </body>
 </html>

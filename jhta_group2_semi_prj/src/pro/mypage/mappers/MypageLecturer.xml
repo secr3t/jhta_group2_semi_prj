@@ -79,6 +79,14 @@
 					</isEqual>
 				</isNotNull>		
 			</isNotNull>
+			<isNotNull property="noAnswer">
+				<isEqual property="noAnswer" compareValue="Y">
+					and lecturer_permit = 'N'
+				</isEqual>		
+				<isEqual property="noAnswer" compareValue="N">
+					and lecturer_permit = 'Y'
+				</isEqual>
+			</isNotNull>
 		</dynamic>
 	</select>
 

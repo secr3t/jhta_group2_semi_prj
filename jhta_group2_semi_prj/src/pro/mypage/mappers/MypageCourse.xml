@@ -148,19 +148,20 @@
 	
 	<select id="getTotalCourses" parameterClass="Criteria" resultClass="int">
 		select count(*)
-		from course
-		where course_name is not null
+		from course A, dept B, lecturer C
+		where A.dept_no = B.dept_no
+		and A.lecturer_no = C. lecturer_no
 		<dynamic>
 			<isNotNull property="opt">
 				<isNotNull property="keyword">
 					<isEqual property="opt" compareValue="course">
-						and C.course_name like '%' || #keyword# || '%'
+						and A.course_name like '%' || #keyword# || '%'
 					</isEqual>
 					<isEqual property="opt" compareValue="lecturer">
-						and L.lecturer_name like '%' || #keyword# || '%'
+						and C.lecturer_name like '%' || #keyword# || '%'
 					</isEqual>
 					<isEqual property="opt" compareValue="dept">
-						and D.dept_name like '%' || #keyword# || '%'
+						and B.dept_name like '%' || #keyword# || '%'
 					</isEqual>
 				</isNotNull>
 			</isNotNull>		
