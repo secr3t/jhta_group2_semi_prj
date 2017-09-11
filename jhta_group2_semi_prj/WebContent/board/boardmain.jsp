@@ -33,7 +33,7 @@
         <div class="row row-offcanvas row-offcanvas-right">
             <div class="col-xs-12 col-sm-12">
                 <div class="jumbotron" style="background-color:white; color: black;">
-                    <h1> xx 학원</h1>
+                    <h1> 일개미 학원</h1>
                     <p style="">최근 게시글 혹은 학원 설명 혹은 공지사항 봐주세요</p>
                 </div>
                 <div class="row">

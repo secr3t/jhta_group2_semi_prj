@@ -35,12 +35,6 @@
 	        </div>
 	    </div>
 	  	    <hr>
-	  	   	<%
-	  	   		if(loginUser == null) {
-	  	   			response.sendRedirect("/jhta_group2_semi_prj/board/boardmain.jsp?error=1");
-	  	   			return;
-	  	   		}
-	  	   	%>
 	  	    <% 
 	  	    	
 	  	  		String opt = request.getParameter("opt");
