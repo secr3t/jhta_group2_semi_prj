@@ -20,7 +20,7 @@
 		 alert('잘못된 로그인 시도입니다. ID와 로그인 구분을 확인해주세요.');
 		</script>
 					<%
-		return;
+		response.sendRedirect(returnUrl );
 	}
 	
 	System.out.println(id + " / " + pwd);
