@@ -41,7 +41,7 @@
   	    		String keyword = request.getParameter("keyword");
 	  	    	int p = StringUtils.changeIntToString(request.getParameter("p"), 1);
 	  	    
-	  	    	final int rowsPerPage = 7;
+	  	    	final int rowsPerPage = 8;
 	  	    	final int naviPerPage = 5;
 	  	    	
 	  	    	QnaBoardDao qdao = QnaBoardDao.getInstance();
@@ -126,7 +126,7 @@
 				<div class="panel-body text-center">
 					<ul class="pagination">
 					<%if(p>naviPerPage) { %>
-						<li><a href="qnaboard.jsp?p=<%=beginPage-naviPerPage %>">&lt;&lt;</a></li>
+						<li><a href="javascript:goList(<%=beginPage-naviPerPage %>)">&lt;&lt;</a></li>
 					<%
 					} else {}
 						if(p>1) {
@@ -140,7 +140,7 @@
 						}
 						for(int index=beginPage; index<=endPage; index++) {		
 					%>
-						<li class="<%=(p==index?"active":"")%>"><a href="qnaboard.jsp?p=<%=index %>"><%=index %></a></li>
+						<li class="<%=(p==index?"active":"")%>"><a href="javascript:goList(<%=index %>)"><%=index %></a></li>
 					<% 
 						}
 					%>
@@ -156,7 +156,7 @@
 						}
 						if(currentNaviBlock != totalNaviBlocks) {
 					%>
-						<li><a href="qnaboard.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
+						<li><a href="javascript:goList(<%=(beginPage+naviPerPage) %>)">&gt;&gt;</a></li>
 					<% } %>
 					</ul>
 					<a href="/jhta_group2_semi_prj/board/qnaboard/qna_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>

@@ -55,7 +55,7 @@
                                 %>
                                 <tr>
                                     <td><%=po.getTitle() %></td>
-                                    <td><%=po.getStudent().getName() %></td>
+                                    <td><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_detail.jsp?bno=<%=po.getNo()%>"><%=po.getStudent().getName() %></a></td>
                                     <td><%=po.getGrade() %></td>
                                 </tr>
                                 <%} %>
@@ -78,7 +78,7 @@
                                 %>                         
                                    <tr>
                                     <td><%=qna.getTitle() %></td>
-                                    <td><%=qna.getStudent().getName() %></td>
+                                    <td><a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=qna.getNo()%>"><%=qna.getStudent().getName() %></a></td>
                                     <% if(qna.getAnsContent() != null) { %>
                                     <td>Y</td>
                                     <% } else {%>

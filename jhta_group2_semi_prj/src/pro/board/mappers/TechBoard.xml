@@ -30,6 +30,9 @@
 				and student_no in (select student_no from student where student_name like '%' || #keyword# || '%')
 			</isEqual>
 		</isNotEmpty>
+		<isNotNull property="studentNo">
+			and B.student_no = #studentNo#
+		</isNotNull>
 	</dynamic>
 </select>
 
@@ -51,7 +54,7 @@ from (select row_number() over (order by tech_no desc) m,	A.tech_no   					as "n
 															A.tech_ans_content				as	"ansContent",
 															A.tech_ans_regdate				as	"ansRegdate",
 														  	A.tech_active					as	"active", 
-														  	A.student_no					as  "student.no", 
+														  	B.student_no					as  "student.no", 
 														  	A.qtype_no						as "qtypeNo"
 														from
 															tech A, student B
@@ -66,8 +69,11 @@ from (select row_number() over (order by tech_no desc) m,	A.tech_no   					as "n
 					and A.tech_title like '%' || #keyword# || '%'
 				</isEqual>
 				<isEqual property="opt" compareValue="writer">
-					and A.student_no in (select student_no from student where student_name like '%' || #keyword# || '%')  
+					and B.student_no in (select student_no from student where student_name like '%' || #keyword# || '%')  
 				</isEqual>
+			</isNotNull>
+			<isNotNull property="studentNo">
+				and B.student_no = #studentNo#
 			</isNotNull>
 		</isNotNull>
 	</dynamic>			
@@ -100,6 +106,26 @@ select
 		A.student_no = B.student_no
 	and
 		tech_no = #value#
+</select>
+
+<select id="getAllTechBoardByNo" parameterClass="int" resultClass="techboard">
+select
+		A.tech_no						as no, 
+		A.tech_title					as title, 
+		A.tech_ques_content			as quesContent,
+		A.tech_ques_regdate			as quesRegdate,
+		A.tech_ans_content			as	ansContent,
+		A.tech_ans_regdate			as	ansRegdate,
+	  	A.tech_active					as	active, 
+	  	B.student_no					as  "student.no",
+	  	B.student_name				as	"student.name", 
+	  	A.qtype_no					as qtypeNo
+	from
+		tech A, student B
+	where
+		A.student_no = B.student_no
+	and
+		B.student_no = #value#
 </select>
 
 <update id="updateTechBoard" parameterClass="techboard">

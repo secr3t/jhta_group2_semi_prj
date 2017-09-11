@@ -23,10 +23,10 @@
 	  <div class="row">
 	    <div class="content-header">
 	        <div class="crumb">
-	  	        <h1 >강의 후기 게시판</h1>
+	  	        <h1 >Q&lt;A 게시판</h1>
 	  			<h4>
 	  			<span style="color:red;"><strong>|</strong>
-	  			</span>	강의 후기 쓰기
+	  			</span>	강의 질의하기 
 	  			</h4>
 	        </div>
 	    </div>

@@ -9,7 +9,7 @@
 
 	<div class="container">
 			<div class="page-header">
-				<h1>FAQ게시판</h1>
+				<h1>문의 게시판</h1>
 				<h4>
 					<span style="color: red;"><strong>|</strong> </span>" 자주하는 질문"
 				</h4>

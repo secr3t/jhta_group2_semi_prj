@@ -21,6 +21,9 @@ public class TechBoardDao {
 	public Tech getTechBoardByNo(int no) throws SQLException {
 		return (Tech) IbatisUtils.getSqlMap().queryForObject("TechBoard.getTechBoardByNo", no);
 	}
+	public List<Tech> getAllTechBoardByNo(int no) throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("TechBoard.getAllTechBoardByNo", no);
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Tech> getAllTechBoard(Criteria criteria) throws SQLException {

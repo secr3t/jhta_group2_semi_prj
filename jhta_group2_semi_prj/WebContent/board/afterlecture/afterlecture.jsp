@@ -54,7 +54,7 @@
 	  	    	
 	  	    	
 	  	    	
-	  	    	final int rowsPerPage = 5;
+	  	    	final int rowsPerPage = 7;
 	  	    	final int naviPerPage = 5;
 	  	    	
 	  	    	AfterBoardDao adao = AfterBoardDao.getInstance();
@@ -94,7 +94,7 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="keyword" class="sr-only">검색어</label>
+						<label for="keyword" class=	"sr-only">검색어</label>
 						<input type="text" class="form-control" id="keyword" name="keyword" value="<%=StringUtils.nullToBlank(keyword)%>"/>
 					</div>
 					<button type="submit" class="btn btn-default">검색</button>
@@ -136,7 +136,7 @@
 				<div class="panel-body text-center">
 					<ul class="pagination">
 					<%if(p>naviPerPage) { %>
-						<li><a href="afterlecture.jsp?p=<%=beginPage-naviPerPage %>">&lt;&lt;</a></li>
+						<li><a href="javascript:goList(<%=beginPage-naviPerPage %>)">&lt;&lt;</a></li>
 					<%
 						} else {}					
 						if(p>1) {
@@ -150,7 +150,7 @@
 						}
 						for(int index=beginPage; index<=endPage; index++) {		
 					%>
-						<li class="<%=(p==index?"active":"")%>"><a href="afterlecture.jsp?p=<%=index %>"><%=index %></a></li>
+						<li class="<%=(p==index?"active":"")%>"><a href="javascript:goList(<%=index%>)"><%=index %></a></li>
 					<% 
 						}
 						if(p<totalPages) {
@@ -164,7 +164,7 @@
 						}
 						if(currentNaviBlock != totalNaviBlocks) {
 					%>
-						<li><a href="afterlecture.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
+						<li><a href="javascript:goList(<%=(beginPage+naviPerPage) %>)">&gt;&gt;</a></li>
 					<% } %>
 						
 					</ul>

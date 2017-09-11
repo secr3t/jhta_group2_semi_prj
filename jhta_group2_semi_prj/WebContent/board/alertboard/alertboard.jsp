@@ -26,7 +26,7 @@
 	</div>
 	<div class="col-sm-9">
 	  <div class="page-header">
-	  	<h1 >FAQ게시판</h1>
+	  	<h1 >문의 게시판</h1>
 	  	<h4>
 	  	<span style="color:red;"><strong>|</strong>
 	  	</span> 공지사항
@@ -41,7 +41,7 @@
 	  	    	System.out.println("p " + p);
 	  	    	System.out.println("keyword " + keyword);
 	  		
-	  	    	final int rowsPerPage = 5;
+	  	    	final int rowsPerPage = 6;
 	  	    	final int naviPerPage = 5;
 	  	    	
 	  	    	AlertBoardDao adao = AlertBoardDao.getInstance();
@@ -109,7 +109,7 @@
 			    	<div class="panel-body text center">
 			    		<ul class="pagination">
 			   		<%if(p>naviPerPage) { %>
-						<li><a href="alertboard.jsp?p=<%=beginPage-naviPerPage %>">&lt;&lt;</a></li>
+						<li><a href="javascript:goList(<%=beginPage-naviPerPage %>)">&lt;&lt;</a></li>
 					<%
 					} else {}
 						if(p>1) {
@@ -123,7 +123,7 @@
 						}
 						for (int index=beginPage; index<=endPage; index++) {		
 					%>
-						<li class="<%=(p==index?"active":"")%>"><a href="alertboard.jsp?p=<%=index %>"><%=index %></a></li>
+						<li class="<%=(p==index?"active":"")%>"><a href="javascript:goList(<%=index %>)"><%=index %></a></li>
 					<% 
 						}
 					%>
@@ -139,7 +139,7 @@
 						}
 						if(currentNaviBlock != totalNaviBlocks) {
 					%>
-						<li><a href="alertboard.jsp?p=<%=(beginPage+naviPerPage) %>">&gt;&gt;</a></li>
+						<li><a href="javascript:goList(<%=(beginPage+naviPerPage) %>)">&gt;&gt;</a></li>
 					<% } %>
 			    		</ul>
 			    	<div class="text-right">

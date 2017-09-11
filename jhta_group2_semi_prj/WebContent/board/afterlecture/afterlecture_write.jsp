@@ -46,7 +46,7 @@
 								<div class="col-sm-1 control-label">
 										<strong>과정명</strong>
 									</div>
-									<select class="form-control col-sm-1 control-label" style="width: 100px;" name="type" id="subject">
+									<select class="form-control col-sm-1 control-label" style="width: 120px;" name="type" id="subject">
 									<%LectureCourseDao ldao = LectureCourseDao.getInstance();
 										List<Course> courses = ldao.getAllCourses();
 										if(request.getParameter("courseNo")== null) {
@@ -80,12 +80,12 @@
 							
 							<div class="form-group">
 								<label class="col-sm-1 control-label">내용</label>
-								<div class="col-sm-11">
+								<div class="col-sm-10">
 									<textarea rows="6" class="form-control " name="contents"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-sm-offset-1 col-sm-11 text-right">
+								<div class="col-sm-offset-1 col-sm-10 text-right">
 									<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-warning btn-md">취소</a>
 									<button type="submit" class="btn btn-primary btn-md">완료</button>
 								</div>
