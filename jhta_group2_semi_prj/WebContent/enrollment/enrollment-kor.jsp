@@ -50,16 +50,19 @@
 						
 						
 						for(Course course : courses ){
+							if(deptDao.getDeptByNo(course.getDept().getNo()).getName().equals("국어")){
 						%>
 						<tr>
-							<td class="deptName" id="name"><%=deptDao.getDeptByNo(course.getDept().getNo()).getName() %></td>
+							<td class="deptName"><%=deptDao.getDeptByNo(course.getDept().getNo()).getName() %></td>
 							<td class="courseName"><%=course.getName() %></td>
 							<td><a href="#">링크</a></td>
 							<td class="lecturerName"><%=lecturerDao.getLecturerByNo(course.getLecturer().getNo()).getName() %></td>
 							<td class="point"><%=course.getPoint()%></td>
-							<td class="course-no hide" ><%=course.getNo() %></td>
+							<td class="course-no hide">1</td>
 						</tr>
-						<%} %>
+						<%} 
+						}
+						%>
 					</tbody>
 				</table>
 			</form>
