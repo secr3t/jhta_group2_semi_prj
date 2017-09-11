@@ -101,32 +101,13 @@
 		and A.student_no = #value#
 	</select>
 	
-	<select id="getTotalQnaRows" parameterClass="int" resultClass="int">
+	<select id="getTotalQnaRows" parameterClass="Criteria" resultClass="int">
 		select count(*)
-		from qna
-		where student_no = #value#
-		and  qna_active = 'Y'
-	</select>
-	
-	<select id="getQnaByStudentNo" parameterClass="Criteria" resultClass="Qna">
-		select 
-			A.qna_no 				no
-			,A.qna_title			title
-			,A.course_no			"course.no"
-			,B.course_name			"course.name"
-			,A.qna_ques_content 	quesContent
-			,A.qna_ques_date		quesDate
-			,A.qna_ans_content		ansContent
-			,A.qna_ans_regdate		ansRegdate
-			,C.lecturer_no			"course.lecture.no"
-			,C.lecturer_name		"course.lecture.name"
-		from (select row_number() over(order by qna_no desc) rn, qna_no, qna_title, course_no, 
-					qna_ques_content, qna_ques_date, qna_ans_content, qna_ans_regdate, student_no, qna_active 
-			from qna
-			where qna_active = 'Y'
-			and student_no = #studentNo#) A, course B, lecturer C
+		from qna A, course B, lecturer C
 		where A.course_no = B.course_no
 		and B.lecturer_no = C.lecturer_no
+		and student_no = #studentNo#
+		and  qna_active = 'Y'
 		<dynamic>
 			<isNotNull property="opt">
 				<isNotNull property ="keyword">
@@ -150,9 +131,55 @@
 				</isEqual>
 			</isNotNull>
 		</dynamic>
+	</select>
+	
+	<select id="getQnaByStudentNo" parameterClass="Criteria" resultClass="Qna">
+		select 
+			A.qna_no 				no
+			,A.qna_title			title
+			,A.course_no			"course.no"
+			,A.course_name			"course.name"
+			,A.qna_ques_content 	quesContent
+			,A.qna_ques_date		quesDate
+			,A.qna_ans_content		ansContent
+			,A.qna_ans_regdate		ansRegdate
+			,A.lecturer_no			"course.lecture.no"
+			,A.lecturer_name		"course.lecture.name"
+		from (select row_number() over(order by Q.qna_no desc) rn, Q.qna_no, Q.qna_title, Q.course_no
+					, Q.qna_ques_content, Q.qna_ques_date, Q.qna_ans_content, Q.qna_ans_regdate
+					, Q.student_no, Q.qna_active, C.course_name, L.lecturer_no, L.lecturer_name
+			from qna Q, course C, lecturer L
+			where Q.course_no = C.course_no
+			and C.lecturer_no = L.lecturer_no
+			and qna_active = 'Y'
+			and student_no = #studentNo#
+			<dynamic>
+				<isNotNull property="opt">
+					<isNotNull property ="keyword">
+						<isEqual property="opt" compareValue="title">
+							and Q.qna_title like '%' || #keyword# || '%'
+						</isEqual>
+						<isEqual property="opt" compareValue="course">
+							and C.course_name like '%' || #keyword# || '%'					
+						</isEqual>
+						<isEqual property="opt" compareValue="lecturer">
+							and L.lecturer_name like '%' || #keyword# || '%'
+						</isEqual>
+					</isNotNull>
+				</isNotNull>
+				<isNotNull property="noAnswer">
+					<isEqual property="noAnswer" compareValue="N">
+							and Q.qna_ans_content is not null
+					</isEqual>
+					<isEqual property="noAnswer" compareValue="Y">
+							and Q.qna_ans_content is null
+					</isEqual>
+				</isNotNull>
+			</dynamic>
+			) A
 		<![CDATA[
-			and rn >= #beginIndex#
-			and rn <= #endIndex#
+			where A.rn >= #beginIndex#
+			and A.rn <= #endIndex#
 		]]>
 	</select>
 	
@@ -163,6 +190,16 @@
 		<dynamic>
 			<isNotNull property="studentNo">
 				and student_no = #studentNo#
+			</isNotNull>
+			<isNotNull property="opt">
+				<isNotNull property="keyword">
+					<isEqual property="opt" compareValue="title">
+						and tech_title like '%' || #keyword# || '%'
+					</isEqual>
+					<isEqual property="opt" compareValue="student">
+						and	student_name like '%' || #keyword# || '%'
+					</isEqual>
+				</isNotNull>
 			</isNotNull>
 			<isNotNull property="noAnswer">
 				<isEqual property="noAnswer" compareValue="Y">
