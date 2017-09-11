@@ -24,7 +24,7 @@ User loginUser = null;
    <div class="container">
       <div class="container-fluid">
          <div class="navbar-header">
-            <a class="navbar-brand" href="/simple-jsp-board/index.jsp">일개미</a>
+            <a class="navbar-brand" href="/jhta_group2_semi_prj/">일개미</a>
 
          </div>
          <ul class="nav navbar-nav">
