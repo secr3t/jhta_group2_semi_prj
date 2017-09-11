@@ -33,4 +33,7 @@ public class QnaBoardDao {
 	public int getTotalRows(Criteria criteria) throws SQLException {
 		return (Integer) IbatisUtils.getSqlMap().queryForObject("QueBoard.getTotalRows", criteria);
 	}
+	public List<Qna> getQnaBoardTop() throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("QueBoard.getQnaBoardTop");
+	}
 }

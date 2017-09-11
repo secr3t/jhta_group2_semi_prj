@@ -32,4 +32,7 @@ public class AfterBoardDao {
 	public int getTotalRows (Criteria criteria) throws SQLException {
 		return (Integer)IbatisUtils.getSqlMap().queryForObject("AfterBoard.getTotalRows", criteria);
 	}
+	public List<Postscription> getAfterBoardTop() throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("AfterBoard.getAfterBoardTop");
+	}
 }

@@ -123,4 +123,36 @@ update qna
 		qna_no = #no#
 </update>
 
+<select id="getQnaBoardTop" resultClass="questionboard">
+select
+		"no"					as no, 
+		"title"					as title, 
+		"quesContent"			as	quesContent,
+		"quesDate"				as quesDate,
+		"ansContent"			as	ansContent,
+		"ansRegdate"			as	ansRegdate,
+	  	"active"					as	active, 
+	  	"student.no"					as  "student.no",
+	  	"student.name"			as	"student.name",
+	  	"course.name"			as	"course.name"
+	from (select row_number() over (order by qna_no desc) m,	A.qna_no					as "no", 
+															A.qna_title					as "title", 
+															A.qna_ques_content			as	"quesContent",
+															A.qna_ques_date				as "quesDate",
+															A.qna_ans_content			as  "ansContent",
+															A.qna_ans_regdate			as	"ansRegdate",
+														  	A.qna_active					as	"active", 
+														  	A.student_no					as  "student.no",
+														  	B.student_name				as	"student.name",
+														  	C.course_no					as	"course.no",
+														  	C.course_name				as	"course.name"
+		from qna A, student B, course C 
+		where 
+			A.student_no = B.student_no and A.course_no = C.course_no
+		and 
+			A.qna_active = 'Y')
+	where
+		m &lt;=3
+</select>
+
 </sqlMap>

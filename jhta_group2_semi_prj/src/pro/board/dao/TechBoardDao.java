@@ -36,6 +36,7 @@ public class TechBoardDao {
 	public int getTotalRows(Criteria criteria) throws SQLException {
 		return (Integer) IbatisUtils.getSqlMap().queryForObject("TechBoard.getTotalRows", criteria);
 	}
+
 	
 	
 }

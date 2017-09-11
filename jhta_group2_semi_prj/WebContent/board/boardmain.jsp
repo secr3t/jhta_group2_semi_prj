@@ -1,3 +1,7 @@
+<%@page import="pro.qna.vo.Qna"%>
+<%@page import="pro.board.dao.QnaBoardDao"%>
+<%@page import="oracle.net.aso.p"%>
+<%@page import="com.sun.org.apache.bcel.internal.generic.NEW"%>
 <%@page import="pro.postscription.vo.Postscription"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.criteria.vo.Criteria"%>
@@ -44,12 +48,17 @@
                                     <th>작성자</th>
                                     <th>평점</th>
                                 </tr>
-                                
+                                <%
+                                	AfterBoardDao adao = AfterBoardDao.getInstance();
+                                	List<Postscription> pos = adao.getAfterBoardTop();
+                                	for(Postscription po : pos) {
+                                %>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    <td><%=po.getTitle() %></td>
+                                    <td><%=po.getStudent().getName() %></td>
+                                    <td><%=po.getGrade() %></td>
                                 </tr>
+                                <%} %>
                             </tbody>
                         </table>
                     </div>
@@ -58,21 +67,25 @@
                         	<strong><a href="/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp">강의 질문 답변 게시판</a></strong></h2>
                         <table class="table">
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
+                               <tr>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    <th>답변여부</th>
+                                </tr>  
+                                <% QnaBoardDao qdao = QnaBoardDao.getInstance();
+                                	List<Qna> qnas = qdao.getQnaBoardTop();
+                                	for(Qna qna : qnas) {
+                                %>                         
                                    <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    <td><%=qna.getTitle() %></td>
+                                    <td><%=qna.getStudent().getName() %></td>
+                                    <% if(qna.getAnsContent() != null) { %>
+                                    <td>Y</td>
+                                    <% } else {%>
+                                    <td>N</td>
+									<%} %>                                    
                                 </tr>
+                                <%} %>
                             </tbody>
                         </table>
                     </div>
