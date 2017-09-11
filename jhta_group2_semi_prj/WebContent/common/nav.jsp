@@ -4,11 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
    
-<%-- <%
-   String cp= (String)pageContext.getAttribute("cp");
-
-%> --%>
-
 <%
 User loginUser = null;
 	loginUser = (User) session.getAttribute("loginUser");
@@ -39,13 +34,13 @@ User loginUser = null;
             <li class=""> <a href="#">자유게시판</a></li>
          </ul>
          <ul class="nav navbar-nav navbar-right">
-<%--          <% if(loginUser == null) { %>
-            <li class="<%="u".equals(cp)?"active":""%>"> <a href="/simple-jsp-board/user/form.jsp">회원가입</a></li>
-            <li class="<%="i".equals(cp)?"active":""%>"> <a href="/simple-jsp-board/user/loginform.jsp">로그인</a></li>
+       <% if(loginUser == null) { %>
+            <li > <a href="/jhta_group2_semi_prj/registration/registrationdivform.jsp">회원가입</a></li>
+            <li> <a href="/jhta_group2_semi_prj/login/login.jsp">로그인</a></li>
          <%} else { %>
-            <li><a href="/simple-jsp-board/user/logout.jsp">로그아웃</a></li>
+            <li><a href="/jhta_group2_semi_prj/login/logout.jsp">로그아웃</a></li>
          <%} %>
-         </ul>--%>
+         </ul>
          <%if(loginUser != null){ %>         
          <p class="navbar-text navbar-right"><strong><%=loginUser.getName() %></strong>님 환영합니다.</p>
          <%} %> 

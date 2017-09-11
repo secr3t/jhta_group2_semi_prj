@@ -12,6 +12,16 @@
 	String pwd = request.getParameter("user-pwd");
 	String type = request.getParameter("login-type");
 	
+	if(type == null ) {
+		%>
+		<script>
+		window.location.href="login.jsp";
+		 alert('잘못된 로그인 시도입니다. ID와 로그인 구분을 확인해주세요.');
+		</script>
+					<%
+		return;
+	}
+	
 	System.out.println(id + " / " + pwd);
 	
 	Object dao = new Object();
@@ -23,7 +33,7 @@
 			user.setName("운영자");
 			user.setType("a");
 			session.setAttribute("loginUser", user);
-			response.sendRedirect("/jhta_group2_semi_prj/main/index.jsp");
+			response.sendRedirect("/jhta_group2_semi_prj/");
 		}
 	}
 	
@@ -82,5 +92,5 @@
 		// User가 악의적으로 해당 jsp 페이지로 이동할 경우에 대한 방어 코딩
 		response.sendError(400);
 	}
-		response.sendRedirect("/jhta_group2_semi_prj/main/index.jsp");
+		response.sendRedirect("/jhta_group2_semi_prj/");
 %>

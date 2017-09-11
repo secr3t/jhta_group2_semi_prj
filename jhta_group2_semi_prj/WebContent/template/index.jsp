@@ -10,7 +10,7 @@
 			<%@include file="/template/left-menu.jsp" %>
 		</div>
 		<div class="col-sm-9">
-			<%@include file="../main/body.jsp"%>
+			<%@include file="../body.jsp"%>
 		</div>
 	<div class="col-sm-1"></div>
 	</div>

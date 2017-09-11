@@ -19,7 +19,7 @@
 <script>
 $$$('#login-btn').addEventListener('click', function(event){
 	event.preventDefault();
-	if( !$$$('#login-student').checked && !$$$('#login-lecturer').checked && 
+	if( (!$$$('#login-student').checked && !$$$('#login-lecturer').checked) || 
 			!$$$('input[name="user-id"]').value || !$$$('input[name="user-pwd"]').value){
 		alert('선택하지 않았거나 입력하지 않은곳이 존재합니다. 모두 입력해주세요.');
 	} else {
