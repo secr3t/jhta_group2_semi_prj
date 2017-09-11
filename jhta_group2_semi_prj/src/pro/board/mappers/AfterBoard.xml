@@ -98,11 +98,7 @@ select "no"        as  no,
 	where
 		postscription_no = #value#
 </select>
-<<<<<<< Upstream, based on branch 'master' of https://github.com/secr3t/jhta_group2_semi_prj.git
-
-=======
 
 
 
->>>>>>> 25f246f 보드 수정
 </sqlMap>
