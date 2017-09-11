@@ -19,7 +19,7 @@
  -->    
     
     <footer>
-    <div class="container">
+    <div class="container" style="font-size: 11px;">
           <p>COMPANY: 제이에이치티에이에듀(jhtaedu) / OWNER: 홍길동 / TEL: 070-8240-3211 FAX: 02-777-5407</p> 
           <p>ADDRESS: 서울특별시 종로구 율곡로10길 105 디아망 401호(봉익동 10-1 디아망 401호)</p>
           <p>BUSINESS LICENSE: 104-81-59383 / ONLINE BUSINESS LICENSE: 제2017-서울종로-1111호 / OWNER: 홍길동(gildong0101@gmail.com)</p>
