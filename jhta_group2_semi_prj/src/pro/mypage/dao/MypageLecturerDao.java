@@ -52,8 +52,8 @@ public class MypageLecturerDao {
 		return IbatisUtils.getSqlMap().queryForList("MyPageLecturer.getCourseByLecturerNo", criteria); 
 	}
 	
-	public Integer getTotalQnaRows(int lecturerNo) throws SQLException {
-		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageLecturer.getTotalQnaRows", lecturerNo);
+	public Integer getTotalQnaRows(Criteria criteria) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageLecturer.getTotalQnaRows", criteria);
 	}
 	
 	@SuppressWarnings("unchecked")

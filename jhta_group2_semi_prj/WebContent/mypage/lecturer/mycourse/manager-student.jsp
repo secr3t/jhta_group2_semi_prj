@@ -38,6 +38,14 @@
         <div class="col-sm-9">
              <div class="row">
              	<div class="col-sm-3">
+             	<%
+          			String keyword = request.getParameter("searchtext");
+             		
+             		String params = "";
+             		if(keyword != null) {
+             			params += "?searchtext=" + keyword;
+             		}
+             	%>
              		<label>정렬 :</label>
              		<button><span class="glyphicon glyphicon-sort-by-alphabet"></span></button>
              		<button><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span></button>
@@ -47,7 +55,7 @@
                			<input type="hidden" name="cno" value="<%=course.getNo() %>"/>
                    		<div class="form-group">
                        		<label class="sr-only">검색</label>
-                       		<input type="text" name="searchtext" class="form-control" placeholder="학생명을 입력해주세요."/>
+                       		<input type="text" name="searchtext" class="form-control" value="<%=keyword != null ? keyword : "" %>" placeholder="학생명을 입력해주세요."/>
                    		</div>
                    		<div class="form-group">
                        		<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
@@ -71,32 +79,31 @@
                      <tbody>
                      	<%
                   	 	int rowsPerPage = 5;
-                  	 	int nowPage = StringUtils.changeIntToString(request.getParameter("p"), 1);                     	 	
-                  	 	
-                  	 	int totalRows = courDao.getTotalStudentByCourseNo(course.getNo());
-                  	 	int totalPages = (int) Math.ceil((double) totalRows / rowsPerPage);
-                  	 	int beginIndex = (nowPage - 1) * rowsPerPage + 1;
-                  	 	int endIndex = nowPage * rowsPerPage;
-                  	 	                     	 			
                   	 	int pagesPerBlock = 5;
+                  	 	
+                  	 	int nowPage = StringUtils.changeIntToString(request.getParameter("p"), 1);                     	 	
                   	 	int nowBlock = (int) Math.ceil((double) nowPage / pagesPerBlock);
                   	 	
-                  	 	int totalBlock = (int) Math.ceil((double) totalPages / pagesPerBlock);
+                  	 	int beginIndex = (nowPage - 1) * rowsPerPage + 1;
+                  	 	int endIndex = nowPage * rowsPerPage;
                   	 	int beginPage = (nowBlock - 1) * pagesPerBlock + 1;
                   	 	int endPage = nowBlock * pagesPerBlock;
-                  	 	if(nowBlock == totalBlock) {
+                  	
+                  		Criteria criteria = new Criteria();
+                  		criteria.setCourseNo(course.getNo());
+                  		criteria.setKeyword(keyword);
+                  		criteria.setBeginIndex(beginIndex);
+                  		criteria.setEndIndex(endIndex);
+	                  		
+                  	 	int totalRows = courDao.getTotalStudentByCourseNo(criteria);
+                  	 	int totalPages = (int) Math.ceil((double) totalRows / rowsPerPage);
+                  	 	int totalBlock = (int) Math.ceil((double) totalPages / pagesPerBlock);
+                  	 	if(nowBlock >= totalBlock) {
                   	 		endPage = totalPages;
                   	 	}
                   	 	
-	                  		String keyword = request.getParameter("searchtext");
-	                  	
-	                  		Criteria criteria = new Criteria();
-	                  		criteria.setCourseNo(course.getNo());
-	                  		criteria.setKeyword(keyword);
-	                  		criteria.setBeginIndex(beginIndex);
-	                  		criteria.setEndIndex(endIndex);
-	                  		List<Enrollment> enrollList = courDao.getStudentsByCourseNo(criteria);
-	                  		for(Enrollment forEnroll : enrollList) {
+	                  	List<Enrollment> enrollList = courDao.getStudentsByCourseNo(criteria);
+	                  	for(Enrollment forEnroll : enrollList) {
 	                  	%>
                          <tr>
                              <td><%=forEnroll.getStudent().getEmail() %></td>
@@ -127,28 +134,28 @@
                      	 <%
                      	 	if(nowBlock != 1) {
                      	 %>
-		                         <li><a href="?p=<%=beginPage - 1 %>&cno=<%=course.getNo() %>"><span class="glyphicon glyphicon-backward"></span></a></li>
+		                         <li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=beginPage - 1 %>&cno=<%=course.getNo() %>"><span class="glyphicon glyphicon-backward"></span></a></li>
                      	 <%
                      	 	}
                      	 %>
                          <%
                          	if(nowPage != 1) {
                          %>
-		                         <li><a href="?p=<%=nowPage - 1 %>&cno=<%=course.getNo() %>"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
+		                         <li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=nowPage - 1 %>&cno=<%=course.getNo() %>"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
                          <%
                          	}
                          %>
                      	 <%
                      	 	for(int index=beginPage; index<=endPage; index++) {
                      	 %>
-                         		<li><a href="?p=<%=index %>&cno=<%=course.getNo() %>"><%=index %></a></li>                     	 
+                         		<li class="<%=index == nowPage ? "active" : ""  %>"><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=index %>&cno=<%=course.getNo() %>"><%=index %></a></li>                     	 
                      	 <%		
                      	 	}
                      	 %>
                      	 <%
                      	 	if(nowPage != totalPages) {
                      	 %>
-	                         	<li><a href="?p=<%=nowPage + 1 %>&cno=<%=course.getNo() %>"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
+	                         	<li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=nowPage + 1 %>&cno=<%=course.getNo() %>"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
                      	 <%
                      	 	}
                      	 %>
@@ -156,11 +163,14 @@
                      	 	if(nowBlock != totalBlock) {
                      	 		
                      	 %>
-		                         <li><a href="?p=<%=beginPage + pagesPerBlock %>&cno=<%=course.getNo() %>"><span class="glyphicon glyphicon-forward"></span></a></li>
+		                         <li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=beginPage + pagesPerBlock %>&cno=<%=course.getNo() %>"><span class="glyphicon glyphicon-forward"></span></a></li>
                      	 <%
                      	 	}
                      	 %>
                      </ul>
+                     <div class="pull-right">
+                     	<a href="manager-student.jsp" class="btn btn-default btn-sm">전체 목록으로</a>
+                     </div>     
                 </div>
             </div>
         </div>

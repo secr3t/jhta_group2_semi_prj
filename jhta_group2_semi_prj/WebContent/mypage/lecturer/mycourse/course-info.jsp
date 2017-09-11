@@ -1,3 +1,4 @@
+<%@page import="pro.criteria.vo.Criteria"%>
 <%@page import="pro.course.vo.Course"%>
 <%@page import="pro.mypage.dao.MypageCourseDao"%>
 <%@page import="pro.utils.StringUtils"%>
@@ -65,7 +66,11 @@
                             <td><a href="upload-lectureform.jsp?cno=<%=course.getNo() %>" class="btn btn-info pull-right">새영상 등록</a></td>
                         </tr>                        
                         <tr>
-                            <th>수강 중인 학생 수</th><td><%=courDao.getTotalStudentByCourseNo(course.getNo()) %>명</td>
+                        <%
+                        Criteria criteria = new Criteria();
+                        criteria.setCourseNo(courseNo);
+                        %>
+                            <th>수강 중인 학생 수</th><td><%=courDao.getTotalStudentByCourseNo(criteria) %>명</td>
                             <td><a href="manager-student.jsp?cno=<%=course.getNo() %>" class="btn btn-info pull-right">학생 관리</a></td>
                         </tr>
                     </table>

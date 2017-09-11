@@ -96,11 +96,12 @@
 			                  		criteria.setEndIndex(endIndex);
 	                        		List<Course> courseList = lecDao.getCourseByLecturerNo(criteria);
 	                        		for(Course forCourse : courseList) {
+	                        			criteria.setCourseNo(forCourse.getNo());
 	                        	%>
 	                            <tr>
 	                                <td><a href="course-info.jsp?cno=<%=forCourse.getNo() %>"><%=forCourse.getName() %></a></td>
 	                                <td><%=courDao.getTotalCourseVideoByCourseNo(forCourse.getNo()) %></td>
-	                                <td><%=courDao.getTotalStudentByCourseNo(forCourse.getNo()) %></td>
+	                                <td><%=courDao.getTotalStudentByCourseNo(criteria) %></td>
 	                                <td>
 									<%
 										double avgGrade = courDao.getGradeAvgByCourseNo(forCourse.getNo());

@@ -138,7 +138,7 @@
 		]]>
 	</select>
 	
-	<select id="getTotalQnaRows" parameterClass="int" resultClass="int">
+	<select id="getTotalQnaRows" parameterClass="Criteria" resultClass="int">
 		select count(*)
 		from (select
 					A.qna_no 				no
@@ -157,9 +157,32 @@
 				where qna_active = 'Y'
 				and course_no in (select course_no
 								from course
-								where lecturer_no = #value#)) A, course B, student C
+								where lecturer_no = #lecturerNo#)) A, course B, student C
 				where A.course_no = B.course_no
-				and A.student_no = C.student_no)
+				and A.student_no = C.student_no
+				<dynamic>
+					<isNotNull property="opt">
+						<isNotNull property ="keyword">
+							<isEqual property="opt" compareValue="title">
+								and A.qna_title like '%' || #keyword# || '%'
+							</isEqual>
+							<isEqual property="opt" compareValue="course">
+								and B.course_name like '%' || #keyword# || '%'					
+							</isEqual>
+							<isEqual property="opt" compareValue="student">
+								and C.student_name like '%' || #keyword# || '%'
+							</isEqual>
+						</isNotNull>
+					</isNotNull>
+					<isNotNull property="noAnswer">
+						<isEqual property="noAnswer" compareValue="N">
+								and A.qna_ans_content is not null
+						</isEqual>
+						<isEqual property="noAnswer" compareValue="Y">
+								and A.qna_ans_content is null
+						</isEqual>
+					</isNotNull>
+				</dynamic>)
 	</select>
 	
 	<select id="getQnaByLecturerNo" parameterClass="Criteria" resultClass="Qna">

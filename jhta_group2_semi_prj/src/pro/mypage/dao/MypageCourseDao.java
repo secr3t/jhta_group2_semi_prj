@@ -26,8 +26,8 @@ public class MypageCourseDao {
 		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalCourseVideoByCourseNo", courseNo);
 	}
 	
-	public Integer getTotalStudentByCourseNo(int courseNo) throws SQLException {
-		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalStudentByCourseNo", courseNo);
+	public Integer getTotalStudentByCourseNo(Criteria criteria) throws SQLException {
+		return (Integer) IbatisUtils.getSqlMap().queryForObject("MyPageCourse.getTotalStudentByCourseNo", criteria);
 	}
 	
 	@SuppressWarnings("unchecked")
