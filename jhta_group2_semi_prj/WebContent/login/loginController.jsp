@@ -34,6 +34,7 @@
 			user.setType("a");
 			session.setAttribute("loginUser", user);
 		response.sendRedirect(returnUrl );
+		return;
 		}
 	}
 	
