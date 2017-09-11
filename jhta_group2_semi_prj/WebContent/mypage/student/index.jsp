@@ -59,7 +59,7 @@
                              	<tr>
                                  	<th></th><td></td>
                                  	<th>잔여 포인트</th><td><%= student.getPoint() %> <span class="glyphicon glyphicon-copyright-mark text-warning"></span></td>
-                                 	<th><a href="#" class="btn btn-primary btn-sm pull-right">포인트 충전</a></th><td></td>
+                                 	<th><a href="/jhta_group2_semi_prj/payment/payment.jsp" class="btn btn-primary btn-sm pull-right">포인트 충전</a></th><td></td>
                              	</tr>
                         	 </table>
                        </div>
@@ -143,7 +143,7 @@
                                 	%>
                                     <tr>
                                         <td>
-                                        	<a href="#"><%=forQna.getTitle() %></a>
+                                        	<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=forQna.getNo() %>"><%=forQna.getTitle() %></a>
                                         	<%
 				                          		if(forQna.getAnsContent() != null) {
 				                          	%>
@@ -194,7 +194,7 @@
                                 	%>
                                     <tr>
                                         <td>
-                                        	<a href="#"><%=forTech.getTitle() %></a>
+                                        	<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_detail.jsp?no=<%=forTech.getNo() %>"><%=forTech.getTitle() %></a>
                                         	<%
 				                          		if(forTech.getAnsContent() != null) {
 				                          	%>
