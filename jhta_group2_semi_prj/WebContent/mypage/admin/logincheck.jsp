@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-	User user = (User) session.getAttribute("loginedUser");
+	User user = (User) session.getAttribute("loginUser");
 	if(user == null) {
 		response.sendRedirect("../index.jsp");
 		return;

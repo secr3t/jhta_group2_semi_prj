@@ -1,3 +1,4 @@
+<%@page import="pro.tech.vo.Tech"%>
 <%@page import="pro.criteria.vo.Criteria"%>
 <%@page import="pro.mypage.dao.MypageCourseDao"%>
 <%@page import="pro.utils.DateUtils"%>
@@ -133,11 +134,11 @@
                                 </thead>
                                 <tbody>
                                 	<%
-                                		Criteria criteria = new Criteria();
-                                		criteria.setStudentNo(student.getNo());
-                                		criteria.setBeginIndex(1);
-                                		criteria.setEndIndex(5);
-                                		List<Qna> qnaList = stuDao.getQnaByStudentNo(criteria);
+                                		Criteria qnaCriteria = new Criteria();
+                                		qnaCriteria.setStudentNo(student.getNo());
+                                		qnaCriteria.setBeginIndex(1);
+                                		qnaCriteria.setEndIndex(5);
+                                		List<Qna> qnaList = stuDao.getQnaByStudentNo(qnaCriteria);
                                 		for(Qna forQna : qnaList) {
                                 	%>
                                     <tr>
@@ -157,6 +158,56 @@
                                         </td>
                                         <td><a href="mycourse/course-info.jsp?cno=<%=forQna.getCourse().getNo() %>"><%=forQna.getCourse().getName() %></a></td>
                                         <td><%=DateUtils.yyyymmddhhmmss(forQna.getQuesDate()) %></td>
+                                    </tr>       	
+                                	<%
+                                		}
+                                	%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <label><a href="mytech.jsp" class="pull-right">내 최근 1:1 질문</a></label>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-hover">
+                                <colgroup>
+                                    <col width="60%">
+                                    <col width="40%">
+                                </colgroup>                                   
+                                <thead>
+                                    <tr>
+                                        <th>제목</th><th>게시일</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<%
+                                		Criteria techCriteria = new Criteria();
+                                		techCriteria.setStudentNo(student.getNo());
+                                		techCriteria.setBeginIndex(1);
+                                		techCriteria.setEndIndex(5);
+                                		List<Tech> techList = stuDao.getTechInfo(techCriteria);
+                                		for(Tech forTech : techList) {
+                                	%>
+                                    <tr>
+                                        <td>
+                                        	<a href="#"><%=forTech.getTitle() %></a>
+                                        	<%
+				                          		if(forTech.getAnsContent() != null) {
+				                          	%>
+				                          		<span class="label label-success">답변완료</span>
+				                          	<%
+				                          		} else {
+				                          	%>
+				                          		<span class="label label-danger">미답변 질문</span>
+				                          	<%
+				                          		}
+				                          	%>
+                                        </td>
+		                                <td><%=DateUtils.yyyymmddhhmmss(forTech.getQuesRegdate()) %></td>
                                     </tr>       	
                                 	<%
                                 		}

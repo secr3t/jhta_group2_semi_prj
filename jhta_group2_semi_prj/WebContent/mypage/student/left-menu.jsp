@@ -7,5 +7,6 @@
 		 <a class="btn btn-primary" href="/jhta_group2_semi_prj/mypage/student/myinfo/update-myinfo.jsp">내 정보</a>
 		 <a class="btn btn-primary" href="/jhta_group2_semi_prj/mypage/student/mycourse/mycourse.jsp">내 수강 과목</a>
 		 <a class="btn btn-primary" href="/jhta_group2_semi_prj/mypage/student/myqna.jsp">내 Q&amp;A</a>
+		 <a class="btn btn-primary" href="/jhta_group2_semi_prj/mypage/student/mytech.jsp">내 1:1 질문</a>
 	</div>
 </div>
