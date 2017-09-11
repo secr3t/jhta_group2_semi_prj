@@ -83,7 +83,17 @@
             		
             <div class="btn-group btn-group-justified" role="group" style="padding-bottom: 10px;">
                     <a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getCourseNo()%>" class="btn btn-primary">소개</a>
-                    <a href="" class="btn btn-success">수강신청</a>
+                   <% 
+                   if("국어".equals(course.getDeptName())){
+                    %><a href="/jhta_group2_semi_prj/enrollment/enrollment-kor.jsp?courseNo=<%=course.getCourseNo() %>" class="btn btn-success">수강신청</a><%
+                   }else if("수학".equals(course.getDeptName())){
+                    %><a href="/jhta_group2_semi_prj/enrollment/enrollment-math.jsp?courseNo=<%=course.getCourseNo() %>" class="btn btn-success">수강신청</a><%
+                   }else if("영어".equals(course.getDeptName())){
+                    %><a href="/jhta_group2_semi_prj/enrollment/enrollment-eng.jsp?courseNo=<%=course.getCourseNo() %>" class="btn btn-success">수강신청</a><%
+                   }else if("과학".equals(course.getDeptName())){
+                    %><a href="/jhta_group2_semi_prj/enrollment/enrollment-sci.jsp?courseNo=<%=course.getCourseNo() %>" class="btn btn-success">수강신청</a><%
+                   }
+                   %> 
             </div>
         </div>
         <%} %>
@@ -179,6 +189,6 @@
 	   
    });
    }());
-   
+  
 </script>
 </html>
