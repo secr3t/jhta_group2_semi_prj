@@ -9,6 +9,7 @@
 	<typeAlias alias="Student" type="pro.student.vo.Student"/>
 	<typeAlias alias="Enrollment" type="pro.enrollment.vo.Enrollment"/>
 	<typeAlias alias="Qna" type="pro.qna.vo.Qna"/>
+	<typeAlias alias="Tech" type="pro.tech.vo.Tech"/>
 	<typeAlias alias="Criteria" type="pro.criteria.vo.Criteria"/>
 
 	<select id="getStudentInfo" parameterClass="Criteria" resultClass="Student">
@@ -23,16 +24,18 @@
 		from (select row_number() over(order by student_no desc) rn, student_no, student_name, student_email, student_pwd, student_phone, student_point, user_type
 			from student
 			where user_type = 'S'
-			<isNotNull property="opt">
-				<isNotNull property="keyword">
-					<isEqual property="opt" compareValue="id">
-						and student_email like '%' || #keyword# || '%'
-					</isEqual>
-					<isEqual property="opt" compareValue="name">
-						and student_name like '%' || #keyword# || '%'
-					</isEqual>
+			<dynamic>
+				<isNotNull property="opt">
+					<isNotNull property="keyword">
+						<isEqual property="opt" compareValue="id">
+							and student_email like '%' || #keyword# || '%'
+						</isEqual>
+						<isEqual property="opt" compareValue="name">
+							and student_name like '%' || #keyword# || '%'
+						</isEqual>
+					</isNotNull>
 				</isNotNull>
-			</isNotNull>
+			</dynamic>
 			) A
 		<![CDATA[
 			where A.rn >= 1
@@ -44,16 +47,18 @@
 		select count(*)
 		from student
 		where user_type = 'S'
-		<isNotNull property="opt">
-			<isNotNull property="keyword">
-				<isEqual property="opt" compareValue="id">
-					and student_email like '%' || #keyword# || '%'
-				</isEqual>
-				<isEqual property="opt" compareValue="name">
-					and student_name like '%' || #keyword# || '%'
-				</isEqual>
+		<dynamic>
+			<isNotNull property="opt">
+				<isNotNull property="keyword">
+					<isEqual property="opt" compareValue="id">
+						and student_email like '%' || #keyword# || '%'
+					</isEqual>
+					<isEqual property="opt" compareValue="name">
+						and student_name like '%' || #keyword# || '%'
+					</isEqual>
+				</isNotNull>
 			</isNotNull>
-		</isNotNull>
+		</dynamic>
 	</select>
 	
 	<select id="getStudentByNo" parameterClass="int" resultClass="Student">
@@ -148,6 +153,70 @@
 		<![CDATA[
 			and rn >= #beginIndex#
 			and rn <= #endIndex#
+		]]>
+	</select>
+	
+	<select id="getTotalTechRows" parameterClass="Criteria" resultClass="int">
+		select count(*)
+		from tech
+		where tech_active = 'Y'
+		<dynamic>
+			<isNotNull property="studentNo">
+				and student_no = #studentNo#
+			</isNotNull>
+			<isNotNull property="noAnswer">
+				<isEqual property="noAnswer" compareValue="Y">
+					and tech_ans_content is null
+				</isEqual>
+				<isEqual property="noAnswer" compareValue="N">
+					and tech_ans_content is not null
+				</isEqual>
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<select id="getTechInfo" parameterClass="Criteria" resultClass="Tech">
+		select
+			 A.tech_no					no
+			 ,A.tech_title				title
+			 ,A.tech_ques_content		quesContent
+			 ,A.tech_ques_regdate		quesRegdate
+			 ,A.tech_ans_content		ansContent
+			 ,A.tech_ans_regdate		ansRegdate
+			 ,A.tech_active				active
+			 ,A.student_no				"student.no"
+			 ,A.student_name			"student.name"
+		from (select row_number() over(order by tech_no desc) rn, T.tech_no, T.tech_title, T.tech_ques_content, T.tech_ques_regdate, T.tech_ans_content, T.tech_ans_regdate, T.tech_active, T.student_no, S.student_name
+			from tech T, student S
+			where T.student_no = S.student_no
+			and tech_active = 'Y'
+			<dynamic>
+				<isNotEqual property="studentNo" compareValue="0">
+					and T.student_no = #studentNo#
+				</isNotEqual>
+				<isNotNull property="opt">
+					<isNotNull property="keyword">
+						<isEqual property="opt" compareValue="title">
+							and T.tech_title like '%' || #keyword# || '%'
+						</isEqual>
+						<isEqual property="opt" compareValue="student">
+							and S.student_name like '%' || #keyword# || '%'
+						</isEqual>
+					</isNotNull>
+				</isNotNull>
+				<isNotNull property="noAnswer">
+					<isEqual property="noAnswer" compareValue="Y">
+						and T.tech_ans_content is null
+					</isEqual>
+					<isEqual property="noAnswer" compareValue="N">
+						and T.tech_ans_content is not null
+					</isEqual>
+				</isNotNull>
+			</dynamic>
+			) A
+		<![CDATA[
+			where A.rn >= #beginIndex#
+			and A.rn <= #endIndex#
 		]]>
 	</select>
 	
