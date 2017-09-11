@@ -84,6 +84,16 @@
 	</select>
 	
 	<select id="getLecturesInfoByDeptNo" parameterClass="pro.criteria.vo.Criteria" resultClass="lectureInfo">
+			select 
+				"courseNo",
+				"boardName",
+				"picture",
+				"detail",
+				"lecturerName",
+				"qty",
+				"point",
+				"deptName",
+				"summary"
 			from (SELECT
 				row_number() over (order by A.course_no asc) as "m",
 				A.COURSE_NO				as "courseNo",	
@@ -107,6 +117,16 @@
 	</select>
 	
 	<select id="getLecturesInfoByLecturerNo" parameterClass="pro.criteria.vo.Criteria" resultClass="lectureInfo">
+			select 
+				"courseNo",
+				"boardName",
+				"picture",
+				"detail",
+				"lecturerName",
+				"qty",
+				"point",
+				"deptName",
+				"summary"
 			from (SELECT
 				row_number() over (order by A.course_no asc) as "m",
 				A.COURSE_NO				as "courseNo",	
