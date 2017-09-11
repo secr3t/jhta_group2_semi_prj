@@ -191,11 +191,6 @@
 					%>
 						
 					</ul>
-					<%
-					 if(loginUser != null && "S".equals(loginUser.getType().toUpperCase())) {
-					%>
-					<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp" class="btn btn-primary btn-md pull-right">글쓰기</a>
-					<%} %>
 				</div>
        </div>
     </div>
