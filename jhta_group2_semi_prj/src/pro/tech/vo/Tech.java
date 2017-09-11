@@ -16,6 +16,7 @@ public class Tech {
 	private Student student;
 	private int qtypeNo;
 	
+	
 	public int getQtypeNo() {
 		return qtypeNo;
 	}

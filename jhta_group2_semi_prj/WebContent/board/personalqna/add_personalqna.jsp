@@ -6,14 +6,15 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
-	
+		
+
 	String title = request.getParameter("title");
 	int qtypeNo = Integer.parseInt(request.getParameter("questiontype"));
 	String contents = request.getParameter("contents");
 	
 	User user = (User)session.getAttribute("loginUser");
 	
-	
+	if(user != null & "S".equals(user.getType().toUpperCase())){
 	
 	TechBoardDao tdao = TechBoardDao.getInstance();
 	Tech tech = new Tech();
@@ -25,9 +26,12 @@
 	tech.setActive("Y");
 	tech.setStudent(student);
 	
+	System.out.println(tech);
+	
 	tdao.addTechBoard(tech);
 	
-	
 	response.sendRedirect("/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp");
-	
+	} else {
+		response.sendRedirect("/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp?error=1");
+	}
 %>

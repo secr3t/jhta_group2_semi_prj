@@ -36,9 +36,9 @@
 										<strong>공지 타입</strong>
 									</div>
 									<select class="form-control col-sm-3 control-label" style="width: 100px;" name="type" id="alerttype">
-										<option>필독</option>
-										<option>일반</option>
-										<option>이벤트</option>
+										<option value="1">필독</option>
+										<option value="2">일반</option>
+										<option value="3">이벤트</option>
 									</select>
 								</div>
 							<div class="form-group">
@@ -63,14 +63,4 @@
 	</div>
 	<%@include file="../../common/footer.jsp"%>
 </body>
-<script type="text/javascript">
-	document.getElementById('complete').addEventListener('click', function(event) {
-		event.preventDefault();
-		var alerttypevalue = document.getElementById('alerttype').value;
-		var alerttypetext = document.getElementById('alerttypetext');
-		alerttypetext.value = '[' + alerttypevalue + ']'+ alerttypetext.value;
-		console.log(alerttypetext.value);
-		document.getElementById("submit").submit();
-				});
-</script>
 </html>

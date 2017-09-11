@@ -75,12 +75,17 @@
 				<%
 					
 					List<Notice> notices = adao.getAllAlertBoard(criteria);
+				
 					for(Notice notice : notices) {
+						String style = notice.getNtypeNo() == 1 ? "color:red;" : notice.getNtypeNo() == 2 ? "color:blue;" : "color:green;" ;
+						
+						
+						String ntype = notice.getNtypeNo() == 1 ? "[필독]" : notice.getNtypeNo() == 2 ? "[일반]" : "[이벤트]" ;
 				%>
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border: 2px solid silver;" >
 			            <h4 class="panel-title">
-			                <a href="alertboard_detail.jsp?no=<%=notice.getNo() %>" class="collapsed"><%=notice.getTitle() %></a>
+			                <a href="alertboard_detail.jsp?no=<%=notice.getNo() %>" class="collapsed" style="<%=style %>"><%=ntype %><%=notice.getTitle() %></a>
 			            </h4>
 			        </div>
 	            </div>

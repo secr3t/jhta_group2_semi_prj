@@ -119,7 +119,11 @@
 							<th><%=qna.getStudent().getName() %></th>
 							<th><%=DateUtils.yyyymmdd(qna.getQuesDate()) %></th>
 							<th><%=qna.getCourse().getName() %></th>
-							<th></th> 
+							<%if(qna.getAnsContent() != null) { %>
+							<th class="btn btn-success btn-sm"><span class="badge"><span class="glyphicon glyphicon-ok"></span></span></th> 
+							<% } else { %>
+							<th class="btn btn-warning btn-sm"><span class="badge"><span class="glyphicon glyphicon-minus"></span></span></th>
+							<%} %>
 					    </tr>
 					    <%} %>
 					</tbody>

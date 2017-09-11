@@ -58,8 +58,8 @@
   				</tbody>
   			</table>
   		</div>
-  		<%//if(display=="Y"){ %>
-  		<div class="panel panel-default">
+  		<div>
+  		<%if(tech.getAnsContent() != null){ %>
   			<table class="table">
   				<tbody>
   				<tr>
@@ -73,6 +73,7 @@
   					<td colspan="6"><%=tech.getAnsContent() %></td>
   				</tr> 
   			</table>
+  		<%} %>
   				<div class="text-right">
   					<% if( "A".equals(loginUser.getType().toUpperCase())){ 						
 					%>
@@ -83,7 +84,6 @@
 	  			</div>
   				</tbody>
   		</div>  			
-  		<%//} %>
   </div>
 </div>
 <div class="col-sm-1"></div>

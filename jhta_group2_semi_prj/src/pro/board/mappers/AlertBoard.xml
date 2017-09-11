@@ -11,10 +11,10 @@
 <insert id="addAlertBoard" parameterClass="alertboard">
 	insert into notice
 	(notice_no, notice_title, notice_content,
-	 notice_expiredate, notice_active)
+	 notice_expiredate, notice_active, ntype_no)
 	values
 	(notice_no_seq.nextval, #title#, #content#, sysdate + 365,
-		#active#)
+		#active#, #ntypeNo#)
 </insert>
 
 <select id="getTotalRows" parameterClass="pro.criteria.vo.Criteria" resultClass="int">
@@ -37,13 +37,15 @@
 	"content" as content,
 	"regdate" as regdate,
 	"expiredate" as expiredate,
-	"active" as active 
+	"active" as active,
+	"ntypeNo" as ntypeNo
 	from (select row_number() over (order by notice_no desc) m,	notice_no 			as "no",
 																notice_title		as "title",
 																notice_content		as "content",
 																notice_regdate		as	"regdate",
 																notice_expiredate 	as "expiredate",
-																notice_active		as "active"
+																notice_active		as "active",
+																ntype_no			as	"ntypeNo"
 															from
 																notice
 															where
@@ -72,7 +74,8 @@ select
 		notice_content		as content,
 		notice_regdate		as	regdate,
 		notice_expiredate 	as expiredate,
-		notice_active		as active
+		notice_active		as active,
+		ntype_no			as	ntypeNo
 	from
 		notice
 	where

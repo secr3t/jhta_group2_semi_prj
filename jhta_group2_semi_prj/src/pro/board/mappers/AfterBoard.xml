@@ -10,10 +10,10 @@
 	
 <insert id="addAfterBoard" parameterClass="afterboard">
 	insert into postscription
-	(postscription_no, postscription_title, postscription_content, postscription_regdate,
+	(postscription_no, postscription_title, postscription_content,
 		 postscription_grade, postscription_active, student_no, course_no)
 	values
-	(postscription_no_seq.nextval, #title#, #content#, #regdate#, #grade#,
+	(postscription_no_seq.nextval, #title#, #content#, #grade#,
 		#active#, #student.no#, #course.no#)
 </insert>
 
@@ -86,14 +86,15 @@ select "no"        as  no,
 <select id="getAfterBoardByNo" parameterClass="int" resultClass="afterboard">
 	select
 		A.postscription_no 			as no,
-		A.postscription_title			as title,
+		A.postscription_title		as title,
 		A.postscription_content		as content,
 		A.postscription_regdate		as	regDate,
 		A.postscription_grade 		as grade,
 		A.postscription_active		as active,
-		B.student_no					as	"student.no",
+		B.student_no				as	"student.no",
 		B.student_name				as	"student.name",
-		c.course_no					as	"course.no"
+		C.course_no					as	"course.no",
+		C.course_name				as 	"course.name"
 	from
 		postscription A, student B, course C
 	where

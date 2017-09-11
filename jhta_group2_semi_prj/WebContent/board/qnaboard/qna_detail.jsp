@@ -55,8 +55,8 @@
 	  				</tbody>
 	  			</table>
 	  			</div>
-	  			<%//if(display=="Y"){ %>
-  		<div class="panel panel-default">
+  		<div class="panel">
+	  			<%if(qna.getAnsContent() != null){ %>
   			<table class="table">
   				<tbody>
   				<tr>
@@ -74,7 +74,7 @@
   			
   				</tbody>
   				</table>
-  				 
+  				<% }%> 
   			</div>  			
   				<div class="text-right">
   					<% if(loginUser.getType().toUpperCase().equals("T")) { %>
@@ -85,7 +85,7 @@
 	  			</div>
 	  	</div>
 	  </div>
-<div class="col-sm-1"></div>
 <%@include file="../../common/footer.jsp"%>
+<div class="col-sm-1"></div>
 </body>
 </html>

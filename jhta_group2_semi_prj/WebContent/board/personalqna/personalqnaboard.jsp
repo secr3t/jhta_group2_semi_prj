@@ -89,12 +89,13 @@
 					List<Tech> techs = tdao.getAllTechBoard(criteria);
 					for(Tech tech : techs) {
 						String style = tech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
+						String type = tech.getQtypeNo() == 1? "[결제]" : "[이용]";
 
 				%>
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border:2px solid silver;">
 			            <h4 class="panel-title">
-			                <a href="personalqna_detail.jsp?no=<%=tech.getNo() %>" class="collapsed" style="<%=style %>"><%=tech.getTitle() %></a>
+			                <a href="personalqna_detail.jsp?no=<%=tech.getNo() %>" class="collapsed" style="<%=style %>"><%=type %><%=tech.getTitle() %></a>
 			                <%if(tech.getAnsContent() != null) { %>
 			               <button type="button" class="btn btn-success">답변완료 <span class="badge"><span class="glyphicon glyphicon-ok"></span></span></button>
 			               <%} %>

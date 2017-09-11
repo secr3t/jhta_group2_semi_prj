@@ -10,7 +10,15 @@ public class Notice {
 	private Date regdate;
 	private Date expiredate;
 	private String active;
+	private int ntypeNo;
 	
+	
+	public int getNtypeNo() {
+		return ntypeNo;
+	}
+	public void setNtypeNo(int ntypeNo) {
+		this.ntypeNo = ntypeNo;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -47,10 +55,11 @@ public class Notice {
 	public void setActive(String active) {
 		this.active = active;
 	}
-	
 	@Override
 	public String toString() {
-		return "Notice [no : " + no + ", title : " + title + ", content : " + content + ", regdate : " + regdate
-				+ ", expiredate : " + expiredate + ", active : " + active + "]";
+		return "Notice [no=" + no + ", title=" + title + ", content=" + content + ", regdate=" + regdate
+				+ ", expiredate=" + expiredate + ", active=" + active + ", ntypeNo=" + ntypeNo + "]";
 	}
+	
+	
 }

@@ -11,7 +11,7 @@
 <insert id="addTechBoard" parameterClass="techboard">
 	insert into tech
 	(tech_no, tech_title, tech_ques_content, tech_ans_content,
-	  tech_active,  student_no, qtype_no)
+	  tech_active, student_no, qtype_no)
 	values
 	(tech_no_seq.nextval, #title#, #quesContent#, #ansContent#,
 		#active#, #student.no#, #qtypeNo#)
@@ -44,7 +44,7 @@
 	"active" as active, 
 	"student.no" as "student.no", 
 	"qtypeNo" as qtypeNo
-from (select row_number() over (order by tech_no desc) m,	A.tech_no   as "no",
+from (select row_number() over (order by tech_no desc) m,	A.tech_no   					as "no",
 															A.tech_title					as "title", 
 															A.tech_ques_content				as "quesContent",
 															A.tech_ques_regdate				as "quesRegdate",

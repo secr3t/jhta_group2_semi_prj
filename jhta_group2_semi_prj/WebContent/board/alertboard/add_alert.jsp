@@ -8,8 +8,10 @@
 	request.setCharacterEncoding("utf-8");
 
 	String title = request.getParameter("title");
-	String type = request.getParameter("type");
+	int ntypeNo = Integer.parseInt(request.getParameter("type"));
 	String contents = request.getParameter("contents");
+	
+	System.out.println(ntypeNo);
 	
 	AlertBoardDao adao = AlertBoardDao.getInstance();
 	
@@ -17,6 +19,7 @@
 	
 	notice.setTitle(title);
 	notice.setContent(contents);
+	notice.setNtypeNo(ntypeNo);
 	notice.setActive("Y");
 	
 	adao.addAlertBoard(notice);

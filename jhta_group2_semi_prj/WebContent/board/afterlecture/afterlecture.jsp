@@ -29,6 +29,7 @@
  }
 %>
 
+<%@include file="../../common/loginCheck.jsp"%>
 <%@include file="../../common/nav.jsp"%>
 
 <div class="content-primary">

@@ -35,6 +35,8 @@
 	  				<tr>
 	  					<th>제목</th>
 	  					<td><%=pos.getTitle() %></td>
+	  					<th>과정명</th>
+	  					<td><%=pos.getCourse().getName() %></td>
 	  					<th>평점</th>
 	  					<td><%=pos.getGrade() %></td>
 	  				</tr>
@@ -50,7 +52,9 @@
 	  				</tbody>
 	  			</table>
 	  			<div class="text-right">
+	  				<%if(loginUser.getNo() == pos.getStudent().getNo()) { %>
 	  				<a href="/jhta_group2_semi_prj/board/afterlecture/delete_afterlecture.jsp?bno=<%=pos.getNo() %>" class="btn btn-danger btn-md">삭제</a>
+	  				<%} %>
 	  				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-primary btn-md">돌아가기</a>
 	  			</div>
 	  		</div>
