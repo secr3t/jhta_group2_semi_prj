@@ -109,7 +109,7 @@
 					    %>
 					    <tr>
 					       <th><%=qna.getNo() %></th>
-							<th><a href="qna_detail.jsp?p=<%=qna.getNo() %>"><%=qna.getTitle() %></a></th>
+							<th><a href="qna_detail.jsp?p=<%=qna.getNo() %>&url=<%=request.getRequestURI() %>"><%=qna.getTitle() %></a></th>
 							<th><%=qna.getStudent().getName() %></th>
 							<th><%=DateUtils.yyyymmdd(qna.getQuesDate()) %></th>
 							<th><%=qna.getCourse().getName() %></th>

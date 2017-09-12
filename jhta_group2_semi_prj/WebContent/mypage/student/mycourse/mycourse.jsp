@@ -1,3 +1,5 @@
+<%@page import="pro.video.vo.Video"%>
+<%@page import="pro.utils.StringUtils"%>
 <%@page import="pro.mypage.dao.MypageCourseDao"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -37,14 +39,31 @@
                              <label>지난 강의 이어 듣기</label>
                          </div>
                          <div class="panel-body">
-                             <div class="col-sm-5">
-                                 <img src="../images/cassano.jpg" alt="강의" style="width: 200px"/>
-                             </div>
+                         <%
+                         Cookie[] cookies = request.getCookies();
+                         
+                         int videoNo = 0;
+                         for(Cookie forCookie : cookies) {
+                        	 String name = forCookie.getName();
+                        	 if("videoNo".equals(name)) {
+                        		 videoNo = StringUtils.changeIntToString(forCookie.getValue());
+                        	 }
+                         }
+                         
+                      	 MypageCourseDao courDao = MypageCourseDao.getInstance();
+                      	 Video recentVideo = null;
+                         if(videoNo != 0) {
+                        	 recentVideo = courDao.getVideoByVideoNo(videoNo);
+                         }
+						 %>
                              <div class="col-sm-7">
-                                <h5>강의 소개</h5>
+	                            <h5><%= videoNo != 0 ? recentVideo.getTitle() : "" %></h5>
                                 <p>
-                                   	해당 강의에 대한 간략한 설명입니다. 
+                                   	<%= videoNo != 0 ? recentVideo.getDescription() : "최근 7일 동안, 본 강의가 없습니다." %> 
                                 </p>
+                             </div>
+                             <div class="col-sm-5">
+                             	<h6><%= videoNo != 0 ? "강의명 :" + recentVideo.getCourse() : "" %></h6>
                              </div>
                         </div>
                     </div>
@@ -79,7 +98,6 @@
                                      <td>
                                          <div class="progress">
                                          <%
-                                         	MypageCourseDao courDao = MypageCourseDao.getInstance();
                                          	int totalVideo = courDao.getTotalCourseVideoByCourseNo(forEnroll.getCourse().getNo());
                                          	Map<String, Integer> intMap = new HashMap<>();
                                          	intMap.put("param1", student.getNo());

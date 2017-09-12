@@ -90,7 +90,7 @@
 		                     	 		endPage = totalPages;
 		                     	 	}
 								
-	                        		Criteria criteria = new Criteria();
+	                        		Criteria criteria = new Criteria(); 
 	                        		criteria.setLecturerNo(lecturer.getNo());
 			                  		criteria.setBeginIndex(beginIndex);
 			                  		criteria.setEndIndex(endIndex);
@@ -122,7 +122,7 @@
                                 	<td><a href="course-info.jsp?cno=<%=forCourse.getNo() %>" class="btn btn-info btn-sm">강의 관리</a></td>
 	                            </tr>
 	                        	<%
-	                        		}
+	                        		} 
 	                        	%>                                    
                             </tbody>
                         </table>

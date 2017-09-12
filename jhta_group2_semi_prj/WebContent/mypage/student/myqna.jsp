@@ -135,7 +135,7 @@
 	                  	%>
 		                      <tr>
 		                          <td>
-		                          	<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=forQna.getNo() %>"><%=forQna.getTitle() %></a>
+		                          	<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=forQna.getNo() %>&url=<%=request.getRequestURI() %>"><%=forQna.getTitle() %></a>
 		                          	<%
 		                          		if(forQna.getAnsContent() != null) {
 		                          	%>
@@ -182,7 +182,7 @@
                      	 <%
                      	 	for(int index=beginPage; index<=endPage; index++) {
                      	 %>
-                         		<li class="<%=index == nowPage ? "active" : ""  %>"><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=index %>"><%=index %></a></li>                     	 
+                         		<li class="<%=index == nowPage ? "active" : ""  %>"><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=index %>"><%=index %></a></li>         
                      	 <%		
                      	 	}
                      	 %>

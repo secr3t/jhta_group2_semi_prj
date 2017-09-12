@@ -104,7 +104,7 @@
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border:2px solid silver;">
 			            <h4 class="panel-title">
-			                <a href="personalqna_detail.jsp?no=<%=tech.getNo() %>" class="collapsed col-sm-9" style="<%=style %>"><%=type %><%=tech.getTitle() %></a>
+			                <a href="personalqna_detail.jsp?no=<%=tech.getNo() %>&url=<%=request.getRequestURI() %>" class="collapsed col-sm-9" style="<%=style %>"><%=type %><%=tech.getTitle() %></a>
 			                <%if(tech.getAnsContent() != null) { %>
 			               <label class="col-sm-3">답변완료 <span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></label>
 			               <%} %>
@@ -139,7 +139,7 @@
 	  	    	<div class="panel">
 			        <div class="panel-heading input-lg" style="border:2px solid silver;">
 			            <h4 class="panel-title">
-			                <a href="personalqna_detail.jsp?no=<%=sTech.getNo() %>" class="collapsed col-sm-9" style="<%=style %>"><%=type %><%=sTech.getTitle() %></a>
+			                <a href="personalqna_detail.jsp?no=<%=sTech.getNo() %>&url=<%=request.getRequestURI() %>" class="collapsed col-sm-9" style="<%=style %>"><%=type %><%=sTech.getTitle() %></a>
 			                <%if(sTech.getAnsContent() != null) { %>
 			               <button type="button" class="btn btn-success col-sm-3">답변완료 <span class="badge"><span class="glyphicon glyphicon-ok"></span></span></button>
 			               <%} %>

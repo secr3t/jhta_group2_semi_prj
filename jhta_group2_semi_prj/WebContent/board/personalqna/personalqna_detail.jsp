@@ -80,7 +80,7 @@
 	  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_replywrite.jsp?no=<%=tech.getNo() %>" class="btn btn-warning btn-sm">답변</a>
 	  				<% } %>
 	  				<a href="/jhta_group2_semi_prj/board/personalqna/delete_personalqna.jsp?no=<%=tech.getNo() %>" class="btn btn-danger btn-sm">삭제</a>
-	  				<a href="/jhta_group2_semi_prj/board/personalqna/personalqnaboard.jsp" class="btn btn-primary btn-sm">돌아가기</a>
+	  				<a href="<%=request.getParameter("url") %>" class="btn btn-primary btn-sm">돌아가기</a>
 	  			</div>
   				</tbody>
   		</div>  			
