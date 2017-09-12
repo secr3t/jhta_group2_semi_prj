@@ -1,9 +1,20 @@
+<%@page import="pro.course.vo.Course"%>
+<%@page import="pro.lecturer.vo.Lecturer"%>
+<%@page import="pro.introducecourse.dao.LectureCourseDao"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
+<%@page import="pro.video.vo.Video"%>
+<%@page import="java.util.List"%>
+<%@page import="pro.utils.StringUtils"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="pro.video.dao.VideoDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%VideoDao dao = VideoDao.getInstance();
-
+<%
+int courseNo = StringUtils.changeIntToString(request.getParameter("courseNo"));
+int orderNo = StringUtils.changeIntToString(request.getParameter("orderNo"));
+VideoDao videoDao = VideoDao.getInstance();
+List<Video> lists = videoDao.getVideosByCourseNo(courseNo);
+String src = lists.get(orderNo - 1).getLink();
 %>
 <style>
 .pull-left {
@@ -20,37 +31,20 @@ ul>li>a>.thumbnail {
 	<div class="media">
 		<div class="pull-left">
 			<ul class="list-unstyled">
-				<li><a href='#'> <img src='../images/daum.png' alt=''
+			<%
+				for(Video video : lists) {
+					Course course = LectureCourseDao.getInstance()
+							.getCourseByNo(video.getCourse().getNo());
+					Lecturer lecturer = LecturerDao.getInstance().getLecturerByNo(course.getLecturer().getNo());
+			%>
+				<li><a href='#'> <img src='<%=lecturer.getPicture() %>' alt=''
 						class='pull-right thumbnail'>
 						<p>강의1</p>
 						<p class="small">강의 설명</p>
 				</a></li>
-				<li><a href='#'> <img src='../images/daum.png' alt=''
-						class='pull-right thumbnail'>
-						<p>강의1</p>
-						<p class="small">강의 설명</p>
-				</a></li>
-				<li><a href='#'> <img src='../images/daum.png' alt=''
-						class='pull-right thumbnail'>
-						<p>강의1</p>
-						<p class="small">강의 설명</p>
-				</a></li>
-				<li><a href='#'> <img src='../images/daum.png' alt=''
-						class='pull-right thumbnail'>
-						<p>강의1</p>
-						<p class="small">강의 설명</p>
-				</a></li>
-				<li><a href='#'> <img src='../images/daum.png' alt=''
-						class='pull-right thumbnail'>
-						<p>강의1</p>
-						<p class="small">강의 설명</p>
-				</a></li>
-				<li><a href='#'> <img src='../images/daum.png' alt=''
-						class='pull-right thumbnail'>
-						<p>강의1</p>
-						<p class="small">강의 설명</p>
-				</a></li>
-
+				<%
+				}
+				%>
 			</ul>
 		</div>
 		<div class="container">
@@ -80,18 +74,9 @@ var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '360',
-    width: '640',
-    
-<%--     <%
-    HashMap<String, Integer> map = new HashMap<>();
-  map.put("courseNo", 1);				//	parameter에서 가져와야함
-  map.put("orderNo", 1);				//	parameter에서 가져와야함
-  String src = 
-  VideoDao.getInstance().getVideoAttachedSrcByVideoOrderNoAndCourseNo(map); 
-    %>
-    videoId: '<%=src%>',  --%>
-    
-    videoId: '5UxU1g0YH0M',
+    width: '640',/* 
+    videoId: '5UxU1g0YH0M', */
+    videoId: '<%=src.split("v=")[1]%>', 
     events: {
 	 /*     'onReady': onPlayerReady, */
       'onStateChange': onPlayerStateChange
