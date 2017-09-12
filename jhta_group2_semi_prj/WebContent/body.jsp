@@ -34,7 +34,7 @@
 }
 
 div.item>img {
-	background-image: url(images/daum.png);
+	background-image: url(http://jhta.co.kr/page/images/top_logo.jpg);
 	width: 100%;
 	min-height: 400px;
 	background-repeat: no-repeat;
