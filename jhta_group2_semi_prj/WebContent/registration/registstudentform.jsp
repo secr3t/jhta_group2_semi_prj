@@ -34,7 +34,7 @@
 		<%	}%>
     	
         <div class="row">
-            <form method="post" action="registsuccessform.jsp">
+            <form method="post" action="registstudent.jsp">
                 <div class="col-sm-offset-4 col-sm-5">
                     <div class="panel panel-info">
                         <div class="panel-heading"><strong>회원가입</strong></div>
