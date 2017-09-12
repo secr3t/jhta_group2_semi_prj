@@ -1,7 +1,6 @@
 package pro.mypage.image.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -28,35 +27,54 @@ public class UploadServlet extends HttpServlet {
 		
 		HttpSession session = req.getSession(false);
 		if(session == null) {
-			resp.sendRedirect("/mypage/temp-login.jsp");
+			resp.sendRedirect("/jhta_group2_semi_prj/login/login.jsp");
 			return;
 		}
 		
-		Lecturer lecturer = (Lecturer) session.getAttribute("loginedUser");
+		Lecturer lecturer = (Lecturer) session.getAttribute("loginUser");
 		if(lecturer == null) {
-			resp.sendRedirect("/mypage/temp-login.jsp");
+			resp.sendRedirect("/jhta_group2_semi_prj/login/login.jsp");
 			return;
 		}
 		
 		req.setCharacterEncoding("utf-8");
-		resp.setContentType("text/plain;charset=utf-8");
-		PrintWriter pw = resp.getWriter();
+		String password1 = req.getParameter("userpassword-1");
+		String password2 = req.getParameter("userpassword-2");
+		if(!password1.equals(password2)) {
+			resp.sendRedirect("update-myinfo.jsp?fail=1");
+			return;
+		}
+		
+		String secondPhoneNo = req.getParameter("userphone-2");
+		String thirdPhoneNo = req.getParameter("userphone-3");
+		if(secondPhoneNo.length() < 3 || thirdPhoneNo.length() < 4) {
+			resp.sendRedirect("update-myinfo.jsp?fail=2");
+			return;
+		}
+		
+		String phone = req.getParameter("userphone-1") + "-"
+				+ secondPhoneNo + "-" + thirdPhoneNo;
+		String career = req.getParameter("career");
 		
 		Part part = req.getPart("userimage");
 		String fileName = System.currentTimeMillis() + "_" + getFileName(part);
 		
 		part.write(SAVED_DIRECTORY + fileName);
 		
+		lecturer.setPwd(password2);
+		lecturer.setPhone(phone);
+		lecturer.setCareer(career);
 		lecturer.setPicture("/jhta_group2_semi_prj/images/" + fileName);
-		
-		pw.println(fileName);
 		
 		try {
 			MypageLecturerDao.getInstance().updateMyInfo(lecturer);
+			
+			resp.sendRedirect("update-myinfo.jsp?success");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new ServletException(e);
 		}
+		
 	}
 	
 	private String getFileName(Part part) {

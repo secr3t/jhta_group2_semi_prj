@@ -20,10 +20,12 @@
 	String phone = request.getParameter("userphone-1") + "-"
 							+ secondPhoneNo + "-" + thirdPhoneNo;
 	String career = request.getParameter("career");
+	String picture = request.getParameter("image");
 	
 	lecturer.setPwd(password2);
 	lecturer.setPhone(phone);
 	lecturer.setCareer(career);
+	lecturer.setPicture(picture);
 	MypageLecturerDao.getInstance().updateMyInfo(lecturer);
 	
 	response.sendRedirect("update-myinfo.jsp?success");

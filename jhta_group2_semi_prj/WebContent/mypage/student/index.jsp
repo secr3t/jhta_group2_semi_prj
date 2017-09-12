@@ -143,7 +143,7 @@
                                 	%>
                                     <tr>
                                         <td>
-                                        	<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=forQna.getNo() %>"><%=forQna.getTitle() %></a>
+                                        	<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=forQna.getNo() %>&url=<%=request.getRequestURI() %>"><%=forQna.getTitle() %></a>
                                         	<%
 				                          		if(forQna.getAnsContent() != null) {
 				                          	%>
@@ -194,7 +194,7 @@
                                 	%>
                                     <tr>
                                         <td>
-                                        	<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_detail.jsp?no=<%=forTech.getNo() %>"><%=forTech.getTitle() %></a>
+                                        	<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_detail.jsp?no=<%=forTech.getNo() %>&url=<%=request.getRequestURI() %>"><%=forTech.getTitle() %></a>
                                         	<%
 				                          		if(forTech.getAnsContent() != null) {
 				                          	%>
