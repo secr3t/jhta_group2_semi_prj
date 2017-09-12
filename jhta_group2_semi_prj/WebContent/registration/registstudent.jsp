@@ -1,3 +1,4 @@
+<%@page import="org.apache.commons.codec.digest.DigestUtils"%>
 <%@page import="pro.student.dao.StudentDao"%>
 <%@page import="pro.student.vo.Student"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,7 +15,7 @@
 	Student student = new Student();
 	student.setName(name);
 	student.setEmail(email);
-	student.setPwd(pwd);
+	student.setPwd(DigestUtils.sha256Hex(pwd));
 	student.setPhone(phone);
 	
 	StudentDao studentDao = StudentDao.getInstance();
@@ -25,7 +26,7 @@
 		return;
 	}
 	
-	studentDao.getInstance().addStudent(student);
+	studentDao.addStudent(student);
 	
 	response.sendRedirect("registsuccessform.jsp");
 %>

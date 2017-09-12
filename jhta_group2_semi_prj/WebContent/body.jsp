@@ -1,3 +1,5 @@
+<%@page import="pro.introducecourse.dao.LectureCourseDao"%>
+<%@page import="pro.lecturer.dao.LecturerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -34,7 +36,7 @@
 }
 
 div.item>img {
-	background-image: url(images/daum.png);
+	background-image: url(http://jhta.co.kr/page/images/top_logo.jpg);
 	width: 100%;
 	min-height: 400px;
 	background-repeat: no-repeat;
@@ -84,7 +86,7 @@ div.item {
 	</a>
 </div>
 <div class="media">
-	<div class="row">
+<!-- 	<div class="row">
 		<div class="col-sm-4">
 			<div class="thumbnail">
 				<img data-src="holder.js/100%x200" alt="100%x200"
@@ -101,8 +103,8 @@ div.item {
 					data-holder-rendered="true">
 			</div>
 		</div>
-	</div>
-	<div class="row">
+	</div> -->
+<!-- 	<div class="row">
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
 				<img data-src="holder.js/100%x200" alt="100%x200"
@@ -166,23 +168,27 @@ div.item {
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="row">
 		<div class="col-sm-6">
 			<div class="thumbnail">
-				<img data-src="holder.js/100%x200" alt="100%x200"
+			<!--강사 사진 -->
+				<img alt="<%=LecturerDao.getInstance().getLecturerByNo(1).getCareer() %>"
 					style="height: 200px; width: 100%; display: block;"
-					src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkyLjQ2ODc1IiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4="
+					src="<%=LecturerDao.getInstance().getLecturerByNo(1).getPicture()%>"
 					data-holder-rendered="true">
 				<div class="caption">
 					<h3 id="thumbnail-label">
-						Thumbnail label<a class="anchorjs-link" href="#thumbnail-label"><span
+						<!--  강의 제목 -->
+						<%=LectureCourseDao.getInstance().getCourseByLecturerNo(1).get(0).getName() %>
+						<a class="anchorjs-link" href="#thumbnail-label"><span
 							class="anchorjs-icon"></span></a>
 					</h3>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-						id nibh ultricies vehicula ut id elit.</p>
+					<p>
+					<!-- 강의 설명-->
+					<%= LectureCourseDao.getInstance().getCourseByLecturerNo(1).get(0).getDetail()%>
+					</p>
 					<p>
 						<a href="#" class="btn btn-primary" role="button">Button</a> <a
 							href="#" class="btn btn-default" role="button">Button</a>
@@ -192,18 +198,22 @@ div.item {
 		</div>
 		<div class="col-sm-6">
 			<div class="thumbnail">
-				<img data-src="holder.js/100%x200" alt="100%x200"
+			<!--강사 사진 -->
+				<img alt="<%=LecturerDao.getInstance().getLecturerByNo(2).getCareer() %>"
 					style="height: 200px; width: 100%; display: block;"
-					src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkyLjQ2ODc1IiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4="
+					src="<%=LecturerDao.getInstance().getLecturerByNo(2).getPicture()%>"
 					data-holder-rendered="true">
 				<div class="caption">
 					<h3 id="thumbnail-label">
-						Thumbnail label<a class="anchorjs-link" href="#thumbnail-label"><span
+						<!--  강의 제목 -->
+						<%=LectureCourseDao.getInstance().getCourseByLecturerNo(2).get(0).getName() %>
+						<a class="anchorjs-link" href="#thumbnail-label"><span
 							class="anchorjs-icon"></span></a>
 					</h3>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-						id nibh ultricies vehicula ut id elit.</p>
+					<p>
+					<!-- 강의 설명-->
+					<%= LectureCourseDao.getInstance().getCourseByLecturerNo(2).get(0).getDetail()%>
+					</p>
 					<p>
 						<a href="#" class="btn btn-primary" role="button">Button</a> <a
 							href="#" class="btn btn-default" role="button">Button</a>
@@ -214,8 +224,8 @@ div.item {
 	</div>
 </div>
 <div class="left-banner">
-	<img src="http://img.megastudy.net/main/scroll/sky_170828_left_ysh.jpg"
-		border="0" alt="전체메인 고3·N수 LEFT (상단)/SS배너/윤성훈T 패키지 30% 할인(20170828부터)">
+	<img src="images/work-ant-1-2.png"
+		border="0" alt="메인 왼쪽 배너 10월의 강사 박성환">
 </div>
 <div class="right-banner">
 	<img src="http://img.megastudy.net/Main/scroll/sky_170801_mtab01.jpg"
