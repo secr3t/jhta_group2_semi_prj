@@ -63,5 +63,52 @@
 		values
 			(lecturer_no_seq.nextval, #name#, #email#, #pwd#, #phone#, #career#, #picture#)
 	</insert>
+	
+	<select id="getAllIntroLecturer" resultClass="pro.lecturer.vo.IntroLecturer">
+		select DISTINCT
+			A.LECTURER_PICTURE 	as "lecturerPictureUrl",
+			A.LECTURER_CAREER	as "lecturerCareer",
+			A.LECTURER_EMAIL	as "lecturerEmail",
+			C.DEPT_NAME			as "deptName",
+			A.LECTURER_NAME		as "lecturerName",
+			A.LECTURER_NO		as "lecturerNo"
+		from
+			lecturer A , COURSE B, DEPT C
+		where 
+			B.DEPT_NO = C.DEPT_NO
+		and B.LECTURER_NO = A.LECTURER_NO
+	</select>
+	
+	<select id="getAllIntroLecturerByDeptNo" parameterClass="int" resultClass="pro.lecturer.vo.IntroLecturer">
+		select DISTINCT
+			A.LECTURER_PICTURE 	as "lecturerPictureUrl",
+			A.LECTURER_CAREER	as "lecturerCareer",
+			A.LECTURER_EMAIL	as "lecturerEmail",
+			C.DEPT_NAME			as "deptName",
+			A.LECTURER_NAME		as "lecturerName",
+			A.LECTURER_NO		as "lecturerNo"
+		from
+			lecturer A , COURSE B, DEPT C
+		where 
+			B.DEPT_NO = C.DEPT_NO
+		and B.LECTURER_NO = A.LECTURER_NO
+		and B.DEPT_NO = #value#
+	</select>
+	
+	<select id="getAllIntroLecturerByLecturerNo" parameterClass="int" resultClass="pro.lecturer.vo.IntroLecturer">
+		select DISTINCT
+			A.LECTURER_PICTURE 	as "lecturerPictureUrl",
+			A.LECTURER_CAREER	as "lecturerCareer",
+			A.LECTURER_EMAIL	as "lecturerEmail",
+			C.DEPT_NAME			as "deptName",
+			A.LECTURER_NAME		as "lecturerName",
+			A.LECTURER_NO		as "lecturerNo"
+		from
+			lecturer A , COURSE B, DEPT C
+		where 
+			B.DEPT_NO = C.DEPT_NO
+		and B.LECTURER_NO = A.LECTURER_NO
+		and B.LECTURER_NO = #value#
+	</select>
 
 </sqlMap>
