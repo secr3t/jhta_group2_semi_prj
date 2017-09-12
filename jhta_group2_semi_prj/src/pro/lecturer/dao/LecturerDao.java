@@ -29,4 +29,7 @@ public class LecturerDao {
 		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("lecturer.getLecturerByNo", no);
 	}
 	
+	public void addLecturer (Lecturer lecturer) throws SQLException {
+		IbatisUtils.getSqlMap().queryForObject("lecturer.addLecturer", lecturer);
+	}
 }
