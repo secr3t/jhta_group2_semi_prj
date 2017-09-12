@@ -12,6 +12,7 @@
 </head>
 <body>
 <%@include file="../../common/nav.jsp"%>
+<%@include file="../../common/loginCheck.jsp"%>
 
 
 <div class="container">

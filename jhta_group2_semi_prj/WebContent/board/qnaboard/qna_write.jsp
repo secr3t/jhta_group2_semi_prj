@@ -13,6 +13,7 @@
 <%@include file="../../common/header.jsp"%>
 <body>
 <%@include file="../../common/nav.jsp"%>
+<%@include file="../../common/loginCheck.jsp"%>
 
 <div class="content-primary">
 <div class="container">
@@ -23,7 +24,7 @@
 	  <div class="row">
 	    <div class="content-header">
 	        <div class="crumb">
-	  	        <h1 >Q&lt;A 게시판</h1>
+	  	        <h1 >QnA 게시판</h1>
 	  			<h4>
 	  			<span style="color:red;"><strong>|</strong>
 	  			</span>	강의 질의하기 
