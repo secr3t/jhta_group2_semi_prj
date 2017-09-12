@@ -55,8 +55,8 @@
                                 	for(Postscription po : pos) {
                                 %>
                                 <tr>
-                                    <td><%=po.getTitle() %></td>
-                                    <td><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_detail.jsp?bno=<%=po.getNo()%>"><%=po.getStudent().getName() %></a></td>
+                                    <td><a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture_detail.jsp?bno=<%=po.getNo()%>"><%=po.getTitle() %></a></td>
+                                    <td><%=po.getStudent().getName() %></td>
                                     <td><%=po.getGrade() %></td>
                                 </tr>
                                 <%} %>
@@ -78,8 +78,8 @@
                                 	for(Qna qna : qnas) {
                                 %>                         
                                    <tr>
-                                    <td><%=qna.getTitle() %></td>
-                                    <td><a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=qna.getNo()%>"><%=qna.getStudent().getName() %></a></td>
+                                    <td><a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=qna.getNo()%>"><%=qna.getTitle() %></a></td>
+                                    <td><%=qna.getStudent().getName() %></td>
                                     <% if(qna.getAnsContent() != null) { %>
                                     <td>Y</td>
                                     <% } else {%>

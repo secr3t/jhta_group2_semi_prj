@@ -116,7 +116,15 @@
 	            <div class="col-sm-12">
 	                <div class="panel panel-warning">
 	                    <div class="panel-heading">
-	                        <label><a href="myqna.jsp" class="pull-right">미답변 질문</a></label>
+	                    <%
+	                   		Criteria QnaCriteria = new Criteria();
+	                   		QnaCriteria.setLecturerNo(lecturer.getNo());
+	                   		QnaCriteria.setBeginIndex(1);
+	                   		QnaCriteria.setEndIndex(10);
+	                   		QnaCriteria.setNoAnswer("Y");
+	                   		List<Qna> qnaList = lecDao.getQnaByLecturerNo(QnaCriteria);
+	                    %>
+	                        <label><a href="myqna.jsp?noAnswer=Y">미답변 질문</a><span class="badge"><%=qnaList.size() %></span></label>
 	                    </div>
 	                    <div class="table-responsive">
 	                        <table class="table table-condensed table-hover">
@@ -132,17 +140,11 @@
 	                            </thead>
 	                            <tbody>
 	                            	<%
-	                            		Criteria QnaCriteria = new Criteria();
-	                            		QnaCriteria.setLecturerNo(lecturer.getNo());
-	                            		QnaCriteria.setBeginIndex(1);
-	                            		QnaCriteria.setEndIndex(10);
-	                            		QnaCriteria.setNoAnswer("Y");
-	                            		List<Qna> qnaList = lecDao.getQnaByLecturerNo(QnaCriteria);
 	                            		for(Qna forQna : qnaList) {
 	                            	%>
 			                                <tr>
 			                                    <td>
-			                                    	<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=forQna.getNo() %>"><%=forQna.getTitle() %></a>
+			                                    	<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=forQna.getNo() %>&url=<%=request.getRequestURI() %>"><%=forQna.getTitle() %></a>
 					                                <%
 						                          		if(forQna.getAnsContent() != null) {
 						                          	%>

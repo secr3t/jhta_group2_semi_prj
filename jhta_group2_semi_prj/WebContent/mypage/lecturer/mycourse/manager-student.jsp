@@ -48,6 +48,7 @@
              		}
              	%>
              		<label>정렬 :</label>
+             		<a href="manager-student.jsp?cno=<%=course.getNo() %>" class="btn btn-default btn-sm">전체 목록</a>
              		<button><span class="glyphicon glyphicon-sort-by-alphabet"></span></button>
              		<button><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span></button>
              	</div>
@@ -107,7 +108,7 @@
 	                  	for(Enrollment forEnroll : enrollList) {
 	                  	%>
                          <tr>
-                             <td><%=forEnroll.getStudent().getEmail() %></td>
+                             <td><a href="student-detail.jsp?sno=<%=forEnroll.getStudent().getNo() %>&cno=<%=courseNo %>"><%=forEnroll.getStudent().getEmail() %></a></td>
                              <td><%=forEnroll.getStudent().getName() %></td>
                              <td>
                                  <div class="progress">
@@ -169,9 +170,6 @@
                      	 	}
                      	 %>
                      </ul>
-                     <div class="pull-right">
-                     	<a href="manager-student.jsp" class="btn btn-default btn-sm">전체 목록으로</a>
-                     </div>     
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@
 		</div>
 		<div class="col-sm-9">
              <div class="row">
-               	<div class="col-sm-3">
+               	<div class="col-sm-6">
                		<label>정렬 :</label>
                	<%
 	                request.setCharacterEncoding("utf-8");
@@ -54,11 +54,10 @@
 	              	<a href="<%=params + ("".equals(params) ? "?" : "&") %>noAnswer=Y" class="btn btn-danger btn-sm">N</a>
               	<%
       				}
-              	%>               		
-               		<button><span class="glyphicon glyphicon-sort-by-alphabet"></span></button>
-               		<button><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span></button>
+              	%>
+              		<a href="manager-course.jsp" class="btn btn-default btn-sm">전체 목록</a>     		
                	</div>
-               	<div class="col-sm-7 pull-right">
+               	<div class="col-sm-6 pull-right">
 	                <form method="get" action="manager-course.jsp" class="form-inline text-right">
 	            		<div class="form-group">
 	                        <label class="sr-only">검색분류</label>
@@ -96,8 +95,8 @@
                      <%
                      MypageCourseDao courDao = MypageCourseDao.getInstance();
                      
-                     int rowsPerPage = 5;
-                     int pagesPerBlock = 1;
+                     int rowsPerPage = 3;
+                     int pagesPerBlock = 2;
                      
                      int nowPage = StringUtils.changeIntToString(request.getParameter("p"), 1);
                      int nowBlock = (int) Math.ceil((double) nowPage / pagesPerBlock);
@@ -124,6 +123,7 @@
                      
                      List<Course> courList = courDao.getCourseInfo(criteria);
                      for(Course forCourse : courList) {
+                    	 String forPermit = forCourse.getPermit();
 					 %>
                          <tr>
                              <td><a href="course-detail.jsp?cno=<%=forCourse.getNo() %>"><%=forCourse.getName() %></a></td>
@@ -131,9 +131,9 @@
                              <td><a href="../lecturer/lecturer-detail.jsp?lno=<%=forCourse.getLecturer().getNo() %>"><%=forCourse.getLecturer().getName() %></a></td>
                              <td><%=courDao.getTotalCourseVideoByCourseNo(forCourse.getNo()) %>개</td>                                
                              <td>
-                             	<%=forCourse.getPermit() %>
-                             	<a href="course-update.jsp?cno=<%=forCourse.getNo() %>&change=<%="Y".equals(forCourse.getPermit()) ? "2" : "1" %>">
-                             		<span class="text-<%="Y".equals(forCourse.getPermit()) ? "danger" : "primary" %> glyphicon glyphicon-<%="Y".equals(forCourse.getPermit()) ? "remove" : "ok" %>-sign pull-right"></span>
+                             	<%=forPermit %>
+                             	<a href="course-update.jsp?cno=<%=forCourse.getNo() %>&change=<%="Y".equals(forPermit) ? "2" : "1" %>">
+                             		<span class="text-<%="Y".equals(forPermit) ? "danger" : "primary" %> glyphicon glyphicon-<%="Y".equals(forPermit) ? "remove" : "ok" %>-sign pull-right" title="<%="Y".equals(forPermit) ? "취소하기" : "허가하기" %>"></span>
                              	</a>
                              </td>
                          </tr>
@@ -181,9 +181,6 @@
                      	 	}
                      	 %>
                      </ul>
-                     <div class="pull-right">
-                     	<a href="manager-course.jsp" class="btn btn-default btn-sm">전체 목록으로</a>
-                     </div>    
                  </div>
             </div>
     	</div>

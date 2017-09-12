@@ -56,7 +56,7 @@
                      	for(Enrollment forEnroll : enrollList) {
                      	%>
 	                         <tr>
-		                         <td><a href="#"><%=forEnroll.getCourse().getName() %></a></td>
+		                         <td><a href="../course/course-detail.jsp?cno=<%=forEnroll.getCourse().getNo() %>"><%=forEnroll.getCourse().getName() %></a></td>
 		                         <td>
 		                             <div class="progress">
                                      <%

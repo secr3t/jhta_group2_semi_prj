@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import pro.course.vo.Course;
+import pro.lecturer.vo.IntroLecturer;
 import pro.lecturer.vo.Lecturer;
 import pro.utils.IbatisUtils;
 
@@ -18,6 +19,7 @@ public class LecturerDao {
 		return self;
 	}	
 	
+	@SuppressWarnings("unchecked")
 	public List<Lecturer> getAllLecturers() throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("lecturer.getAllLecturers");
 	}
@@ -29,7 +31,22 @@ public class LecturerDao {
 		return (Lecturer) IbatisUtils.getSqlMap().queryForObject("lecturer.getLecturerByNo", no);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<IntroLecturer> getAllIntroLecturer() throws SQLException {
+		return IbatisUtils.getSqlMap().queryForList("lecturer.getAllIntroLecturer");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<IntroLecturer> getAllIntroLecturerByDeptNo(int deptNo) throws SQLException{
+		return IbatisUtils.getSqlMap().queryForList("lecturer.getAllIntroLecturerByDeptNo", deptNo);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<IntroLecturer> getAllIntroLecturerByLecturerNo(int lecturerNo) throws SQLException{
+		return IbatisUtils.getSqlMap().queryForList("lecturer.getAllIntroLecturerByDeptNo", lecturerNo);
+	}
+	
 	public void addLecturer (Lecturer lecturer) throws SQLException {
-		IbatisUtils.getSqlMap().queryForObject("lecturer.addLecturer", lecturer);
+		IbatisUtils.getSqlMap().insert("lecturer.addLecturer", lecturer);
 	}
 }

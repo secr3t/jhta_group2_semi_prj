@@ -202,7 +202,7 @@
 		                            for(Tech forTech : techList) {
 		                            %>
                                         <tr>
-                                            <td><a href="/jhta_group2_semi_prj/board/personalqna/personalqna_detail.jsp?no=<%=forTech.getNo() %>"><%=forTech.getTitle() %></a></td>
+                                            <td><a href="/jhta_group2_semi_prj/board/personalqna/personalqna_detail.jsp?no=<%=forTech.getNo() %>&url=<%=request.getRequestURI() %>"><%=forTech.getTitle() %></a></td>
                                             <td><a href="student/student-detail.jsp?sno=<%=forTech.getStudent().getNo() %>"><%=forTech.getStudent().getName() %></a></td>
                                             <td><%=DateUtils.yyyymmddhhmmss(forTech.getQuesRegdate()) %></td>
                                         </tr>                               

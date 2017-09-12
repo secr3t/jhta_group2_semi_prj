@@ -41,7 +41,7 @@
 		</div>  
         <div class="col-sm-9">
          	<div class="row">
-              <div class="col-sm-4">
+              <div class="col-sm-6">
               <%
               	request.setCharacterEncoding("utf-8");
         		String opt = request.getParameter("searchopt");
@@ -67,8 +67,9 @@
               <%
       			}
               %>
+              	<a href="myqna.jsp" class="btn btn-default btn-sm">전체 목록</a>
               </div>
-              <div class="col-sm-10 pull-right">
+              <div class="col-sm-6 pull-right">
                <form method="get" action="myqna.jsp" class="form-inline text-right">
                    <div class="form-group">
                        <label class="sr-only">검색분류</label>
@@ -137,7 +138,7 @@
 	                  	%>
 		                      <tr>
 		                          <td>
-		                          	<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=forQna.getNo() %>"><%=forQna.getTitle() %></a>
+		                          	<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=forQna.getNo() %>&url=<%=request.getRequestURI() %>"><%=forQna.getTitle() %></a>
 		                          	<%
 		                          		if(forQna.getAnsContent() != null) {
 		                          	%>
@@ -198,9 +199,6 @@
                      	 	}
                      	 %>
                      </ul>
-                     <div class="pull-right">
-                     	<a href="myqna.jsp" class="btn btn-default btn-sm">전체 목록으로</a>
-                     </div>                         
                  </div>
              </div>
          </div>

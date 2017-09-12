@@ -28,6 +28,7 @@
 		<div class="col-sm-9">
                <div class="row">
                	<div class="col-sm-3">
+               		<label>정렬 :</label>
                	<%
                	request.setCharacterEncoding("utf-8");
                 String opt = request.getParameter("searchopt");
@@ -39,9 +40,7 @@
       				params += "&searchtext=" + keyword;
       			}
                	%>
-               		<label>정렬 :</label>
-               		<button><span class="glyphicon glyphicon-sort-by-alphabet"></span></button>
-               		<button><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span></button>
+               		<a href="manager-student.jsp" class="btn btn-default btn-sm">전체 목록</a>
                	</div>
                	<div class="col-sm-7 pull-right">
 	                <form method="post" action="manager-student.jsp" class="form-inline text-right">
@@ -157,11 +156,8 @@
                      	 	}
                      	 %>
                      </ul>
-                     <div class="pull-right">
-                     	<a href="manager-student.jsp" class="btn btn-default btn-sm">전체 목록으로</a>
-                     </div>                         
-                   </div>
-               </div>
+                  </div>
+             </div>
     	</div>
 	 </div>
 	 <%@ include file="/common/footer.jsp" %>

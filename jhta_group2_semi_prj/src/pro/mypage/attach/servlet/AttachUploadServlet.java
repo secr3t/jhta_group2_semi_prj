@@ -34,7 +34,7 @@ public class AttachUploadServlet extends HttpServlet {
 			return;
 		}
 		
-		Lecturer lecturer = (Lecturer) session.getAttribute("loginedUser");
+		Lecturer lecturer = (Lecturer) session.getAttribute("loginUser");
 		if(lecturer == null) {			
 			resp.sendRedirect("/mypage/temp-login.jsp");
 			return;

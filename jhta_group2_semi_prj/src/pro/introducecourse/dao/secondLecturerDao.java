@@ -7,16 +7,16 @@ import pro.course.vo.Course;
 import pro.lecturer.vo.Lecturer;
 import pro.utils.IbatisUtils;
 
-public class LecturerDao {
+public class secondLecturerDao {
 
-	private static LecturerDao self = new LecturerDao();
-	private LecturerDao() {}
-	public static LecturerDao getInstance() {
+	private static secondLecturerDao self = new secondLecturerDao();
+	private secondLecturerDao() {}
+	public static secondLecturerDao getInstance() {
 		return self;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Lecturer> getAlllecturers() throws SQLException{
+	public List<Lecturer> getAllLecturers() throws SQLException{
 		return IbatisUtils.getSqlMap().queryForList("lecturer.getAlllecturers");
 	}
 	

@@ -16,7 +16,7 @@
 
 	<div class="container">
         <div class="row">
-           <form method="post" action="registsuccessform.jsp">
+           <form method="post" enctype="multipart/form-data" action="registerlecturer.jsp">
                 <div class="col-sm-offset-4 col-sm-5">
                     <div class="panel panel-info">
                         <div class="panel-heading"><strong>회원가입</strong></div>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group">
                                 <label>사진</label>      
-                                    <input type="file" name="user-picture" value="a.jpg" />
+                                    <input type="file" name="user-picture" />
                             </div>
                             <div class="form-group"> 
                                 <button class="btn btn-primary pull-right">가입</button>

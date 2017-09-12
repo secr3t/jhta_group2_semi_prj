@@ -23,7 +23,7 @@
 	</div>
 	<div class="col-sm-9">
 	  	<div class="row">
-	  	    <h1 >FAQ게시판</h1>
+	  	    <h1 >문의 게시판</h1>
 	  	<h4>
 	  	<span style="color:#ff0000;"><strong>|</strong>
 	  	</span> QnA 강의질문
@@ -31,6 +31,8 @@
 	  	<hr>
 	    </div>
 	    <%
+	     
+	     
 	    	QnaBoardDao qdao =  QnaBoardDao.getInstance();
 	    	int no = Integer.parseInt(request.getParameter("p"));	
 	   
@@ -77,7 +79,7 @@
   				<% }%> 
   			</div>  			
   				<div class="text-right">
-  					<% if(loginUser.getType().toUpperCase().equals("T")) { %>
+  					<% if(loginUser != null && loginUser.getType().toUpperCase().equals("T")) { %>
 	  				<a href="/jhta_group2_semi_prj/board/qnaboard/qna_replay.jsp?no=<%=qna.getNo() %>" class="btn btn-warning btn-sm">답변</a>
 	  				<%} %>	
 	  				<a href="/jhta_group2_semi_prj/board/qnaboard/delete_qna.jsp?no=<%=qna.getNo() %>" class="btn btn-danger btn-sm">삭제</a>
