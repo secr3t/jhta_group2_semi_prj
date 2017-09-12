@@ -30,6 +30,6 @@ public class LecturerDao {
 	}
 	
 	public void addLecturer (Lecturer lecturer) throws SQLException {
-		IbatisUtils.getSqlMap().queryForObject("lecturer.addLecturer", lecturer);
+		IbatisUtils.getSqlMap().insert("lecturer.addLecturer", lecturer);
 	}
 }

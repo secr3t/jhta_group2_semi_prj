@@ -58,10 +58,10 @@
 	</select>
 	
 	<insert id="addLecturer" parameterClass="lecturer">
-		insert into student
-			(lecturer_name, lecturer_email, lecturer_pwd, lecturer_phone, lecturer_career, lecturer_picture, lecturer_permit)
+		insert into lecturer
+			(lecturer_no, lecturer_name, lecturer_email, lecturer_pwd, lecturer_phone, lecturer_career, lecturer_picture)
 		values
-			(lecturer_no_seq.nextval, #email#, #pwd#, #phone#, #career#, #picture#, null)
+			(lecturer_no_seq.nextval, #name#, #email#, #pwd#, #phone#, #career#, #picture#)
 	</insert>
 
 </sqlMap>
