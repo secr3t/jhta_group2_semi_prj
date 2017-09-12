@@ -57,14 +57,16 @@ public class UploadServlet extends HttpServlet {
 		String career = req.getParameter("career");
 		
 		Part part = req.getPart("userimage");
-		String fileName = System.currentTimeMillis() + "_" + getFileName(part);
+		if(!"".equals(getFileName(part))) {
+			String fileName = System.currentTimeMillis() + "_" + getFileName(part);
 		
-		part.write(SAVED_DIRECTORY + fileName);
+			lecturer.setPicture("/jhta_group2_semi_prj/images/" + fileName);
+			part.write(SAVED_DIRECTORY + fileName);
+		}
 		
 		lecturer.setPwd(password2);
 		lecturer.setPhone(phone);
 		lecturer.setCareer(career);
-		lecturer.setPicture("/jhta_group2_semi_prj/images/" + fileName);
 		
 		try {
 			MypageLecturerDao.getInstance().updateMyInfo(lecturer);

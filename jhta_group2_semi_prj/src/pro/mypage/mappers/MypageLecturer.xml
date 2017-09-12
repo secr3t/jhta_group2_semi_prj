@@ -148,18 +148,7 @@
 	
 	<select id="getTotalQnaRows" parameterClass="Criteria" resultClass="int">
 		select count(*)
-		from (select
-					A.qna_no 				no
-					,A.qna_title			title
-					,A.course_no			"course.no"
-					,B.course_name			"course.name"
-					,A.qna_ques_content 	quesContent
-					,A.qna_ques_date		quesDate
-					,A.qna_ans_content		ansContent
-					,A.qna_ans_regdate		ansRegdate
-					,C.student_no			"student.no"
-					,C.student_name			"student.name"
-			from(select row_number() over(order by qna_no desc) rn, qna_no, qna_title, course_no, 
+		from (select row_number() over(order by qna_no desc) rn, qna_no, qna_title, course_no, 
 						qna_ques_content, qna_ques_date, qna_ans_content, qna_ans_regdate, student_no, qna_active
 				from qna
 				where qna_active = 'Y'
@@ -190,56 +179,60 @@
 								and A.qna_ans_content is null
 						</isEqual>
 					</isNotNull>
-				</dynamic>)
+				</dynamic>
 	</select>
 	
 	<select id="getQnaByLecturerNo" parameterClass="Criteria" resultClass="Qna">
-		select
-			A.qna_no 				no
-			,A.qna_title			title
-			,A.course_no			"course.no"
-			,B.course_name			"course.name"
-			,A.qna_ques_content 	quesContent
-			,A.qna_ques_date		quesDate
-			,A.qna_ans_content		ansContent
-			,A.qna_ans_regdate		ansRegdate
-			,C.student_no			"student.no"
-			,C.student_name			"student.name"
-		from(select row_number() over(order by qna_no desc) rn, qna_no, qna_title, course_no, 
-							qna_ques_content, qna_ques_date, qna_ans_content, qna_ans_regdate, student_no, qna_active 
-			from qna
-			where qna_active = 'Y'
-			and course_no in (select course_no
-							from course
-							where lecturer_no = #lecturerNo#)) A, course B, student C
-		where A.course_no = B.course_no
-		and A.student_no = C.student_no
-		<dynamic>
-			<isNotNull property="opt">
-				<isNotNull property ="keyword">
-					<isEqual property="opt" compareValue="title">
-						and A.qna_title like '%' || #keyword# || '%'
-					</isEqual>
-					<isEqual property="opt" compareValue="course">
-						and B.course_name like '%' || #keyword# || '%'					
-					</isEqual>
-					<isEqual property="opt" compareValue="student">
-						and C.student_name like '%' || #keyword# || '%'
-					</isEqual>
-				</isNotNull>
-			</isNotNull>
-			<isNotNull property="noAnswer">
-				<isEqual property="noAnswer" compareValue="N">
-						and A.qna_ans_content is not null
-				</isEqual>
-				<isEqual property="noAnswer" compareValue="Y">
-						and A.qna_ans_content is null
-				</isEqual>
-			</isNotNull>
-		</dynamic>
+		select 		
+					D.rn
+					,D.qna_no 				no
+					,D.qna_title			title
+					,D.course_no			"course.no"
+					,D.course_name			"course.name"
+					,D.qna_ques_content 	quesContent
+					,D.qna_ques_date		quesDate
+					,D.qna_ans_content		ansContent
+					,D.qna_ans_regdate		ansRegdate
+					,D.student_no			"student.no"
+					,D.student_name			"student.name"
+		from (select
+					A.rn ,A.qna_no ,A.qna_title ,A.course_no ,B.course_name ,A.qna_ques_content ,A.qna_ques_date ,A.qna_ans_content	,A.qna_ans_regdate ,C.student_no,C.student_name
+				from(select row_number() over(order by qna_no desc) rn, qna_no, qna_title, course_no, 
+									qna_ques_content, qna_ques_date, qna_ans_content, qna_ans_regdate, student_no, qna_active 
+					from qna
+					where qna_active = 'Y'
+					and course_no in (select course_no
+									from course
+									where lecturer_no = 1)) A, course B, student C
+				where A.course_no = B.course_no
+				and A.student_no = C.student_no
+				<dynamic>
+					<isNotNull property="opt">
+						<isNotNull property ="keyword">
+							<isEqual property="opt" compareValue="title">
+								and A.qna_title like '%' || #keyword# || '%'
+							</isEqual>
+							<isEqual property="opt" compareValue="course">
+								and B.course_name like '%' || #keyword# || '%'					
+							</isEqual>
+							<isEqual property="opt" compareValue="student">
+								and C.student_name like '%' || #keyword# || '%'
+							</isEqual>
+						</isNotNull>
+					</isNotNull>
+					<isNotNull property="noAnswer">
+						<isEqual property="noAnswer" compareValue="N">
+								and A.qna_ans_content is not null
+						</isEqual>
+						<isEqual property="noAnswer" compareValue="Y">
+								and A.qna_ans_content is null
+						</isEqual>
+					</isNotNull>
+				</dynamic>
+				) D
 		<![CDATA[
-			and rn >= #beginIndex#
-			and rn <= #endIndex#
+		where D.rn >= 1
+		and D.rn <= 10
 		]]>
 	</select>
 	
@@ -253,4 +246,5 @@
 			,lecturer_permit = #permit#
 		where lecturer_no = #no#
 	</update>	
+
 </sqlMap>

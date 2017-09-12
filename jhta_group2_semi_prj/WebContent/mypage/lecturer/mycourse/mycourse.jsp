@@ -52,7 +52,7 @@
                 <div class="col-sm-10">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <label>내 수강 목록</label>
+                            <label>내 강의 목록</label>
                         </div>
                           <table class="table table-hover" id="course-table">
                             <colgroup>
@@ -150,7 +150,7 @@
 		                     	 <%
 		                     	 	for(int index=beginPage; index<=endPage; index++) {
 		                     	 %>
-		                         		<li><a href="?p=<%=index %>"><%=index %></a></li>                     	 
+		                         		<li class="<%=index == nowPage ? "active" : ""  %>"><a href="?p=<%=index %>"><%=index %></a></li>                     	 
 		                     	 <%		
 		                     	 	}
 		                     	 %>

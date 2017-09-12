@@ -40,52 +40,57 @@
 			<%@ include file="left-menu.jsp" %>
 		</div>  
         <div class="col-sm-9">
-        	 <div class="col-sm-4">
-        	 <%
-        	 	request.setCharacterEncoding("utf-8");
-	       		String opt = request.getParameter("searchopt");
-				String keyword = request.getParameter("searchtext");
-	       		String noAnswer = request.getParameter("noAnswer");
-	       		
-           		String params = "";           		
-      			if(opt != null) {
-      				params += "?searchopt=" + opt;
-      				params += "&searchtext=" + keyword;
-      			}
-      			
-      			if(opt != null && noAnswer != null) {
-      				params += "&noAnswer=" + noAnswer;
-      			} else if(opt == null && noAnswer != null) {
-      				params += "?noAnswer=" + noAnswer;
-      			}
-      			
-      			if(noAnswer == null) {
-              %>
-              	<a href="<%=params + ("".equals(params) ? "?" : "&") %>noAnswer=N" class="btn btn-info btn-sm">답변한 질문</a>
-              	<a href="<%=params + ("".equals(params) ? "?" : "&") %>noAnswer=Y" class="btn btn-danger btn-sm">미답변 질문</a>
-              <%
-      			}
-              %>
-        	 </div>
-             <form method="get" action="myqna.jsp" class="form-inline text-right">
-                 <div class="form-group">
-                     <label class="sr-only">검색분류</label>
-                     <select name="searchopt" class="form-control">
-                         <option value="title" <%="title".equals(opt) ? "selected" : "" %>>제목</option>
-                         <option value="course" <%="course".equals(opt) ? "selected" : "" %>>강의명</option>
-                         <option value="lecturer" <%="lecturer".equals(opt) ? "selected" : "" %>>강사</option>
-                     </select>
-                 </div>
-                 
-                 <div class="form-group">
-                 	<label class="sr-only">검색</label>
-        			<input type="text" name="searchtext" class="form-control" value="<%=keyword != null ? keyword : "" %>" placeholder="검색어를 입력해주세요."/>
-                 </div>
-                 
-                 <div class="form-group">
-                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                 </div>
-             </form>
+        	<div class="row">
+	        	 <div class="col-sm-6">
+	        	 <%
+	        	 	request.setCharacterEncoding("utf-8");
+		       		String opt = request.getParameter("searchopt");
+					String keyword = request.getParameter("searchtext");
+		       		String noAnswer = request.getParameter("noAnswer");
+		       		
+	           		String params = "";           		
+	      			if(opt != null) {
+	      				params += "?searchopt=" + opt;
+	      				params += "&searchtext=" + keyword;
+	      			}
+	      			
+	      			if(opt != null && noAnswer != null) {
+	      				params += "&noAnswer=" + noAnswer;
+	      			} else if(opt == null && noAnswer != null) {
+	      				params += "?noAnswer=" + noAnswer;
+	      			}
+	      			
+	      			if(noAnswer == null) {
+	              %>
+	              	<a href="<%=params + ("".equals(params) ? "?" : "&") %>noAnswer=N" class="btn btn-info btn-sm">답변한 질문</a>
+	              	<a href="<%=params + ("".equals(params) ? "?" : "&") %>noAnswer=Y" class="btn btn-danger btn-sm">미답변 질문</a>
+	              <%
+	      			}
+	              %>
+	              	<a href="myqna.jsp" class="btn btn-default btn-sm">전체 목록</a>
+	        	 </div>
+	        	 <div class="col-sm-6 pull-right">
+		             <form method="get" action="myqna.jsp" class="form-inline text-right">
+		                 <div class="form-group">
+		                     <label class="sr-only">검색분류</label>
+		                     <select name="searchopt" class="form-control">
+		                         <option value="title" <%="title".equals(opt) ? "selected" : "" %>>제목</option>
+		                         <option value="course" <%="course".equals(opt) ? "selected" : "" %>>강의명</option>
+		                         <option value="lecturer" <%="lecturer".equals(opt) ? "selected" : "" %>>강사</option>
+		                     </select>
+		                 </div>
+		                 
+		                 <div class="form-group">
+		                 	<label class="sr-only">검색</label>
+		        			<input type="text" name="searchtext" class="form-control" value="<%=keyword != null ? keyword : "" %>" placeholder="검색어를 입력해주세요."/>
+		                 </div>
+		                 
+		                 <div class="form-group">
+		                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+		                 </div>
+		             </form>
+		         </div>
+		     </div> 
              <div class="table-responsive">
                  <table class="table table-hover">
                      <colgroup>
@@ -202,9 +207,6 @@
                      	 	}
                      	 %>
                      </ul>
-                     <div class="pull-right">
-                     	<a href="myqna.jsp" class="btn btn-default btn-sm">전체 목록으로</a>
-                     </div>                     
                  </div>
              </div>
          </div>

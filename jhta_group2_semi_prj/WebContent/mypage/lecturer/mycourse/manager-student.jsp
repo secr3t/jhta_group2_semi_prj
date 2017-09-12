@@ -48,6 +48,7 @@
              		}
              	%>
              		<label>정렬 :</label>
+             		<a href="manager-student.jsp?cno=<%=course.getNo() %>" class="btn btn-default btn-sm">전체 목록</a>
              		<button><span class="glyphicon glyphicon-sort-by-alphabet"></span></button>
              		<button><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span></button>
              	</div>
@@ -169,9 +170,6 @@
                      	 	}
                      	 %>
                      </ul>
-                     <div class="pull-right">
-                     	<a href="manager-student.jsp" class="btn btn-default btn-sm">전체 목록으로</a>
-                     </div>     
                 </div>
             </div>
         </div>

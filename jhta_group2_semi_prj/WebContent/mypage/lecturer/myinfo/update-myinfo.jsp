@@ -96,7 +96,7 @@
 		                <div class="form-group">
 		                	<label class="control-label col-sm-2">연락처</label>
 		                	<div class="col-sm-7">
-		                   		<div class="col-sm-3">
+		                   		<div class="col-sm-4">
 		                       		<select name="userphone-1" class="form-control">
 		                       		<%
 		                       			String[] splitNumber = lecturer.getPhone().split("-");		
@@ -108,12 +108,10 @@
 		                        		<option value="018" <%="018".equals(splitNumber[0])?"selected" : "" %>> 018</option>
 		                       		</select>
 		                   		</div>
-		                    	<label class="col-sm-1">-</label>
-		                    	<div class="col-sm-3">
+		                    	<div class="col-sm-4">
 		                       		<input type="tel" name="userphone-2" class="form-control" value="<%=splitNumber[1] %>"/>
 		                    	</div>
-		                    	<label class="col-sm-1">-</label>
-		                    	<div class="col-sm-3">
+		                    	<div class="col-sm-4">
 		                      		<input type="tel" name="userphone-3" class="form-control" value="<%=splitNumber[2] %>"/>
 		                 		</div>
 		              	 	</div>

@@ -53,8 +53,7 @@
 	              <%
 	      			}
 	              %>
-               		<button><span class="glyphicon glyphicon-sort-by-alphabet"></span></button>
-               		<button><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span></button>
+	              	<a href="manager-lecturer.jsp" class="btn btn-default btn-sm">전체 목록</a>
                	</div>
                	<div class="col-sm-7 pull-right">
 	                <form method="post" action="manager-lecturer.jsp" class="form-inline text-right">
@@ -94,7 +93,7 @@
                        MypageLecturerDao lecDao = MypageLecturerDao.getInstance();
                        
                        int rowsPerPage = 2;
-                       int pagesPerBlock = 1;
+                       int pagesPerBlock = 2;
                        
                        int nowPage = StringUtils.changeIntToString(request.getParameter("p"), 1);
                        int nowBlock = (int) Math.ceil((double) nowPage / pagesPerBlock);
@@ -121,15 +120,16 @@
                        
                        List<Lecturer> lecList = lecDao.getLecturerInfo(criteria);
                        for(Lecturer forLecturer : lecList) {
+                    	   String forPermit = forLecturer.getPermit();
                        %>
                            <tr>
                                <td><a href="lecturer-detail.jsp?lno=<%=forLecturer.getNo() %>"><%=forLecturer.getEmail() %></a></td>
                                <td><%=forLecturer.getName() %></td>
                                <td><%=lecDao.getTotalCourseRows(forLecturer.getNo()) %>개</td>
-                               <td><%=forLecturer.getPermit() %></td>
+                               <td><%=forPermit %></td>
                                <td>
-	                               	<a href="update.jsp?lno=<%=forLecturer.getNo() %>&change=<%="Y".equals(forLecturer.getPermit()) ? "2" : "1" %>">
-	                               		<span class="text-<%="Y".equals(forLecturer.getPermit()) ? "danger" : "primary" %> glyphicon glyphicon-<%="Y".equals(forLecturer.getPermit()) ? "remove" : "ok" %>-sign pull-right"></span>
+	                               	<a href="update.jsp?lno=<%=forLecturer.getNo() %>&change=<%="Y".equals(forPermit) ? "2" : "1" %>">
+	                               		<span class="text-<%="Y".equals(forPermit) ? "danger" : "primary" %> glyphicon glyphicon-<%="Y".equals(forPermit) ? "remove" : "ok" %>-sign pull-right" title="<%="Y".equals(forPermit) ? "취소하기" : "허가하기" %>"></span>
 	                               	</a>
                                </td>
                            </tr>
@@ -177,12 +177,9 @@
                      	 	}
                      	 %>
                      </ul>
-                     <div class="pull-right">
-                     	<a href="manager-lecturer.jsp" class="btn btn-default btn-sm">전체 목록으로</a>
-                     </div>                     
                  </div>                     
-                   </div>
                </div>
+           </div>
     	</div>
 	 <%@ include file="/common/footer.jsp" %>
 </body>
