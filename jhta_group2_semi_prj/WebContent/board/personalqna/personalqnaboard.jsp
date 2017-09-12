@@ -84,7 +84,7 @@
 	  	    	}
 	  	    	
 	  	    	int beginIndex = (p-1)*rowsPerPage + 1;
-	  	    	int endIndex = p*rowsPerPage;
+	  	    	 int endIndex = p*rowsPerPage;
 	  	    	
 	  	    	criteria.setBeginIndex(beginIndex);
 	  	    	criteria.setEndIndex(endIndex);
