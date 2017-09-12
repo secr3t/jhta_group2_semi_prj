@@ -80,7 +80,7 @@
 						String style = notice.getNtypeNo() == 1 ? "color:red;" : notice.getNtypeNo() == 2 ? "color:blue;" : "color:green;" ;
 						
 						
-						String ntype = notice.getNtypeNo() == 1 ? "[필독]" : notice.getNtypeNo() == 2 ? "[일반]" : "[이벤트]" ;
+						String ntype = notice.getNtypeNo() == 1 ? "[필독] " : notice.getNtypeNo() == 2 ? "[일반] " : "[이벤트] " ;
 				%>
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border: 2px solid silver;" >

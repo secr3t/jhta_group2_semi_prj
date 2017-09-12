@@ -97,7 +97,7 @@
 					for(Tech tech : techs) {
 						criteria.setStudentNo(tech.getStudent().getNo());
 						String style = tech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
-						String type = tech.getQtypeNo() == 1? "[결제]" : "[이용]";
+						String type = tech.getQtypeNo() == 1? "[결제] " : "[이용] ";
 				%>
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border:2px solid silver;">
@@ -132,8 +132,7 @@
 	  	    		List<Tech> studentTech = tdao.getAllTechBoard(criteria);
 	  	    		for (Tech sTech : studentTech) {
 	  	    			String style = sTech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
-						String type = sTech.getQtypeNo() == 1? "[결제]" : "[이용]";
-					System.out.println("st :" + sTech);
+						String type = sTech.getQtypeNo() == 1? "[결제] " : "[이용] ";
 	  	    		
 	  	    	%>
 	  	    	<div class="panel">

@@ -22,7 +22,7 @@
 	<div class="col-sm-9">
   <div class="row">
   	<div class="row">
-  	    <h1 >FAQ게시판</h1>
+  	    <h1 >문의 게시판</h1>
   	<h4>
   	<span style="color:#ff0000;"><strong>|</strong>
   	</span> 1:1 문의
