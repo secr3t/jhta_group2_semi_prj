@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <label>아이디</label>
                                 <div>
-                                    <input type="text" class="form-control" name="user-id" placeholder="이메일을 입력하세요."/>
+                                    <input type="text" class="form-control" name="user-email" placeholder="이메일을 입력하세요."/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -41,7 +41,7 @@
                              <div class="form-group">
                                 <label>연락처</label>
                                 <div>
-                                    <input type="text" class="form-control" name="user-phonenumber" placeholder="연락처를 입력하세요."/>
+                                    <input type="text" class="form-control" name="user-phone" placeholder="연락처를 입력하세요."/>
                                 </div>
                             </div>
                             <div class="form-group"> 
