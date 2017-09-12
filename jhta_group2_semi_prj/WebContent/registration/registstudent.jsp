@@ -21,7 +21,7 @@
 	Student registeredStudent = studentDao.getStudentByEmail(email);
 	
 	if (registeredStudent != null) {
-		response.sendRedirect("");
+		response.sendRedirect("registstudentform.jsp?fail=1");
 		return;
 	}
 	

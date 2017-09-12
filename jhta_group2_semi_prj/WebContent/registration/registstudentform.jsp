@@ -14,6 +14,25 @@
 <%@include file="../common/nav.jsp"%>
 
     <div class="container">
+    	<%
+			final String FAIL_CODE_DUP_ID = "1";
+			final String FAIL_CODE_SHORT_PWD = "2";
+			
+			String failCode = request.getParameter("fail");
+		%>
+		
+		<%	if (FAIL_CODE_DUP_ID.equals(failCode)) {%>
+			<div class="alert alert-danger">
+				<strong>오류</strong> 이미 사용중인 아이디입니다.
+			</div>
+		<%	}%>
+		
+		<%	if (FAIL_CODE_SHORT_PWD.equals(failCode)) {%>
+			<div class="alert alert-danger">
+				<strong>오류</strong> 비밀번호는 8글자 이상 입력하시기 바랍니다.
+			</div>
+		<%	}%>
+    	
         <div class="row">
             <form method="post" action="registsuccessform.jsp">
                 <div class="col-sm-offset-4 col-sm-5">

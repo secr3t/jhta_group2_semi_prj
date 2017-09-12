@@ -11,7 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- 버튼 스타일  -->
 	<style>
-        a:link, a:visited {
+        .registdiv:link, .registdiv:visited {
             font-size: 30px;
             width: 240px;
             transition-duration: 0.4s;
@@ -24,7 +24,7 @@
             display: inline-block;
             text-decoration: none;
         }
-        a:hover, a:active {
+        .registdiv:hover, .registdiv:active {
             background-color: white;
             color: #5bc0de;
             border: 2px solid #5bc0de;          
@@ -38,11 +38,11 @@
 <!-- 학생/강사 회원가입 구분 -->
 	<div class="container">      
         <div class="col-xs-6">
-           <a href="registstudentform.html">학생<br />회원가입</a>
+           <a class="registdiv" href="registstudentform.jsp">학생<br />회원가입</a>
         </div>
         
         <div class="col-xs-6">
-            <a href="registlecturerform.html">강사<br />회원가입</a>
+            <a class="registdiv" href="registlecturerform.jsp">강사<br />회원가입</a>
         </div>
     </div>
 
