@@ -23,8 +23,8 @@
 	<sqlMap resource="pro/board/mappers/QnaBoard.xml" />
 	<sqlMap resource="pro/mypage/mappers/MypageCourse.xml" />
 	<sqlMap resource="pro/mypage/mappers/MypageLecturer.xml" />
-	<sqlMap resource="pro/mypage/mappers/MypageStudent.xml" /><!-- 
-	<sqlMap resource="pro/enrollment/mapper/Enrollment.xml" /> -->
+	<sqlMap resource="pro/mypage/mappers/MypageStudent.xml" />
+	<sqlMap resource="pro/enrollment/mappers/Enrollment.xml" />
 	<sqlMap resource="pro/video/mapper/Video.xml" />
 	<sqlMap resource="pro/progress/mapper/Progress.xml" />
 	<sqlMap resource="pro/introducecourse/mappers/LectureCourse.xml" />
