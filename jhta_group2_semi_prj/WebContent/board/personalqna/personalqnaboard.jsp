@@ -84,27 +84,29 @@
 	  	    	}
 	  	    	
 	  	    	int beginIndex = (p-1)*rowsPerPage + 1;
-	  	    	int endIndex = p*rowsPerPage;
+	  	    	 int endIndex = p*rowsPerPage;
 	  	    	
 	  	    	criteria.setBeginIndex(beginIndex);
 	  	    	criteria.setEndIndex(endIndex);
 	  	    %>
 			<div class="panel-group col-md-9">
 				<%
-					if(loginUser.getType().toUpperCase().endsWith("A")) {
+					System.out.println(loginUser.getType());
+					if(loginUser.getType().toUpperCase().equals("A")) {
 						
 					List<Tech> techs = tdao.getAllTechBoard(criteria);
 					for(Tech tech : techs) {
-						criteria.setStudentNo(tech.getStudent().getNo());
 						String style = tech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
 						String type = tech.getQtypeNo() == 1? "[결제] " : "[이용] ";
+						System.out.println(tech);
+						System.out.println(tech);
 				%>
 			    <div class="panel">
 			        <div class="panel-heading input-lg" style="border:2px solid silver;">
 			            <h4 class="panel-title">
 			                <a href="personalqna_detail.jsp?no=<%=tech.getNo() %>" class="collapsed col-sm-9" style="<%=style %>"><%=type %><%=tech.getTitle() %></a>
 			                <%if(tech.getAnsContent() != null) { %>
-			               <button type="button" class="btn btn-success col-sm-3">답변완료 <span class="badge"><span class="glyphicon glyphicon-ok"></span></span></button>
+			               <label class="col-sm-3">답변완료 <span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span></label>
 			               <%} %>
 			            </h4>
 			        </div>
@@ -128,7 +130,6 @@
 	  	    	</form>
 	  	    </div>
 	  	    	<%} else if(loginUser.getType().toUpperCase().equals("S")) {
-	  	    		System.out.println(criteria);
 	  	    		List<Tech> studentTech = tdao.getAllTechBoard(criteria);
 	  	    		for (Tech sTech : studentTech) {
 	  	    			String style = sTech.getQtypeNo() == 1 ? "color:red;" : "color:blue;";
