@@ -20,6 +20,7 @@
 </head>
 <%@include file="../common/header.jsp"%>
 <body>
+<%@include file="../common/nav.jsp"%>
 <%
  if(request.getParameter("error")!=null){
 %>
