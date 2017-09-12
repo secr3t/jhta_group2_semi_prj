@@ -72,7 +72,7 @@
                    		for(Enrollment forEnroll : enrollList) {
                    		%>
                        		<tr>
-                       			<td><a href="../student/student-detail.jsp?no=<%=forEnroll.getStudent().getNo() %>"><%=forEnroll.getStudent().getName() %></a></td>
+                       			<td><a href="../student/student-detail.jsp?sno=<%=forEnroll.getStudent().getNo() %>"><%=forEnroll.getStudent().getName() %></a></td>
                        			<td>
                            			<div class="progress">
                                      <%

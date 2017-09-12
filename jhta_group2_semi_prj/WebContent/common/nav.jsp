@@ -33,11 +33,14 @@ User loginUser = null;
             <li><a href="#">단기과정</a></li>
             <li class=""> <a href="#">자유게시판</a></li>
          </ul>
+         
          <ul class="nav navbar-nav navbar-right">
+         <li><a href="/jhta_group2_semi_prj/board/boardmain.jsp">고객센터</a></li>
        <% if(loginUser == null) { %>
             <li > <a href="/jhta_group2_semi_prj/registration/registrationdivform.jsp">회원가입</a></li>
-            <li> <a href="/jhta_group2_semi_prj/login/login.jsp">로그인</a></li>
+            <li> <a href="/jhta_group2_semi_prj/login/login.jsp?returnUrl=<%=request.getRequestURI()%>">로그인</a></li>
          <%} else { %>
+         	<li><a href="/jhta_group2_semi_prj/mypage">마이페이지</a></li>
             <li><a href="/jhta_group2_semi_prj/login/logout.jsp">로그아웃</a></li>
          <%} %>
          </ul>

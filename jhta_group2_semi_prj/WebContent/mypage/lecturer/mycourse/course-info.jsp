@@ -31,7 +31,7 @@
  		<div class="col-sm-offset-2 page-header">
 			<h1>영상 상세 정보<small> - <%=course.getName() %></small></h1>
            	<div class="text-right">
-     			<a href="#" class="btn btn-md btn-primary">강의 페이지로</a>
+     			<a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getNo() %>" class="btn btn-md btn-primary">강의 페이지로</a>
       		</div>
 		</div>    
 

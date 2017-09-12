@@ -28,7 +28,7 @@
 		<div class="col-sm-offset-2 page-header">
 			<h1>My Page<small> - <%=course.getName() %></small></h1>
 			<div class="row text-right">
-		    	<a href="#" class="btn btn-md btn-primary">강의 페이지로 이동</a>
+		    	<a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getNo() %>" class="btn btn-md btn-primary">강의 페이지로 이동</a>
 		    </div>
 		</div>
 		

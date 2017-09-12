@@ -35,15 +35,15 @@
                              <label>강의 요약</label>
                          </div>
                          <div class="panel-body">
-                             <div class="col-sm-5">
-                                 <img src="../images/cassano.jpg" alt="강의" style="width: 200px"/>
-                            </div>
-                            <div class="col-sm-7">
-                                <h5>강의 소개</h5>
-                                <p>
-                                   	해당 강의에 대한 간략한 설명입니다.
-                                </p>
-                            </div>
+                         	<div class="col-sm-7">
+		                        <h4><strong id="course-name">강의명</strong></h4>
+		                        <p id="course-summary">
+		                         	해당 강의에 대한 간략한 설명입니다.
+		                        </p>
+                         	</div>
+                         	<div class="col-sm-5">
+                         		<h5 id="course-dept">강의 분류 :</h5>
+                         	</div>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <div class="panel-heading">
                             <label>내 수강 목록</label>
                         </div>
-                          <table class="table table-hover">
+                          <table class="table table-hover" id="course-table">
                             <colgroup>
                                 <col width="30%">
                                 <col width="15%">
@@ -99,7 +99,7 @@
 	                        			criteria.setCourseNo(forCourse.getNo());
 	                        	%>
 	                            <tr>
-	                                <td><a href="course-info.jsp?cno=<%=forCourse.getNo() %>"><%=forCourse.getName() %></a></td>
+	                                <td><a href="/mypage/course/course-info.jsp?cno=<%=forCourse.getNo() %>" class="course-info" id="course-info-<%=forCourse.getNo() %>"><%=forCourse.getName() %></a></td>
 	                                <td><%=courDao.getTotalCourseVideoByCourseNo(forCourse.getNo()) %></td>
 	                                <td><%=courDao.getTotalStudentByCourseNo(criteria) %></td>
 	                                <td>
@@ -179,4 +179,34 @@
     </div>
    	<%@ include file="/common/footer.jsp" %> 
 </body>
+<script type="text/javascript">
+	(function() {
+		var infoList = document.getElementById("course-table").getElementsByClassName("course-info");
+		
+		for(var index=0; index<infoList.length; index++) {
+			var info = infoList[index];	
+		
+			info.addEventListener("click", function(event) {
+				event.preventDefault();
+				
+				var courseNo = parseInt(event.target.id.replace("course-info-", ""));
+			
+				var xhr = new XMLHttpRequest();
+			
+				xhr.onreadystatechange = function() {
+					if(xhr.readyState == 4 && xhr.status == 200) {
+						var course = JSON.parse(xhr.responseText);
+					
+						document.getElementById("course-name").textContent = course.name;
+						document.getElementById("course-summary").textContent = course.summary;
+						document.getElementById("course-dept").textContent = "강의 분류 : " + course.dept.name;
+					};
+				};
+			
+				xhr.open("GET", "/jhta_group2_semi_prj/mypage/course/course-info.jsp?cno=" + courseNo);
+				xhr.send(null);
+			});
+		};
+	}());
+</script>
 </html>

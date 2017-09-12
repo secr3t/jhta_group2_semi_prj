@@ -36,9 +36,9 @@
 	
 	<insert id="addStudent" parameterClass="Student">
 		insert into student
-			(student_no, student_name, student_email, student_pwd, student_phone, student_point, user_type)
+			(student_no, student_name, student_email, student_pwd, student_phone, student_point)
 		values
-			(student_seq.nextval, #name#, #email#, #pwd#, #phone#, #point#, #type#)
+			(student_no_seq.nextval, #name#, #email#, #pwd#, #phone#, #point#)
 	</insert>
 
 	<update id="updateStudent" parameterClass="Student">

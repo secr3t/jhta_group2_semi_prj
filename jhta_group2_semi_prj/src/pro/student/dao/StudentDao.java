@@ -22,4 +22,8 @@ public class StudentDao {
 	public void updateStudent (Student student) throws SQLException {
 		IbatisUtils.getSqlMap().update("student.updateStudent", student);
 	}
+	
+	public void addStudent (Student student) throws SQLException {
+		IbatisUtils.getSqlMap().insert("student.addStudent", student);
+	}
 }

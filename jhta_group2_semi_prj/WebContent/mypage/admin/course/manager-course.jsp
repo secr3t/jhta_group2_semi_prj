@@ -127,8 +127,8 @@
 					 %>
                          <tr>
                              <td><a href="course-detail.jsp?cno=<%=forCourse.getNo() %>"><%=forCourse.getName() %></a></td>
-                             <td><%=forCourse.getDept().getName() %></td>
-                             <td><%=forCourse.getLecturer().getName() %></td>
+                             <td><a href="manager-course.jsp?searchopt=dept&searchtext=<%=forCourse.getDept().getName() %>"><%=forCourse.getDept().getName() %></a></td>
+                             <td><a href="../lecturer/lecturer-detail.jsp?lno=<%=forCourse.getLecturer().getNo() %>"><%=forCourse.getLecturer().getName() %></a></td>
                              <td><%=courDao.getTotalCourseVideoByCourseNo(forCourse.getNo()) %>개</td>                                
                              <td>
                              	<%=forCourse.getPermit() %>
