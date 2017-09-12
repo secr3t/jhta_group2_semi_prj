@@ -1,5 +1,5 @@
+<%@page import="pro.lecturer.dao.LecturerDao"%>
 <%@page import="com.google.gson.Gson"%>
-<%@page import="pro.introducecourse.dao.LecturerDao"%>
 <%@page import="pro.lecturer.vo.Lecturer"%>
 <%@page import="pro.dept.vo.Dept"%>
 <%@page import="java.util.List"%>
@@ -15,7 +15,7 @@
 		List<Dept> deptList = DeptDao.getInstance().getAllDepts();
 		jsonText = gson.toJson(deptList);
 	} else if ("lct".equals(type)) {
-		List<Lecturer> lecturerList = LecturerDao.getInstance().getAlllecturers();
+		List<Lecturer> lecturerList = LecturerDao.getInstance().getAllLecturers();
 		jsonText = gson.toJson(lecturerList);		
 	}
 	

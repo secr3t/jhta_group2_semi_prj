@@ -19,6 +19,7 @@ public class LecturerDao {
 		return self;
 	}	
 	
+	@SuppressWarnings("unchecked")
 	public List<Lecturer> getAllLecturers() throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("lecturer.getAllLecturers");
 	}
