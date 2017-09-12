@@ -126,7 +126,7 @@
 	                  	%>
 		                      <tr>
 		                          <td>
-		                          	<a href="#"><%=forTech.getTitle() %></a>
+		                          	<a href="/jhta_group2_semi_prj/board/personalqna/personalqna_detail.jsp?no=<%=forTech.getNo() %>"><%=forTech.getTitle() %></a>
 		                          	<%
 		                          		if(forTech.getAnsContent() != null) {
 		                          	%>

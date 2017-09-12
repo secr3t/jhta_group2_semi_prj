@@ -57,7 +57,7 @@
                     		lecCriteria.setNoAnswer("Y");
                     		List<Lecturer> lecList = lecDao.getLecturerInfo(lecCriteria);
                     		%>
-                                <label><a href="manager-lecturer.jsp">새 강사 신청</a><span class="badge"><%=lecList.size() %></span></label>
+                                <label><a href="lecturer/manager-lecturer.jsp?noAnswer=Y">새 강사 신청</a><span class="badge"><%=lecList.size() %></span></label>
                             </div>
                             <table class="table table-condensed table-hover">
                                 <colgroup>
@@ -75,6 +75,7 @@
                                 		for(Lecturer forLecturer : lecList) {
                                 	%>
                                     <tr>
+                                    	<td><a href="lecturer/lecturer-detail.jsp?lno=<%=forLecturer.getNo() %>"><%=forLecturer.getEmail() %></a></td>
                                         <td><%=forLecturer.getName() %></td>
                                         <td><%=forLecturer.getCareer() %></td>
                                     </tr>                                		
@@ -97,8 +98,8 @@
                             courCriteria.setNoAnswer("Y");
                             List<Course> courList = courDao.getCourseInfo(courCriteria);
                             %>
-                                <label>새 강의 신청<span class="badge"><%=courList.size() %></span></label>
-                                <a href="manager-course.jsp" class="pull-right">전체 강의 목록</a>
+                                <label><a href="course/manager-course.jsp?noAnswer=Y">새 강의 신청</a><span class="badge"><%=courList.size() %></span></label>
+                                <a href="course/manager-course.jsp" class="pull-right">전체 강의 목록</a>
                                 
                             </div>
                             <div class="table-responsive">
@@ -118,9 +119,9 @@
                        				for(Course forCour : courList) {
                        				%>
                        					<tr>
-                       						<td><%=forCour.getName() %></td>
-                       						<td><%=forCour.getDept().getName() %></td>
-                       						<td><%=forCour.getLecturer().getName() %></td>
+                       						<td><a href="course/course-detail.jsp?cno=<%=forCour.getNo() %>"><%=forCour.getName() %></a></td>
+                       						<td><a href="course/manager-course.jsp?searchopt=dept&searchtext=<%=forCour.getDept().getName() %>"><%=forCour.getDept().getName() %></a></td>
+                       						<td><a href="lecturer/lecturer-detail.jsp?lno=<%=forCour.getLecturer().getNo() %>"><%=forCour.getLecturer().getName() %></a></td>
                        					</tr>
                        				<%
                        				}
@@ -159,7 +160,7 @@
                                     for(Video forVideo : videoList) {
                                     %>
                                         <tr>
-                                            <td><a href="video-detail.jsp?vno=<%=forVideo.getNo() %>"><%=forVideo.getTitle() %></a></td>
+                                            <td><a href="course/video-detail.jsp?vno=<%=forVideo.getNo() %>"><%=forVideo.getTitle() %></a></td>
                                             <td><%=forVideo.getCourse().getName() %></td>
                                             <td><%=forVideo.getDescription() %></td>
                                         </tr>                               
@@ -201,8 +202,8 @@
 		                            for(Tech forTech : techList) {
 		                            %>
                                         <tr>
-                                            <td><a href="#"><%=forTech.getTitle() %></a></td>
-                                            <td><%=forTech.getStudent().getName() %></td>
+                                            <td><a href="/jhta_group2_semi_prj/board/personalqna/personalqna_detail.jsp?no=<%=forTech.getNo() %>"><%=forTech.getTitle() %></a></td>
+                                            <td><a href="student/student-detail.jsp?sno=<%=forTech.getStudent().getNo() %>"><%=forTech.getStudent().getName() %></a></td>
                                             <td><%=DateUtils.yyyymmddhhmmss(forTech.getQuesRegdate()) %></td>
                                         </tr>                               
                                     <%

@@ -135,7 +135,7 @@
 	                  	%>
 		                      <tr>
 		                          <td>
-		                          	<a href="#"><%=forQna.getTitle() %></a>
+		                          	<a href="/jhta_group2_semi_prj/board/qnaboard/qna_detail.jsp?p=<%=forQna.getNo() %>"><%=forQna.getTitle() %></a>
 		                          	<%
 		                          		if(forQna.getAnsContent() != null) {
 		                          	%>

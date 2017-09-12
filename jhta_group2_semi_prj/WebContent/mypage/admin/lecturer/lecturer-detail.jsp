@@ -75,7 +75,7 @@
 	                 	for(Course forCourse : courList) {
 	                 	%>	                 	
 		                     <tr>
-			                     <td><a href="#"><%=forCourse.getName() %></a></td>
+			                     <td><a href="../course/course-detail.jsp?cno=<%=forCourse.getNo() %>"><%=forCourse.getName() %></a></td>
 			                     <td><%=forCourse.getDept().getName() %></td>
 			                     <td>
 			                     	<%=MypageCourseDao.getInstance().getTotalCourseVideoByCourseNo(forCourse.getNo()) %>개
