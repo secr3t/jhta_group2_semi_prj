@@ -214,8 +214,8 @@ div.item {
 	</div>
 </div>
 <div class="left-banner">
-	<img src="http://img.megastudy.net/main/scroll/sky_170828_left_ysh.jpg"
-		border="0" alt="전체메인 고3·N수 LEFT (상단)/SS배너/윤성훈T 패키지 30% 할인(20170828부터)">
+	<img src="images/work-ant-1-2.png"
+		border="0" alt="메인 왼쪽 배너 10월의 강사 박성환">
 </div>
 <div class="right-banner">
 	<img src="http://img.megastudy.net/Main/scroll/sky_170801_mtab01.jpg"

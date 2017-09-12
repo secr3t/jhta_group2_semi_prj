@@ -2,6 +2,9 @@
 <%@page import="pro.video.dao.VideoDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%VideoDao dao = VideoDao.getInstance();
+
+%>
 <style>
 .pull-left {
 	height: 480px;
