@@ -27,6 +27,6 @@
 	
 	studentDao.updateStudent(student);
 	
-	response.sendRedirect("/jhta_group2_semi_prj/payment/payment.jsp");
+	response.sendRedirect("/jhta_group2_semi_prj/index.jsp");
 
 %>
