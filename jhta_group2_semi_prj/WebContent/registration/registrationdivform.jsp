@@ -40,15 +40,19 @@
 <%@include file="../common/nav.jsp"%>
 
 <!-- 학생/강사 회원가입 구분 -->
-	<div class="container">      
-        <div class="col-xs-6">
+	<div class="container">
+		<div class="col-xs-3"></div>      
+        <div class="col-xs-3">
            <a class="registdiv" href="registstudentform.jsp">학생<br />회원가입</a>
         </div>
-        
-        <div class="col-xs-6">
+
+        <div class="col-xs-3">
             <a class="registdiv" href="registlecturerform.jsp">강사<br />회원가입</a>
         </div>
+        <div class="col-xs-3"></div>
     </div>
+	
+<%@include file="../common/footer.jsp"%>
 
 </body>
 </html>
