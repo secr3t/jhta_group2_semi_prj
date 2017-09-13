@@ -29,7 +29,7 @@
 	%>
     <div class="container">
  		<div class="col-sm-offset-2 page-header">
-			<h1>영상 상세 정보<small> - <%=course.getName() %></small></h1>
+			<h1>영상 상세 정보<small> - <%=course.getName() %></small><span class="label label-<%="Y".equals(course.getPermit()) ? "info" : "warning" %> pull-right"><%="Y".equals(course.getPermit()) ? "허가 완료" : "미허가" %></span></h1>
            	<div class="text-right">
      			<a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getNo() %>" class="btn btn-md btn-primary">강의 페이지로</a>
       		</div>
@@ -46,7 +46,7 @@
                     <p><%=course.getSummary() %></p>
                 </div>
                 <div class="col-sm-4">
-                    <img src="/jhta_group2_semi_prj/images/<%=lecturer.getPicture() %>" alt="강사사진" style="width: 240px;"/>
+                    <img src="<%=lecturer.getPicture() %>" alt="강사사진" style="width: 240px;"/>
                 </div>
             </div>
             
@@ -63,7 +63,7 @@
                         </colgroup>
                         <tr>
                             <th>현재 등록된 강의 수</th><td><%=courDao.getTotalCourseVideoByCourseNo(course.getNo()) %>개</td>
-                            <td><a href="upload-lectureform.jsp?cno=<%=course.getNo() %>" class="btn btn-info pull-right">새영상 등록</a></td>
+                            <td><a href="video-info.jsp?cno=<%=course.getNo() %>" class="btn btn-info pull-right">영상 관리</a></td>
                         </tr>                        
                         <tr>
                         <%

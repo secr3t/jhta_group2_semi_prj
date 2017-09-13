@@ -74,6 +74,7 @@
 			A.course_no			no
 			,A.course_name		name
 			,A.course_summary	summary
+			,A.course_permit	permit
 			,B.dept_no			"dept.no"
 			,B.dept_name		"dept.name"
 			,C.lecturer_no		"lecturer.no"

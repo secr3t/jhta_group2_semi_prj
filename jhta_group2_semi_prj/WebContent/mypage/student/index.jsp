@@ -70,7 +70,8 @@
                  <div class="col-sm-12">
                      <div class="panel panel-info">
                          <div class="panel-heading">
-                             <label><a href="mycourse/mycourse.jsp" class="pull-right">내 수강 목록</a></label>
+                             <label><a href="mycourse/mycourse.jsp">내 수강 목록</a></label>
+                             <a href="/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/index.jsp" class="btn btn-info btn-xs pull-right">강의 찾기</a>
                          </div>
                          <table class="table table-condensed table-hover">
                              <colgroup>
@@ -87,6 +88,13 @@
                                  <%
                                  	MypageStudentDao stuDao = MypageStudentDao.getInstance();
                                  	List<Enrollment> enrollList= stuDao.getEnrollmentByStudentNo(student.getNo());
+                                 	if(enrollList.size() == 0) {
+                                 %>
+                                 <tr>
+                                 	<td colspan="12" class="text-center">신청한 강의가 존재하지 않습니다.</td>
+                                 </tr>
+                                 <%
+                                 	}
                                  	for(Enrollment forEnroll : enrollList) {
                                  %>
                                  <tr>
@@ -139,6 +147,13 @@
                                 		qnaCriteria.setBeginIndex(1);
                                 		qnaCriteria.setEndIndex(5);
                                 		List<Qna> qnaList = stuDao.getQnaByStudentNo(qnaCriteria);
+                                		if(qnaList.size() == 0) {
+                                	%>
+                                	<tr>
+	                                	<td colspan="12" class="text-center">질문이 존재하지 않습니다.</td>
+	                                </tr>
+                                	<%
+                                		}
                                 		for(Qna forQna : qnaList) {
                                 	%>
                                     <tr>
@@ -190,6 +205,13 @@
                                 		techCriteria.setBeginIndex(1);
                                 		techCriteria.setEndIndex(5);
                                 		List<Tech> techList = stuDao.getTechInfo(techCriteria);
+                                		if(techList.size() == 0) {
+                                	%>
+	                                <tr>
+	                                	<td colspan="12" class="text-center">질문이 존재하지 않습니다.</td>
+	                                </tr>
+                                	<%
+                                		}
                                 		for(Tech forTech : techList) {
                                 	%>
                                     <tr>
