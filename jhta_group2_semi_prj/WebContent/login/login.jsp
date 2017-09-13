@@ -9,12 +9,12 @@ String returnUrl = request.getParameter("returnUrl");
 %>
 <%@include file="../common/nav.jsp"%>
 <div class="container">
-		<div class="col-sm-2">
+		<div class="col-xs-4">
 		</div>
-		<div class="col-sm-9">
+		<div class="col-xs-4">
 			<%@include file="body.jsp"%>
 		</div>
-	<div class="col-sm-1"></div>
+	<div class="col-xs-4"></div>
 	</div>
 	<%@include file="../common/footer.jsp"%>
 </body>
