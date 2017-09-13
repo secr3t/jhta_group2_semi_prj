@@ -7,7 +7,6 @@
 	<%@include file="common/nav.jsp"%>
 	<div class="container">
 		<div class="col-sm-2">
-			<%@include file="template/left-menu.jsp" %>
 		</div>
 		<div class="col-sm-9">
 			<%@include file="body.jsp"%>

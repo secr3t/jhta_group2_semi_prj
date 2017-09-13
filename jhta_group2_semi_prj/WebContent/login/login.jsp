@@ -6,6 +6,7 @@
 <body>
 <%
 String returnUrl = request.getParameter("returnUrl");
+System.out.println(returnUrl);
 %>
 <%@include file="../common/nav.jsp"%>
 <div class="container">

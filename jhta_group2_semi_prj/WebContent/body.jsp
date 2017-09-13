@@ -190,8 +190,7 @@ div.item {
 					<%= LectureCourseDao.getInstance().getCourseByLecturerNo(1).get(0).getDetail()%>
 					</p>
 					<p>
-						<a href="#" class="btn btn-primary" role="button">Button</a> <a
-							href="#" class="btn btn-default" role="button">Button</a>
+						<a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=3" class="btn btn-primary" role="button">대표 강의소개</a>
 					</p>
 				</div>
 			</div>
@@ -215,8 +214,7 @@ div.item {
 					<%= LectureCourseDao.getInstance().getCourseByLecturerNo(2).get(0).getDetail()%>
 					</p>
 					<p>
-						<a href="#" class="btn btn-primary" role="button">Button</a> <a
-							href="#" class="btn btn-default" role="button">Button</a>
+						<a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=6" class="btn btn-primary" role="button">대표 강의소개</a> 
 					</p>
 				</div>
 			</div>
