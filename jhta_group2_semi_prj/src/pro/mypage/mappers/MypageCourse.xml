@@ -166,7 +166,15 @@
 						and B.dept_name like '%' || #keyword# || '%'
 					</isEqual>
 				</isNotNull>
-			</isNotNull>		
+			</isNotNull>
+			<isNotNull property="noAnswer">
+				<isEqual property="noAnswer" compareValue="Y">
+					and A.course_permit = 'N'	
+				</isEqual>
+				<isEqual property="noAnswer" compareValue="N">
+					and A.course_permit = 'Y'	
+				</isEqual>
+			</isNotNull>	
 		</dynamic>
 	</select>
 	
