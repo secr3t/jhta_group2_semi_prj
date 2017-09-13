@@ -8,18 +8,25 @@
 <%
 	request.setCharacterEncoding("utf-8");
 		
+	Postscription pos = new Postscription();
 
 	String title = request.getParameter("title");
 	String contents = request.getParameter("contents");
 	String grade = request.getParameter("inlineRadioOptions");
+	if(request.getParameter("inlineRadioOptions") != null) {
 	int no = Integer.parseInt(request.getParameter("inlineRadioOptions"));
-		
-	Postscription pos = new Postscription();
+	pos.setGrade(no);
+	} else {
+		response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp?error=1");
+		return;
+	}
+	
 	Student student = new Student();
 	Course course = new Course();
 	User user = (User)session.getAttribute("loginUser");
 	
 	AfterBoardDao adao = AfterBoardDao.getInstance();	
+	if(user !=  null && user.getType().toUpperCase().equals("S")) {	
 
 	if(request.getParameter("type") != null) {
 	int courseNo = Integer.parseInt(request.getParameter("type"));
@@ -29,7 +36,6 @@
 		course.setNo(cosNo);
 	}
 	
-	if(user !=  null && user.getType().toUpperCase().equals("S")) {	
 		
 		student.setNo(((Student)user).getNo());
 		
@@ -37,7 +43,7 @@
 		pos.setCourse(course);
 		pos.setTitle(title);
 		pos.setContent(contents);
-		pos.setGrade(no);
+		
 		pos.setActive("Y");
 		pos.setCourse(course);
 		
@@ -45,6 +51,7 @@
 	
 	response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp");
 	} else {
+		response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture_write.jsp?error=1");
 		return;
 	}
 		

@@ -6,10 +6,12 @@
  <%
  	User user = (User)session.getAttribute("loginUser");
  	int no = Integer.parseInt(request.getParameter("no"));
-	 	
+	 
+ 	System.out.println(no);
  	QnaBoardDao qdao = QnaBoardDao.getInstance();
  	Qna qna = qdao.getQnaBoardByNo(no);
- 	
+ 	System.out.println(qna);
+ 	System.out.println(user);
 	if(user != null && qna.getStudent().getNo() == user.getNo()) {
  	qdao.deleteQnaBoard(no);
  	response.sendRedirect("/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp");

@@ -32,7 +32,6 @@
 	  					
 	  					Postscription pos = adao.getAfterBoardByNo(no);
 	  					
-	  					System.out.println(pos);
 	  				 %>
 	  				<tr>
 	  					<th>제목</th>
@@ -57,7 +56,7 @@
 	  				<%if(loginUser != null && loginUser.getNo() == pos.getStudent().getNo()) { %>
 	  				<a href="/jhta_group2_semi_prj/board/afterlecture/delete_afterlecture.jsp?bno=<%=pos.getNo() %>" class="btn btn-danger btn-md">삭제</a>
 	  				<%} %>
-	  				<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-primary btn-md">돌아가기</a>
+	  				<a href="<%=request.getParameter("url") %>" class="btn btn-primary btn-md">돌아가기</a>
 	  			</div>
 	  		</div>
 	  </div>

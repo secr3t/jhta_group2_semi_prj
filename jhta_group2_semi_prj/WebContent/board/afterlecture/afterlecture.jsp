@@ -124,7 +124,7 @@
 						
 					    <tr>
 					       <th><%=board.getNo() %></th>
-					       <th><a href="afterlecture_detail.jsp?bno=<%=board.getNo() %>"><%=board.getTitle() %></a></th>
+					       <th><a href="afterlecture_detail.jsp?bno=<%=board.getNo() %>&url=<%=request.getRequestURI() %>"><%=board.getTitle() %></a></th>
 							<th><%=board.getStudent().getName() %></th>
 							<th><%=DateUtils.yyyymmdd(board.getRegdate()) %></th>
 							<th><%=board.getGrade() %></th>
