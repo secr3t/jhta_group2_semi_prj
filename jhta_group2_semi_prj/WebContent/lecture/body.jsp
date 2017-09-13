@@ -54,7 +54,7 @@ ul>li>a>.thumbnail {
 				<%
 				}
 				%>
-			</ul>
+			</ul> 
 		</div>
 		<div class="container">
 			<div class="center-block">
