@@ -130,13 +130,14 @@
 		select
 			A.course_no			no
 			,A.course_name		name
-			,A.course_summary		summary
-			,A.course_detail		detail
+			,A.course_summary	summary
+			,A.course_detail	detail
 			,A.course_point		point
+			,A.course_permit	permit
 			,A.dept_no			"dept.no"
 			,B.dept_name		"dept.name"
 		from (select row_number() over(order by course_no desc) rn, course_no ,course_name
-					,course_summary ,course_detail ,course_point ,dept_no, lecturer_no
+					,course_summary ,course_detail ,course_point, course_permit ,dept_no, lecturer_no
 			from course) A, dept B 
 		where A.dept_no = B.dept_no
 		and A.lecturer_no = #lecturerNo#
@@ -203,7 +204,7 @@
 					where qna_active = 'Y'
 					and course_no in (select course_no
 									from course
-									where lecturer_no = 1)) A, course B, student C
+									where lecturer_no = #lecturerNo#)) A, course B, student C
 				where A.course_no = B.course_no
 				and A.student_no = C.student_no
 				<dynamic>
@@ -231,8 +232,8 @@
 				</dynamic>
 				) D
 		<![CDATA[
-		where D.rn >= 1
-		and D.rn <= 10
+		where D.rn >= #beginIndex#
+		and D.rn <= #endIndex#
 		]]>
 	</select>
 	
