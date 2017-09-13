@@ -26,5 +26,14 @@
 		order by A.ENROLLMENT_NO asc
 	</select>
 	
+		<select id="getEnrolledListsByStudentNo" parameterClass="int" resultClass="Enrollment">
+		select
+			student_no		as "student.no",
+			course_no		as "course.no"
+		from 
+			enrollment
+		where student_no = #value#
+	</select>
+	
 
 </sqlMap>

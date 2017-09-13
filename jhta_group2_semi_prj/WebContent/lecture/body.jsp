@@ -14,7 +14,16 @@ int courseNo = StringUtils.changeIntToString(request.getParameter("courseNo"));
 int orderNo = StringUtils.changeIntToString(request.getParameter("orderNo"));
 VideoDao videoDao = VideoDao.getInstance();
 List<Video> lists = videoDao.getVideosByCourseNo(courseNo);
-String src = lists.get(orderNo - 1).getLink();
+String src = "v=1";
+System.out.println(courseNo);
+System.out.println(lists);
+
+for(Video video : lists){
+	if(video.getOrder() == orderNo){
+		src =video.getLink();
+		break;
+	}
+}
 %>
 <style>
 .pull-left {

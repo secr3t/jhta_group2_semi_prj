@@ -16,10 +16,14 @@
 	for(Video video : videoLists) {
 	%>
 	<div class="row">
-	<a href="/jhta_group2_semi_prj/lecture/index.jsp?=<%=courseNo %>
-		&orderNo=<%=count %>" target="_blank">링크</a>
+	
+	<a href="/jhta_group2_semi_prj/lecture/index.jsp?courseNo=<%=courseNo %>
+		&orderNo=<%=count %>" target="_blank">
+		<span class="col-sm-offset-1 col-sm-4">강의 <%=count %> </span><span class="small col-sm-6"><%=video.getTitle() %></span>
+	</a>
 	</div>
 	<%
+	count++;
 	}
 	%>
 </div>
