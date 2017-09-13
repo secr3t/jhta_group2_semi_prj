@@ -27,4 +27,6 @@ public class StringUtils {
 		}
 		return str.trim();
 	}
+	
+	
 }
