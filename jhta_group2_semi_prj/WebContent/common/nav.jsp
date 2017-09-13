@@ -29,9 +29,9 @@ User loginUser = null;
          </div>
          <ul class="nav navbar-nav">
             <li class=""> <a href="/jhta_group2_semi_prj/">홈</a></li>
-            <li><a href="#">정규과정</a></li>
-            <li><a href="#">단기과정</a></li>
-            <li class=""> <a href="enrollment/enrollment-table.jsp">자유게시판</a></li>
+            <li><a href="/jhta_group2_semi_prj/lecturedisplay/lecturesdisplay/index.jsp">강의목록</a></li>
+            <li><a href="/jhta_group2_semi_prj/payment/payment.jsp">포인트 충전</a></li>
+            <li class=""> <a href="/jhta_group2_semi_prj/enrollment/enrollment-table.jsp">수강신청</a></li>
          </ul>
          
          <ul class="nav navbar-nav navbar-right">
