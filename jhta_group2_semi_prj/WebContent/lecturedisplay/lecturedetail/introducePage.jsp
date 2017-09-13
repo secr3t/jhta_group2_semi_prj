@@ -43,12 +43,14 @@ if(request.getParameter("sheight")!=null){
    
    </script>
    <div class="row well">
-        <div class="col-sm-3">
-            <img src=<%=lecturer.getPicture() %> style="width: 70%;">
+        <div class="col-sm-3 text-center">
+        <a href="/jhta_group2_semi_prj/lecture/index.jsp?courseNo=<%=course.getNo() %>&orderNo=<%=1 %>">
+            <img src="/jhta_group2_semi_prj/images/맛보기동영상.jpg" style="width: 90%;">
             <p><strong>맛보기 동영상</strong></p>
+        </a>
         </div>
         <div class="col-sm-6">
-            <h3><%=course.getName() %></h3>
+            <h2><strong><%=course.getName() %></strong></h2>
             <h4><%=course.getSummary() %></h4>
         </div>
         
@@ -56,8 +58,8 @@ if(request.getParameter("sheight")!=null){
            <div class="row">
                <br>
            </div>
-            <div class="text-left">
-                <p><small>강사 : <%=lecturer.getName() %></small></p>
+            <div class="text-left" style="font-size:20px; font-weight: bold;">
+                <p><small><strong>강사 : <%=lecturer.getName() %></strong></small></p>
                 <p><small>강의수 : <%=videoDao.getVideoQtrByCourseNo(courseNo) %>강</small></p>
                 <p><small>가격 : <%=course.getPoint() %>P</small></p>
             </div>
@@ -81,22 +83,25 @@ if(request.getParameter("sheight")!=null){
             <div class="row well">
                 <div class="row">
                     <div class="col-sm-8">
-                       <h4><strong>과정소개</strong></h4>
+                       <h3><strong>과정소개</strong></h3>
                     </div>
                     <div class="col-sm-4">
                         <span><strong>평점 : </strong></span>
-						<span><%= Math.round((lecturePostScriptDao.getPostscriptionAvgGradeByCourseNo(courseNo)*1000)/1000) %></span>
+                        <%
+                       		double avg = lecturePostScriptDao.getPostscriptionAvgGradeByCourseNo(courseNo);
+                        %>
+						<span><%=(double)Math.round(avg*10)/10 %></span>
                     </div>
                 </div>
                 <div class="col-sm-12 row">
                     <div style="padding-top:20px">
-                        <p><%=course.getDetail() %></p>
+                        <%=course.getDetail().replace(System.lineSeparator(), "<br/>") %>
                     </div>
                 </div>
                
                 <div class="row">
                     <div class="col-sm-8"  style="padding-top:30px;">
-                        <h4><strong>강사소개</strong></h4>
+                        <h3><strong>강사소개</strong></h3>
                     </div>
                 </div>    
                 <div class="row">
@@ -210,8 +215,10 @@ if(request.getParameter("sheight")!=null){
              	 </ul>
                	</div>
        		  </div>
-       		 </div>  
-      	</div>  
+       		  <div class="row">
+       		  	<img alt="광고" src="/jhta_group2_semi_prj/images/오른쪽배너.jpg"  width="100%">
+       		  </div>
+      		</div>  
      </div>
 <%@include file="../../common/footer.jsp" %>
 </body>
