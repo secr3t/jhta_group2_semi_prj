@@ -1,3 +1,6 @@
+<%@page import="pro.course.vo.Course"%>
+<%@page import="java.util.List"%>
+<%@page import="pro.introducecourse.dao.LectureCourseDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,25 +37,35 @@
 	  	    <hr>
 				<div class="container">
 					<div class="row">
-						<form class="form-horizontal" method="post" action="/jhta_group2_semi_prj/board/qnaboard/add_qna.jsp">
+						<form class="form-horizontal col-sm-9" method="post" action="/jhta_group2_semi_prj/board/qnaboard/add_qna.jsp">
 							<div class="form-group">
 								<label class="col-sm-1 control-label">제목</label>
 								<div class="col-sm-7">
 									<input type="text" class="form-control" name="title" />
 								</div>
-								<div class="col-sm-4">
-									<input type="hidden" class="form-control"/>
-								</div>
-								</div>
-							
+								<div class="col-sm-1 control-label">
+										<strong>과정명</strong>
+									</div>
+									<select class="form-control col-sm-2 control-label" style="width: 120px;" name="type" id="subject">
+									<%LectureCourseDao ldao = LectureCourseDao.getInstance();
+										List<Course> courses = ldao.getAllCourses();
+										if(request.getParameter("courseNo")== null) {
+										for(Course course : courses) {
+									%>
+										<option value="<%=course.getNo()%>"><%=course.getName() %></option>
+									<%
+											}
+										} %>
+									</select>
+							</div>
 							<div class="form-group">
 								<label class="col-sm-1 control-label">내용</label>
-								<div class="col-sm-7 control-label">
+								<div class="col-sm-10 control-label">
 									<textarea rows="6" class="form-control " name="contents"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
-									<div class="col-sm-offset-1 col-sm-7 text-right">
+									<div class="col-sm-offset-1 col-sm-10 text-right">
 										<a href="/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp" class="btn btn-warning btn-md">취소</a>
 										<button type="submit" class="btn btn-primary btn-md">완료</button>
 									</div>

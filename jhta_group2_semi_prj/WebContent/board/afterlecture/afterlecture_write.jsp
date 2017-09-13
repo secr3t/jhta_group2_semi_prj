@@ -8,6 +8,15 @@
 <%@include file="../../common/header.jsp"%>
 <body>
 <%@include file="../../common/loginCheck.jsp"%>
+<%
+ if(request.getParameter("error")!=null){
+%>
+<script type="text/javascript">
+	alert("입력되지 않은 항목이 있습니다.");
+</script>
+<%  
+ }
+%>
 
 <%@include file="../../common/nav.jsp"%>
 <div class="content-primary">
@@ -84,6 +93,9 @@
 									<textarea rows="6" class="form-control " name="contents"></textarea>
 								</div>
 							</div>
+							
+						
+							
 							<div class="form-group">
 								<div class="col-sm-offset-1 col-sm-10 text-right">
 									<a href="/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp" class="btn btn-warning btn-md">취소</a>
