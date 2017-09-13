@@ -29,7 +29,7 @@
 	%>
     <div class="container">
  		<div class="col-sm-offset-2 page-header">
-			<h1>영상 상세 정보<small> - <%=course.getName() %></small><span class="label label-<%="Y".equals(course.getPermit()) ? "info" : "warning" %> pull-right"><%="Y".equals(course.getPermit()) ? "허가 완료" : "미허가" %></span></h1>
+			<h1>영상 상세 정보<small> - <%=course.getName() %></small><span class="label label-<%="Y".equals(course.getPermit()) ? "info" : "warning" %> pull-right"><%="Y".equals(course.getPermit()) ? "강의 중" : "미허가" %></span></h1>
            	<div class="text-right">
      			<a href="/jhta_group2_semi_prj/lecturedisplay/lecturedetail/introducePage.jsp?courseNo=<%=course.getNo() %>" class="btn btn-md btn-primary">강의 페이지로</a>
       		</div>
@@ -42,8 +42,28 @@
             
             <div class="row well">
                 <div class="col-sm-8">
-                    <label>강의 소개</label>
+                    <label>강의 요약</label>
+                <%
+                if(request.getParameter("update") == null) {
+                %>
                     <p><%=course.getSummary() %></p>
+                    <hr/>
+                    <label>강의 소개</label>
+                    <p><%=course.getDetail() %></p>
+                    <a href="?cno=<%=course.getNo() %>&update" class="btn btn-primary pull-right">수정</a>
+                <%
+                } else {
+                %>	<form method="post" action="update-course.jsp">
+                		<input type="hidden" name="cno" value="<%=courseNo %>"/>
+	                    <textarea rows="2" name="coursesummary" class="form-control"><%=course.getSummary() %></textarea>
+	                    <hr/>
+	                    <label>강의 소개</label>
+	                    <textarea rows="15" name="coursedetail" class="form-control"><%=course.getSummary() %></textarea>
+	                    <button type="submit" class="btn btn-primary pull-right">수정</button>
+                    </form>
+                <%	
+                }
+                %>
                 </div>
                 <div class="col-sm-4">
                     <img src="<%=lecturer.getPicture() %>" alt="강사사진" style="width: 240px;"/>

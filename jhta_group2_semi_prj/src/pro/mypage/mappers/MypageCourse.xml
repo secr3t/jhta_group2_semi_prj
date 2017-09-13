@@ -74,6 +74,7 @@
 			A.course_no			no
 			,A.course_name		name
 			,A.course_summary	summary
+			,A.course_detail	detail
 			,A.course_permit	permit
 			,B.dept_no			"dept.no"
 			,B.dept_name		"dept.name"
@@ -186,9 +187,9 @@
 			from course_video
 			where course_video_link is not null
 			<dynamic>
-				<isNotNull property="courseNo">
+				<isNotEqual property="courseNo" compareValue="0">
 					and course_no = #courseNo#
-				</isNotNull>
+				</isNotEqual>
 				<isNotNull property="noAnswer">
 					<isEqual property="noAnswer" compareValue="Y">
 						and course_video_permit = 'N'

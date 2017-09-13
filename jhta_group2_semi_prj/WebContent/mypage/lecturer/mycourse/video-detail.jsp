@@ -61,10 +61,10 @@
                         	<th>강의순서</th><td><%=video.getOrder() %></td>
                        	</tr>
                        	<tr>
-                        	<th colspan="2">링크 주소</th><td colspan="10"><%=video.getLink() %></td>
+                        	<th colspan="2">링크 주소</th><td colspan="10"><a href="<%=video.getLink() %>"><%=video.getLink() %></a></td>
                        	</tr>
                        	<tr>
-                        	<th colspan="2">첨부파일</th><td colspan="10"><%=video.getAttached() %></td>
+                        	<th colspan="2">첨부파일</th><td colspan="10"><a href="/jhta_group2_semi_prj/mypage/admin/course/download.jsp?fname=<%=video.getAttached() %>"><%=video.getAttached() %></a></td>
                        	</tr>
                     </table>
                 </div>

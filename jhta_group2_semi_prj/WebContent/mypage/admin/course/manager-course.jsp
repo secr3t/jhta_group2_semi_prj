@@ -122,6 +122,13 @@
                      }
                      
                      List<Course> courList = courDao.getCourseInfo(criteria);
+                     if(courList.size() == 0) {
+                   	 %>
+                  	<tr>
+                   		<td colspan="12" class="text-center">강의가 존재하지 않습니다.</td>
+                   	</tr>                   	 
+                   	 <%
+                     }
                      for(Course forCourse : courList) {
                     	 String forPermit = forCourse.getPermit();
 					 %>
@@ -166,14 +173,14 @@
                      	 	}
                      	 %>
                      	 <%
-                     	 	if(nowPage != totalPages) {
+                     	 	if(nowPage < totalPages) {
                      	 %>
 	                         	<li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=nowPage + 1 %>"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
                      	 <%
                      	 	}
                      	 %>
                      	 <%
-                     	 	if(nowBlock != totalBlock) {
+                     	 	if(nowBlock < totalBlock) {
                      	 		
                      	 %>
 		                         <li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=beginPage + pagesPerBlock %>"><span class="glyphicon glyphicon-forward"></span></a></li>

@@ -56,7 +56,7 @@
                     		lecCriteria.setEndIndex(10);
                     		lecCriteria.setNoAnswer("Y");
                     		List<Lecturer> lecList = lecDao.getLecturerInfo(lecCriteria);
-                    		%>
+                            %>
                                 <label><a href="lecturer/manager-lecturer.jsp?noAnswer=Y">새 강사 신청</a><span class="badge"><%=lecList.size() %></span></label>
                             </div>
                             <table class="table table-condensed table-hover">
@@ -72,7 +72,14 @@
                                 </thead>
                                 <tbody>
                                 	<%
-                                		for(Lecturer forLecturer : lecList) {
+		                    		if(lecList.size() == 0) {
+		                    		%>
+		                            <tr>
+		                            	<td colspan="12" class="text-center">새 강사가 존재하지 않습니다.</td>
+		                            </tr>                    		
+		                    		<%
+		                    		}
+                                	for(Lecturer forLecturer : lecList) {
                                 	%>
                                     <tr>
                                     	<td><a href="lecturer/lecturer-detail.jsp?lno=<%=forLecturer.getNo() %>"><%=forLecturer.getEmail() %></a></td>
@@ -80,7 +87,7 @@
                                         <td><%=forLecturer.getCareer() %></td>
                                     </tr>                                		
                                 	<%		
-                                		}                                		
+                                	}                                		
                                 	%>
                                 </tbody>
                             </table>
@@ -115,7 +122,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                       				<%
+                                	<%
+		                    		if(courList.size() == 0) {
+		                    		%>
+		                            <tr>
+		                            	<td colspan="12" class="text-center">새 강의가 존재하지 않습니다.</td>
+		                            </tr>                    		
+		                    		<%                                    
+		                    		}
                        				for(Course forCour : courList) {
                        				%>
                        					<tr>
@@ -157,6 +171,13 @@
                                     </thead>
                                     <tbody>
                                     <%
+		                    		if(videoList.size() == 0) {
+		                    		%>
+		                            <tr>
+		                            	<td colspan="12" class="text-center">새 영상이 존재하지 않습니다.</td>
+		                            </tr>                    		
+                                    <%
+		                    		}
                                     for(Video forVideo : videoList) {
                                     %>
                                         <tr>
@@ -198,7 +219,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-		                            <%
+                                    <%
+		                    		if(techList.size() == 0) {
+		                    		%>
+		                            <tr>
+		                            	<td colspan="12" class="text-center">새 강사가 존재하지 않습니다.</td>
+		                            </tr>                    		
+		                    		<%
+		                            }
 		                            for(Tech forTech : techList) {
 		                            %>
                                         <tr>
