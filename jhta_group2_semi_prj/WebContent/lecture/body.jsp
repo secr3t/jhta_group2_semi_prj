@@ -48,8 +48,8 @@ ul>li>a>.thumbnail {
 			%>
 				<li><a href='/jhta_group2_semi_prj/lecture/index.jsp?courseNo=<%=courseNo %>&orderNo=<%=video.getOrder()%>'> <img src='<%=lecturer.getPicture() %>' alt=''
 						class='pull-right thumbnail'>
-						<p>강의1</p>
-						<p class="small">강의 설명</p>
+						<p>강의 <%=video.getOrder()%> </p>
+						<p class="small"><%=video.getTitle()%></p>
 				</a></li>
 				<%
 				}
