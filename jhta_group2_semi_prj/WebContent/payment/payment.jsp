@@ -15,6 +15,7 @@ input#point {
 <%
 	if(!"S".equals(loginUser.getType().toUpperCase())){
 		response.sendError(401);
+		return;
 	}
 	Student student = (Student)loginUser;
 	

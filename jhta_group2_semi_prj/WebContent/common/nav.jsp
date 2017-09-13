@@ -8,15 +8,7 @@
 <%
 User loginUser = null;
 	loginUser = (User) session.getAttribute("loginUser");
-String parameter = null;
-Enumeration<String> params = request.getParameterNames();
-while(params.hasMoreElements()){
-	String currParamName =  params.nextElement();
-	parameter += currParamName;
-	parameter += "=";
-	parameter += request.getParameter(currParamName);
-	parameter += "&";
-}
+String parameter = request.getQueryString();
 if(parameter == null)
 	parameter = "";
 %>
@@ -50,7 +42,7 @@ if(parameter == null)
          <li><a href="/jhta_group2_semi_prj/board/boardmain.jsp">고객센터</a></li>
        <% if(loginUser == null) { %>
             <li > <a href="/jhta_group2_semi_prj/registration/registrationdivform.jsp">회원가입</a></li>
-            <li> <a href="/jhta_group2_semi_prj/login/login.jsp?returnUrl=<%=request.getRequestURI()+parameter%>">로그인</a></li>
+            <li> <a href="/jhta_group2_semi_prj/login/login.jsp?returnUrl=<%=request.getRequestURI()+"?"+parameter%>">로그인</a></li>
          <%} else { %>
          	<li><a href="/jhta_group2_semi_prj/mypage">마이페이지</a></li>
             <li><a href="/jhta_group2_semi_prj/login/logout.jsp">로그아웃</a></li>
