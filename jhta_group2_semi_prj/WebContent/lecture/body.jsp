@@ -46,7 +46,7 @@ ul>li>a>.thumbnail {
 							.getCourseByNo(video.getCourse().getNo());
 					Lecturer lecturer = LecturerDao.getInstance().getLecturerByNo(course.getLecturer().getNo());
 			%>
-				<li><a href='#'> <img src='<%=lecturer.getPicture() %>' alt=''
+				<li><a href='/jhta_group2_semi_prj/lecture/index.jsp?courseNo=<%=courseNo %>&orderNo=<%=video.getOrder()%>'> <img src='<%=lecturer.getPicture() %>' alt=''
 						class='pull-right thumbnail'>
 						<p>강의1</p>
 						<p class="small">강의 설명</p>
