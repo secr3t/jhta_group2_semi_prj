@@ -15,7 +15,7 @@
 	Student student = new Student();
 	student.setName(name);
 	student.setEmail(email);
-	student.setPwd(DigestUtils.sha256Hex(pwd));
+	student.setPwd(pwd);
 	student.setPhone(phone);
 	
 	StudentDao studentDao = StudentDao.getInstance();

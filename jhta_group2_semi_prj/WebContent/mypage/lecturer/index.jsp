@@ -62,14 +62,15 @@
 	                    </div>
 	                    <table class="table table-condensed table-hover">
 	                        <colgroup>
-	                            <col width="30%">
-	                            <col width="20%">
-	                            <col width="20%">
+	                            <col width="40%">
+	                            <col width="10%">
+	                            <col width="10%">
+	                            <col width="10%">
 	                            <col width="30%">
 	                        </colgroup>
 	                        <thead>
 	                            <tr>
-	                                <th>강의명</th><th>강의 수</th><th>학생 수</th><th>강의 평점</th>
+	                                <th>강의명</th><th>강의 수</th><th>학생 수</th><th>허가여부</th><th>강의 평점</th>
 	                            </tr>
 	                        </thead>
 	                        <tbody>
@@ -81,6 +82,13 @@
 	                        		CourCriteria.setBeginIndex(1);
 	                        		CourCriteria.setEndIndex(8);
 	                        		List<Course> courseList = lecDao.getCourseByLecturerNo(CourCriteria);
+	                        		if(courseList.size() == 0) {
+	                        	%>
+	                        	<tr>
+	                        		<td colspan="12" class="text-center">강의가 존재하지 않습니다.</td>
+	                        	</tr>
+	                        	<%		
+	                        		}
 	                        		for(Course forCourse : courseList) {
 	                        			CourCriteria.setCourseNo(forCourse.getNo());
 	                        	%>
@@ -88,6 +96,7 @@
 	                                <td><a href="mycourse/course-info.jsp?cno=<%=forCourse.getNo() %>"><%=forCourse.getName() %></a></td>
 	                                <td><%=courDao.getTotalCourseVideoByCourseNo(forCourse.getNo()) %></td>
 	                                <td><%=courDao.getTotalStudentByCourseNo(CourCriteria) %></td>
+	                                <td><%=forCourse.getPermit() %></td>
 	                                <td>
 									<%
 										double avgGrade = courDao.getGradeAvgByCourseNo(forCourse.getNo());
@@ -139,7 +148,14 @@
 	                                </tr>
 	                            </thead>
 	                            <tbody>
-	                            	<%
+	                            	<%                  
+	                            		if(qnaList.size() == 0) {
+	            	                %>
+	            	                <tr>
+	            	                   <td colspan="12" class="text-center">미답변 질문이 존재하지 않습니다.</td>
+	            	                </tr>
+	            	                <%
+	            	                   	}
 	                            		for(Qna forQna : qnaList) {
 	                            	%>
 			                                <tr>

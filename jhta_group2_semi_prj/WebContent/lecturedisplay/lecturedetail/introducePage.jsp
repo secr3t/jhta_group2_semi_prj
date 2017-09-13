@@ -23,7 +23,7 @@
 <%
 int sheight = 0;
 if(request.getParameter("sheight")!=null){
-	sheight = Integer.parseInt(request.getParameter("sheight"));
+	sheight = Integer.parseInt(request.getParameter("sheight"))+200;
 } 
 	int courseNo = Integer.parseInt(request.getParameter("courseNo"));
 	LectureCourseDao courseDao = LectureCourseDao.getInstance();

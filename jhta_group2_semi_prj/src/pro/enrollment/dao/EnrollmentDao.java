@@ -17,7 +17,7 @@ public class EnrollmentDao {
 	}
 	
 	public void addEnrollment(Enrollment enrollment) throws SQLException{
-		IbatisUtils.getSqlMap().insert("addEnrollment", enrollment);
+		IbatisUtils.getSqlMap().insert("enrollment.addEnrollment", enrollment);
 	}
 	
 	@SuppressWarnings("unchecked")

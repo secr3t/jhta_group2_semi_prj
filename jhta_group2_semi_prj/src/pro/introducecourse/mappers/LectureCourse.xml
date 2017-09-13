@@ -102,4 +102,27 @@
 				order by A.DEPT_NO asc )
 		where  	"m" >= #beginIndex# and "m" &lt;= #endIndex#
 	</select>
+	<select id="getNotEnrolledCoursesByStudentNo" parameterClass="int" resultClass="course">
+   select
+         A.course_no         as "no",
+         A.course_name         as "name",
+         A.course_summary      as "summary",
+         A.course_detail      as "detail",
+         A.course_point      as "point",
+         A.lecturer_no         as "lecturer.no",
+         A.dept_no            as "dept.no",
+         A.course_permit   as   "permit"
+      from
+         course A
+         
+        where A.COURSE_NO not in
+  
+      (select
+         A.course_no         as "no"
+      from
+         course A, ENROLLMENT B
+      where
+         B.COURSE_NO = A.COURSE_NO
+      and B.STUDENT_NO = #value#)
+   </select>
 </sqlMap>

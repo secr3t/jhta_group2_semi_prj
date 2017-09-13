@@ -57,14 +57,15 @@
                           <table class="table table-hover" id="course-table">
                             <colgroup>
                                 <col width="30%">
-                                <col width="15%">
-                                <col width="15%">
+                                <col width="10%">
+                                <col width="10%">
+                                <col width="10%">
                                 <col width="30%">
                                 <col width="10%">
                             </colgroup>
                             <thead>
                                 <tr>
-                                    <th>강의명</th><th>강의 수</th><th>학생 수</th><th>강의 평점</th><th></th>
+                                    <th>강의명</th><th>강의 수</th><th>학생 수</th><th>허가</th><th>강의 평점</th><th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -95,6 +96,13 @@
 			                  		criteria.setBeginIndex(beginIndex);
 			                  		criteria.setEndIndex(endIndex);
 	                        		List<Course> courseList = lecDao.getCourseByLecturerNo(criteria);
+	                        		if(courseList.size() == 0) {
+	                        	%>
+			                    <tr>
+			        	        	<td colspan="12" class="text-center">강의가 존재하지 않습니다.</td>
+			        	        </tr>
+	                        	<%		
+	                        		}
 	                        		for(Course forCourse : courseList) {
 	                        			criteria.setCourseNo(forCourse.getNo());
 	                        	%>
@@ -102,6 +110,7 @@
 	                                <td><a href="/mypage/course/course-info.jsp?cno=<%=forCourse.getNo() %>" class="course-info" id="course-info-<%=forCourse.getNo() %>"><%=forCourse.getName() %></a></td>
 	                                <td><%=courDao.getTotalCourseVideoByCourseNo(forCourse.getNo()) %></td>
 	                                <td><%=courDao.getTotalStudentByCourseNo(criteria) %></td>
+	                                <td><%=forCourse.getPermit() %></td>
 	                                <td>
 									<%
 										double avgGrade = courDao.getGradeAvgByCourseNo(forCourse.getNo());

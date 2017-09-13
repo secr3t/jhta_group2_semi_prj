@@ -39,9 +39,14 @@ public class LectureCourseDao {
 		return (Integer) IbatisUtils.getSqlMap().queryForObject("course.getCourseQty");
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	public List<LectureInfo> getLecturesInfo (Criteria criteria) throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("course.getLecturesInfo", criteria);
 	}
+	@SuppressWarnings("unchecked")
+    public List<Course> getNotEnrolledCoursesByStudentNo (int no) throws SQLException {
+      return IbatisUtils.getSqlMap().queryForList("course.getNotEnrolledCoursesByStudentNo", no);
+    }
 
 }

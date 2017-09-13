@@ -9,7 +9,7 @@
 	
 	<insert id="addEnrollment" parameterClass="Enrollment">
 		insert into enrollment(enrollment_no, enrollment_start_date, student_no, course_no)
-		values(enrollment_seq.nextval, sysdate, #student.no#, #course.no#)
+		values(enrollment_no_seq.nextval, sysdate, #student.no#, #course.no#)
 	</insert>
 	
 	<select id="getEnrollmentById" resultClass="Enrollment">

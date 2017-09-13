@@ -39,7 +39,7 @@
 		</div>  
         <div class="col-sm-9">
          	<div class="row">
-              <div class="col-sm-4">
+              <div class="col-sm-6">
               <%
 	       	 	  request.setCharacterEncoding("utf-8");
 	       	 	  String opt = request.getParameter("searchopt");
@@ -65,8 +65,9 @@
               <%
       			  }
               %>
+              	<a href="techqna.jsp" class="btn btn-default btn-sm">전체 목록</a>
               </div>
-              <div class="col-sm-10 pull-right">
+              <div class="col-sm-6 pull-right">
                <form method="get" action="techqna.jsp" class="form-inline text-right">
                    <div class="form-group">
                        <label class="sr-only">검색분류</label>
@@ -128,6 +129,13 @@
                      	 	}
 
 	                  		List<Tech> techList = stuDao.getTechInfo(criteria);
+	                  		if(techList.size() == 0) {
+	                  	%>
+	                  	<tr>
+                       		<td colspan="12" class="text-center">질문이 존재하지 않습니다.</td>
+                       	</tr>
+	                  	<%
+	                  		}
 	                  		for(Tech forTech : techList) {
 	                  	%>
 		                      <tr>
@@ -177,24 +185,21 @@
                      	 	}
                      	 %>
                      	 <%
-                     	 	if(nowPage != totalPages) {
+                     	 	if(nowPage < totalPages) {
                      	 %>
 	                         	<li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=nowPage + 1 %>"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
                      	 <%
                      	 	}
                      	 %>
                      	 <%
-                     	 	if(nowBlock != totalBlock) {
+                     	 	if(nowBlock < totalBlock) {
                      	 		
                      	 %>
 		                         <li><a href="<%=params + ("".equals(params) ? "?" : "&") %>p=<%=beginPage + pagesPerBlock %>"><span class="glyphicon glyphicon-forward"></span></a></li>
                      	 <%
                      	 	}
                      	 %>
-                     </ul>
-                     <div class="pull-right">
-                     	<a href="techqna.jsp" class="btn btn-default btn-sm">전체 목록으로</a>
-                     </div>                          
+                     </ul>                         
                  </div>
              </div>
          </div>

@@ -5,6 +5,7 @@
 <%@include file="../../common/header.jsp" %>
 <body>
 <%@include file="../../common/nav.jsp" %>
+<%@include file="../common/loginCheck.jsp" %>
 <div class="container">
 <style>
 input#point {

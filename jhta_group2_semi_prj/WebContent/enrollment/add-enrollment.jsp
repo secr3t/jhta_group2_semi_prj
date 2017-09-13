@@ -1,3 +1,4 @@
+<%@page import="pro.student.dao.StudentDao"%>
 <%@page import="pro.enrollment.vo.Enrollment"%>
 <%@page import="pro.enrollment.dao.EnrollmentDao"%>
 <%@page import="java.util.List"%>
@@ -22,11 +23,18 @@
 <% 
 	String courseNoString = request.getParameter("courseNo");
 	String comma = ",";
+
+	int studentPoint = Integer.parseInt(request.getParameter("studentPoint"));
+		Student student = (Student)loginUser;
+		student.setPoint(studentPoint);
+		StudentDao.getInstance().updateStudent(student);
+	
 	
 	String[] splitNo = courseNoString.split(comma);
 	for(int i=0; i<splitNo.length; i++){
 		EnrollmentDao enrollmentDao = EnrollmentDao.getInstance();
 		Enrollment enrollment = new Enrollment();	 
+		
 		
 		int courseNo = Integer.parseInt(splitNo[i]); 
 		Course course = new Course();
@@ -37,13 +45,10 @@
 		 //}
 		//int studentNo = student.getNo();
 		
-		Student student = (Student)loginUser;
-		enrollment.setStudent(student);
-		
-		 
+		enrollment.setStudent(student); 
 		enrollmentDao.addEnrollment(enrollment);
 	}
-	
+	 response.sendRedirect("../lecturedisplay/lecturesdisplay/index.jsp"); 
 %>
 </body>
 <script type="text/javascript">
