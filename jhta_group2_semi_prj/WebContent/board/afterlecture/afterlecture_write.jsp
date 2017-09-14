@@ -90,7 +90,7 @@
 									</label>
 									<label class="radio-inline">
 									  <input type="radio" name="inlineRadioOptions" value="5"> 5
-									</label>
+									 </label>
 								</div>
 								
 							</div>
