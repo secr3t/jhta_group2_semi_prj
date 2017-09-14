@@ -58,7 +58,7 @@
 	                    <textarea rows="2" name="coursesummary" class="form-control"><%=course.getSummary() %></textarea>
 	                    <hr/>
 	                    <label>강의 소개</label>
-	                    <textarea rows="15" name="coursedetail" class="form-control"><%=course.getSummary() %></textarea>
+	                    <textarea rows="15" name="coursedetail" class="form-control"><%=course.getDetail() %></textarea>
 	                    <button type="submit" class="btn btn-primary pull-right">수정</button>
                     </form>
                 <%	
