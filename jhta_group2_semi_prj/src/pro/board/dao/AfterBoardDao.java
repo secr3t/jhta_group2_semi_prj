@@ -3,7 +3,9 @@ package pro.board.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import pro.course.vo.Course;
 import pro.criteria.vo.Criteria;
+import pro.enrollment.vo.Enrollment;
 import pro.postscription.vo.Postscription;
 import pro.utils.IbatisUtils;
 
@@ -34,5 +36,8 @@ public class AfterBoardDao {
 	}
 	public List<Postscription> getAfterBoardTop() throws SQLException {
 		return IbatisUtils.getSqlMap().queryForList("AfterBoard.getAfterBoardTop");
+	}
+	public Enrollment getEnrollmentByNo(int no) throws SQLException {
+		return (Enrollment) IbatisUtils.getSqlMap().queryForObject("AfterBoard.getEnrollmentByNo", no);
 	}
 }

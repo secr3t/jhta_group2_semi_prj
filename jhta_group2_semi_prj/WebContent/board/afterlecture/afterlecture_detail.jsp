@@ -53,7 +53,7 @@
 	  				</tbody>
 	  			</table>
 	  			<div class="text-right">
-	  				<%if(loginUser != null && loginUser.getNo() == pos.getStudent().getNo()) { %>
+	  				<%if(loginUser != null && loginUser.getNo() == pos.getStudent().getNo() || loginUser != null && "A".equals(loginUser.getType().toUpperCase())) { %>
 	  				<a href="/jhta_group2_semi_prj/board/afterlecture/delete_afterlecture.jsp?bno=<%=pos.getNo() %>" class="btn btn-danger btn-md">삭제</a>
 	  				<%} %>
 	  				<a href="<%=request.getParameter("url") %>" class="btn btn-primary btn-md">돌아가기</a>

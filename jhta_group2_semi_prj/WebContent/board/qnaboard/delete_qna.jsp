@@ -12,7 +12,7 @@
  	Qna qna = qdao.getQnaBoardByNo(no);
  	System.out.println(qna);
  	System.out.println(user);
-	if(user != null && qna.getStudent().getNo() == user.getNo()) {
+ 	if(user != null && (user.getNo() == qna.getStudent().getNo() ||  "A".equals(user.getType().toUpperCase()))) { 
  	qdao.deleteQnaBoard(no);
  	response.sendRedirect("/jhta_group2_semi_prj/board/qnaboard/qnaboard.jsp");
 	} else {

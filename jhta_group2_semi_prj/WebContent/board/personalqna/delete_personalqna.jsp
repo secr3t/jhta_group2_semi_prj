@@ -10,7 +10,8 @@
  	TechBoardDao tdao = TechBoardDao.getInstance();
 	Tech tech = tdao.getTechBoardByNo(no);
 	
-	if(user != null && tech.getStudent().getNo() == user.getNo()) {
+	
+	if(user != null && (user.getNo() == tech.getStudent().getNo() ||  "A".equals(user.getType().toUpperCase()))) { 
 	
 	tdao.deleteTechBoard(no);
 	

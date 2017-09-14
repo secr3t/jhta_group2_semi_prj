@@ -1,3 +1,5 @@
+<%@page import="pro.board.dao.AfterBoardDao"%>
+<%@page import="pro.enrollment.vo.Enrollment"%>
 <%@page import="pro.course.vo.Course"%>
 <%@page import="java.util.List"%>
 <%@page import="pro.introducecourse.dao.LectureCourseDao"%>
@@ -43,9 +45,15 @@
 							int courseNo = 0;
 							if(request.getParameter("courseNo") != null) {
 						courseNo = Integer.parseInt(request.getParameter("courseNo")); 
+								AfterBoardDao adao = AfterBoardDao.getInstance();
+								Enrollment en = adao.getEnrollmentByNo(courseNo);
+								
+								if(en.getStudent().getNo() == loginUser.getNo()) {
 						 %>
 						<input type="hidden" name="courseNo" value="<%=courseNo %>">
-						<%} %>
+						<%
+									}
+								} %>
 							<div class="form-group">
 								<label class="col-sm-1 control-label">제목</label>
 								<div class="col-sm-4">

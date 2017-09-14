@@ -13,7 +13,7 @@
 	
  	Postscription board = adao.getAfterBoardByNo(no);
  	
- 	if(user != null && board.getStudent().getNo() == user.getNo()) {
+ 	if(user != null && user.getNo() == board.getStudent().getNo() || "A".equals(user.getType().toUpperCase())) { 
  		
  	adao.deleteAfterBoard(no);
  	response.sendRedirect("/jhta_group2_semi_prj/board/afterlecture/afterlecture.jsp");

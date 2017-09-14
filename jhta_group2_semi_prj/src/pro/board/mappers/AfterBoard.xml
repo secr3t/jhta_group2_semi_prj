@@ -132,6 +132,21 @@ select "no"        as  no,
 		
 </select>
 
+<select id="getEnrollmentByNo" parameterClass="int" resultClass="pro.enrollment.vo.Enrollment">
+	select 
+	B.student_no	as	"student.no",
+	C.course_no		as "course.no",
+	A.ENROLLMENT_NO
+from 
+	ENROLLMENT A, POSTSCRIPTION B, course C
+where 
+	B.student_no = C.course_no 
+and 
+	A.course_no  = C.course_no 
+and 
+	C.course_no = #value#
+</select>
+
 
 
 </sqlMap>
